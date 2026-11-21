@@ -252,7 +252,7 @@ class DeviceWindow(Adw.ApplicationWindow):
         seg = Gtk.Box(spacing=0)
         seg.add_css_class("segmentado")
         b_info = Gtk.ToggleButton(label="Información", active=True)
-        b_sw = Gtk.ToggleButton(label="Drivers y software", group=b_info)
+        b_sw = Gtk.ToggleButton(label="Controladores y aplicaciones", group=b_info)
         for b, page in ((b_info, "info"), (b_sw, "sw")):
             b.connect("toggled", lambda btn, p=page: btn.get_active() and self.stack.set_visible_child_name(p))
             seg.append(b)

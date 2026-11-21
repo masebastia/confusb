@@ -281,7 +281,11 @@ def collect(syspath: str, with_lsusb: bool = True) -> DeviceInfo:
         ("Rutas persistentes (ID_PATH)", p.get("ID_PATH", "—")),
         ("Etiquetas udev (TAGS)", p.get("TAGS", "—")),
     ]
-    info.sections.append(("Identificación y descriptores", rows))
+    ident_labels = {"Fabricante (descriptor)", "Producto (descriptor)", "Nº de serie", "ID de fabricante (VID)",
+                    "ID de producto (PID)", "Versión del dispositivo (bcdDevice)", "Versión de USB",
+                    "Velocidad negociada (Mb/s)"}
+    info.sections.append(("Identificación", [r for r in rows if r[0] in ident_labels]))
+    info.sections.append(("Descriptores y configuración", [r for r in rows if r[0] not in ident_labels]))
     info.sections.append(("Sistema", general))
 
     power = []

@@ -138,6 +138,76 @@ def centrado(content: Gtk.Widget) -> Gtk.Widget:
     return Gtk.ScrolledWindow(child=clamp, hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
 
 
+def desplazable(content: Gtk.Widget) -> Gtk.Widget:
+    """Desplazamiento vertical que usa todo el ancho de la ventana."""
+    content.set_margin_top(4)
+    content.set_margin_bottom(16)
+    content.set_margin_start(12)
+    content.set_margin_end(12)
+    return Gtk.ScrolledWindow(child=content, hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
+
+
+class Masonry(Gtk.Box):
+    """Reparte las tarjetas en N columnas según el ancho disponible (N = ancho // min_col),
+    colocando cada una en la columna más baja para que toda la pantalla quede aprovechada."""
+
+    def __init__(self, min_col: int = 460, max_cols: int = 4, spacing: int = HUECO + 4):
+        super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=spacing, homogeneous=True)
+        self.min_col, self.max_cols, self.gap = min_col, max_cols, spacing
+        self.items: list[Gtk.Widget] = []
+        self.cols: list[Gtk.Box] = []
+        self._n = 0
+        self._width = 0
+        self._dirty = True
+        self.add_tick_callback(self._tick)
+
+    def add(self, w: Gtk.Widget, before_last: bool = False):
+        self.items.insert(len(self.items) - 1 if before_last and self.items else len(self.items), w)
+        self._dirty = True
+
+    def remove_item(self, w: Gtk.Widget):
+        if w in self.items:
+            self.items.remove(w)
+            if w.get_parent() is not None:
+                w.get_parent().remove(w)
+            self._dirty = True
+
+    def clear(self):
+        for w in list(self.items):
+            self.remove_item(w)
+
+    def _tick(self, _w, _clock):
+        width = self.get_width()
+        if width <= 0:
+            return GLib.SOURCE_CONTINUE
+        n = max(1, min(self.max_cols, width // self.min_col))
+        if self._dirty or n != self._n or abs(width - self._width) > 40:
+            self._relayout(n, width)
+        return GLib.SOURCE_CONTINUE
+
+    def _relayout(self, n: int, width: int):
+        self._dirty = False
+        self._n, self._width = n, width
+        for col in self.cols:
+            child = col.get_first_child()
+            while child is not None:
+                nxt = child.get_next_sibling()
+                col.remove(child)
+                child = nxt
+            super().remove(col)
+        self.cols = []
+        for _ in range(n):
+            col = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=self.gap, valign=Gtk.Align.START)
+            self.cols.append(col)
+            self.append(col)
+        colw = max(1, (width - self.gap * (n - 1)) // n)
+        heights = [0] * n
+        for w in self.items:
+            i = heights.index(min(heights))
+            self.cols[i].append(w)
+            heights[i] += w.measure(Gtk.Orientation.VERTICAL, colw)[1] + self.gap
+
+
 class OutputWindow(Adw.Window):
     def __init__(self, parent, title: str, text: str):
         super().__init__(transient_for=parent, default_width=620, default_height=420, title=title)
@@ -156,12 +226,12 @@ class OutputWindow(Adw.Window):
 class DeviceWindow(Adw.ApplicationWindow):
     def __init__(self, app, info: DeviceInfo):
         load_css()
-        super().__init__(application=app, default_width=560, default_height=800,
+        super().__init__(application=app, default_width=1280, default_height=800,
                          title=f"USB conectado · {info.title}")
+        self.maximize()
         self.add_css_class("teveo")
         self.info = info
         self.gen = 0
-        self.sw_cards: list[Gtk.Widget] = []
 
         sm = Adw.StyleManager.get_default()
         sm.connect("notify::dark", lambda *_: self.apply_scheme())
@@ -169,9 +239,9 @@ class DeviceWindow(Adw.ApplicationWindow):
 
         # ---- cabecera: control segmentado + copiar
         self.stack = Gtk.Stack(vexpand=True, transition_type=Gtk.StackTransitionType.CROSSFADE)
-        self.stack.add_named(centrado(self.build_info_page()), "info")
-        self.sw_box = pila()
-        self.stack.add_named(centrado(self.sw_box), "sw")
+        self.stack.add_named(desplazable(self.build_info_page()), "info")
+        self.sw_box = Masonry()
+        self.stack.add_named(desplazable(self.sw_box), "sw")
 
         seg = Gtk.Box(spacing=0)
         seg.add_css_class("segmentado")
@@ -203,6 +273,7 @@ class DeviceWindow(Adw.ApplicationWindow):
     def build_info_page(self) -> Gtk.Widget:
         info = self.info
         page = pila(HUECO + 4)
+        grid = Masonry()
 
         # tarjeta de cabecera
         head = Gtk.Box(spacing=12)
@@ -229,10 +300,12 @@ class DeviceWindow(Adw.ApplicationWindow):
         head.append(stat)
         page.append(head)
 
+        page.append(grid)
+
         for title, rows in info.sections:
             c = tarjeta(title)
             c.append(datos(rows))
-            page.append(c)
+            grid.add(c)
 
         if info.interfaces:
             c = tarjeta("Interfaces", "Cada interfaz puede tener su propio driver")
@@ -246,12 +319,12 @@ class DeviceWindow(Adw.ApplicationWindow):
                     ("Modalias", i.modalias or "—"),
                     *[("Endpoint", e.removeprefix("Endpoint ")) for e in i.endpoints],
                 ]))
-            page.append(c)
+            grid.add(c)
 
         if info.nodes:
             c = tarjeta("Nodos creados en el sistema")
             c.append(datos([(node, sub) for sub, node in info.nodes]))
-            page.append(c)
+            grid.add(c)
 
         c = tarjeta("Datos en bruto")
         ex = Gtk.Expander(label=f"Propiedades udev ({len(info.props)})")
@@ -261,7 +334,7 @@ class DeviceWindow(Adw.ApplicationWindow):
             ex2 = Gtk.Expander(label="Salida de lsusb -v (descriptores USB completos)")
             ex2.set_child(bruto(info.lsusb, 300))
             c.append(ex2)
-        page.append(c)
+        grid.add(c)
         return page
 
     def on_copy(self, _btn):
@@ -270,9 +343,7 @@ class DeviceWindow(Adw.ApplicationWindow):
 
     # ------------------------------------------------------------ software
     def load_software(self):
-        for w in self.sw_cards:
-            self.sw_box.remove(w)
-        self.sw_cards.clear()
+        self.sw_box.clear()
         self.gen += 1
         gen = self.gen
 
@@ -282,8 +353,7 @@ class DeviceWindow(Adw.ApplicationWindow):
         row.append(self.spinner)
         row.append(label("Buscando drivers y aplicaciones…", "secundario", wrap=False))
         self.search.append(row)
-        self.sw_box.append(self.search)
-        self.sw_cards.append(self.search)
+        self.sw_box.add(self.search)
 
         def worker():
             resolver.resolve(self.info, lambda g: GLib.idle_add(self.add_group, g, gen))
@@ -293,8 +363,7 @@ class DeviceWindow(Adw.ApplicationWindow):
     def finish_search(self, gen: int):
         if gen != self.gen:
             return
-        self.sw_box.remove(self.search)
-        self.sw_cards.remove(self.search)
+        self.sw_box.remove_item(self.search)
 
     def add_group(self, group: resolver.Group, gen: int):
         if gen != self.gen:  # resultado de una búsqueda anterior
@@ -302,11 +371,7 @@ class DeviceWindow(Adw.ApplicationWindow):
         c = tarjeta(group.title, group.subtitle)
         for item in group.items:
             c.append(self.make_item(item))
-        # la tarjeta «buscando…» siempre queda al final
-        self.sw_box.remove(self.search)
-        self.sw_box.append(c)
-        self.sw_box.append(self.search)
-        self.sw_cards.insert(len(self.sw_cards) - 1, c)
+        self.sw_box.add(c, before_last=True)  # «buscando…» siempre queda al final
         return False
 
     def make_item(self, item: resolver.Item) -> Gtk.Widget:

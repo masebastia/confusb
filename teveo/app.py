@@ -86,8 +86,13 @@ class TeveoApp(Adw.Application):
     def open_device(self, path: str):
         win = self.windows.get(path)
         if win:
-            win.present()
-            return False
+            if not win.disconnected:
+                win.present()
+                return False
+            # El dispositivo se desconectó y vuelve a estar en el mismo puerto (puede ser otro distinto):
+            # se descarta la ventana antigua y se abre una nueva con los datos actuales.
+            self.windows.pop(path, None)
+            win.close()
         if not os.path.exists(path):  # ya se ha desconectado
             return False
 
@@ -100,7 +105,12 @@ class TeveoApp(Adw.Application):
                 return False
             w = DeviceWindow(self, info)
             self.windows[path] = w
-            w.connect("close-request", lambda *_: self.windows.pop(path, None) and False)
+            def on_close(win, path=path):
+                if self.windows.get(path) is win:  # no borrar la ventana nueva del mismo puerto
+                    del self.windows[path]
+                return False
+
+            w.connect("close-request", on_close)
             w.present()
             return False
 

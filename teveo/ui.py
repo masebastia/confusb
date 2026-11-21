@@ -238,6 +238,7 @@ class DeviceWindow(Adw.ApplicationWindow):
         self.maximize()
         self.add_css_class("teveo")
         self.info = info
+        self.disconnected = False
         self.gen = 0
 
         sm = Adw.StyleManager.get_default()
@@ -476,6 +477,7 @@ class DeviceWindow(Adw.ApplicationWindow):
 
     # ------------------------------------------------------------- estado
     def mark_disconnected(self):
+        self.disconnected = True
         self.dot.remove_css_class("conectado")
         self.dot.add_css_class("desconectado")
         self.dot.set_tooltip_text("Desconectado")

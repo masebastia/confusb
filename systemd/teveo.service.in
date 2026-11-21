@@ -1,0 +1,13 @@
+[Unit]
+Description=teveo - aviso y búsqueda de drivers al conectar dispositivos USB
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/python3 -m teveo
+WorkingDirectory=@PROJECT_DIR@
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target

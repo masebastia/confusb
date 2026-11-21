@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=teveo
+Comment=Información, drivers y software de dispositivos USB
+Exec=/usr/bin/python3 -m teveo --show 
+Icon=drive-harddisk-usb-symbolic
+NoDisplay=true
+StartupWMClass=es.teveo.Monitor

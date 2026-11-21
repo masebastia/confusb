@@ -13,7 +13,7 @@ gi.require_version("GUdev", "1.0")
 from gi.repository import Adw, Gio, GLib, GUdev  # noqa: E402
 
 from . import APP_ID, usbinfo  # noqa: E402
-from .ui import DeviceWindow  # noqa: E402
+from .ui import DeviceWindow, DevicesWindow  # noqa: E402
 
 SETTLE_MS = 1500          # esperar a que el kernel enlace drivers e interfaces
 IGNORED_VIDS = {"1d6b"}   # root hubs de Linux Foundation
@@ -38,12 +38,18 @@ class TeveoApp(Adw.Application):
         self.windows: dict[str, DeviceWindow] = {}
         self.client: GUdev.Client | None = None
         self.held = False
+        self.devices_win: DevicesWindow | None = None
+        self.add_main_option("devices", ord("d"), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
+                             "Mostrar la lista de dispositivos USB conectados", None)
         self.add_main_option("show", ord("s"), GLib.OptionFlags.NONE, GLib.OptionArg.STRING,
                              "Mostrar la ventana de un dispositivo (1-5, VID:PID o ruta sysfs)", "DISP")
 
     # --------------------------------------------------------- ciclo de vida
     def do_command_line(self, cmdline):
         opts = cmdline.get_options_dict().end().unpack()
+        if "devices" in opts:
+            self.show_devices()
+            return 0
         if "show" in opts:
             path = resolve_target(opts["show"])
             if not path:
@@ -58,6 +64,12 @@ class TeveoApp(Adw.Application):
             self.client.connect("uevent", self.on_uevent)
             print("teveo: vigilando conexiones USB…", flush=True)
         return 0
+
+    def show_devices(self):
+        if self.devices_win is None:
+            self.devices_win = DevicesWindow(self, self.open_device)
+            self.devices_win.connect("close-request", lambda *_: setattr(self, "devices_win", None) or False)
+        self.devices_win.present()
 
     # ---------------------------------------------------------------- eventos
     def on_uevent(self, _client, action: str, device: GUdev.Device):
@@ -112,6 +124,7 @@ def main(argv: list[str]) -> int:
     if args.help:
         print("uso: teveo            servicio (vigila conexiones USB y abre una ventana)\n"
               "     teveo --show X   abrir ventana de un dispositivo conectado (1-5, 058f:9540, ruta sysfs)\n"
+              "     teveo --devices  ventana con los dispositivos conectados\n"
               "     teveo --list     listar dispositivos\n"
               "     teveo --dump X   volcar toda la información en texto")
         return 0

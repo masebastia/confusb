@@ -14,13 +14,14 @@ gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Pango  # noqa: E402
 
 from . import resolver  # noqa: E402
-from .usbinfo import ENV, DeviceInfo, class_name  # noqa: E402
+from . import usbinfo  # noqa: E402
+from .usbinfo import CLASS_NAMES, ENV, DeviceInfo, class_name  # noqa: E402
 
 RES = os.path.join(os.path.dirname(__file__), "recursos")
 HUECO, HUECO_SECCION = 8, 20          # mismas separaciones que Rambleando (--hueco, --hueco-seccion)
 
 STATUS_CLASS = {
-    "ok": {"Instalado", "Instalada", "Driver activo", "Espacio de usuario", "OK", "Soportado"},
+    "ok": {"Instalado", "Instalada", "Driver activo", "Espacio de usuario", "OK", "Soportado", "Con driver"},
     "aviso": {"Falta instalar", "Sin vincular"},
     "error": {"Sin driver", "No está en los repositorios"},
 }
@@ -479,3 +480,85 @@ class DeviceWindow(Adw.ApplicationWindow):
         self.dot.add_css_class("desconectado")
         self.dot.set_tooltip_text("Desconectado")
         self.dot_label.set_label("Desconectado")
+
+
+class DevicesWindow(Adw.ApplicationWindow):
+    """Lista de los dispositivos USB conectados; desde aquí se abre el detalle de cada uno."""
+
+    def __init__(self, app, on_open):
+        load_css()
+        super().__init__(application=app, default_width=1100, default_height=680,
+                         title="teveo · Dispositivos USB conectados")
+        self.add_css_class("teveo")
+        self.on_open = on_open
+        self.gen = 0
+        Adw.StyleManager.get_default().connect("notify::dark", lambda *_: self.apply_scheme())
+        self.apply_scheme()
+
+        self.grid = Masonry(min_col=340)
+        header = Adw.HeaderBar(title_widget=Gtk.Label(label="Dispositivos USB conectados", css_classes=["titulo"]))
+        refresh = Gtk.Button(icon_name="view-refresh-symbolic", tooltip_text="Actualizar la lista")
+        refresh.add_css_class("suggested-action")
+        refresh.connect("clicked", lambda *_: self.refresh())
+        header.pack_end(refresh)
+        self.toasts = Adw.ToastOverlay(child=desplazable(self.grid))
+        tv = Adw.ToolbarView(content=self.toasts)
+        tv.set_top_bar_style(Adw.ToolbarStyle.FLAT)
+        tv.add_top_bar(header)
+        self.set_content(tv)
+        self.refresh()
+
+    def apply_scheme(self):
+        dark = Adw.StyleManager.get_default().get_dark()
+        self.add_css_class("oscuro" if dark else "claro")
+        self.remove_css_class("claro" if dark else "oscuro")
+
+    def refresh(self):
+        self.grid.clear()
+        self.gen += 1
+        gen = self.gen
+        wait = tarjeta()
+        row = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
+        row.append(Gtk.Spinner(spinning=True))
+        row.append(label("Leyendo dispositivos…", "secundario", wrap=False))
+        wait.append(row)
+        self.grid.add(wait)
+
+        def work():
+            return [usbinfo.collect(p, with_lsusb=False) for p in usbinfo.list_usb_devices()]
+
+        def done(res):
+            if gen != self.gen:
+                return
+            self.grid.clear()
+            if isinstance(res, Exception):
+                c = tarjeta("No se han podido leer los dispositivos", str(res))
+                self.grid.add(c)
+                return
+            for info in res:
+                if info.vid in ("1d6b",):  # root hubs del kernel
+                    continue
+                self.grid.add(self.device_card(info))
+
+        in_thread(work, done)
+
+    def device_card(self, info: DeviceInfo) -> Gtk.Widget:
+        c = tarjeta()
+        head = Gtk.Box(spacing=8)
+        t = label(info.title, "titulo")
+        t.set_hexpand(True)
+        head.append(t)
+        head.append(estado("Con driver") if info.drivers and info.drivers != ["usbfs"] else Gtk.Box())
+        c.append(head)
+        c.append(label(f"{info.vendor or 'Fabricante desconocido'} · {info.usb_id}", "secundario"))
+        classes = ", ".join(CLASS_NAMES.get(k, f"0x{k:02x}") for k in sorted(info.classes) if k != 0) or "—"
+        c.append(datos([
+            ("Tipo", classes),
+            ("Puerto", os.path.basename(info.syspath)),
+            ("Driver", ", ".join(info.drivers) or "ninguno"),
+        ]))
+        b = boton("Ver información y software")
+        b.set_margin_top(HUECO)
+        b.connect("clicked", lambda *_: self.on_open(info.syspath))
+        c.append(b)
+        return c

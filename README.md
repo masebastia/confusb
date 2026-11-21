@@ -11,8 +11,9 @@ abre una ventana con:
   pueden lanzar o probar desde la propia ventana.
 
 ## Uso
-    ./install.sh              # instala y arranca el servicio (systemd --user)
+    ./install.sh              # instala el servicio (systemd --user) y la entrada «teveo» del menú de aplicaciones
     ./install.sh --uninstall
+    python3 -m teveo --devices         # ventana con los dispositivos conectados (lo que abre el menú)
     python3 -m teveo --list            # dispositivos conectados
     python3 -m teveo --show 058f:9540  # abrir la ventana de uno ya conectado (1-5, VID:PID o ruta sysfs)
     python3 -m teveo --dump 1-5        # volcado en texto

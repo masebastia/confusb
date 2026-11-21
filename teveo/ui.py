@@ -120,7 +120,7 @@ def estado(texto: str) -> Gtk.Label:
 
 def boton(texto: str, principal=False, enabled=True, tip="") -> Gtk.Button:
     b = Gtk.Button(label=texto, sensitive=enabled)
-    b.add_css_class("principal" if principal else "secundario-btn")
+    b.add_css_class("suggested-action")  # color de acento del sistema para todo lo pulsable
     if tip:
         b.set_tooltip_text(tip)
     return b
@@ -160,6 +160,12 @@ class Masonry(Gtk.Box):
         self._width = 0
         self._dirty = True
         self.add_tick_callback(self._tick)
+
+    def do_measure(self, orientation, for_size):
+        # El ancho de las columnas no depende de la altura: evita avisos de GTK al redimensionar.
+        if orientation == Gtk.Orientation.HORIZONTAL:
+            for_size = -1
+        return Gtk.Box.do_measure(self, orientation, for_size)
 
     def add(self, w: Gtk.Widget, before_last: bool = False):
         self.items.insert(len(self.items) - 1 if before_last and self.items else len(self.items), w)
@@ -253,9 +259,20 @@ class DeviceWindow(Adw.ApplicationWindow):
 
         header = Adw.HeaderBar(title_widget=seg)
         copy = Gtk.Button(icon_name="edit-copy-symbolic", tooltip_text="Copiar toda la información")
-        copy.add_css_class("boton-icono")
+        copy.add_css_class("suggested-action")
         copy.connect("clicked", self.on_copy)
         header.pack_end(copy)
+        self.max_btn = Gtk.Button(tooltip_text="Maximizar / restaurar")
+        self.max_btn.add_css_class("suggested-action")
+        self.max_btn.connect("clicked", lambda *_: self.toggle_maximize())
+        header.pack_end(self.max_btn)
+        self.connect("notify::maximized", lambda *_: self.update_max_icon())
+        self.update_max_icon()
+
+        # Doble clic en la cabecera = maximizar/restaurar (se gestiona aquí para que funcione siempre)
+        dbl = Gtk.GestureClick(button=Gdk.BUTTON_PRIMARY, propagation_phase=Gtk.PropagationPhase.CAPTURE)
+        dbl.connect("pressed", self.on_header_press, header)
+        header.add_controller(dbl)
 
         self.toasts = Adw.ToastOverlay(child=self.stack)
         tv = Adw.ToolbarView(content=self.toasts)
@@ -336,6 +353,23 @@ class DeviceWindow(Adw.ApplicationWindow):
             c.append(ex2)
         grid.add(c)
         return page
+
+    def toggle_maximize(self):
+        self.unmaximize() if self.is_maximized() else self.maximize()
+
+    def update_max_icon(self):
+        self.max_btn.set_icon_name("window-restore-symbolic" if self.is_maximized() else "window-maximize-symbolic")
+
+    def on_header_press(self, gesture, n_press, x, y, header):
+        if n_press != 2:
+            return
+        w = header.pick(x, y, Gtk.PickFlags.DEFAULT)
+        while w is not None and w is not header:  # no actuar si el doble clic cae sobre un botón
+            if isinstance(w, Gtk.Button):
+                return
+            w = w.get_parent()
+        gesture.set_state(Gtk.EventSequenceState.CLAIMED)
+        self.toggle_maximize()
 
     def on_copy(self, _btn):
         self.get_clipboard().set(self.info.as_text())

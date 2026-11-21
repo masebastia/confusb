@@ -32,22 +32,8 @@ window.oscuro .tarjeta { background: rgba(22, 27, 34, 0.92); border: 1px solid r
 window.claro .caja { background: rgba(255, 255, 255, 0.6); }
 window.oscuro .caja { background: rgba(255, 255, 255, 0.07); }
 
-/* Botones */
-button.principal {
-  background: #1f6feb; color: #ffffff; border: none; border-radius: 8px;
-  padding: 6px 12px; box-shadow: none; background-image: none; text-shadow: none;
-}
-button.principal:hover { background: #1a5fd0; }
-button.principal:disabled { opacity: 0.4; }
-button.secundario-btn {
-  border-radius: 8px; padding: 6px 12px; border: none; box-shadow: none; background-image: none; color: inherit;
-}
-window.claro button.secundario-btn { background: rgba(31, 35, 40, 0.08); }
-window.oscuro button.secundario-btn { background: rgba(255, 255, 255, 0.14); }
-button.secundario-btn:hover { background: rgba(31, 111, 235, 0.22); }
-button.secundario-btn:disabled { opacity: 0.4; }
-button.boton-icono { border-radius: 6px; min-width: 28px; min-height: 28px; padding: 0; background: transparent; border: none; box-shadow: none; color: inherit; }
-button.boton-icono:hover { background: rgba(127, 127, 127, 0.25); }
+/* Botones: los de acción llevan la clase «suggested-action» de libadwaita, que usa el color de
+   acento del sistema (Ajustes → Apariencia → Color de acento) y se atenúa al desactivarse. */
 
 /* Control segmentado */
 .segmentado { padding: 3px; border-radius: 8px; }
@@ -57,7 +43,8 @@ window.oscuro .segmentado { background: rgba(255, 255, 255, 0.14); }
   border: none; box-shadow: none; background: transparent; background-image: none;
   border-radius: 6px; padding: 4px 14px; color: inherit; min-height: 0;
 }
-.segmentado button:checked { background: #1f6feb; color: #ffffff; }
+.segmentado button:checked { background: @accent_bg_color; color: @accent_fg_color; }
+.segmentado button:hover:not(:checked) { background: alpha(@accent_bg_color, 0.25); }
 
 /* Estados (etiquetas pequeñas) */
 .estado { font-size: 85%; font-weight: 600; border-radius: 999px; padding: 1px 9px; }

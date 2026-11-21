@@ -1,6 +1,8 @@
-"""Ventana de detalle del dispositivo: información completa + drivers/software."""
+"""Ventana de detalle del dispositivo, con el estilo visual de Rambleando:
+tarjetas redondeadas, rúbricas en mayúsculas, datos etiqueta/valor y acento azul."""
 from __future__ import annotations
 
+import os
 import shlex
 import subprocess
 import threading
@@ -9,14 +11,32 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Adw, Gio, GLib, Gtk  # noqa: E402
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Pango  # noqa: E402
 
 from . import resolver  # noqa: E402
 from .usbinfo import ENV, DeviceInfo, class_name  # noqa: E402
 
-ICONS = {0x01: "audio-card-symbolic", 0x03: "input-keyboard-symbolic", 0x06: "camera-photo-symbolic",
-         0x07: "printer-symbolic", 0x08: "drive-removable-media-symbolic", 0x09: "network-wired-symbolic",
-         0x0B: "auth-smartcard-symbolic", 0x0E: "camera-web-symbolic", 0xE0: "bluetooth-symbolic"}
+RES = os.path.join(os.path.dirname(__file__), "recursos")
+HUECO, HUECO_SECCION = 8, 20          # mismas separaciones que Rambleando (--hueco, --hueco-seccion)
+
+STATUS_CLASS = {
+    "ok": {"Instalado", "Instalada", "Driver activo", "Espacio de usuario", "OK", "Soportado"},
+    "aviso": {"Falta instalar", "Sin vincular"},
+    "error": {"Sin driver", "No está en los repositorios"},
+}
+
+_css_ready = False
+
+
+def load_css():
+    global _css_ready
+    if _css_ready:
+        return
+    prov = Gtk.CssProvider()
+    prov.load_from_path(os.path.join(RES, "estilo.css"))
+    Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), prov,
+                                              Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+    _css_ready = True
 
 
 def in_thread(fn, done):
@@ -37,110 +57,211 @@ def run_capture(cmd: list[str], timeout: float = 40):
     return go
 
 
-def plain_row(title: str, subtitle: str = "") -> Adw.ActionRow:
-    row = Adw.ActionRow(title=GLib.markup_escape_text(title), subtitle=GLib.markup_escape_text(subtitle))
-    row.set_subtitle_selectable(True)
-    row.add_css_class("property")
-    return row
+# ------------------------------------------------------------- componentes
+
+def label(text: str, *classes: str, selectable=False, xalign=0.0, wrap=True) -> Gtk.Label:
+    lb = Gtk.Label(label=text, xalign=xalign, wrap=wrap, selectable=selectable)
+    lb.set_wrap_mode(Pango.WrapMode.WORD_CHAR)
+    if wrap:
+        # sin esto GTK pide el ancho mínimo (1 carácter) y el texto se parte letra a letra
+        lb.set_hexpand(True)
+        lb.set_width_chars(12)
+        lb.set_max_width_chars(80)
+    for c in classes:
+        lb.add_css_class(c)
+    return lb
+
+
+def pila(spacing: int = HUECO) -> Gtk.Box:
+    return Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=spacing)
+
+
+def tarjeta(titulo: str = "", subtitulo: str = "") -> Gtk.Box:
+    box = pila()
+    box.add_css_class("tarjeta")
+    if titulo:
+        box.append(label(titulo, "titulo"))
+    if subtitulo:
+        box.append(label(subtitulo, "secundario"))
+    return box
+
+
+def rubrica(texto: str) -> Gtk.Label:
+    lb = label(texto.upper(), "rubrica")
+    lb.set_margin_top(HUECO_SECCION - HUECO)
+    return lb
+
+
+def datos(rows: list[tuple[str, str]]) -> Gtk.Grid:
+    """Lista etiqueta (izquierda) / valor (derecha), como el .datos de Rambleando."""
+    g = Gtk.Grid(column_spacing=12, row_spacing=HUECO)
+    for n, (k, v) in enumerate(rows):
+        kl = label(k, "datos-etiqueta")
+        kl.set_valign(Gtk.Align.START)
+        kl.set_hexpand(False)
+        kl.set_max_width_chars(28)
+        vl = label(v, "datos-valor", selectable=True, xalign=1.0)
+        vl.set_hexpand(True)
+        vl.set_halign(Gtk.Align.END)
+        vl.set_justify(Gtk.Justification.RIGHT)
+        g.attach(kl, 0, n, 1, 1)
+        g.attach(vl, 1, n, 1, 1)
+    return g
+
+
+def estado(texto: str) -> Gtk.Label:
+    lb = label(texto, "estado", wrap=False, xalign=0.5)
+    lb.set_valign(Gtk.Align.CENTER)
+    for cls, names in STATUS_CLASS.items():
+        if texto in names:
+            lb.add_css_class(cls)
+    return lb
+
+
+def boton(texto: str, principal=False, enabled=True, tip="") -> Gtk.Button:
+    b = Gtk.Button(label=texto, sensitive=enabled)
+    b.add_css_class("principal" if principal else "secundario-btn")
+    if tip:
+        b.set_tooltip_text(tip)
+    return b
+
+
+def bruto(texto: str, alto: int = 220) -> Gtk.Widget:
+    lb = Gtk.Label(label=texto, selectable=True, xalign=0, yalign=0, margin_top=6, margin_bottom=6)
+    lb.add_css_class("bruto")
+    return Gtk.ScrolledWindow(child=lb, min_content_height=alto, hscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
+
+
+def centrado(content: Gtk.Widget) -> Gtk.Widget:
+    clamp = Adw.Clamp(maximum_size=640, tightening_threshold=480, child=content,
+                      margin_top=4, margin_bottom=16, margin_start=12, margin_end=12)
+    return Gtk.ScrolledWindow(child=clamp, hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
 
 
 class OutputWindow(Adw.Window):
     def __init__(self, parent, title: str, text: str):
-        super().__init__(transient_for=parent, modal=False, default_width=640, default_height=420, title=title)
-        view = Gtk.TextView(editable=False, monospace=True, wrap_mode=Gtk.WrapMode.WORD_CHAR,
-                            left_margin=12, right_margin=12, top_margin=12, bottom_margin=12)
-        view.get_buffer().set_text(text or "(sin salida)")
+        super().__init__(transient_for=parent, default_width=620, default_height=420, title=title)
+        self.add_css_class("teveo")
+        self.add_css_class("oscuro" if Adw.StyleManager.get_default().get_dark() else "claro")
+        card = tarjeta(title)
+        card.append(bruto(text or "(sin salida)", 280))
         tv = Adw.ToolbarView()
         tv.add_top_bar(Adw.HeaderBar())
-        tv.set_content(Gtk.ScrolledWindow(child=view))
+        tv.set_content(centrado(card))
         self.set_content(tv)
 
+
+# ------------------------------------------------------------------ ventana
 
 class DeviceWindow(Adw.ApplicationWindow):
     def __init__(self, app, info: DeviceInfo):
-        super().__init__(application=app, default_width=760, default_height=780,
+        load_css()
+        super().__init__(application=app, default_width=560, default_height=800,
                          title=f"USB conectado · {info.title}")
+        self.add_css_class("teveo")
         self.info = info
-        self.sw_groups: list[Adw.PreferencesGroup] = []
+        self.gen = 0
+        self.sw_cards: list[Gtk.Widget] = []
 
-        self.toasts = Adw.ToastOverlay()
-        self.banner = Adw.Banner(title="El dispositivo se ha desconectado", revealed=False)
-        self.stack = Adw.ViewStack()
-        self.stack.add_titled_with_icon(self.build_info_page(), "info", "Información", "dialog-information-symbolic")
-        self.stack.add_titled_with_icon(self.build_software_page(), "sw", "Drivers y software",
-                                        "system-software-install-symbolic")
+        sm = Adw.StyleManager.get_default()
+        sm.connect("notify::dark", lambda *_: self.apply_scheme())
+        self.apply_scheme()
 
-        switcher = Adw.ViewSwitcher(stack=self.stack, policy=Adw.ViewSwitcherPolicy.WIDE)
-        header = Adw.HeaderBar(title_widget=switcher)
+        # ---- cabecera: control segmentado + copiar
+        self.stack = Gtk.Stack(vexpand=True, transition_type=Gtk.StackTransitionType.CROSSFADE)
+        self.stack.add_named(centrado(self.build_info_page()), "info")
+        self.sw_box = pila()
+        self.stack.add_named(centrado(self.sw_box), "sw")
+
+        seg = Gtk.Box(spacing=0)
+        seg.add_css_class("segmentado")
+        b_info = Gtk.ToggleButton(label="Información", active=True)
+        b_sw = Gtk.ToggleButton(label="Drivers y software", group=b_info)
+        for b, page in ((b_info, "info"), (b_sw, "sw")):
+            b.connect("toggled", lambda btn, p=page: btn.get_active() and self.stack.set_visible_child_name(p))
+            seg.append(b)
+
+        header = Adw.HeaderBar(title_widget=seg)
         copy = Gtk.Button(icon_name="edit-copy-symbolic", tooltip_text="Copiar toda la información")
+        copy.add_css_class("boton-icono")
         copy.connect("clicked", self.on_copy)
         header.pack_end(copy)
 
-        body = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        body.append(self.banner)
-        self.stack.set_vexpand(True)
-        body.append(self.stack)
-        self.toasts.set_child(body)
-        tv = Adw.ToolbarView()
+        self.toasts = Adw.ToastOverlay(child=self.stack)
+        tv = Adw.ToolbarView(content=self.toasts)
+        tv.set_top_bar_style(Adw.ToolbarStyle.FLAT)
         tv.add_top_bar(header)
-        tv.set_content(self.toasts)
         self.set_content(tv)
         self.load_software()
+
+    def apply_scheme(self):
+        dark = Adw.StyleManager.get_default().get_dark()
+        self.add_css_class("oscuro" if dark else "claro")
+        self.remove_css_class("claro" if dark else "oscuro")
 
     # ---------------------------------------------------------------- info
     def build_info_page(self) -> Gtk.Widget:
         info = self.info
-        page = Adw.PreferencesPage()
+        page = pila(HUECO + 4)
 
-        head = Adw.PreferencesGroup()
-        icon = next((ICONS[c] for c in sorted(info.classes) if c in ICONS), "drive-harddisk-usb-symbolic")
-        row = Adw.ActionRow(title=GLib.markup_escape_text(info.title),
-                            subtitle=GLib.markup_escape_text(f"{info.vendor or 'Fabricante desconocido'} · USB ID {info.usb_id}"))
-        row.add_prefix(Gtk.Image(icon_name=icon, pixel_size=48))
-        head.add(row)
-        page.add(head)
+        # tarjeta de cabecera
+        head = Gtk.Box(spacing=12)
+        head.add_css_class("tarjeta")
+        logo = Gtk.Image.new_from_gicon(Gio.FileIcon.new(Gio.File.new_for_path(os.path.join(RES, "icono.svg"))))
+        logo.set_pixel_size(52)
+        logo.set_valign(Gtk.Align.CENTER)
+        logo.add_css_class("logo")
+        txt = pila(2)
+        txt.set_hexpand(True)
+        txt.set_valign(Gtk.Align.CENTER)
+        txt.append(label(info.title, "titulo-grande"))
+        txt.append(label(f"{info.vendor or 'Fabricante desconocido'} · USB ID {info.usb_id}", "secundario"))
+        self.dot = Gtk.Box(valign=Gtk.Align.CENTER)
+        self.dot.add_css_class("punto")
+        self.dot.add_css_class("conectado")
+        self.dot.set_tooltip_text("Conectado")
+        self.dot_label = label("Conectado", "secundario", wrap=False)
+        head.append(logo)
+        head.append(txt)
+        stat = Gtk.Box(spacing=6, valign=Gtk.Align.START, margin_top=4)
+        stat.append(self.dot)
+        stat.append(self.dot_label)
+        head.append(stat)
+        page.append(head)
 
         for title, rows in info.sections:
-            g = Adw.PreferencesGroup(title=title)
-            for k, v in rows:
-                g.add(plain_row(k, v))
-            page.add(g)
+            c = tarjeta(title)
+            c.append(datos(rows))
+            page.append(c)
 
-        g = Adw.PreferencesGroup(title="Interfaces", description="Cada interfaz puede tener su propio driver")
-        for i in info.interfaces:
-            ex = Adw.ExpanderRow(title=GLib.markup_escape_text(f"Interfaz {i.number} · {i.label or class_name(i.cls)}"),
-                                 subtitle=GLib.markup_escape_text(f"Driver: {i.driver or 'ninguno'}"))
-            ex.add_row(plain_row("Clase", class_name(i.cls)))
-            ex.add_row(plain_row("Subclase / protocolo", f"0x{(i.subcls or 0):02x} / 0x{(i.proto or 0):02x}"))
-            ex.add_row(plain_row("Driver vinculado", i.driver or "ninguno"))
-            ex.add_row(plain_row("Módulos del kernel", ", ".join(i.modules) or "ninguno encontrado"))
-            ex.add_row(plain_row("Modalias", i.modalias or "—"))
-            for e in i.endpoints:
-                ex.add_row(plain_row("Endpoint", e.removeprefix("Endpoint ")))
-            g.add(ex)
         if info.interfaces:
-            page.add(g)
+            c = tarjeta("Interfaces", "Cada interfaz puede tener su propio driver")
+            for i in info.interfaces:
+                c.append(rubrica(f"Interfaz {i.number} · {i.label or class_name(i.cls)}"))
+                c.append(datos([
+                    ("Clase", class_name(i.cls)),
+                    ("Subclase / protocolo", f"0x{(i.subcls or 0):02x} / 0x{(i.proto or 0):02x}"),
+                    ("Driver vinculado", i.driver or "ninguno"),
+                    ("Módulos del kernel", ", ".join(i.modules) or "ninguno encontrado"),
+                    ("Modalias", i.modalias or "—"),
+                    *[("Endpoint", e.removeprefix("Endpoint ")) for e in i.endpoints],
+                ]))
+            page.append(c)
 
         if info.nodes:
-            g = Adw.PreferencesGroup(title="Nodos creados en el sistema")
-            for sub, node in info.nodes:
-                g.add(plain_row(node, f"Subsistema: {sub}"))
-            page.add(g)
+            c = tarjeta("Nodos creados en el sistema")
+            c.append(datos([(node, sub) for sub, node in info.nodes]))
+            page.append(c)
 
-        g = Adw.PreferencesGroup(title="Datos en bruto")
-        ex = Adw.ExpanderRow(title="Propiedades udev", subtitle=f"{len(info.props)} propiedades")
-        for k, v in sorted(info.props.items()):
-            ex.add_row(plain_row(k, v))
-        g.add(ex)
+        c = tarjeta("Datos en bruto")
+        ex = Gtk.Expander(label=f"Propiedades udev ({len(info.props)})")
+        ex.set_child(bruto("\n".join(f"{k}={v}" for k, v in sorted(info.props.items()))))
+        c.append(ex)
         if info.lsusb:
-            ex2 = Adw.ExpanderRow(title="Salida de lsusb -v", subtitle="Descriptores USB completos")
-            lbl = Gtk.Label(label=info.lsusb, selectable=True, xalign=0, wrap=False, margin_top=8,
-                            margin_bottom=8, margin_start=12, margin_end=12)
-            lbl.add_css_class("monospace")
-            ex2.add_row(Gtk.ScrolledWindow(child=lbl, hscrollbar_policy=Gtk.PolicyType.AUTOMATIC,
-                                           vscrollbar_policy=Gtk.PolicyType.NEVER, min_content_height=200))
-            g.add(ex2)
-        page.add(g)
+            ex2 = Gtk.Expander(label="Salida de lsusb -v (descriptores USB completos)")
+            ex2.set_child(bruto(info.lsusb, 300))
+            c.append(ex2)
+        page.append(c)
         return page
 
     def on_copy(self, _btn):
@@ -148,77 +269,68 @@ class DeviceWindow(Adw.ApplicationWindow):
         self.toasts.add_toast(Adw.Toast(title="Información copiada al portapapeles"))
 
     # ------------------------------------------------------------ software
-    def build_software_page(self) -> Gtk.Widget:
-        self.sw_page = Adw.PreferencesPage()
-        self.spin_attached = False
-        self.spin_group = Adw.PreferencesGroup()
-        box = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER, margin_top=6, margin_bottom=6)
-        self.spinner = Gtk.Spinner(spinning=True)
-        self.spin_label = Gtk.Label(label="Buscando drivers y aplicaciones…")
-        box.append(self.spinner)
-        box.append(self.spin_label)
-        self.spin_group.add(box)
-        return self.sw_page
-
     def load_software(self):
-        for g in self.sw_groups:
-            self.sw_page.remove(g)
-        self.sw_groups.clear()
-        self.spin_group.set_visible(True)
-        if not self.spin_attached:
-            self.sw_page.add(self.spin_group)
-            self.spin_attached = True
-        self.spinner.set_spinning(True)
-        self.spin_label.set_label("Buscando drivers y aplicaciones…")
-
-        self.gen = getattr(self, "gen", 0) + 1
+        for w in self.sw_cards:
+            self.sw_box.remove(w)
+        self.sw_cards.clear()
+        self.gen += 1
         gen = self.gen
+
+        self.search = tarjeta()
+        row = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
+        self.spinner = Gtk.Spinner(spinning=True)
+        row.append(self.spinner)
+        row.append(label("Buscando drivers y aplicaciones…", "secundario", wrap=False))
+        self.search.append(row)
+        self.sw_box.append(self.search)
+        self.sw_cards.append(self.search)
 
         def worker():
             resolver.resolve(self.info, lambda g: GLib.idle_add(self.add_group, g, gen))
-            return None
 
         in_thread(worker, lambda _r: self.finish_search(gen))
 
     def finish_search(self, gen: int):
         if gen != self.gen:
             return
-        self.spinner.set_spinning(False)
-        self.spin_group.set_visible(False)
+        self.sw_box.remove(self.search)
+        self.sw_cards.remove(self.search)
 
     def add_group(self, group: resolver.Group, gen: int):
         if gen != self.gen:  # resultado de una búsqueda anterior
             return False
-        pg = Adw.PreferencesGroup(title=GLib.markup_escape_text(group.title),
-                                  description=GLib.markup_escape_text(group.subtitle))
+        c = tarjeta(group.title, group.subtitle)
         for item in group.items:
-            pg.add(self.make_row(item))
-        # el grupo de «buscando…» siempre queda al final
-        self.sw_page.remove(self.spin_group)
-        self.sw_page.add(pg)
-        self.sw_page.add(self.spin_group)
-        self.sw_groups.append(pg)
+            c.append(self.make_item(item))
+        # la tarjeta «buscando…» siempre queda al final
+        self.sw_box.remove(self.search)
+        self.sw_box.append(c)
+        self.sw_box.append(self.search)
+        self.sw_cards.insert(len(self.sw_cards) - 1, c)
         return False
 
-    def make_row(self, item: resolver.Item) -> Adw.ActionRow:
-        row = Adw.ActionRow(title=GLib.markup_escape_text(item.title),
-                            subtitle=GLib.markup_escape_text(item.desc))
-        row.set_subtitle_lines(0)
-        row.set_title_lines(0)
-        row.set_subtitle_selectable(True)
+    def make_item(self, item: resolver.Item) -> Gtk.Widget:
+        box = pila(HUECO)
+        box.add_css_class("caja")
+        top = Gtk.Box(spacing=8)
+        t = label(item.title)
+        t.add_css_class("titulo")
+        t.set_hexpand(True)
+        top.append(t)
         if item.status:
-            lbl = Gtk.Label(label=item.status, valign=Gtk.Align.CENTER)
-            lbl.add_css_class("dim-label")
-            row.add_suffix(lbl)
-        for act in item.actions:
-            btn = Gtk.Button(label=act.label, valign=Gtk.Align.CENTER, sensitive=act.enabled)
-            if act.tooltip:
-                btn.set_tooltip_text(act.tooltip)
-            if act.kind in ("apt", "flatpak"):
-                btn.add_css_class("suggested-action")
-            btn.connect("clicked", self.on_action, act)
-            row.add_suffix(btn)
-        return row
+            top.append(estado(item.status))
+        box.append(top)
+        if item.desc:
+            box.append(label(item.desc, "secundario", selectable=True))
+        if item.actions:
+            flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, max_children_per_line=6,
+                               column_spacing=8, row_spacing=8, homogeneous=False)
+            for act in item.actions:
+                b = boton(act.label, principal=act.kind in ("apt", "flatpak"), enabled=act.enabled, tip=act.tooltip)
+                b.connect("clicked", self.on_action, act)
+                flow.append(b)
+            box.append(flow)
+        return box
 
     def on_action(self, btn: Gtk.Button, act: resolver.Action):
         k, p = act.kind, act.payload
@@ -235,11 +347,9 @@ class DeviceWindow(Adw.ApplicationWindow):
             subprocess.Popen([*term, "bash", "-c", script], start_new_session=True)
         elif k in ("capture", "apt", "flatpak"):
             if k == "apt":
-                cmd = ["pkexec", "apt-get", "install", "-y", *p]
-                timeout = 900
+                cmd, timeout = ["pkexec", "apt-get", "install", "-y", *p], 900
             elif k == "flatpak":
-                cmd = ["flatpak", "install", "-y", "--noninteractive", "flathub", p]
-                timeout = 900
+                cmd, timeout = ["flatpak", "install", "-y", "--noninteractive", "flathub", p], 900
             else:
                 cmd, timeout = p, 40
             old = btn.get_label()
@@ -253,16 +363,20 @@ class DeviceWindow(Adw.ApplicationWindow):
                     self.toasts.add_toast(Adw.Toast(title=f"Error: {res}"))
                     return
                 rc, out = res
+                body = f"$ {shlex.join(cmd)}\n(código de salida {rc})\n\n{out}"
                 if k == "capture":
-                    OutputWindow(self, " ".join(cmd), f"$ {shlex.join(cmd)}\n(código de salida {rc})\n\n{out}").present()
+                    OutputWindow(self, " ".join(cmd), body).present()
                 elif rc == 0:
                     self.toasts.add_toast(Adw.Toast(title="Instalación completada"))
                     self.load_software()
                 else:
-                    OutputWindow(self, "La instalación ha fallado", f"$ {shlex.join(cmd)}\n(código {rc})\n\n{out}").present()
+                    OutputWindow(self, "La instalación ha fallado", body).present()
 
             in_thread(run_capture(cmd, timeout), done)
 
     # ------------------------------------------------------------- estado
     def mark_disconnected(self):
-        self.banner.set_revealed(True)
+        self.dot.remove_css_class("conectado")
+        self.dot.add_css_class("desconectado")
+        self.dot.set_tooltip_text("Desconectado")
+        self.dot_label.set_label("Desconectado")

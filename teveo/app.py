@@ -47,7 +47,7 @@ class TeveoApp(Adw.Application):
         if "show" in opts:
             path = resolve_target(opts["show"])
             if not path:
-                cmdline.printerr(f"No se encuentra el dispositivo «{opts['show']}»\n")
+                cmdline.printerr_literal(f"No se encuentra el dispositivo «{opts['show']}»\n")
                 return 1
             self.open_device(path)
             return 0

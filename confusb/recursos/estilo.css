@@ -1,88 +1,70 @@
-/* Estilo de confusb: el de Rambleando (app.css) llevado a GTK.
-   Los colores con nombre (@panel_bg, @texto, @halo…) los define ajustes.py según el modo
-   (claro/oscuro), la transparencia y el color de letra elegidos. */
+/* Estilo de confusb: el de Contabilizando (theme.py) llevado a GTK.
+   Los colores @cx_* los define ajustes.py según el tema del sistema (claro/oscuro) y la «Interfaz» elegida.
+   Los botones de acción usan el color de acento del sistema (@accent_bg_color / suggested-action). */
 
-window.confusb { background-color: @fondo_ventana; color: @texto; font-size: 15px; }
+window.confusb { background-color: @cx_bg; color: @cx_text; font-size: 13px; }
+window.confusb headerbar { background: @cx_panel; color: @cx_text; border-bottom: 1px solid @cx_border; box-shadow: none; }
+window.confusb headerbar label.title { font-weight: 600; }
 
-/* ---- Tarjeta «cristal»: fondo translúcido, borde claro, esquinas de 14 px y halo en el texto ---- */
-.cristal {
-  background-color: @panel_bg;
-  border: 1px solid @panel_borde;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+/* ---- Cabecera: emblema + marca (monoespaciada) ---- */
+.marca { font-family: "DejaVu Sans Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
+         font-size: 17px; font-weight: 700; letter-spacing: 2px; }
+.marca-sub { color: @cx_dim; font-size: 11px; }
+
+/* ---- Tarjetas ---- */
+.card, .modcard { background-color: @cx_card_bg; border: 1px solid @cx_border; border-radius: 12px; padding: 14px 16px; }
+.modcard:hover { background-color: @cx_card_hover; }
+.card-title { color: @cx_dim; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+.mod-icon { font-size: 22px; }
+.mod-name { font-size: 15px; font-weight: 700; }
+.mod-big { font-family: "DejaVu Sans Mono", "SF Mono", Consolas, monospace; font-size: 19px; font-weight: 700; color: @accent_color; }
+.mod-pie { color: @accent_color; font-size: 12px; font-weight: 600; }
+.section { font-size: 15px; font-weight: 700; }
+.dim { color: @cx_dim; font-size: 12px; }
+.datos-etiqueta { color: @cx_dim; font-size: 12px; }
+.datos-valor { font-family: "DejaVu Sans Mono", "SF Mono", Consolas, monospace; font-size: 12px; font-feature-settings: "tnum"; }
+.caja { border-radius: 8px; padding: 8px 10px; background-color: alpha(@cx_text, 0.06); }
+
+/* ---- Navegación en píldoras ---- */
+.pastillas { padding: 0 20px; }
+.pastilla {
+  background-image: none; background-color: transparent; color: @cx_dim; box-shadow: none; min-height: 0;
+  padding: 7px 16px; margin: 8px 4px 8px 0; border: 1px solid transparent; border-radius: 15px;
 }
-.cristal label { text-shadow: 0 0 3px @halo, 0 0 6px @halo; }
-.cristal button label, .cristal .estado, .cristal link { text-shadow: none; }
+.pastilla:hover { color: @cx_text; background-color: @cx_panel; border-color: @cx_border; }
+.pastilla:checked { color: @accent_fg_color; background-color: @accent_bg_color; font-weight: 600; }
 
-.tarjeta { padding: 14px 16px 16px; }
-.tarjeta .titulo { font-size: 110%; font-weight: 700; }
-.tarjeta .titulo-grande { font-size: 125%; font-weight: 700; }
-.secundario { opacity: 0.85; }
+/* ---- Botones de la cabecera y de las tarjetas ---- */
+button.suggested-action { border-radius: 7px; padding: 6px 14px; }
 
-/* Rúbrica: título de sección en mayúsculas pequeñas */
-.rubrica { font-size: 80%; font-weight: 600; opacity: 0.85; }
-.datos-etiqueta { opacity: 0.85; }
-.datos-valor { font-feature-settings: "tnum"; }
+/* ---- Barra inferior (como la de noticias): etiqueta de color + texto ---- */
+.barra-estado { background-color: @cx_panel; border-top: 1px solid @cx_border; font-size: 12px; }
+.barra-etiqueta { background-color: @accent_bg_color; color: @accent_fg_color; font-weight: 700; padding: 0 14px; min-height: 34px; }
+.barra-estado .aviso-grave { color: @cx_danger; }
+button.cerrar { min-width: 22px; min-height: 22px; padding: 0; border: none; box-shadow: none; background-image: none;
+  background-color: transparent; color: inherit; border-radius: 6px; }
+button.cerrar:hover { background-color: alpha(@cx_text, 0.12); }
 
-/* Caja de elemento dentro de una tarjeta */
-.caja { border-radius: 8px; padding: 8px 10px; background-color: @realce; }
-
-/* ---- Dock (columna de iconos a la izquierda) ---- */
-.dock { padding: 6px; }
-.dock button.icono {
-  min-width: 42px; min-height: 42px; padding: 0; border-radius: 10px;
-  border: none; box-shadow: none; background-image: none; background-color: transparent;
-  color: @accent_color;
-}
-.dock button.icono.con-texto { padding: 4px 2px; }
-.dock button.icono label { font-size: 70%; line-height: 1.1; }
-.dock button.icono:hover { background-color: @realce; }
-.dock button.icono:checked, .dock button.icono.activo { background-color: @accent_bg_color; color: @accent_fg_color; }
-.dock separator { margin: 4px 8px; opacity: 0.3; background-color: currentColor; min-height: 1px; }
-
-/* ---- Barra de estado ---- */
-.barra-estado {
-  min-height: 26px; padding: 0 10px; font-size: 85%;
-  background-color: @panel_bg; border-top: 1px solid @panel_borde;
-}
-.barra-estado label { text-shadow: 0 0 3px @halo, 0 0 6px @halo; }
-.barra-estado .aviso-grave { color: @error_fg; }
-button.cerrar { min-width: 22px; min-height: 22px; padding: 0; border: none; box-shadow: none;
-  background-image: none; background-color: transparent; color: inherit; border-radius: 6px; }
-button.cerrar:hover { background-color: @realce; }
-
-/* ---- Botones de acción: color de acento del sistema (clase suggested-action de libadwaita) ---- */
-
-/* ---- Control segmentado ---- */
-.segmentado { padding: 3px; border-radius: 8px; background-color: @realce; }
-.segmentado button {
-  border: none; box-shadow: none; background-color: transparent; background-image: none;
-  border-radius: 6px; padding: 4px 12px; color: inherit; min-height: 0;
-}
-.segmentado button:checked { background-color: @accent_bg_color; color: @accent_fg_color; }
-.segmentado button:hover:not(:checked) { background-color: alpha(@accent_bg_color, 0.25); }
-
-/* ---- Muestras de color de la letra ---- */
-button.muestra {
-  min-width: 28px; min-height: 28px; padding: 0; border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.9); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
-}
-button.muestra.elegida { box-shadow: 0 0 0 3px @accent_bg_color; }
+/* ---- Cristal difuminado (subventanas): panel translúcido sobre la captura desenfocada ---- */
+.cristal { background-color: @cx_glass; border: 1px solid @cx_glass_border; border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); padding: 22px 26px 20px 26px; }
+.cristal dropdown > button, .cristal entry { background-color: @cx_glass_input; background-image: none; }
+.cristal .secundario { color: @cx_dim; }
+.cristal .rubrica { color: @cx_dim; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
 
 /* ---- Estados (etiquetas pequeñas) ---- */
-.estado { font-size: 85%; font-weight: 600; border-radius: 999px; padding: 1px 9px; }
-.estado.ok { color: @ok_fg; background-color: alpha(@ok_fg, 0.18); }
-.estado.aviso { color: @aviso_fg; background-color: alpha(@aviso_fg, 0.20); }
-.estado.error { color: @error_fg; background-color: alpha(@error_fg, 0.16); }
+.estado { font-size: 11px; font-weight: 600; border-radius: 9px; padding: 2px 8px; }
+.estado.ok { color: @cx_ok; background-color: alpha(@cx_ok, 0.18); }
+.estado.aviso { color: @cx_warn; background-color: alpha(@cx_warn, 0.20); }
+.estado.error { color: @cx_danger; background-color: alpha(@cx_danger, 0.16); }
 
 /* Punto de color: conectado / desconectado */
-.punto { min-width: 12px; min-height: 12px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); }
-.punto.conectado { background-color: #2fbf71; }
-.punto.desconectado { background-color: #ff2d95; }
+.punto { min-width: 10px; min-height: 10px; border-radius: 50%; }
+.punto.conectado { background-color: @cx_ok; }
+.punto.desconectado { background-color: @cx_danger; }
 
-.aviso-error { border-radius: 6px; padding: 8px 10px; background-color: @error_bg; color: @error_fg; }
-
-.bruto { font-family: monospace; font-size: 90%; }
-.logo { border-radius: 12px; }
+.aviso-error { border-radius: 6px; padding: 8px 10px; background-color: alpha(@cx_danger, 0.16); color: @cx_danger; }
+.bruto { font-family: "DejaVu Sans Mono", "SF Mono", Consolas, monospace; font-size: 12px; }
 expander title { padding: 4px 0; }
 scrolledwindow, scrolledwindow > viewport { background: transparent; }
+scale trough highlight { background-color: @accent_bg_color; }

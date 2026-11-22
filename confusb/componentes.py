@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Componentes de interfaz compartidos: tarjetas, datos, reparto en columnas, dock, barra de estado
-y panel de ajustes. Reproducen los de Rambleando (tarjetas «cristal», dock a la izquierda, barra de
-estado abajo y panel de Ajustes)."""
+"""Componentes de interfaz compartidos, con la estética de Contabilizando: cabecera con emblema y marca,
+navegación en píldoras, tarjetas, barra inferior con etiqueta y subventanas de cristal difuminado."""
 from __future__ import annotations
 
 import subprocess
@@ -12,13 +11,14 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import GLib, Gtk, Pango  # noqa: E402
+gi.require_version("Graphene", "1.0")
+from gi.repository import GLib, Graphene, Gtk, Pango  # noqa: E402
 
-from . import __version__  # noqa: E402
-from .ajustes import AJUSTES, AL_CONECTAR, COLORES_TEXTO, TEMAS, TRANSPARENCIA  # noqa: E402
+from . import __version__, fondo  # noqa: E402
+from .ajustes import AJUSTES, AL_CONECTAR, COLORES, DEFECTOS, MARCOS  # noqa: E402
 from .usbinfo import ENV  # noqa: E402
 
-HUECO, HUECO_SECCION = 8, 20          # mismas separaciones que Rambleando (--hueco, --hueco-seccion)
+HUECO = 8
 REPO_URL = "https://github.com/masebastia/confusb"
 
 STATUS_CLASS = {
@@ -67,25 +67,24 @@ def pila(spacing: int = HUECO) -> Gtk.Box:
     return Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=spacing)
 
 
-def tarjeta(titulo: str = "", subtitulo: str = "") -> Gtk.Box:
+def tarjeta(titulo: str = "", subtitulo: str = "", clase: str = "card") -> Gtk.Box:
     box = pila()
-    box.add_css_class("cristal")
-    box.add_css_class("tarjeta")
+    box.add_css_class(clase)
     if titulo:
-        box.append(label(titulo, "titulo"))
+        box.append(label(titulo, "section"))
     if subtitulo:
-        box.append(label(subtitulo, "secundario"))
+        box.append(label(subtitulo, "dim"))
     return box
 
 
 def rubrica(texto: str) -> Gtk.Label:
-    lb = label(texto.upper(), "rubrica")
-    lb.set_margin_top(HUECO_SECCION - HUECO)
+    lb = label(texto.upper(), "card-title", "rubrica")
+    lb.set_margin_top(10)
     return lb
 
 
 def datos(rows: list[tuple[str, str]]) -> Gtk.Grid:
-    """Lista etiqueta (izquierda) / valor (derecha), como el .datos de Rambleando."""
+    """Lista etiqueta (izquierda) / valor (derecha)."""
     g = Gtk.Grid(column_spacing=12, row_spacing=HUECO)
     for n, (k, v) in enumerate(rows):
         kl = label(k, "datos-etiqueta")
@@ -129,32 +128,13 @@ def desplazable(content: Gtk.Widget) -> Gtk.ScrolledWindow:
     return Gtk.ScrolledWindow(child=content, hscrollbar_policy=Gtk.PolicyType.NEVER, hexpand=True, vexpand=True)
 
 
-def segmentado(opciones: list[tuple[str, str]], actual: str, al_elegir: Callable[[str], None]) -> Gtk.Box:
-    box = Gtk.Box()
-    box.add_css_class("segmentado")
-    botones, primero = [], None
-    for oid, nombre in opciones:
-        b = Gtk.ToggleButton(label=nombre, hexpand=True)
-        if primero is None:
-            primero = b
-        else:
-            b.set_group(primero)
-        botones.append((oid, b))
-        box.append(b)
-    for oid, b in botones:
-        b.set_active(oid == actual)
-    for oid, b in botones:
-        b.connect("toggled", lambda btn, i=oid: btn.get_active() and al_elegir(i))
-    return box
-
-
 # ---------------------------------------------------------- reparto en columnas
 
 class Masonry(Gtk.Box):
     """Reparte las tarjetas en N columnas según el ancho disponible (N = ancho // min_col),
     colocando cada una en la columna más baja para aprovechar toda la pantalla."""
 
-    def __init__(self, min_col: int = 460, max_cols: int = 4, spacing: int = HUECO + 4):
+    def __init__(self, min_col: int = 460, max_cols: int = 4, spacing: int = 12):
         super().__init__(orientation=Gtk.Orientation.HORIZONTAL, spacing=spacing, homogeneous=True, valign=Gtk.Align.START)
         self.min_col, self.max_cols, self.gap = min_col, max_cols, spacing
         self.items: list[Gtk.Widget] = []
@@ -217,59 +197,68 @@ class Masonry(Gtk.Box):
             heights[i] += w.measure(Gtk.Orientation.VERTICAL, colw)[1] + self.gap
 
 
-# ------------------------------------------------------------------------ dock
+# ------------------------------------------------- cabecera, píldoras, barra inferior
 
-class Dock(Gtk.Box):
-    """Columna de iconos flotante a la izquierda (el .dock de Rambleando)."""
+class Cabecera(Gtk.Box):
+    """Fila superior: [botones a la izquierda] emblema + marca + subtítulo ........ [botones]."""
 
-    def __init__(self):
-        super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=4, valign=Gtk.Align.START, halign=Gtk.Align.START)
-        self.add_css_class("cristal")
-        self.add_css_class("dock")
-        self._grupo: Gtk.ToggleButton | None = None
+    def __init__(self, subtitulo: str):
+        super().__init__(spacing=12, margin_start=20, margin_end=20, margin_top=14, margin_bottom=4)
+        self.izquierda = Gtk.Box(spacing=8, valign=Gtk.Align.CENTER)
+        self.append(self.izquierda)
+        self.emblema = Gtk.Image(pixel_size=46)
+        self.append(self.emblema)
+        txt = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, valign=Gtk.Align.CENTER)
+        txt.append(label("CONFUSB", "marca", wrap=False))
+        self.sub = label(subtitulo, "marca-sub", wrap=False)
+        txt.append(self.sub)
+        self.append(txt)
+        self.append(Gtk.Box(hexpand=True))
+        self.derecha = Gtk.Box(spacing=8, valign=Gtk.Align.CENTER)
+        self.append(self.derecha)
+        self.refrescar()
 
-    def boton(self, icono: str, tip: str, al_pulsar: Callable[[], None] | None = None, texto: str | None = None,
-              alternar: bool = False, grupo: bool = False) -> Gtk.Button:
-        """Icono de 42 px. `alternar`: botón de dos estados; `grupo`: uno solo activo entre los de grupo."""
-        b: Gtk.Button = Gtk.ToggleButton() if (alternar or grupo) else Gtk.Button()
-        if grupo:
-            if self._grupo is None:
-                self._grupo = b
-            else:
-                b.set_group(self._grupo)
-        b.add_css_class("icono")
-        b.set_tooltip_text(tip)
-        img = Gtk.Image(icon_name=icono, pixel_size=22)
-        if texto:
-            b.add_css_class("con-texto")
-            caja = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2, halign=Gtk.Align.CENTER)
-            caja.append(img)
-            caja.append(Gtk.Label(label=texto))
-            b.set_child(caja)
-        else:
-            b.set_child(img)
-        if al_pulsar:
-            if alternar:
-                b.connect("toggled", lambda w: al_pulsar())
-            elif grupo:
-                b.connect("toggled", lambda w: al_pulsar() if w.get_active() else None)
-            else:
-                b.connect("clicked", lambda w: al_pulsar())
-        self.append(b)
+    def refrescar(self):
+        tex = fondo.textura_svg("icono.svg", 184, AJUSTES.oscuro)
+        if tex:
+            self.emblema.set_from_paintable(tex)
+
+    def boton(self, texto: str, al_pulsar: Callable[[], None], tip: str = "", izquierda: bool = False) -> Gtk.Button:
+        b = boton(texto, tip=tip)
+        b.set_cursor_from_name("pointer")
+        b.connect("clicked", lambda *_: al_pulsar())
+        (self.izquierda if izquierda else self.derecha).append(b)
         return b
 
-    def separador(self):
-        self.append(Gtk.Separator())
 
+def pastillas(opciones: list[tuple[str, str]], al_elegir: Callable[[str], None]) -> Gtk.Box:
+    """Navegación en píldoras (la selecciona se rellena de acento)."""
+    box = Gtk.Box(spacing=0)
+    box.add_css_class("pastillas")
+    botones, primero = [], None
+    for oid, nombre in opciones:
+        b = Gtk.ToggleButton(label=nombre)
+        b.add_css_class("pastilla")
+        b.set_cursor_from_name("pointer")
+        if primero is None:
+            primero = b
+        else:
+            b.set_group(primero)
+        botones.append((oid, b))
+        box.append(b)
+    botones[0][1].set_active(True)
+    for oid, b in botones:
+        b.connect("toggled", lambda btn, i=oid: btn.get_active() and al_elegir(i))
+    return box
 
-# ------------------------------------------------------------- barra de estado
 
 class BarraEstado(Gtk.Box):
-    """Barra inferior (como la de Rambleando): datos a la izquierda y avisos a la derecha."""
+    """Barra inferior (como la de noticias de Contabilizando): etiqueta de color, texto y avisos."""
 
-    def __init__(self):
-        super().__init__(spacing=16)
+    def __init__(self, etiqueta: str = "USB"):
+        super().__init__(spacing=12)
         self.add_css_class("barra-estado")
+        self.append(Gtk.Label(label=etiqueta, css_classes=["barra-etiqueta"]))
         self.izq = label("", wrap=False)
         self.append(self.izq)
         self.append(Gtk.Box(hexpand=True))
@@ -282,7 +271,7 @@ class BarraEstado(Gtk.Box):
         for w in (self.icono_aviso, self.texto_aviso, cerrar):
             self.avisos.append(w)
         self.append(self.avisos)
-        self.derecha = Gtk.Box(spacing=6)
+        self.derecha = Gtk.Box(spacing=6, margin_end=12, valign=Gtk.Align.CENTER)
         self.append(self.derecha)
         self._n = 0
 
@@ -299,87 +288,200 @@ class BarraEstado(Gtk.Box):
         GLib.timeout_add_seconds(10, lambda: (self.avisos.set_visible(False) if n == self._n else None) and False)
 
 
-# ------------------------------------------------------------ panel de ajustes
+# ------------------------------------------------------- cristal difuminado
 
-class PanelAjustes(Gtk.Box):
-    """Tarjeta de Ajustes: apariencia, transparencia, color de la letra y qué hacer al conectar."""
+class CapaDifuminada(Gtk.Widget):
+    """Dibuja, recortada al panel y alineada con la ventana, la captura desenfocada de esta: GNOME no
+    difumina lo que hay detrás de una ventana, así que se imita (como en Contabilizando)."""
 
-    def __init__(self, al_cerrar: Callable[[], None]):
-        super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=HUECO, valign=Gtk.Align.START, halign=Gtk.Align.START)
-        self.add_css_class("cristal")
-        self.add_css_class("tarjeta")
-        self.set_size_request(300, -1)
+    def __init__(self, anfitrion: Gtk.Widget):
+        super().__init__(hexpand=True, vexpand=True)
+        self.anfitrion = anfitrion
+        self.tex = None
+        self.tw = self.th = 0
+        self.set_overflow(Gtk.Overflow.HIDDEN)
 
-        cab = Gtk.Box(spacing=8)
-        cab.append(label("Ajustes", "titulo"))
-        x = Gtk.Button(icon_name="window-close-symbolic", tooltip_text="Cerrar")
-        x.add_css_class("cerrar")
-        x.connect("clicked", lambda *_: al_cerrar())
-        cab.append(x)
-        self.append(cab)
+    def do_measure(self, orientation, for_size):
+        return (0, 0, -1, -1)
 
-        cuerpo = pila()
-        cuerpo.append(rubrica("Apariencia"))
-        cuerpo.append(segmentado(TEMAS, AJUSTES.tema, lambda v: AJUSTES.cambiar(tema=v)))
+    def capturar(self, radio: float = 18):
+        w, h = self.anfitrion.get_width(), self.anfitrion.get_height()
+        native = self.anfitrion.get_native()
+        if w <= 0 or h <= 0 or native is None:
+            return
+        try:
+            paintable = Gtk.WidgetPaintable.new(self.anfitrion)
+            snap = Gtk.Snapshot()
+            snap.push_blur(radio)
+            paintable.snapshot(snap, w, h)
+            snap.pop()
+            self.tex = native.get_renderer().render_texture(snap.to_node(), Graphene.Rect().init(0, 0, w, h))
+            self.tw, self.th = w, h
+        except Exception:  # noqa: BLE001  (sin difuminado: solo queda el cristal translúcido)
+            self.tex = None
+        self.queue_draw()
 
-        fila = Gtk.Box()
-        fila.append(rubrica("Transparencia"))
-        self.salida = label(f"{AJUSTES.transparencia} %", wrap=False, xalign=1.0)
-        self.salida.set_halign(Gtk.Align.END)
-        self.salida.set_valign(Gtk.Align.END)
-        fila.append(self.salida)
-        cuerpo.append(fila)
-        esc = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, TRANSPARENCIA["minimo"], TRANSPARENCIA["maximo"],
-                                       TRANSPARENCIA["paso"])
-        esc.set_draw_value(False)
-        esc.set_value(AJUSTES.transparencia)
-        esc.connect("value-changed", self._transparencia)
-        cuerpo.append(esc)
+    def do_snapshot(self, snapshot):
+        if self.tex is None:
+            return
+        ok, p = self.compute_point(self.anfitrion, Graphene.Point().init(0, 0))
+        if not ok:
+            return
+        snapshot.save()
+        snapshot.translate(Graphene.Point().init(-p.x, -p.y))
+        snapshot.append_texture(self.tex, Graphene.Rect().init(0, 0, self.tw, self.th))
+        snapshot.restore()
 
-        cuerpo.append(rubrica("Color de la letra"))
-        muestras = Gtk.Box(spacing=10)
-        self._muestras: dict[str, Gtk.Button] = {}
-        for cid, nombre, _t in COLORES_TEXTO:
-            b = Gtk.Button(tooltip_text=nombre, valign=Gtk.Align.CENTER)
-            b.add_css_class("muestra")
-            b.add_css_class(f"muestra-{cid}")
-            b.connect("clicked", lambda _b, i=cid: self._color(i))
-            self._muestras[cid] = b
-            muestras.append(b)
-        cuerpo.append(muestras)
-        self._color_marcado()
 
-        cuerpo.append(rubrica("Al conectar un dispositivo"))
-        primero = None
-        for oid, nombre in AL_CONECTAR:
+class CristalDialogo(Gtk.Box):
+    """Subventana de cristal difuminado, dibujada sobre la ventana principal. Con `derecha` flota a la
+    derecha (para ver cambiar lo de al lado); si es `modal`, un clic fuera la cierra."""
+
+    def __init__(self, anfitrion: Gtk.Widget, titulo: str, al_cerrar: Callable[[], None],
+                 derecha: bool = False, modal: bool = False):
+        super().__init__(halign=Gtk.Align.FILL, valign=Gtk.Align.FILL, hexpand=True, vexpand=True)
+        self.al_cerrar = al_cerrar
+        self.set_can_target(modal)
+        if modal:
+            clic = Gtk.GestureClick()
+            clic.connect("pressed", lambda *_: al_cerrar())
+            self.add_controller(clic)
+
+        self.capa = CapaDifuminada(anfitrion)
+        self.cuerpo = pila()
+        self.cuerpo.add_css_class("cristal")
+        self.cuerpo.append(label(titulo, "section"))
+        panel = Gtk.Overlay(child=self.capa, hexpand=True, halign=Gtk.Align.END if derecha else Gtk.Align.CENTER,
+                            valign=Gtk.Align.CENTER, margin_end=24 if derecha else 0)
+        panel.add_overlay(self.cuerpo)
+        panel.set_measure_overlay(self.cuerpo, True)
+        panel.set_overflow(Gtk.Overflow.HIDDEN)
+        panel.add_css_class("panel-cristal")
+        self.append(panel)
+        # que un clic dentro del panel no llegue a la capa que cierra
+        if modal:
+            dentro = Gtk.GestureClick()
+            dentro.connect("pressed", lambda g, *_: g.set_state(Gtk.EventSequenceState.CLAIMED))
+            panel.add_controller(dentro)
+        panel.set_can_target(True)
+        self.panel = panel
+
+    def anadir_botones(self, botones: list[tuple[str, Callable[[], None]]]):
+        fila = Gtk.Box(spacing=8, halign=Gtk.Align.END, margin_top=10)
+        for texto, fn in botones:
+            b = boton(texto)
+            b.connect("clicked", lambda *_, f=fn: f())
+            fila.append(b)
+        self.cuerpo.append(fila)
+
+    def refrescar_fondo(self):
+        self.capa.capturar()
+
+
+def _con_valor(titulo: str, minimo: int, maximo: int, actual: int, sufijo: str,
+               al_cambiar: Callable[[int], None]) -> Gtk.Box:
+    caja = pila(4)
+    fila = Gtk.Box()
+    fila.append(label(titulo, wrap=False))
+    fila.append(Gtk.Box(hexpand=True))
+    salida = label(f"{actual}{sufijo}", "dim", wrap=False, xalign=1.0)
+    fila.append(salida)
+    caja.append(fila)
+    esc = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, minimo, maximo, 1)
+    esc.set_draw_value(False)
+    esc.set_value(actual)
+
+    def cambia(s):
+        v = int(round(s.get_value()))
+        salida.set_label(f"{v}{sufijo}")
+        al_cambiar(v)
+    esc.connect("value-changed", cambia)
+    caja.append(esc)
+    return caja
+
+
+class InterfazDialogo(CristalDialogo):
+    """«🎨 Interfaz»: los ajustes de aspecto de Contabilizando y qué hacer al conectar un dispositivo.
+    Los cambios se ven al momento."""
+
+    def __init__(self, anfitrion, al_cerrar):
+        super().__init__(anfitrion, "🎨  Interfaz", al_cerrar, derecha=True)
+        self.cuerpo.set_size_request(380, -1)
+        self._ignorar = False
+        c = self.cuerpo
+        c.append(rubrica("Tarjetas"))
+        c.append(_con_valor("Opacidad de las tarjetas", 20, 100, AJUSTES.opacidad, " %",
+                            lambda v: AJUSTES.cambiar(opacidad=v)))
+        c.append(_con_valor("Esquinas", 0, 24, AJUSTES.esquinas, " px", lambda v: AJUSTES.cambiar(esquinas=v)))
+
+        fila = Gtk.Box(spacing=12)
+        fila.append(label("Color de los títulos", wrap=False))
+        fila.append(Gtk.Box(hexpand=True))
+        claves = list(COLORES)
+        self.colores = Gtk.DropDown.new_from_strings([COLORES[k][0] for k in claves])
+        self.colores.set_selected(claves.index(AJUSTES.titulo))
+        self.colores.connect("notify::selected", lambda d, *_: not self._ignorar and
+                             AJUSTES.cambiar(titulo=claves[d.get_selected()]))
+        fila.append(self.colores)
+        c.append(fila)
+
+        c.append(label("Marco", wrap=False))
+        self.marcos = self._radios(MARCOS, AJUSTES.marco, lambda k: AJUSTES.cambiar(marco=k), c)
+        self.sombra = Gtk.CheckButton(label="Sombra bajo las tarjetas", active=AJUSTES.sombra)
+        self.sombra.connect("toggled", lambda w: not self._ignorar and AJUSTES.cambiar(sombra=w.get_active()))
+        c.append(self.sombra)
+        self.pie = Gtk.CheckButton(label="Mostrar «Ver información →» en las tarjetas", active=AJUSTES.pie)
+        self.pie.connect("toggled", lambda w: not self._ignorar and AJUSTES.cambiar(pie=w.get_active()))
+        c.append(self.pie)
+
+        c.append(rubrica("Al conectar un dispositivo"))
+        self.al_conectar = self._radios(AL_CONECTAR, AJUSTES.al_conectar, lambda k: AJUSTES.cambiar(al_conectar=k), c)
+
+        self.anadir_botones([("Restablecer", self._restablecer), ("Cerrar", al_cerrar)])
+
+    @staticmethod
+    def _radios(opciones: dict, actual: str, al_elegir, destino: Gtk.Box) -> dict[str, Gtk.CheckButton]:
+        radios, primero = {}, None
+        for k, nombre in opciones.items():
             r = Gtk.CheckButton(label=nombre)
             if primero is None:
                 primero = r
             else:
                 r.set_group(primero)
-            r.set_active(oid == AJUSTES.al_conectar)
-            r.connect("toggled", lambda w, i=oid: w.get_active() and AJUSTES.cambiar(al_conectar=i))
-            cuerpo.append(r)
+            radios[k] = r
+            destino.append(r)
+        radios[actual].set_active(True)
+        for k, r in radios.items():
+            r.connect("toggled", lambda w, i=k: w.get_active() and al_elegir(i))
+        return radios
 
-        cuerpo.append(rubrica("Acerca de"))
-        cuerpo.append(label(f"confusb {__version__} · Licencia GPL-3.0-or-later", "secundario"))
+    def _restablecer(self):
+        AJUSTES.restablecer()
+        self._ignorar = True
+        self.colores.set_selected(list(COLORES).index(DEFECTOS["titulo"]))
+        self.sombra.set_active(DEFECTOS["sombra"])
+        self.pie.set_active(DEFECTOS["pie"])
+        self.marcos[DEFECTOS["marco"]].set_active(True)
+        self.al_conectar[DEFECTOS["al_conectar"]].set_active(True)
+        self._ignorar = False
+
+
+class AcercaDeDialogo(CristalDialogo):
+    def __init__(self, anfitrion, al_cerrar):
+        super().__init__(anfitrion, "Acerca de confusb", al_cerrar, modal=True)
+        tex = fondo.textura_svg("logo.svg", 480, AJUSTES.oscuro)
+        if tex:
+            img = Gtk.Image(pixel_size=240, halign=Gtk.Align.CENTER)
+            img.set_from_paintable(tex)
+            self.cuerpo.append(img)
+        self.cuerpo.set_size_request(400, -1)
+        self.cuerpo.append(label(f"Versión {__version__}", "dim", xalign=0.5))
+        desc = label("Avisa al conectar un dispositivo USB, muestra su información y busca su "
+                     "controlador y las aplicaciones para usarlo.", xalign=0.5)
+        desc.set_justify(Gtk.Justification.CENTER)
+        self.cuerpo.append(desc)
+        self.cuerpo.append(label("Licencia GPL-3.0-or-later", "dim", xalign=0.5))
         enlace = Gtk.LinkButton.new_with_label(REPO_URL, "Código fuente en GitHub")
-        enlace.set_halign(Gtk.Align.START)
-        cuerpo.append(enlace)
-
-        self.append(Gtk.ScrolledWindow(child=cuerpo, propagate_natural_height=True, vexpand=False,
-                                       hscrollbar_policy=Gtk.PolicyType.NEVER))
-
-    def _transparencia(self, esc: Gtk.Scale):
-        v = int(round(esc.get_value()))
-        self.salida.set_label(f"{v} %")
-        if v != AJUSTES.transparencia:
-            AJUSTES.cambiar(transparencia=v)
-
-    def _color(self, cid: str):
-        AJUSTES.cambiar(color_texto=cid)
-        self._color_marcado()
-
-    def _color_marcado(self):
-        for cid, b in self._muestras.items():
-            (b.add_css_class if cid == AJUSTES.color_texto else b.remove_css_class)("elegida")
+        enlace.set_halign(Gtk.Align.CENTER)
+        self.cuerpo.append(enlace)
+        self.anadir_botones([("Cerrar", al_cerrar)])

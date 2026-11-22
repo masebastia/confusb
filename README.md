@@ -17,12 +17,16 @@ detecta y ofrece instalarlo.
     USB y fabricante (con botón de instalar vía `pkexec apt-get`), paquetes Debian y Flatpak que coinciden
     por nombre, soporte de fwupd y enlaces a la web del fabricante. Las aplicaciones instaladas se pueden
     lanzar o probar desde la propia ventana (p. ej. listar lectores y certificados de un lector de DNIe).
-- **Ajustes** (icono del dock): apariencia (sistema/claro/oscuro), transparencia de las tarjetas, color de la
-  letra y qué hacer al conectar un dispositivo (abrir ventana, notificación o nada). Se guardan en
+- **Interfaz** (botón «🎨 Interfaz»): opacidad y esquinas de las tarjetas, color de los títulos, marco
+  (resaltado, atenuado o sin marco), sombra, pie «Ver información →» y qué hacer al conectar un dispositivo
+  (abrir ventana, notificación o nada). Los cambios se ven al momento y se guardan en
   `~/.config/confusb/ajustes.json`.
 
-La interfaz sigue el estilo de [Rambleando](https://github.com/masebastia/rambleando): tarjetas
-translúcidas, dock a la izquierda y barra de estado. Los botones usan el color de acento del sistema.
+La estética es la de [Contabilizando](https://github.com/masebastia/contabilizando): azul azabache con
+degradado y el logotipo de la marca (un hexágono con el símbolo USB y un pulso) como marca de agua sobre
+motivos de hardware (pistas de circuito impreso, chips y conectores), cabecera con emblema, navegación en
+píldoras, tarjetas, barra inferior con etiqueta y subventanas de cristal difuminado. Sigue el tema claro u
+oscuro del sistema, y los botones usan el color de acento del sistema.
 
 ## Instalación
 

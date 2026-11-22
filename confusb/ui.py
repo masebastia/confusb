@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Ventanas de confusb, con la estructura de Rambleando: fondo a pantalla completa, dock de iconos a
-la izquierda, tarjetas «cristal» y barra de estado abajo.
+"""Ventanas de confusb, con la estructura de Contabilizando: fondo azul azabache con el logotipo de marca de
+agua, cabecera con emblema y botones, navegación en píldoras, tarjetas y barra inferior.
 
   DevicesWindow  ventana principal (se abre maximizada): los dispositivos USB conectados.
   DeviceWindow   detalle de un dispositivo (sin maximizar), con botón para volver a la principal.
@@ -19,86 +19,119 @@ from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # noqa: E402
 
 from . import fondo, resolver, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
-from .componentes import (HUECO, BarraEstado, Dock, Masonry, PanelAjustes, boton, bruto, datos,  # noqa: E402
-                          desplazable, estado, in_thread, label, pila, rubrica, run_capture, tarjeta)
+from .componentes import (HUECO, AcercaDeDialogo, BarraEstado, Cabecera, InterfazDialogo, Masonry, boton,  # noqa: E402
+                          bruto, datos, desplazable, estado, in_thread, label, pastillas, pila, rubrica,
+                          run_capture, tarjeta)
 from .usbinfo import CLASS_NAMES, DeviceInfo, class_name  # noqa: E402
 
-RES = os.path.join(os.path.dirname(__file__), "recursos")
 
-ICONOS = {0x01: "audio-card-symbolic", 0x03: "input-keyboard-symbolic", 0x06: "camera-photo-symbolic",
-          0x07: "printer-symbolic", 0x08: "drive-removable-media-symbolic", 0x09: "network-wired-symbolic",
-          0x0B: "auth-smartcard-symbolic", 0x0E: "camera-web-symbolic", 0xE0: "bluetooth-symbolic"}
+def emoji_de(info: DeviceInfo) -> str:
+    n = f"{info.product} {info.vendor}".lower()
+    c = info.classes
+    if "mouse" in n or "ratón" in n:
+        return "🖱️"
+    if "keyboard" in n or "teclado" in n:
+        return "⌨️"
+    for clase, e in ((0x0B, "💳"), (0x0E, "📷"), (0x08, "💾"), (0x07, "🖨️"), (0xE0, "📶"), (0x01, "🔊"),
+                     (0x09, "🔀"), (0x03, "🕹️")):
+        if clase in c:
+            return e
+    return "🔌"
 
 
 # ------------------------------------------------------------------ base
 
 class VentanaBase(Gtk.ApplicationWindow):
-    """Estructura común: barra de título del sistema, fondo, [dock | panel de ajustes | contenido]
-    y barra de estado. Los ajustes (tema, transparencia, color de letra) se aplican en caliente."""
+    """Estructura común: barra de título del sistema y, encima del fondo, cabecera + contenido + barra
+    inferior. Los diálogos de cristal («Interfaz», «Acerca de») flotan encima de todo."""
 
-    def __init__(self, app, titulo: str, ancho: int, alto: int):
+    def __init__(self, app, titulo: str, subtitulo: str, ancho: int, alto: int):
         AJUSTES.instalar()
         super().__init__(application=app, title=titulo, default_width=ancho, default_height=alto)
         self.add_css_class("confusb")
-        self.panel: PanelAjustes | None = None
+        self.dialogo = None
+        self._recaptura = 0
 
-        # Barra de título sin opciones, como la del sistema; el doble clic maximiza/restaura.
-        cabecera = Gtk.HeaderBar()
-        cabecera.set_title_widget(Gtk.Label(label=titulo, css_classes=["title"]))
-        self.set_titlebar(cabecera)
+        # Barra de título del sistema, sin opciones; el doble clic maximiza/restaura.
+        titulo_barra = Gtk.HeaderBar()
+        titulo_barra.set_title_widget(Gtk.Label(label=titulo, css_classes=["title"]))
+        self.set_titlebar(titulo_barra)
         dbl = Gtk.GestureClick(button=Gdk.BUTTON_PRIMARY, propagation_phase=Gtk.PropagationPhase.CAPTURE)
-        dbl.connect("pressed", self._doble_clic, cabecera)
-        cabecera.add_controller(dbl)
+        dbl.connect("pressed", self._doble_clic, titulo_barra)
+        titulo_barra.add_controller(dbl)
 
         self.fondo = Gtk.Picture(content_fit=Gtk.ContentFit.COVER, can_shrink=True, hexpand=True, vexpand=True)
-        self.area = Gtk.Box(spacing=12, vexpand=True, margin_top=12, margin_bottom=12, margin_start=12, margin_end=12)
+        self.cabecera = Cabecera(subtitulo)
+        self.cuerpo = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, vexpand=True)   # entre cabecera y barra
         self.barra = BarraEstado()
         columna = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        columna.append(self.area)
-        columna.append(self.barra)
-        capas = Gtk.Overlay(child=self.fondo)
-        capas.add_overlay(columna)
-        self.toasts = Adw.ToastOverlay(child=capas)
+        for w in (self.cabecera, self.cuerpo, self.barra):
+            columna.append(w)
+        self.pagina = Gtk.Overlay(child=self.fondo)            # lo que se captura para el cristal difuminado
+        self.pagina.add_overlay(columna)
+        self.exterior = Gtk.Overlay(child=self.pagina)
+        self.toasts = Adw.ToastOverlay(child=self.exterior)
         self.set_child(self.toasts)
 
-        self.dock = Dock()
-        self.area.append(self.dock)
-
-        AJUSTES.suscribir(self._actualizar_fondo)
+        AJUSTES.suscribir(self._al_ajustes)
         self.connect("close-request", self._al_cerrar)
         self._actualizar_fondo()
 
+    # ---- botones comunes de la cabecera (a la derecha)
+    def botones_comunes(self):
+        self.cabecera.boton("🎨  Interfaz", lambda: self.alternar_dialogo(InterfazDialogo),
+                            "Aspecto de la aplicación y qué hacer al conectar un dispositivo")
+        self.cabecera.boton("Acerca de", lambda: self.alternar_dialogo(AcercaDeDialogo))
+
     def _al_cerrar(self, *_):
-        AJUSTES.olvidar(self._actualizar_fondo)
+        AJUSTES.olvidar(self._al_ajustes)
         return False
 
-    def _actualizar_fondo(self):
-        self.fondo.set_paintable(fondo.textura(AJUSTES.oscuro))
-
-    def _doble_clic(self, gesture, n_press, x, y, cabecera):
+    def _doble_clic(self, gesture, n_press, x, y, barra):
         if n_press != 2:
             return
-        w = cabecera.pick(x, y, Gtk.PickFlags.DEFAULT)
-        while w is not None and w is not cabecera:  # no actuar si cae sobre un botón
+        w = barra.pick(x, y, Gtk.PickFlags.DEFAULT)
+        while w is not None and w is not barra:  # no actuar si cae sobre un botón
             if isinstance(w, Gtk.Button):
                 return
             w = w.get_parent()
         gesture.set_state(Gtk.EventSequenceState.CLAIMED)
         self.unmaximize() if self.is_maximized() else self.maximize()
 
-    def boton_ajustes(self) -> Gtk.Button:
-        """Icono de Ajustes del dock: abre/cierra el panel a la derecha del dock."""
-        self._btn_ajustes = self.dock.boton("preferences-system-symbolic", "Ajustes",
-                                            lambda: self._mostrar_ajustes(self._btn_ajustes.get_active()), alternar=True)
-        return self._btn_ajustes
+    # ---- ajustes en caliente
+    def _actualizar_fondo(self):
+        self.fondo.set_paintable(fondo.textura(AJUSTES.oscuro))
 
-    def _mostrar_ajustes(self, mostrar: bool):
-        if mostrar and self.panel is None:
-            self.panel = PanelAjustes(lambda: self._btn_ajustes.set_active(False))
-            self.area.insert_child_after(self.panel, self.dock)
-        elif not mostrar and self.panel is not None:
-            self.area.remove(self.panel)
-            self.panel = None
+    def _al_ajustes(self):
+        self._actualizar_fondo()
+        self.cabecera.refrescar()
+        self.al_cambiar_ajustes()
+        if self.dialogo is not None and not self._recaptura:   # el cristal vuelve a desenfocar lo de detrás
+            self._recaptura = GLib.timeout_add(150, self._recapturar)
+
+    def al_cambiar_ajustes(self):
+        """Las ventanas lo redefinen (p. ej. mostrar u ocultar el pie de las tarjetas)."""
+
+    def _recapturar(self):
+        self._recaptura = 0
+        if self.dialogo is not None:
+            self.dialogo.refrescar_fondo()
+        return False
+
+    # ---- diálogos de cristal
+    def alternar_dialogo(self, clase):
+        abierto = self.dialogo
+        self.cerrar_dialogo()
+        if abierto is not None and isinstance(abierto, clase):
+            return
+        self.dialogo = clase(self.pagina, self.cerrar_dialogo)
+        self.exterior.add_overlay(self.dialogo)
+        GLib.timeout_add(60, lambda: (self.dialogo.refrescar_fondo() if self.dialogo else None) and False)
+
+    def cerrar_dialogo(self):
+        if self.dialogo is not None:
+            self.exterior.remove_overlay(self.dialogo)
+            self.dialogo = None
 
 
 class OutputWindow(Gtk.Window):
@@ -118,22 +151,30 @@ class OutputWindow(Gtk.Window):
 # ------------------------------------------------------- ventana principal
 
 class DevicesWindow(VentanaBase):
-    """Lista de los dispositivos USB conectados (se abre maximizada). Se actualiza sola al
-    conectar o desconectar; desde aquí se abre el detalle de cada uno."""
+    """Lista de los dispositivos USB conectados (se abre maximizada). Se actualiza sola al conectar o
+    desconectar; al pulsar un dispositivo se abre su detalle en otra ventana."""
 
     def __init__(self, app, al_abrir):
-        super().__init__(app, "confusb · Dispositivos USB conectados", 1280, 800)
+        super().__init__(app, "confusb · Dispositivos USB conectados", "Dispositivos USB", 1280, 800)
         self.maximize()
         self.al_abrir = al_abrir
         self.gen = 0
+        self.pies: list[Gtk.Widget] = []
 
-        self.dock.boton("view-refresh-symbolic", "Actualizar la lista", self.refresh)
-        self.dock.separador()
-        self.boton_ajustes()
+        self.cabecera.boton("🔄  Actualizar", self.refresh, "Volver a leer los dispositivos conectados")
+        self.botones_comunes()
 
         self.grid = Masonry(min_col=340)
-        self.area.append(desplazable(self.grid))
+        self.grid.set_margin_start(20)
+        self.grid.set_margin_end(20)
+        self.grid.set_margin_bottom(16)
+        self.grid.set_margin_top(8)
+        self.cuerpo.append(desplazable(self.grid))
         self.refresh()
+
+    def al_cambiar_ajustes(self):
+        for p in self.pies:
+            p.set_visible(AJUSTES.pie)
 
     def refresh(self, aviso: str | None = None):
         self.gen += 1
@@ -142,7 +183,7 @@ class DevicesWindow(VentanaBase):
             espera = tarjeta()
             fila = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
             fila.append(Gtk.Spinner(spinning=True))
-            fila.append(label("Leyendo dispositivos…", "secundario", wrap=False))
+            fila.append(label("Leyendo dispositivos…", "dim", wrap=False))
             espera.append(fila)
             self.grid.add(espera)
 
@@ -153,6 +194,7 @@ class DevicesWindow(VentanaBase):
             if gen != self.gen:
                 return
             self.grid.clear()
+            self.pies = []
             if isinstance(res, Exception):
                 self.grid.add(tarjeta("No se han podido leer los dispositivos", str(res)))
                 self.barra.poner("Error al leer los dispositivos")
@@ -171,25 +213,34 @@ class DevicesWindow(VentanaBase):
         in_thread(trabajo, hecho)
 
     def tarjeta_dispositivo(self, info: DeviceInfo) -> Gtk.Widget:
-        c = tarjeta()
-        cab = Gtk.Box(spacing=8)
-        t = label(info.title, "titulo")
-        t.set_hexpand(True)
-        cab.append(t)
+        """Tarjeta de módulo: icono, nombre, VID:PID grande y «Ver información →». Toda ella es pulsable."""
+        c = tarjeta(clase="modcard")
+        cab = Gtk.Box(spacing=10)
+        cab.append(Gtk.Label(label=emoji_de(info), css_classes=["mod-icon"]))
+        nombre = label(info.title, "mod-name")
+        nombre.set_hexpand(True)
+        cab.append(nombre)
         if info.drivers and info.drivers != ["usbfs"]:
             cab.append(estado("Con controlador"))
         c.append(cab)
-        c.append(label(f"{info.vendor or 'Fabricante desconocido'} · {info.usb_id}", "secundario"))
+        c.append(label(info.vendor or "Fabricante desconocido", "dim"))
+        c.append(label(info.usb_id, "mod-big", wrap=False))
         tipos = ", ".join(CLASS_NAMES.get(k, f"0x{k:02x}") for k in sorted(info.classes) if k != 0) or "—"
         c.append(datos([
             ("Tipo", tipos),
             ("Puerto", os.path.basename(info.syspath)),
             ("Controlador", ", ".join(info.drivers) or "ninguno"),
         ]))
-        b = boton("Ver información y software")
-        b.set_margin_top(HUECO)
-        b.connect("clicked", lambda *_: self.al_abrir(info.syspath))
-        c.append(b)
+        pie = label("Ver información →", "mod-pie", wrap=False)
+        pie.set_margin_top(4)
+        pie.set_visible(AJUSTES.pie)
+        self.pies.append(pie)
+        c.append(pie)
+
+        clic = Gtk.GestureClick()
+        clic.connect("released", lambda *_: self.al_abrir(info.syspath))
+        c.add_controller(clic)
+        c.set_cursor_from_name("pointer")
         return c
 
 
@@ -197,34 +248,29 @@ class DevicesWindow(VentanaBase):
 
 class DeviceWindow(VentanaBase):
     """Información completa del dispositivo y búsqueda de controladores y aplicaciones.
-    Se abre sin maximizar; el botón «Volver» del dock regresa a la ventana principal."""
+    Se abre sin maximizar; el botón «Volver» regresa a la ventana principal."""
 
     def __init__(self, app, info: DeviceInfo):
-        super().__init__(app, f"confusb · {info.title}", 1100, 780)
+        super().__init__(app, f"confusb · {info.title}", f"{info.title} · {info.usb_id}", 1100, 780)
         self.info = info
         self.disconnected = False
         self.gen = 0
 
-        # ---- dock: volver | páginas | copiar, ajustes
-        self.dock.boton("go-previous-symbolic", "Volver a la lista de dispositivos", self.volver, texto="Volver")
-        self.dock.separador()
-        self.b_info = self.dock.boton("dialog-information-symbolic", "Información del dispositivo",
-                                      lambda: self.stack.set_visible_child_name("info"), grupo=True)
-        self.b_sw = self.dock.boton("system-software-install-symbolic", "Controladores y aplicaciones",
-                                    lambda: self.stack.set_visible_child_name("sw"), grupo=True)
-        self.dock.separador()
-        self.dock.boton("edit-copy-symbolic", "Copiar toda la información", self.copiar)
-        self.boton_ajustes()
+        # ---- cabecera: volver a la izquierda; copiar, interfaz y acerca de a la derecha
+        self.cabecera.boton("←  Volver", self.volver, "Volver a la lista de dispositivos", izquierda=True)
+        self.cabecera.boton("📋  Copiar", self.copiar, "Copiar toda la información al portapapeles")
+        self.botones_comunes()
 
-        # ---- páginas
+        # ---- páginas, con navegación en píldoras
         self.stack = Gtk.Stack(hexpand=True, vexpand=True, transition_type=Gtk.StackTransitionType.CROSSFADE)
-        self.stack.add_named(desplazable(self.pagina_info()), "info")
+        self.stack.add_named(self._con_margenes(desplazable(self.pagina_info())), "info")
         self.sw_box = Masonry()
-        self.stack.add_named(desplazable(self.sw_box), "sw")
-        self.area.append(self.stack)
-        self.b_info.set_active(True)
+        self.stack.add_named(self._con_margenes(desplazable(self.sw_box)), "sw")
+        self.cuerpo.append(pastillas([("info", "Información"), ("sw", "Controladores y aplicaciones")],
+                                     self.stack.set_visible_child_name))
+        self.cuerpo.append(self.stack)
 
-        # ---- barra de estado
+        # ---- barra inferior
         self.barra.poner(f"{info.usb_id} · {info.vendor or 'Fabricante desconocido'}")
         self.punto = Gtk.Box(valign=Gtk.Align.CENTER)
         self.punto.add_css_class("punto")
@@ -234,6 +280,13 @@ class DeviceWindow(VentanaBase):
         self.barra.derecha.append(self.estado_texto)
 
         self.cargar_software()
+
+    @staticmethod
+    def _con_margenes(w: Gtk.Widget) -> Gtk.Widget:
+        w.set_margin_start(20)
+        w.set_margin_end(20)
+        w.set_margin_bottom(12)
+        return w
 
     def volver(self):
         app = self.get_application()
@@ -247,21 +300,16 @@ class DeviceWindow(VentanaBase):
     # ---------------------------------------------------------------- info
     def pagina_info(self) -> Gtk.Widget:
         info = self.info
-        pagina = pila(HUECO + 4)
+        pagina = pila(12)
         cols = Masonry()
 
         cab = tarjeta()
         fila = Gtk.Box(spacing=12)
-        logo = Gtk.Image.new_from_gicon(Gio.FileIcon.new(Gio.File.new_for_path(os.path.join(RES, "icono.svg"))))
-        logo.set_pixel_size(52)
-        logo.set_valign(Gtk.Align.CENTER)
-        logo.add_css_class("logo")
+        fila.append(Gtk.Label(label=emoji_de(info), css_classes=["mod-icon"]))
         txt = pila(2)
         txt.set_hexpand(True)
-        txt.set_valign(Gtk.Align.CENTER)
-        txt.append(label(info.title, "titulo-grande"))
-        txt.append(label(f"{info.vendor or 'Fabricante desconocido'} · USB ID {info.usb_id}", "secundario"))
-        fila.append(logo)
+        txt.append(label(info.title, "mod-name"))
+        txt.append(label(f"{info.vendor or 'Fabricante desconocido'} · USB ID {info.usb_id}", "dim"))
         fila.append(txt)
         cab.append(fila)
         pagina.append(cab)
@@ -311,7 +359,7 @@ class DeviceWindow(VentanaBase):
         self.buscando = tarjeta()
         fila = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
         fila.append(Gtk.Spinner(spinning=True))
-        fila.append(label("Buscando controladores y aplicaciones…", "secundario", wrap=False))
+        fila.append(label("Buscando controladores y aplicaciones…", "dim", wrap=False))
         self.buscando.append(fila)
         self.sw_box.add(self.buscando)
 
@@ -337,15 +385,14 @@ class DeviceWindow(VentanaBase):
         caja = pila(HUECO)
         caja.add_css_class("caja")
         arriba = Gtk.Box(spacing=8)
-        t = label(item.title)
-        t.add_css_class("titulo")
+        t = label(item.title, "mod-name")
         t.set_hexpand(True)
         arriba.append(t)
         if item.status:
             arriba.append(estado(item.status))
         caja.append(arriba)
         if item.desc:
-            caja.append(label(item.desc, "secundario", selectable=True))
+            caja.append(label(item.desc, "dim", selectable=True))
         if item.actions:
             flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, max_children_per_line=6,
                                column_spacing=8, row_spacing=8, homogeneous=False)

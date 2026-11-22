@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Ajustes de confusb. Son los mismos tipos de ajustes que tiene Rambleando:
-apariencia (sistema/claro/oscuro), transparencia de las tarjetas y color de la letra.
-Se guardan en ~/.config/confusb/ajustes.json y se aplican en caliente a todas las ventanas."""
+"""Tema y ajustes de «Interfaz» de confusb, con la estética de Contabilizando: azul azabache con
+degradado, tarjetas translúcidas y cristal difuminado. Claro u oscuro según el sistema.
+
+Ajustes (los mismos de la «Interfaz» de Contabilizando, menos el rastro del ratón y el orden de
+tarjetas), más qué hacer al conectar un dispositivo. Se guardan en ~/.config/confusb/ajustes.json
+y se aplican en caliente a todas las ventanas."""
 from __future__ import annotations
 
 import json
@@ -16,27 +19,42 @@ from gi.repository import Adw, Gdk, GLib, Gtk  # noqa: E402
 
 RES = os.path.join(os.path.dirname(__file__), "recursos")
 
-TEMAS = [("sistema", "Sistema"), ("claro", "Claro"), ("oscuro", "Oscuro")]
-TRANSPARENCIA = {"minimo": 0, "maximo": 90, "paso": 5, "defecto": 75}   # % de transparencia de las tarjetas
-AL_CONECTAR = [
-    ("ventana", "Abrir una ventana con la información"),
-    ("notificar", "Mostrar una notificación"),
-    ("nada", "No hacer nada"),
-]
+# Paleta de Contabilizando (theme.py). Oscuro: azul azabache con un leve degradado.
+OSCURO = {
+    "bg": "#0a1120", "bg2": "#10203a", "panel": "#111c2e", "panel_hover": "#16243a", "border": "#1f3049",
+    "text": "#e6edf3", "dim": "#8b9bb0", "ok": "#3fb950", "warn": "#e3b341", "danger": "#f85149",
+    "brand": "#3fb950", "card": (17, 28, 46), "card_hover": (22, 36, 58), "glass": (20, 34, 56),
+    "glass_alpha": 0.47, "glass_border": "rgba(255, 255, 255, 0.18)", "glass_input": "rgba(8, 16, 30, 0.59)",
+}
+CLARO = {
+    "bg": "#f6f8fa", "bg2": "#e8f0fb", "panel": "#ffffff", "panel_hover": "#f3f8ff", "border": "#d0d7de",
+    "text": "#1f2328", "dim": "#656d76", "ok": "#1a7f37", "warn": "#9a6700", "danger": "#cf222e",
+    "brand": "#1a7f37", "card": (255, 255, 255), "card_hover": (243, 248, 255), "glass": (255, 255, 255),
+    "glass_alpha": 0.45, "glass_border": "rgba(255, 255, 255, 0.86)", "glass_input": "rgba(255, 255, 255, 0.67)",
+}
 
-_HALO_CLARO, _HALO_OSCURO = "#ffffff", "#0d1117"
-# id, nombre, {modo: (texto, halo)}  — mismos colores que Rambleando
-COLORES_TEXTO = [
-    ("defecto", "Por defecto", {"claro": ("#1f2328", _HALO_CLARO), "oscuro": ("#e6edf3", _HALO_OSCURO)}),
-    ("blanco", "Blanco", {"claro": ("#ffffff", _HALO_OSCURO), "oscuro": ("#ffffff", _HALO_OSCURO)}),
-    ("negro", "Negro", {"claro": ("#000000", _HALO_CLARO), "oscuro": ("#000000", _HALO_CLARO)}),
-    ("azul", "Azul marino", {"claro": ("#0b3d91", _HALO_CLARO), "oscuro": ("#8ab4f8", _HALO_OSCURO)}),
-    ("verde", "Verde bosque", {"claro": ("#1e5631", _HALO_CLARO), "oscuro": ("#7ee2a8", _HALO_OSCURO)}),
-    ("granate", "Granate", {"claro": ("#7a1f2b", _HALO_CLARO), "oscuro": ("#ff9aa2", _HALO_OSCURO)}),
-]
-
-DEFECTOS = {"tema": "sistema", "transparencia": TRANSPARENCIA["defecto"],
-            "color_texto": "defecto", "al_conectar": "ventana"}
+COLORES = {
+    "normal": ("Como el tema", None),
+    "azul": ("Azul", "#4fa3ff"),
+    "verde": ("Verde", "#3fb950"),
+    "cian": ("Cian", "#39c5cf"),
+    "violeta": ("Violeta", "#a78bfa"),
+    "rosa": ("Rosa", "#f472b6"),
+    "ambar": ("Ámbar", "#e3b341"),
+    "gris": ("Gris claro", "#a9b4bf"),
+}
+MARCOS = {
+    "resaltado": "Resaltado (borde y resplandor al pasar el ratón)",
+    "suave": "Atenuado (borde discreto, sin resplandor)",
+    "sin": "Sin marco",
+}
+AL_CONECTAR = {
+    "ventana": "Abrir una ventana con la información",
+    "notificar": "Mostrar una notificación",
+    "nada": "No hacer nada",
+}
+DEFECTOS = {"opacidad": 80, "titulo": "normal", "marco": "resaltado", "sombra": False, "esquinas": 12,
+            "pie": True, "al_conectar": "ventana"}
 
 
 class Ajustes:
@@ -52,20 +70,25 @@ class Ajustes:
     def _cargar(self):
         try:
             with open(self.ruta, encoding="utf-8") as f:
-                datos = json.load(f)
+                d = json.load(f)
         except (OSError, ValueError):
             return
-        if not isinstance(datos, dict):
+        if not isinstance(d, dict):
             return
-        if datos.get("tema") in {t for t, _ in TEMAS}:
-            self.valores["tema"] = datos["tema"]
-        t = datos.get("transparencia")
-        if isinstance(t, int) and TRANSPARENCIA["minimo"] <= t <= TRANSPARENCIA["maximo"]:
-            self.valores["transparencia"] = t
-        if datos.get("color_texto") in {c for c, _, _ in COLORES_TEXTO}:
-            self.valores["color_texto"] = datos["color_texto"]
-        if datos.get("al_conectar") in {a for a, _ in AL_CONECTAR}:
-            self.valores["al_conectar"] = datos["al_conectar"]
+        v = self.valores
+        if isinstance(d.get("opacidad"), int):
+            v["opacidad"] = max(20, min(100, d["opacidad"]))
+        if isinstance(d.get("esquinas"), int):
+            v["esquinas"] = max(0, min(24, d["esquinas"]))
+        if d.get("titulo") in COLORES:
+            v["titulo"] = d["titulo"]
+        if d.get("marco") in MARCOS:
+            v["marco"] = d["marco"]
+        if d.get("al_conectar") in AL_CONECTAR:
+            v["al_conectar"] = d["al_conectar"]
+        for k in ("sombra", "pie"):
+            if isinstance(d.get(k), bool):
+                v[k] = d[k]
 
     def _guardar(self):
         try:
@@ -87,21 +110,18 @@ class Ajustes:
         return Adw.StyleManager.get_default().get_dark()
 
     @property
-    def modo(self) -> str:
-        return "oscuro" if self.oscuro else "claro"
-
-    def tono_texto(self) -> tuple[str, str]:
-        for cid, _, tonos in COLORES_TEXTO:
-            if cid == self.valores["color_texto"]:
-                return tonos[self.modo]
-        return COLORES_TEXTO[0][2][self.modo]
+    def paleta(self) -> dict:
+        return OSCURO if self.oscuro else CLARO
 
     # ----------------------------------------------------------------- cambio
     def cambiar(self, **kw):
         self.valores.update(kw)
         self._guardar()
-        if "tema" in kw:
-            self._esquema()
+        self._regenerar()
+
+    def restablecer(self):
+        self.valores = dict(DEFECTOS)
+        self._guardar()
         self._regenerar()
 
     def suscribir(self, fn: Callable[[], None]):
@@ -119,39 +139,50 @@ class Ajustes:
         self._instalado = True
         Gtk.StyleContext.add_provider_for_display(
             Gdk.Display.get_default(), self._proveedor, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)   # claro/oscuro del sistema
         Adw.StyleManager.get_default().connect("notify::dark", lambda *_: self._regenerar())
-        self._esquema()
         self._regenerar()
 
-    def _esquema(self):
-        esquema = {"sistema": Adw.ColorScheme.DEFAULT, "claro": Adw.ColorScheme.FORCE_LIGHT,
-                   "oscuro": Adw.ColorScheme.FORCE_DARK}[self.valores["tema"]]
-        Adw.StyleManager.get_default().set_color_scheme(esquema)
+    @staticmethod
+    def _rgba(rgb: tuple[int, int, int], alfa: float) -> str:
+        return f"rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, {alfa:.2f})"
 
     def _regenerar(self):
-        oscuro = self.oscuro
-        modo = self.modo
-        texto, halo = self.tono_texto()
-        opacidad = 1 - self.valores["transparencia"] / 100
-        rgb = "22, 27, 34" if oscuro else "255, 255, 255"
+        p, v = self.paleta, self.valores
+        op = v["opacidad"] / 100
         defs = f"""
-@define-color panel_bg rgba({rgb}, {opacidad:.2f});
-@define-color panel_borde {"rgba(255, 255, 255, 0.14)" if oscuro else "rgba(255, 255, 255, 0.7)"};
-@define-color realce {"rgba(255, 255, 255, 0.14)" if oscuro else "rgba(255, 255, 255, 0.6)"};
-@define-color texto {texto};
-@define-color halo {halo};
-@define-color fondo_ventana {"#0d1117" if oscuro else "#dfe3e8"};
-@define-color ok_fg {"#6fdc8c" if oscuro else "#2b8a3e"};
-@define-color aviso_fg {"#ffc14d" if oscuro else "#b87400"};
-@define-color error_fg {"#ffa198" if oscuro else "#c62828"};
-@define-color error_bg {"rgba(73, 2, 2, 0.85)" if oscuro else "rgba(255, 235, 233, 0.9)"};
+@define-color cx_bg {p["bg"]};
+@define-color cx_bg2 {p["bg2"]};
+@define-color cx_panel {p["panel"]};
+@define-color cx_panel_hover {p["panel_hover"]};
+@define-color cx_border {p["border"]};
+@define-color cx_text {p["text"]};
+@define-color cx_dim {p["dim"]};
+@define-color cx_ok {p["ok"]};
+@define-color cx_warn {p["warn"]};
+@define-color cx_danger {p["danger"]};
+@define-color cx_brand {p["brand"]};
+@define-color cx_card_bg {self._rgba(p["card"], op)};
+@define-color cx_card_hover {self._rgba(p["card_hover"], min(1.0, op + 0.08))};
+@define-color cx_glass {self._rgba(p["glass"], p["glass_alpha"])};
+@define-color cx_glass_border {p["glass_border"]};
+@define-color cx_glass_input {p["glass_input"]};
 """
-        muestras = "\n".join(
-            f"button.muestra.muestra-{cid} {{ background-color: {tonos[modo][0]}; background-image: none; }}"
-            for cid, _, tonos in COLORES_TEXTO)
+        # Reglas que se añaden al final, según «Interfaz» (como en Contabilizando)
+        extra = [f".card, .modcard {{ border-radius: {v['esquinas']}px; }}"]
+        if v["marco"] == "resaltado":
+            extra.append(".modcard:hover { border-color: @accent_bg_color; "
+                         "box-shadow: 0 0 14px alpha(@accent_bg_color, 0.35); }")
+        elif v["marco"] == "sin":
+            extra.append(".card, .modcard, .modcard:hover { border-color: transparent; }")
+        if v["sombra"]:
+            extra.append(".card, .modcard { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); }")
+        color = COLORES[v["titulo"]][1]
+        if color:
+            extra.append(f".mod-name, .card-title, .section {{ color: {color}; }}")
         with open(os.path.join(RES, "estilo.css"), encoding="utf-8") as f:
             css = f.read()
-        self._proveedor.load_from_string(defs + css + "\n" + muestras)
+        self._proveedor.load_from_string(defs + css + "\n" + "\n".join(extra))
         for fn in list(self._oyentes):
             fn()
 

@@ -154,6 +154,59 @@ class PruebasServicio(Base):
         self.assertFalse(servicio.llamar("retirar", GLib.Variant("as", ["usb-1:1"])))
 
 
+class PruebasArranqueDelServicio(unittest.TestCase):
+    """La ventana arranca el servicio si está activado pero parado (justo tras instalar el paquete)."""
+
+    def setUp(self):
+        entorno = mock.patch.dict(os.environ)
+        entorno.start()
+        self.addCleanup(entorno.stop)
+        os.environ.pop("CONFUSB_APP_ID", None)
+        self.ordenes = []
+
+    def systemctl(self, estado, falla_arranque=False):
+        def falsa(orden, **kw):
+            self.ordenes.append(orden[2])
+            if orden[2] == "is-enabled":
+                return mock.Mock(stdout=estado + "\n", returncode=0 if estado == "enabled" else 1)
+            if falla_arranque:
+                raise servicio.subprocess.CalledProcessError(1, orden)
+            return mock.Mock(returncode=0)
+        return mock.patch.object(servicio.subprocess, "run", falsa)
+
+    def test_activado_y_parado_lo_arranca(self):
+        with mock.patch.object(servicio, "esta_en_marcha", return_value=False), self.systemctl("enabled"):
+            self.assertTrue(servicio.arrancar_si_hace_falta())
+        self.assertEqual(self.ordenes, ["is-enabled", "start"])
+
+    def test_si_ya_esta_en_marcha_no_hace_nada(self):
+        with mock.patch.object(servicio, "esta_en_marcha", return_value=True), self.systemctl("enabled"):
+            self.assertFalse(servicio.arrancar_si_hace_falta())
+        self.assertEqual(self.ordenes, [])
+
+    def test_desactivado_o_sin_unidad_no_se_toca(self):
+        for estado in ("disabled", "masked", "not-found"):
+            self.ordenes.clear()
+            with self.subTest(estado=estado), mock.patch.object(servicio, "esta_en_marcha", return_value=False), \
+                    self.systemctl(estado):
+                self.assertFalse(servicio.arrancar_si_hace_falta())
+            self.assertEqual(self.ordenes, ["is-enabled"])
+
+    def test_sin_systemd_o_si_falla_el_arranque_no_rompe(self):
+        with mock.patch.object(servicio, "esta_en_marcha", return_value=False), \
+                mock.patch.object(servicio.subprocess, "run", side_effect=FileNotFoundError):
+            self.assertFalse(servicio.arrancar_si_hace_falta())
+        with mock.patch.object(servicio, "esta_en_marcha", return_value=False), \
+                self.systemctl("enabled", falla_arranque=True):
+            self.assertFalse(servicio.arrancar_si_hace_falta())
+
+    def test_una_copia_de_pruebas_no_toca_el_servicio_instalado(self):
+        os.environ["CONFUSB_APP_ID"] = "es.masebastia.prueba"
+        with mock.patch.object(servicio, "esta_en_marcha", return_value=False), self.systemctl("enabled"):
+            self.assertFalse(servicio.arrancar_si_hace_falta())
+        self.assertEqual(self.ordenes, [])
+
+
 class PruebasVentana(Base):
     """La ventana (otro proceso): lee el fichero del servicio y le pide retirar las notificaciones."""
 

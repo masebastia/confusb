@@ -104,6 +104,10 @@ Dependencias (ya presentes en Debian con GNOME): `python3-gi`, `gir1.2-gtk-4.0`,
   el ajuste «abrir ventana») la lanza como proceso aparte. Los avisos pendientes se pasan de uno a otro en
   `~/.local/share/confusb/avisos.json`, y la ventana le pide al servicio que retire las notificaciones.
 
+Justo después de instalar el paquete el servicio está activado pero no arranca hasta el siguiente inicio de
+sesión: por eso, al abrir la ventana, si el servicio está activado y parado la propia ventana lo arranca (si lo
+has desactivado con `systemctl --user disable`, no lo toca).
+
 Tras actualizar el paquete, reinicia el servicio para que use la versión nueva:
 `systemctl --user restart confusb.service` (o cierra la sesión y vuelve a abrirla).
 

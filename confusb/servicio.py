@@ -35,21 +35,54 @@ SETTLE_MS = 1500          # esperar a que el kernel enlace drivers e interfaces
 IGNORED_VIDS = {"1d6b"}   # root hubs de Linux Foundation
 
 
-def llamar(accion: str, *argumentos: GLib.Variant) -> bool:
-    """Pide al servicio, si está en marcha, que ejecute una de sus acciones. False si no está."""
+UNIDAD = "confusb.service"
+
+
+def esta_en_marcha() -> bool:
+    """¿Hay un servicio atendiendo en el bus de esta sesión?"""
     try:
         bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
         dueno = bus.call_sync("org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus",
                               "NameHasOwner", GLib.Variant("(s)", (SERVICE_ID,)), GLib.VariantType("(b)"),
                               Gio.DBusCallFlags.NONE, 1000, None)
-        if not dueno.unpack()[0]:
-            return False
+        return bool(dueno.unpack()[0])
+    except GLib.Error:
+        return False
+
+
+def llamar(accion: str, *argumentos: GLib.Variant) -> bool:
+    """Pide al servicio, si está en marcha, que ejecute una de sus acciones. False si no está."""
+    if not esta_en_marcha():
+        return False
+    try:
+        bus = Gio.bus_get_sync(Gio.BusType.SESSION, None)
         bus.call_sync(SERVICE_ID, RUTA_OBJETO, "org.gtk.Actions", "Activate",
                       GLib.Variant("(sava{sv})", (accion, list(argumentos), {})), None,
                       Gio.DBusCallFlags.NONE, 1000, None)
         return True
     except GLib.Error:
         return False
+
+
+def arrancar_si_hace_falta() -> bool:
+    """Arranca el servicio si está activado en systemd pero no en marcha. Es lo que pasa justo tras instalar el
+    paquete: se activa, pero no arranca hasta el siguiente inicio de sesión, y sin él no hay notificaciones.
+    Si el usuario lo ha desactivado (o no está instalado como unidad) no se toca. True si ha pedido el arranque."""
+    if os.environ.get("CONFUSB_APP_ID"):      # una copia de pruebas no debe tocar el servicio instalado
+        return False
+    if esta_en_marcha():
+        return False
+    try:
+        estado = subprocess.run(["systemctl", "--user", "is-enabled", UNIDAD], capture_output=True, text=True,
+                                timeout=5).stdout.strip()
+        if estado not in ("enabled", "enabled-runtime"):
+            return False
+        subprocess.run(["systemctl", "--user", "start", "--no-block", UNIDAD], capture_output=True, timeout=5,
+                       check=True)
+    except (OSError, subprocess.SubprocessError):
+        return False
+    print("confusb: the service was not running; asked systemd to start it", flush=True)
+    return True
 
 
 class ServicioApp(Gio.Application):

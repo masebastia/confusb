@@ -47,6 +47,8 @@ class ConfusbApp(Adw.Application):
         self.client.connect("uevent", self.on_uevent)
         self._vigilar_avisos()
         self.retirar_de_la_version_anterior()
+        # Sin servicio no hay notificaciones: si está activado pero parado (justo tras instalar), se arranca.
+        threading.Thread(target=servicio.arrancar_si_hace_falta, daemon=True).start()
 
     def do_command_line(self, cmdline):
         opts = cmdline.get_options_dict().end().unpack()

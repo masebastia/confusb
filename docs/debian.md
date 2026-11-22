@@ -1,5 +1,9 @@
 # confusb en Debian
 
+> Mientras tanto, el paquete ya se distribuye por el [repositorio APT de masebastia](https://github.com/masebastia/apt)
+> (GitHub Pages, firmado) y como `.deb` en cada publicación. Para publicar una versión nueva allí:
+> `./publicar.sh ruta/al/confusb_X-1_all.deb` desde la carpeta de ese repositorio.
+
 Estado del empaquetado y pasos para llevarlo al archivo oficial de Debian.
 
 ## Construir el paquete

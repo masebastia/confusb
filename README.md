@@ -51,7 +51,20 @@ Al ejecutar desde el código fuente se leen los `.po` directamente, sin compilar
 
 ## Instalación
 
-Desde el código fuente:
+**Con apt (Debian 13 y derivadas; recomendado)**, desde el [repositorio APT](https://github.com/masebastia/apt) de
+masebastia, que se actualiza con `apt upgrade`:
+
+    sudo install -d -m 0755 /usr/share/keyrings
+    sudo curl -fsSL -o /usr/share/keyrings/masebastia-archive-keyring.gpg \
+        https://masebastia.github.io/apt/masebastia-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/masebastia-archive-keyring.gpg] https://masebastia.github.io/apt stable main" \
+        | sudo tee /etc/apt/sources.list.d/masebastia.list
+    sudo apt update && sudo apt install confusb
+
+También se puede descargar el `.deb` suelto de la [última publicación](https://github.com/masebastia/confusb/releases/latest)
+e instalarlo con `sudo apt install ./confusb_*_all.deb`.
+
+**Desde el código fuente:**
 
     ./install.sh              # servicio (systemd --user) + entrada «confusb» en el menú de aplicaciones
     ./install.sh --uninstall

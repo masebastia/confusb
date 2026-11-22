@@ -123,7 +123,11 @@ def boton(texto: str, enabled=True, tip="") -> Gtk.Button:
 def bruto(texto: str, alto: int = 220) -> Gtk.Widget:
     lb = Gtk.Label(label=texto, selectable=True, xalign=0, yalign=0, margin_top=6, margin_bottom=6)
     lb.add_css_class("bruto")
-    return Gtk.ScrolledWindow(child=lb, min_content_height=alto, hscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
+    caja = Gtk.ScrolledWindow(child=lb, min_content_height=alto, hscrollbar_policy=Gtk.PolicyType.AUTOMATIC)
+    # El texto es más ancho que la caja (se desplaza en horizontal): una barra superpuesta taparía parte de las
+    # líneas, así que aquí las barras ocupan su propio sitio.
+    caja.set_overlay_scrolling(False)
+    return caja
 
 
 def desplazable(content: Gtk.Widget) -> Gtk.ScrolledWindow:
@@ -390,6 +394,9 @@ class CapaDifuminada(Gtk.Widget):
             self.snapshot_child(self.hijo, snapshot)
 
 
+HUECO_PANEL = 16   # lo que «.cristal» tiene de relleno lateral de menos (estilo.css) y lleva el contenido de margen
+
+
 class CristalDialogo(Gtk.Box):
     """Subventana de cristal difuminado, dibujada sobre la ventana principal. Con `derecha` flota a la
     derecha (para ver cambiar lo de al lado); si es `modal`, un clic fuera la cierra.
@@ -423,8 +430,15 @@ class CristalDialogo(Gtk.Box):
             self.capa.set_valign(Gtk.Align.CENTER)
         self.panel = pila()                 # el cristal: fondo translúcido, borde y relleno (CSS «.cristal»)
         self.panel.add_css_class("cristal")
-        self.panel.append(label(titulo, "section"))
+        cabecera = label(titulo, "section")
+        cabecera.set_margin_start(HUECO_PANEL)
+        self.panel.append(cabecera)
         self.cuerpo = pila()
+        # La barra (superpuesta) se dibuja en el borde del ScrolledWindow: para que no caiga sobre los controles
+        # («80 %», los desplegables) el panel casi no tiene relleno lateral y ese espacio es margen del contenido,
+        # del título y de los botones. Así todo se ve igual que con relleno, pero la barra tiene su hueco.
+        self.cuerpo.set_margin_start(HUECO_PANEL)
+        self.cuerpo.set_margin_end(HUECO_PANEL)
         self.desplazable = Gtk.ScrolledWindow(child=self.cuerpo, hscrollbar_policy=Gtk.PolicyType.NEVER,
                                               propagate_natural_height=True, min_content_height=60)
         self.panel.append(self.desplazable)
@@ -442,7 +456,7 @@ class CristalDialogo(Gtk.Box):
         return GLib.SOURCE_CONTINUE
 
     def anadir_botones(self, botones: list[tuple[str, Callable[[], None]]]):
-        fila = Gtk.Box(spacing=8, halign=Gtk.Align.END, margin_top=2)
+        fila = Gtk.Box(spacing=8, halign=Gtk.Align.END, margin_top=2, margin_end=HUECO_PANEL)
         for texto, fn in botones:
             b = boton(texto)
             b.connect("clicked", lambda *_, f=fn: f())

@@ -47,7 +47,7 @@ button.cerrar:hover { background-color: alpha(@cx_text, 0.12); }
 
 /* ---- Cristal difuminado (subventanas): panel translúcido sobre la captura desenfocada ---- */
 .cristal { background-color: @cx_glass; border: 1px solid @cx_glass_border; border-radius: 14px;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); padding: 22px 26px 20px 26px; }
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); padding: 22px 10px 20px 10px; }   /* + 16 px de margen del contenido (HUECO_PANEL) */
 .cristal dropdown > button, .cristal entry { background-color: @cx_glass_input; background-image: none; }
 .cristal .secundario { color: @cx_dim; }
 .cristal .rubrica { color: @cx_dim; font-size: 11px; font-weight: 600; letter-spacing: 1px; }

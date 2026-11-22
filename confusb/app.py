@@ -46,6 +46,7 @@ class ConfusbApp(Adw.Application):
         self.client = GUdev.Client(subsystems=["usb"])      # para mantener la lista al día mientras hay ventanas
         self.client.connect("uevent", self.on_uevent)
         self._vigilar_avisos()
+        self.retirar_de_la_version_anterior()
 
     def do_command_line(self, cmdline):
         opts = cmdline.get_options_dict().end().unpack()
@@ -115,6 +116,15 @@ class ConfusbApp(Adw.Application):
             self.devices_win.pintar_avisos()
             if self.devices_win.is_active():     # delante: ya se ven aquí, que no quede el contador en el icono
                 self.marcar_leidos()
+
+    def retirar_de_la_version_anterior(self):
+        """La 0.2.0 enviaba las notificaciones desde este mismo identificador (y desde el mismo proceso que la
+        ventana). Las que quedaron pendientes al actualizar no las conoce el servicio nuevo; se retiran por su
+        nombre («usb-VID:PID»), lo que no necesita al proceso que las envió."""
+        for ruta in usbinfo.list_usb_devices():
+            vid, pid = usbinfo.read(ruta + "/idVendor"), usbinfo.read(ruta + "/idProduct")
+            if vid and pid:
+                self.withdraw_notification(f"usb-{vid.lower()}:{pid.lower()}")
 
     def _retirar_notificaciones(self, avisos_: list[avisos.Aviso]):
         ids = [a.notificacion for a in avisos_]

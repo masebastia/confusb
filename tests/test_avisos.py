@@ -201,6 +201,17 @@ class PruebasVentana(Base):
         self.app.descartar_aviso("/sys/devices/no-existe")
         self.assertEqual(self.pedidos, [])
 
+    def test_al_abrirse_retira_las_notificaciones_que_dejo_la_version_anterior(self):
+        retiradas = []
+        self.app.withdraw_notification = retiradas.append
+        d = self.dispositivo("346d", "5678", "Disk 20")
+        for nombre, valor in (("idVendor", "346D"), ("idProduct", "5678")):
+            with open(os.path.join(d.syspath, nombre), "w") as f:
+                f.write(valor + "\n")
+        with mock.patch.object(usbinfo, "list_usb_devices", return_value=[d.syspath, "/sys/devices/sin-id"]):
+            self.app.retirar_de_la_version_anterior()
+        self.assertEqual(retiradas, ["usb-346d:5678"])
+
 
 if __name__ == "__main__":
     unittest.main()

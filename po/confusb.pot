@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: confusb 0.2.1\n"
+"Project-Id-Version: confusb 0.2.2\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
 "POT-Creation-Date: 2026-11-22 21:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"

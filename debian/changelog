@@ -1,3 +1,20 @@
+confusb (0.2.2-1) UNRELEASED; urgency=medium
+
+  * The window starts the user service if it is enabled but not running
+    (right after installing the package it only starts at the next login).
+  * Probes: for an Android phone with USB debugging enabled and authorized,
+    read through adb the commercial name, model, Android version, security
+    patch, processor, memory, screen, battery and storage; show the storage
+    of a phone already mounted over MTP; add the full udev attribute tree
+    for any device. adb is now suggested, and the adb server is stopped
+    again if the probe had to start it.
+  * Interface: choose the window background, either the circuit-board image
+    or a solid color; with a solid color the light or dark theme is chosen
+    so that everything stays readable.
+  * 51 new strings, translated into all the languages.
+
+ -- masebastia <msebastia@protonmail.com>  Sun, 22 Nov 2026 21:52:51 +0100
+
 confusb (0.2.1-1) UNRELEASED; urgency=medium
 
   * Connection policy: only the active session reacts (with several users

@@ -5,4 +5,4 @@ import os
 
 # CONFUSB_APP_ID permite probar una copia sin que choque con la instalada (lo heredan los procesos que lanza).
 APP_ID = os.environ.get("CONFUSB_APP_ID") or "es.masebastia.confusb"
-__version__ = "0.2.1"
+__version__ = "0.2.2"

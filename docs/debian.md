@@ -10,9 +10,9 @@ Estado del empaquetado y pasos para llevarlo al archivo oficial de Debian.
 
 Herramientas (una vez): `sudo apt install debhelper dh-python pybuild-plugin-pyproject devscripts lintian python3-all python3-setuptools gettext`
 
-    git archive --prefix=confusb-0.2.1/ -o ../confusb_0.2.1.orig.tar.gz v0.2.1   # el tarball «orig» sin debian/
-    dpkg-buildpackage -us -uc -b                                                  # genera ../confusb_0.2.1-1_all.deb
-    lintian -I --pedantic ../confusb_0.2.1-1_all.deb
+    git archive --prefix=confusb-0.2.2/ -o ../confusb_0.2.2.orig.tar.gz v0.2.2   # el tarball «orig» sin debian/
+    dpkg-buildpackage -us -uc -b                                                  # genera ../confusb_0.2.2-1_all.deb
+    lintian -I --pedantic ../confusb_0.2.2-1_all.deb
 
 `debian/` está en el mismo repositorio; `.gitattributes` lo excluye del tarball (`export-ignore`).
 
@@ -37,7 +37,7 @@ Borrador:
     Severity: wishlist
 
     * Package name    : confusb
-      Version         : 0.2.1
+      Version         : 0.2.2
       Upstream Contact: masebastia
     * URL             : https://github.com/masebastia/confusb
     * License         : GPL-3+
@@ -56,7 +56,7 @@ Borrador:
 ## 2. Subir a mentors.debian.net
 
 1. Crear una cuenta en <https://mentors.debian.net> y tener una clave GPG (publicada en un servidor de claves).
-2. Construir el paquete fuente firmado: `dpkg-buildpackage -S` (con la clave) y subirlo: `dput mentors ../confusb_0.2.1-1_source.changes`.
+2. Construir el paquete fuente firmado: `dpkg-buildpackage -S` (con la clave) y subirlo: `dput mentors ../confusb_0.2.2-1_source.changes`.
 3. Abrir un *RFS* (Request For Sponsorship) contra el pseudopaquete `sponsorship-requests` (`reportbug sponsorship-requests`),
    con el enlace del paquete en mentors y el del ITP.
 

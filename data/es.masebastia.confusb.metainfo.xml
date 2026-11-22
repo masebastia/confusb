@@ -44,6 +44,12 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.2" date="2026-11-22">
+      <description>
+        <p>Android phones: model, Android version, processor, memory, screen, battery and storage are read through adb. Choose the window background: the image or a solid color. The window starts the service if it is stopped.</p>
+        <p xml:lang="es">Teléfonos Android: se leen por adb el modelo, la versión de Android, el procesador, la memoria, la pantalla, la batería y el almacenamiento. Fondo de la ventana a elegir: la imagen o un color liso. La ventana arranca el servicio si está parado.</p>
+      </description>
+    </release>
     <release version="0.2.1" date="2026-11-22">
       <description>
         <p>Only the active session reacts, known devices are not offered again and storage drives open in the default application. Capacity and partitions of storage drives. A "Notices" card with the pending offers. The service and the window are separate processes: the window leaves the memory when closed. Fixes to the dialogs and the scroll bars.</p>

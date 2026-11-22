@@ -44,6 +44,12 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.1" date="2026-11-22">
+      <description>
+        <p>Only the active session reacts, known devices are not offered again and storage drives open in the default application. Capacity and partitions of storage drives. A "Notices" card with the pending offers. The service and the window are separate processes: the window leaves the memory when closed. Fixes to the dialogs and the scroll bars.</p>
+        <p xml:lang="es">Solo reacciona la sesión activa, los dispositivos ya conocidos no se vuelven a ofrecer y las unidades de almacenamiento se abren con su aplicación predeterminada. Capacidad y particiones de las unidades de almacenamiento. Tarjeta «Avisos» con lo pendiente. El servicio y la ventana son procesos distintos: la ventana se va de la memoria al cerrarla. Arreglos en los diálogos y las barras de desplazamiento.</p>
+      </description>
+    </release>
     <release version="0.2.0" date="2026-11-22">
       <description>
         <p>Multilingual interface (official languages of the European countries), new look and packaging for Debian.</p>

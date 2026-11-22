@@ -1,3 +1,28 @@
+confusb (0.2.1-1) UNRELEASED; urgency=medium
+
+  * Connection policy: only the active session reacts (with several users
+    logged in), devices that are already known are not offered again, a
+    device seen for the first time is offered with a notification ("View
+    information" button) and storage drives are opened with the default
+    application once mounted (unless GNOME already does it).
+  * Show the capacity, partitions and file systems of storage drives.
+  * New "Notices" card in the window with the pending offers; opening the
+    window withdraws the notifications and the counter on the icon.
+  * Split the service and the window into two processes: the service no
+    longer loads GTK (about 30 MB instead of 300 MB) and the window leaves
+    the memory when it is closed. The service has its own application ID and
+    a hidden desktop file (es.masebastia.confusb.servicio.desktop) for its
+    notifications. After upgrading, restart the user service:
+    systemctl --user restart confusb.service
+  * Fix the "About" dialog (the Close button did not respond, the panel was
+    cut off), fit the glass dialogs to short windows and keep every vertical
+    scrollbar off the content.
+  * Raw data boxes: line spacing, horizontal scrollbar, minimum window width.
+  * 23 new strings, translated into all the languages.
+  * Build-Depends: add the GObject introspection packages used by the tests.
+
+ -- masebastia <msebastia@protonmail.com>  Sun, 22 Nov 2026 21:03:02 +0100
+
 confusb (0.2.0-1) UNRELEASED; urgency=medium
 
   * Initial release.

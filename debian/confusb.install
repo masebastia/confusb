@@ -1,0 +1,3 @@
+data/es.masebastia.confusb.desktop usr/share/applications/
+data/es.masebastia.confusb.metainfo.xml usr/share/metainfo/
+.pybuild/locale/* usr/share/locale/

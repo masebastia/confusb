@@ -1,0 +1,51 @@
+Source: confusb
+Section: utils
+Priority: optional
+# TODO: sustituir por el nombre y el correo reales de quien mantiene el paquete antes de subirlo a Debian.
+Maintainer: masebastia <106473214+masebastia@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-python3,
+ gettext,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-setuptools,
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/masebastia/confusb
+Vcs-Git: https://github.com/masebastia/confusb.git
+Vcs-Browser: https://github.com/masebastia/confusb
+
+Package: confusb
+Architecture: all
+Depends:
+ gir1.2-adw-1,
+ gir1.2-graphene-1.0,
+ gir1.2-gtk-4.0,
+ gir1.2-gudev-1.0,
+ kmod,
+ python3-gi,
+ udev,
+ usbutils,
+ ${misc:Depends},
+ ${python3:Depends},
+Recommends:
+ pkexec,
+Suggests:
+ flatpak,
+ fwupd,
+Description: USB device information and driver finder for the desktop
+ confusb watches the USB connections. When a device is plugged in it opens a
+ window (or shows a notification, as configured) with everything the system
+ knows about it: descriptors, interfaces, kernel driver and modules, device
+ nodes, power state, udev properties and the full lsusb output.
+ .
+ It also looks for the driver and the applications needed to use the device,
+ using a built-in catalogue by USB class and manufacturer plus Debian and
+ Flatpak packages and fwupd firmware support. It shows what is already
+ installed and lets you install, open or try each application. For instance,
+ with a smart card reader it detects that pcscd is missing and offers to
+ install it.
+ .
+ The interface follows the system light or dark style and is available in the
+ official languages of the European countries.

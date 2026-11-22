@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=confusb
+
+%:
+	dh $@ --buildsystem=pybuild
+
+# Los catálogos de traducción (.po) se compilan a .mo en .pybuild/locale (lo limpia dh_auto_clean)
+override_dh_auto_build:
+	dh_auto_build
+	set -e; for po in po/*.po; do \
+	  lang=$$(basename $$po .po); \
+	  mkdir -p .pybuild/locale/$$lang/LC_MESSAGES; \
+	  msgfmt --check-format -o .pybuild/locale/$$lang/LC_MESSAGES/confusb.mo $$po; \
+	done
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=$(CURDIR) python3 -m unittest discover -s tests -v
+endif
+
+# El icono se instala en el tema hicolor con el nombre de la aplicación
+override_dh_auto_install:
+	dh_auto_install
+	install -D -m 0644 confusb/recursos/icono.svg \
+	  debian/confusb/usr/share/icons/hicolor/scalable/apps/es.masebastia.confusb.svg

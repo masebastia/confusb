@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "confusb"
+dynamic = ["version"]
+description = "Shows USB device information and finds drivers and applications"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+# PyGObject, GTK 4, libadwaita y GUdev llegan como paquetes del sistema (python3-gi, gir1.2-*).
+dependencies = []
+classifiers = [
+    "Environment :: X11 Applications :: GTK",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: System :: Hardware",
+]
+
+[project.urls]
+Homepage = "https://github.com/masebastia/confusb"
+Issues = "https://github.com/masebastia/confusb/issues"
+
+[project.scripts]
+confusb = "confusb.app:cli"
+
+[tool.setuptools]
+packages = ["confusb"]
+
+[tool.setuptools.package-data]
+confusb = ["recursos/*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "confusb.__version__"}

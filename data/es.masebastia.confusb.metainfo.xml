@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>es.masebastia.confusb</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>confusb</name>
+  <summary>Shows the information of USB devices and finds their drivers and applications</summary>
+  <summary xml:lang="es">Muestra la información de los dispositivos USB y busca sus controladores y aplicaciones</summary>
+  <developer id="io.github.masebastia">
+    <name>masebastia</name>
+  </developer>
+  <description>
+    <p>
+      confusb watches the USB connections. When a device is plugged in it can open a window with
+      everything the system knows about it (descriptors, interfaces, kernel driver and modules,
+      device nodes, power state, udev properties) and look for its driver and the applications needed
+      to use it.
+    </p>
+    <p xml:lang="es">
+      confusb vigila las conexiones USB. Al conectar un dispositivo puede abrir una ventana con todo lo
+      que el sistema sabe de él (descriptores, interfaces, controlador y módulos del kernel, nodos de
+      dispositivo, energía, propiedades udev) y buscar su controlador y las aplicaciones para usarlo.
+    </p>
+    <p>For example, with a smart card reader (such as a DNIe reader) it detects that the PC/SC service is missing and offers to install it.</p>
+    <p xml:lang="es">Por ejemplo, con un lector de tarjetas inteligentes (como el del DNIe) detecta que falta el servicio PC/SC y ofrece instalarlo.</p>
+    <ul>
+      <li>Window with the connected USB devices, updated automatically</li>
+      <li xml:lang="es">Ventana con los dispositivos USB conectados, que se actualiza sola</li>
+      <li>Full details of each device, ready to copy and share</li>
+      <li xml:lang="es">Detalle completo de cada dispositivo, listo para copiar y compartir</li>
+      <li>Recommended packages by device class and manufacturer, Debian and Flatpak packages, and firmware updates</li>
+      <li xml:lang="es">Paquetes recomendados por clase y fabricante, paquetes Debian y Flatpak y actualizaciones de firmware</li>
+      <li>Shows what is already installed and lets you install, open or try each application</li>
+      <li xml:lang="es">Indica lo que ya está instalado y permite instalar, abrir o probar cada aplicación</li>
+      <li>Available in the official languages of the European countries</li>
+      <li xml:lang="es">Disponible en los idiomas oficiales de los países de Europa</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">es.masebastia.confusb.desktop</launchable>
+  <url type="homepage">https://github.com/masebastia/confusb</url>
+  <url type="bugtracker">https://github.com/masebastia/confusb/issues</url>
+  <provides>
+    <binary>confusb</binary>
+  </provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.2.0" date="2026-11-22">
+      <description>
+        <p>Multilingual interface (official languages of the European countries), new look and packaging for Debian.</p>
+      </description>
+    </release>
+  </releases>
+</component>

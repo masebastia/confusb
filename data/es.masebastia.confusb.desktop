@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=confusb
+GenericName=USB devices
+GenericName[es]=Dispositivos USB
+Comment=Information, drivers and applications for the connected USB devices
+Comment[es]=Información, controladores y aplicaciones de los dispositivos USB conectados
+Exec=confusb --devices
+Icon=es.masebastia.confusb
+Terminal=false
+Categories=System;Monitor;
+Keywords=usb;device;driver;reader;
+Keywords[es]=usb;dispositivo;controlador;driver;lector;
+StartupNotify=true
+StartupWMClass=es.masebastia.confusb

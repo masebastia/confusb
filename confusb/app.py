@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 import threading
 
 import gi
@@ -218,3 +219,8 @@ def main(argv: list[str]) -> int:
     if args.show:
         rest = ["--show", args.show, *rest]
     return ConfusbApp().run([argv[0], *rest])
+
+
+def cli() -> None:
+    """Punto de entrada del comando «confusb»."""
+    sys.exit(main(sys.argv))

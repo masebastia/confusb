@@ -1,0 +1,65 @@
+.TH CONFUSB 1 "November 2026" "confusb 0.2.0" "User Commands"
+.SH NAME
+confusb \- USB device information and driver finder
+.SH SYNOPSIS
+.B confusb
+.RB [ \-\-devices ]
+.RB [ \-\-show
+.IR DEV ]
+.RB [ \-\-list ]
+.RB [ \-\-dump
+.IR DEV ]
+.RB [ \-\-version ]
+.SH DESCRIPTION
+.B confusb
+watches the USB connections. When a device is plugged in it opens a window
+(or shows a notification, depending on the settings) with all the information
+the system exposes about the device and looks for its driver and the
+applications needed to use it.
+.PP
+Without arguments it runs as a service that watches the USB connections. It is
+normally started automatically with the graphical session by the systemd user
+unit
+.IR confusb.service .
+.SH OPTIONS
+.TP
+.B \-\-devices
+Show the window with the connected USB devices.
+.TP
+.BI \-\-show " DEV"
+Open the details of a device.
+.I DEV
+is a bus path such as
+.IR 1\-5 ,
+a
+.I VID:PID
+pair such as
+.IR 058f:9540 ,
+or a sysfs path.
+.TP
+.B \-\-list
+List the USB devices and exit.
+.TP
+.BI \-\-dump " DEV"
+Print all the information of a device as text and exit.
+.TP
+.B \-\-version
+Show the version and exit.
+.TP
+.BR \-h ", " \-\-help
+Show a short help and exit.
+.SH FILES
+.TP
+.I ~/.config/confusb/ajustes.json
+User settings (appearance of the cards, language and what to do when a device is
+connected). They can be changed from the
+.B Interface
+button of the application.
+.SH ENVIRONMENT
+The interface language is chosen in the application (language drop-down); by
+default it follows the language of the desktop.
+.SH SEE ALSO
+.BR lsusb (8),
+.BR udevadm (8)
+.SH AUTHOR
+masebastia <https://github.com/masebastia/confusb>.

@@ -5,9 +5,13 @@ Es un proceso aparte de la ventana y no carga GTK, así que ocupa poco: la venta
 hace falta, con «confusb --devices» o «--show», y se va de la memoria al cerrarla; el servicio sigue en marcha.
 Se arranca con la sesión gráfica (unidad de usuario de systemd) con «confusb» sin argumentos.
 
-El servicio ofrece dos acciones por D-Bus (las usan las notificaciones y la ventana):
+El servicio ofrece estas acciones por D-Bus (las usan las notificaciones y la ventana):
   detalle(ruta)    abre la ventana con el dispositivo (la acepta la notificación)
   retirar([ids])   retira notificaciones del sistema (la ventana lo pide al abrirse o al descartar avisos)
+  probar()         diagnóstico: ofrece el primer dispositivo conectado como si acabara de enchufarse, para
+                   comprobar que la notificación llega, que se ve el aviso y que se puede quitar:
+    gdbus call --session --dest es.masebastia.confusb.servicio \\
+      --object-path /es/masebastia/confusb/servicio --method org.gtk.Actions.Activate probar [] {}
 """
 from __future__ import annotations
 
@@ -57,8 +61,9 @@ class ServicioApp(Gio.Application):
         self.avisos = almacen or avisos.Almacen()
         self.client: GUdev.Client | None = None
         self._token: str | None = None       # permiso para que la ventana que se abra tome el foco
-        for nombre, tipo, fn in (("detalle", "s", self._al_detalle), ("retirar", "as", self._al_retirar)):
-            accion = Gio.SimpleAction.new(nombre, GLib.VariantType.new(tipo))
+        for nombre, tipo, fn in (("detalle", "s", self._al_detalle), ("retirar", "as", self._al_retirar),
+                                 ("probar", None, self._al_probar)):
+            accion = Gio.SimpleAction.new(nombre, GLib.VariantType.new(tipo) if tipo else None)
             accion.connect("activate", fn)
             self.add_action(accion)
 
@@ -184,3 +189,11 @@ class ServicioApp(Gio.Application):
     def _al_retirar(self, _accion, valor):
         for notificacion in valor.get_strv():
             self.withdraw_notification(notificacion)
+
+    def _al_probar(self, _accion, _valor):
+        for ruta in usbinfo.list_usb_devices():
+            info = usbinfo.collect(ruta, with_lsusb=False)
+            if not info.is_hub and info.vid not in IGNORED_VIDS:
+                print(f"confusb: probando la notificación con {info.usb_id} {info.title}", flush=True)
+                self.notificar(info, ruta)
+                return

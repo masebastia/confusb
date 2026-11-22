@@ -140,6 +140,16 @@ class PruebasServicio(Base):
         self.srv._al_retirar(None, GLib.Variant("as", ["usb-1:1", "usb-2:2"]))
         self.assertEqual(self.retiradas, ["usb-1:1", "usb-2:2"])
 
+    def test_probar_ofrece_el_primer_dispositivo_que_no_sea_un_hub(self):
+        hub, teclado = self.dispositivo("1d6b", "0002", "Hub"), self.dispositivo()
+        hub.dev_class = 0x09
+        infos = {hub.syspath: hub, teclado.syspath: teclado}
+        with mock.patch.object(usbinfo, "list_usb_devices", return_value=list(infos)), \
+                mock.patch.object(usbinfo, "collect", side_effect=lambda ruta, **kw: infos[ruta]):
+            self.srv._al_probar(None, None)
+        self.assertEqual([i for i, _n in self.enviadas], ["usb-046d:c31c"])
+        self.assertEqual([a.path for a in self.almacen.leer()], [teclado.syspath])
+
     def test_si_el_servicio_no_esta_en_marcha_llamar_devuelve_falso(self):
         self.assertFalse(servicio.llamar("retirar", GLib.Variant("as", ["usb-1:1"])))
 

@@ -339,9 +339,15 @@ class CristalDialogo(Gtk.Box):
 
     def __init__(self, anfitrion: Gtk.Widget, titulo: str, al_cerrar: Callable[[], None],
                  derecha: bool = False, modal: bool = False):
-        super().__init__(halign=Gtk.Align.FILL, valign=Gtk.Align.FILL, hexpand=True, vexpand=True)
+        # Modal: una capa a pantalla completa (un clic fuera cierra). No modal: el propio diálogo ocupa solo
+        # el sitio de su panel, así el resto de la ventana sigue recibiendo clics y se ve cambiar al momento.
+        # (No vale una capa a pantalla completa con can_target=False: eso deja también sin clics a su contenido.)
+        if modal:
+            super().__init__(halign=Gtk.Align.FILL, valign=Gtk.Align.FILL, hexpand=True, vexpand=True)
+        else:
+            super().__init__(halign=Gtk.Align.END if derecha else Gtk.Align.CENTER, valign=Gtk.Align.CENTER,
+                             margin_end=24 if derecha else 0)
         self.al_cerrar = al_cerrar
-        self.set_can_target(modal)
         if modal:
             clic = Gtk.GestureClick()
             clic.connect("pressed", lambda *_: al_cerrar())
@@ -351,19 +357,20 @@ class CristalDialogo(Gtk.Box):
         self.cuerpo = pila()
         self.cuerpo.add_css_class("cristal")
         self.cuerpo.append(label(titulo, "section"))
-        panel = Gtk.Overlay(child=self.capa, hexpand=True, halign=Gtk.Align.END if derecha else Gtk.Align.CENTER,
-                            valign=Gtk.Align.CENTER, margin_end=24 if derecha else 0)
+        panel = Gtk.Overlay(child=self.capa)
+        if modal:
+            panel.set_hexpand(True)
+            panel.set_halign(Gtk.Align.CENTER)
+            panel.set_valign(Gtk.Align.CENTER)
         panel.add_overlay(self.cuerpo)
         panel.set_measure_overlay(self.cuerpo, True)
         panel.set_overflow(Gtk.Overflow.HIDDEN)
         panel.add_css_class("panel-cristal")
         self.append(panel)
-        # que un clic dentro del panel no llegue a la capa que cierra
-        if modal:
+        if modal:  # que un clic dentro del panel no llegue a la capa que cierra
             dentro = Gtk.GestureClick()
             dentro.connect("pressed", lambda g, *_: g.set_state(Gtk.EventSequenceState.CLAIMED))
             panel.add_controller(dentro)
-        panel.set_can_target(True)
         self.panel = panel
 
     def anadir_botones(self, botones: list[tuple[str, Callable[[], None]]]):

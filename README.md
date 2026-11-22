@@ -3,9 +3,9 @@
 Servicio de usuario que vigila las conexiones USB (udev vía GUdev). Al conectar un dispositivo
 abre una ventana con:
 
-- **Información**: descriptores, VID/PID, velocidad, consumo, interfaces/endpoints, driver y módulos del
+- **Información**: descriptores, VID/PID, velocidad, consumo, interfaces/endpoints, controlador y módulos del
   kernel, nodos `/dev`, energía, propiedades udev y `lsusb -v` (botón para copiarlo todo).
-- **Controladores y aplicaciones**: estado del driver en el kernel, paquetes recomendados por clase USB/fabricante
+- **Controladores y aplicaciones**: estado del controlador en el kernel, paquetes recomendados por clase USB/fabricante
   (con botón de instalar vía `pkexec apt-get`), paquetes Debian y Flatpak que coinciden por nombre,
   soporte fwupd y enlaces a la web del fabricante / linux-hardware.org. Las aplicaciones instaladas se
   pueden lanzar o probar desde la propia ventana.

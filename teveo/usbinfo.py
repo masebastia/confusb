@@ -157,7 +157,7 @@ class DeviceInfo:
         for i in self.interfaces:
             out.append(f"== Interfaz {i.name} ==")
             out.append(f"clase={class_name(i.cls)} sub=0x{i.subcls or 0:02x} proto=0x{i.proto or 0:02x}")
-            out.append(f"driver={i.driver or '(ninguno)'} módulos={', '.join(i.modules) or '-'}")
+            out.append(f"controlador={i.driver or '(ninguno)'} módulos={', '.join(i.modules) or '-'}")
             out += [f"  {e}" for e in i.endpoints]
             out.append("")
         out.append("== Propiedades udev ==")
@@ -276,7 +276,7 @@ def collect(syspath: str, with_lsusb: bool = True) -> DeviceInfo:
         ("Nodo /dev", p.get("DEVNAME", "—")),
         ("Subsistema / tipo", f"{p.get('SUBSYSTEM', '?')} / {p.get('DEVTYPE', '?')}"),
         ("Interfaces (ID_USB_INTERFACES)", p.get("ID_USB_INTERFACES", "—")),
-        ("Driver del dispositivo", os.path.basename(os.path.realpath(f"{syspath}/driver"))
+        ("Controlador del dispositivo", os.path.basename(os.path.realpath(f"{syspath}/driver"))
          if os.path.islink(f"{syspath}/driver") else "—"),
         ("Rutas persistentes (ID_PATH)", p.get("ID_PATH", "—")),
         ("Etiquetas udev (TAGS)", p.get("TAGS", "—")),

@@ -21,9 +21,9 @@ RES = os.path.join(os.path.dirname(__file__), "recursos")
 HUECO, HUECO_SECCION = 8, 20          # mismas separaciones que Rambleando (--hueco, --hueco-seccion)
 
 STATUS_CLASS = {
-    "ok": {"Instalado", "Instalada", "Driver activo", "Espacio de usuario", "OK", "Soportado", "Con driver"},
+    "ok": {"Instalado", "Instalada", "Controlador activo", "Espacio de usuario", "OK", "Soportado", "Con controlador"},
     "aviso": {"Falta instalar", "Sin vincular"},
-    "error": {"Sin driver", "No está en los repositorios"},
+    "error": {"Sin controlador", "No está en los repositorios"},
 }
 
 _css_ready = False
@@ -327,13 +327,13 @@ class DeviceWindow(Adw.ApplicationWindow):
             grid.add(c)
 
         if info.interfaces:
-            c = tarjeta("Interfaces", "Cada interfaz puede tener su propio driver")
+            c = tarjeta("Interfaces", "Cada interfaz puede tener su propio controlador")
             for i in info.interfaces:
                 c.append(rubrica(f"Interfaz {i.number} · {i.label or class_name(i.cls)}"))
                 c.append(datos([
                     ("Clase", class_name(i.cls)),
                     ("Subclase / protocolo", f"0x{(i.subcls or 0):02x} / 0x{(i.proto or 0):02x}"),
-                    ("Driver vinculado", i.driver or "ninguno"),
+                    ("Controlador vinculado", i.driver or "ninguno"),
                     ("Módulos del kernel", ", ".join(i.modules) or "ninguno encontrado"),
                     ("Modalias", i.modalias or "—"),
                     *[("Endpoint", e.removeprefix("Endpoint ")) for e in i.endpoints],
@@ -387,7 +387,7 @@ class DeviceWindow(Adw.ApplicationWindow):
         row = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
         self.spinner = Gtk.Spinner(spinning=True)
         row.append(self.spinner)
-        row.append(label("Buscando drivers y aplicaciones…", "secundario", wrap=False))
+        row.append(label("Buscando controladores y aplicaciones…", "secundario", wrap=False))
         self.search.append(row)
         self.sw_box.add(self.search)
 
@@ -550,14 +550,14 @@ class DevicesWindow(Adw.ApplicationWindow):
         t = label(info.title, "titulo")
         t.set_hexpand(True)
         head.append(t)
-        head.append(estado("Con driver") if info.drivers and info.drivers != ["usbfs"] else Gtk.Box())
+        head.append(estado("Con controlador") if info.drivers and info.drivers != ["usbfs"] else Gtk.Box())
         c.append(head)
         c.append(label(f"{info.vendor or 'Fabricante desconocido'} · {info.usb_id}", "secundario"))
         classes = ", ".join(CLASS_NAMES.get(k, f"0x{k:02x}") for k in sorted(info.classes) if k != 0) or "—"
         c.append(datos([
             ("Tipo", classes),
             ("Puerto", os.path.basename(info.syspath)),
-            ("Driver", ", ".join(info.drivers) or "ninguno"),
+            ("Controlador", ", ".join(info.drivers) or "ninguno"),
         ]))
         b = boton("Ver información y software")
         b.set_margin_top(HUECO)

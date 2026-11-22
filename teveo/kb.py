@@ -10,8 +10,8 @@ Formato de cada entrada:
 CLASS_KB: dict[int, list[dict]] = {
     0x0B: [  # Lectores de tarjetas inteligentes (DNIe, tarjetas bancarias, FNMT...)
         {
-            "title": "Servicio PC/SC y drivers CCID",
-            "desc": "pcscd es el demonio que gestiona los lectores de tarjetas; libccid trae el driver "
+            "title": "Servicio PC/SC y controladores CCID",
+            "desc": "pcscd es el demonio que gestiona los lectores de tarjetas; libccid trae el controlador "
                     "para lectores USB estándar (CCID). Sin pcscd el lector se ve en USB pero ninguna "
                     "aplicación puede usarlo.",
             "packages": ["pcscd", "libccid"],
@@ -54,7 +54,7 @@ CLASS_KB: dict[int, list[dict]] = {
                    "needs": "system-config-printer"}]},
     ],
     0x0E: [
-        {"title": "Cámara / vídeo (UVC)", "desc": "El driver uvcvideo del kernel la soporta. "
+        {"title": "Cámara / vídeo (UVC)", "desc": "El controlador uvcvideo del kernel la soporta. "
          "Pruébala con Snapshot/Cheese.", "packages": ["v4l-utils"],
          "apps": [{"label": "Listar dispositivos de vídeo", "cmd": ["v4l2-ctl", "--list-devices"],
                    "capture": True, "needs": "v4l-utils"},
@@ -111,7 +111,7 @@ VENDOR_KB: dict[str, list[dict]] = {
               "apps": [{"label": "adb devices", "cmd": ["adb", "devices", "-l"], "capture": True,
                         "needs": "adb"}]}],
     "04e8": [{"title": "Samsung (Android)", "desc": "ADB y acceso MTP.", "packages": ["adb", "gvfs-backends"]}],
-    "03f0": [{"title": "HP: HPLIP", "desc": "Drivers y utilidades de impresoras/escáneres HP.",
+    "03f0": [{"title": "HP: HPLIP", "desc": "Controladores y utilidades de impresoras/escáneres HP.",
               "packages": ["hplip"], "apps": [{"label": "HP Toolbox", "cmd": ["hp-toolbox"], "needs": "hplip-gui"}]}],
     "04a9": [{"title": "Canon", "desc": "Soporte de impresoras/escáneres Canon.", "packages": ["printer-driver-gutenprint"]}],
     "04b8": [{"title": "Epson", "desc": "Soporte de impresoras/escáneres Epson.",

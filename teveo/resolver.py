@@ -138,27 +138,27 @@ def make_item_from_kb(entry: dict, states: dict[str, str]) -> Item:
 def kernel_group(info: DeviceInfo) -> Group:
     items: list[Item] = []
     if info.is_hub:
-        items.append(Item("Hub USB", "Gestionado por el driver «hub» del kernel.", "OK"))
+        items.append(Item("Hub USB", "Gestionado por el controlador «hub» del kernel.", "OK"))
     for i in info.interfaces:
         cname = CLASS_NAMES.get(i.cls or -1, "?")
         label = f"Interfaz {i.number} · {i.label or cname}"
         mods = ", ".join(i.modules) if i.modules else "ninguno encontrado"
         if i.driver:
-            items.append(Item(label, f"Driver: {i.driver}\nMódulos candidatos: {mods}", "Driver activo"))
+            items.append(Item(label, f"Controlador: {i.driver}\nMódulos candidatos: {mods}", "Controlador activo"))
         elif i.cls == 0x0B:
-            items.append(Item(label, "Normal: los lectores de tarjetas CCID no usan driver del kernel; los "
+            items.append(Item(label, "Normal: los lectores de tarjetas CCID no usan controlador del kernel; los "
                                      "gestiona el demonio pcscd (espacio de usuario) con libccid.",
                               "Espacio de usuario"))
         elif i.modules:
-            items.append(Item(label, f"Sin driver vinculado, pero existen módulos candidatos: {mods}.\n"
+            items.append(Item(label, f"Sin controlador vinculado, pero existen módulos candidatos: {mods}.\n"
                                      "Prueba: sudo modprobe <módulo>", "Sin vincular"))
         else:
             items.append(Item(label, "El kernel no tiene ningún módulo para esta interfaz.\n"
                                      "Probablemente necesite software en espacio de usuario (ver abajo) "
-                                     "o un driver externo.", "Sin driver"))
+                                     "o un controlador externo.", "Sin controlador"))
     if not items:
         items.append(Item("Sin interfaces", "No se han podido leer las interfaces del dispositivo."))
-    return Group("Estado del driver en el kernel", items)
+    return Group("Estado del controlador en el kernel", items)
 
 
 def kb_groups(info: DeviceInfo) -> list[Group]:
@@ -249,14 +249,14 @@ def web_group(info: DeviceInfo) -> Group:
     name = f"{info.vendor} {info.product}".strip() or info.usb_id
     q = lambda s: urllib.parse.quote_plus(s)
     return Group("Web del fabricante y bases de datos", [
-        Item("Buscar el driver oficial del fabricante",
+        Item("Buscar el controlador oficial del fabricante",
              f"Búsqueda: «{name} linux driver download»", "",
              [Action("Abrir búsqueda", "url", "https://duckduckgo.com/?q=" + q(f"{name} linux driver download"))]),
         Item("Sitio oficial / soporte",
              f"Búsqueda: «{info.vendor} soporte descargas»", "",
              [Action("Abrir búsqueda", "url", "https://duckduckgo.com/?q=" + q(f"{info.vendor} support downloads"))]),
         Item("Linux Hardware Database",
-             "Sondas de otros usuarios con este mismo dispositivo y el driver que usaron.", "",
+             "Sondas de otros usuarios con este mismo dispositivo y el controlador que usaron.", "",
              [Action("Abrir", "url", f"https://linux-hardware.org/?id=usb:{info.vid}-{info.pid}")]),
         Item("Base de datos USB ID",
              f"Ficha del ID {info.usb_id}.", "",

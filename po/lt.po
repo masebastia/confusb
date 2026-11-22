@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:39+0100\n"
+"POT-Creation-Date: 2026-11-22 21:52+0100\n"
 "PO-Revision-Date: 2026-11-22 13:36+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Lietuvių\n"
@@ -19,7 +19,7 @@ msgstr ""
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:281 confusb/ui.py:368
+#: confusb/ui.py:282 confusb/ui.py:369
 msgid "Capacity"
 msgstr "Talpa"
 
@@ -175,14 +175,22 @@ msgid "No frame"
 msgstr "Be rėmelio"
 
 #: confusb/preferencias.py:32
+msgid "Image (circuit board and logo)"
+msgstr "Paveikslėlis (spausdintinė plokštė ir logotipas)"
+
+#: confusb/preferencias.py:33
+msgid "Solid color"
+msgstr "Vientisa spalva"
+
+#: confusb/preferencias.py:36
 msgid "Open a window with the information"
 msgstr "Atidaryti langą su informacija"
 
-#: confusb/preferencias.py:33
+#: confusb/preferencias.py:37
 msgid "Show a notification"
 msgstr "Rodyti pranešimą"
 
-#: confusb/preferencias.py:34
+#: confusb/preferencias.py:38
 msgid "Do nothing"
 msgstr "Nieko nedaryti"
 
@@ -190,7 +198,7 @@ msgstr "Nieko nedaryti"
 msgid "USB device connected"
 msgstr "USB įrenginys prijungtas"
 
-#: confusb/servicio.py:190 confusb/ui.py:216
+#: confusb/servicio.py:190 confusb/ui.py:217
 msgid "View information"
 msgstr "Rodyti informaciją"
 
@@ -358,7 +366,9 @@ msgstr "{used} naudojama"
 
 #: confusb/sondas.py:250
 msgid "Install adb (sudo apt install adb) to read the phone's hardware data."
-msgstr "Įdiekite adb (sudo apt install adb), kad galėtumėte skaityti telefono aparatinės įrangos duomenis."
+msgstr ""
+"Įdiekite adb (sudo apt install adb), kad galėtumėte skaityti telefono "
+"aparatinės įrangos duomenis."
 
 #: confusb/sondas.py:256
 msgid "The phone does not answer through adb: unplug it and plug it in again."
@@ -366,11 +376,15 @@ msgstr "Telefonas neatsako per adb: atjunkite jį ir vėl prijunkite."
 
 #: confusb/sondas.py:258
 msgid "Unlock the phone and accept «Allow USB debugging?» to read its data."
-msgstr "Atrakinkite telefoną ir sutikite su „Leisti USB derinimą?“, kad galėtumėte skaityti jo duomenis."
+msgstr ""
+"Atrakinkite telefoną ir sutikite su „Leisti USB derinimą?“, kad galėtumėte "
+"skaityti jo duomenis."
 
 #: confusb/sondas.py:313
 msgid "Unlock the phone and open it in the file manager to see its storage."
-msgstr "Atrakinkite telefoną ir atverkite jį failų tvarkyklėje, kad pamatytumėte jo saugyklą."
+msgstr ""
+"Atrakinkite telefoną ir atverkite jį failų tvarkyklėje, kad pamatytumėte jo "
+"saugyklą."
 
 #: confusb/sondas.py:318
 msgid "Storage (MTP)"
@@ -380,124 +394,132 @@ msgstr "Saugykla (MTP)"
 msgid "udev attributes (udevadm info -a)"
 msgstr "udev atributai (udevadm info -a)"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Installed"
 msgstr "Įdiegta"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Active driver"
 msgstr "Tvarkyklė aktyvi"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "User space"
 msgstr "Naudotojo erdvė"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "OK"
 msgstr ""
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Supported"
 msgstr "Palaikoma"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Has driver"
 msgstr "Turi tvarkyklę"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Needs installing"
 msgstr "Reikia įdiegti"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not bound"
 msgstr "Nesusieta"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "No driver"
 msgstr "Nėra tvarkyklės"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not in the repositories"
 msgstr "Nėra saugyklose"
 
-#: confusb/componentes.py:146
+#: confusb/componentes.py:147
 msgid "Language"
 msgstr "Kalba"
 
-#: confusb/componentes.py:316
+#: confusb/componentes.py:317
 msgid "Close the notice"
 msgstr "Uždaryti pranešimą"
 
-#: confusb/componentes.py:501 confusb/ui.py:88
+#: confusb/componentes.py:502 confusb/ui.py:88
 msgid "Interface"
 msgstr "Sąsaja"
 
-#: confusb/componentes.py:505
+#: confusb/componentes.py:506
 msgid "Cards"
 msgstr "Kortelės"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Card opacity"
 msgstr "Kortelių nepermatomumas"
 
-#: confusb/componentes.py:508
+#: confusb/componentes.py:509
 msgid "Corners"
 msgstr "Kampai"
 
-#: confusb/componentes.py:511
+#: confusb/componentes.py:512
 msgid "Title color"
 msgstr "Antraščių spalva"
 
-#: confusb/componentes.py:521
+#: confusb/componentes.py:522
 msgid "Frame"
 msgstr "Rėmelis"
 
-#: confusb/componentes.py:523
+#: confusb/componentes.py:524
 msgid "Shadow under the cards"
 msgstr "Šešėlis po kortelėmis"
 
-#: confusb/componentes.py:526
+#: confusb/componentes.py:527
 msgid "Show «View information →» on the cards"
 msgstr "Rodyti «Peržiūrėti informaciją →» kortelėse"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:531
+msgid "Window background"
+msgstr "Lango fonas"
+
+#: confusb/componentes.py:534 confusb/componentes.py:536
+msgid "Background color"
+msgstr "Fono spalva"
+
+#: confusb/componentes.py:543
 msgid "When a device is connected"
 msgstr "Kai prijungiamas įrenginys"
 
-#: confusb/componentes.py:532
+#: confusb/componentes.py:545
 msgid "Only for devices not seen before"
 msgstr "Tik anksčiau nematytiems įrenginiams"
 
-#: confusb/componentes.py:535
+#: confusb/componentes.py:548
 msgid "Open storage drives with the default application"
 msgstr "Atverti duomenų saugojimo diskus numatytąja programa"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "Forget known devices"
 msgstr "Pamiršti žinomus įrenginius"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "The next time they are connected they will count as new"
 msgstr "Kitą kartą prijungus jie bus laikomi naujais"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:558
 msgid "Reset"
 msgstr "Atstatyti"
 
-#: confusb/componentes.py:545 confusb/componentes.py:599
+#: confusb/componentes.py:558 confusb/componentes.py:630
 msgid "Close"
 msgstr "Uždaryti"
 
-#: confusb/componentes.py:583
+#: confusb/componentes.py:614
 msgid "About confusb"
 msgstr "Apie confusb"
 
-#: confusb/componentes.py:590
+#: confusb/componentes.py:621
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versija {version}"
 
-#: confusb/componentes.py:591
+#: confusb/componentes.py:622
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -505,11 +527,11 @@ msgstr ""
 "Praneša, kai prijungiamas USB įrenginys, parodo jo informaciją ir ieško jo "
 "tvarkyklės bei programų jam naudoti."
 
-#: confusb/componentes.py:595
+#: confusb/componentes.py:626
 msgid "License GPL-3.0-or-later"
 msgstr "Licencija GPL-3.0-or-later"
 
-#: confusb/componentes.py:596
+#: confusb/componentes.py:627
 msgid "Source code on GitHub"
 msgstr "Šaltinio kodas GitHub"
 
@@ -861,12 +883,12 @@ msgstr "USB šakotuvas"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Valdo branduolio «hub» tvarkyklė."
 
-#: confusb/resolver.py:206 confusb/ui.py:383
+#: confusb/resolver.py:206 confusb/ui.py:384
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Sąsaja {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:388
+#: confusb/resolver.py:207 confusb/ui.py:389
 msgid "none found"
 msgstr "nerasta nė vieno"
 
@@ -1032,212 +1054,212 @@ msgstr "Programos išvaizda ir kas turi vykti prijungus įrenginį"
 msgid "About"
 msgstr "Apie"
 
-#: confusb/ui.py:150
+#: confusb/ui.py:151
 msgid "(no output)"
 msgstr "(nėra išvesties)"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "Connected USB devices"
 msgstr "Prijungti USB įrenginiai"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "USB devices"
 msgstr "USB įrenginiai"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Refresh"
 msgstr "Atnaujinti"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Read the connected devices again"
 msgstr "Iš naujo nuskaityti prijungtus įrenginius"
 
-#: confusb/ui.py:200
+#: confusb/ui.py:201
 msgid "Notices"
 msgstr "Pranešimai"
 
-#: confusb/ui.py:204
+#: confusb/ui.py:205
 msgid "Dismiss all"
 msgstr "Atmesti visus"
 
-#: confusb/ui.py:214
+#: confusb/ui.py:215
 #, python-brace-format
 msgid "Connected at {time}"
 msgstr "Prijungta {time}"
 
-#: confusb/ui.py:218
+#: confusb/ui.py:219
 msgid "Dismiss"
 msgstr "Atmesti"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "Reading devices…"
 msgstr "Skaitomi įrenginiai…"
 
-#: confusb/ui.py:249
+#: confusb/ui.py:250
 msgid "Could not read the devices"
 msgstr "Nepavyko nuskaityti įrenginių"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:251
 msgid "Error reading the devices"
 msgstr "Įrenginių skaitymo klaida"
 
-#: confusb/ui.py:256
+#: confusb/ui.py:257
 msgid "No USB devices connected"
 msgstr "Neprijungta jokių USB įrenginių"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:258
 msgid "Connect one and it will appear here automatically."
 msgstr "Prijunkite vieną ir jis automatiškai atsiras čia."
 
-#: confusb/ui.py:259
+#: confusb/ui.py:260
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Prijungti USB įrenginiai: {n}"
 
-#: confusb/ui.py:276 confusb/ui.py:325 confusb/ui.py:366
+#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
 msgid "Unknown manufacturer"
 msgstr "Nežinomas gamintojas"
 
-#: confusb/ui.py:279
+#: confusb/ui.py:280
 msgid "Type"
 msgstr "Tipas"
 
-#: confusb/ui.py:282
+#: confusb/ui.py:283
 msgid "Port"
 msgstr "Prievadas"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:284
 msgid "Driver"
 msgstr "Tvarkyklė"
 
-#: confusb/ui.py:283 confusb/ui.py:387
+#: confusb/ui.py:284 confusb/ui.py:388
 msgid "none"
 msgstr "nėra"
 
-#: confusb/ui.py:285
+#: confusb/ui.py:286
 msgid "View information →"
 msgstr "Peržiūrėti informaciją →"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back"
 msgstr "Atgal"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back to the list of devices"
 msgstr "Atgal į įrenginių sąrašą"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy"
 msgstr "Kopijuoti"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy all the information to the clipboard"
 msgstr "Nukopijuoti visą informaciją į iškarpinę"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Information"
 msgstr "Informacija"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Drivers and applications"
 msgstr "Tvarkyklės ir programos"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:330
 msgid "Connected"
 msgstr "Prijungta"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:353
 msgid "Information copied to the clipboard"
 msgstr "Informacija nukopijuota į iškarpinę"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Interfaces"
 msgstr "Sąsajos"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Each interface can have its own driver"
 msgstr "Kiekviena sąsaja gali turėti savo tvarkyklę"
 
-#: confusb/ui.py:385
+#: confusb/ui.py:386
 msgid "Class"
 msgstr "Klasė"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:387
 msgid "Subclass / protocol"
 msgstr "Poklasis / protokolas"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:388
 msgid "Bound driver"
 msgstr "Susieta tvarkyklė"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:389
 msgid "Kernel modules"
 msgstr "Branduolio moduliai"
 
-#: confusb/ui.py:395
+#: confusb/ui.py:396
 msgid "Nodes created in the system"
 msgstr "Sistemoje sukurti mazgai"
 
-#: confusb/ui.py:399
+#: confusb/ui.py:400
 msgid "Raw data"
 msgstr "Neapdoroti duomenys"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:401
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev savybės ({n})"
 
-#: confusb/ui.py:406
+#: confusb/ui.py:407
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "lsusb -v išvestis (pilni USB deskriptoriai)"
 
-#: confusb/ui.py:423
+#: confusb/ui.py:424
 msgid "Reading more information from the device…"
 msgstr "Skaitoma daugiau informacijos iš įrenginio…"
 
-#: confusb/ui.py:441
+#: confusb/ui.py:442
 msgid "Tips"
 msgstr "Patarimai"
 
-#: confusb/ui.py:466
+#: confusb/ui.py:467
 msgid "Looking for drivers and applications…"
 msgstr "Ieškoma tvarkyklių ir programų…"
 
-#: confusb/ui.py:519
+#: confusb/ui.py:520
 msgid "No terminal emulator found"
 msgstr "Terminalo emuliatoriaus nerasta"
 
-#: confusb/ui.py:521
+#: confusb/ui.py:522
 msgid "Press Enter to close…"
 msgstr "Paspauskite Enter, kad uždarytumėte…"
 
-#: confusb/ui.py:532
+#: confusb/ui.py:533
 msgid "Working…"
 msgstr "Dirbama…"
 
-#: confusb/ui.py:538
+#: confusb/ui.py:539
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Klaida: {error}"
 
-#: confusb/ui.py:541
+#: confusb/ui.py:542
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(išėjimo kodas {code})"
 
-#: confusb/ui.py:545
+#: confusb/ui.py:546
 msgid "Installation completed"
 msgstr "Diegimas baigtas"
 
-#: confusb/ui.py:548
+#: confusb/ui.py:549
 msgid "The installation failed"
 msgstr "Diegimas nepavyko"
 
-#: confusb/ui.py:557
+#: confusb/ui.py:558
 msgid "Disconnected"
 msgstr "Atjungta"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:559
 msgid "The device has been disconnected"
 msgstr "Įrenginys buvo atjungtas"
 

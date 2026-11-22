@@ -9,14 +9,15 @@ from typing import Callable
 
 import gi
 
+gi.require_version("Gdk", "4.0")
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Graphene", "1.0")
 gi.require_version("Gsk", "4.0")
-from gi.repository import GLib, Graphene, Gsk, Gtk, Pango  # noqa: E402
+from gi.repository import Gdk, GLib, Graphene, Gsk, Gtk, Pango  # noqa: E402
 
 from . import __version__, conexion, fondo  # noqa: E402
-from .ajustes import AJUSTES, AL_CONECTAR, COLORES, DEFECTOS, MARCOS  # noqa: E402
+from .ajustes import AJUSTES, AL_CONECTAR, COLORES, DEFECTOS, FONDOS, MARCOS  # noqa: E402
 from .i18n import IDIOMAS, N_, _, etiqueta, mayusculas  # noqa: E402
 from .usbinfo import ENV  # noqa: E402
 
@@ -527,6 +528,18 @@ class InterfazDialogo(CristalDialogo):
         self.pie.connect("toggled", lambda w: not self._ignorar and AJUSTES.cambiar(pie=w.get_active()))
         c.append(self.pie)
 
+        c.append(rubrica(_("Window background")))
+        self.fondos = self._radios(FONDOS, AJUSTES.fondo, self._al_elegir_fondo, c)
+        fila_color = Gtk.Box(spacing=12)
+        fila_color.append(label(_("Background color"), wrap=False))
+        fila_color.append(Gtk.Box(hexpand=True))
+        self.color_fondo = Gtk.ColorDialogButton(dialog=Gtk.ColorDialog(with_alpha=False, title=_("Background color")))
+        self._poner_color(AJUSTES.color_fondo)
+        self.color_fondo.set_sensitive(AJUSTES.fondo == "color")
+        self.color_fondo.connect("notify::rgba", self._al_cambiar_color)
+        fila_color.append(self.color_fondo)
+        c.append(fila_color)
+
         c.append(rubrica(_("When a device is connected")))
         self.al_conectar = self._radios(AL_CONECTAR, AJUSTES.al_conectar, lambda k: AJUSTES.cambiar(al_conectar=k), c)
         self.solo_nuevos = Gtk.CheckButton(label=_("Only for devices not seen before"), active=AJUSTES.solo_nuevos)
@@ -560,6 +573,21 @@ class InterfazDialogo(CristalDialogo):
             r.connect("toggled", lambda w, i=k: w.get_active() and al_elegir(i))
         return radios
 
+    def _poner_color(self, hexa: str):
+        rgba = Gdk.RGBA()
+        rgba.parse(hexa)
+        self.color_fondo.set_rgba(rgba)
+
+    def _al_elegir_fondo(self, clave: str):
+        AJUSTES.cambiar(fondo=clave)
+        self.color_fondo.set_sensitive(clave == "color")
+
+    def _al_cambiar_color(self, boton_, *_):
+        if self._ignorar:
+            return
+        c = boton_.get_rgba()
+        AJUSTES.cambiar(color_fondo="#%02x%02x%02x" % (round(c.red * 255), round(c.green * 255), round(c.blue * 255)))
+
     @staticmethod
     def _olvidar(boton_):
         conexion.REGISTRO.olvidar()
@@ -574,6 +602,9 @@ class InterfazDialogo(CristalDialogo):
         self.sombra.set_active(DEFECTOS["sombra"])
         self.pie.set_active(DEFECTOS["pie"])
         self.marcos[DEFECTOS["marco"]].set_active(True)
+        self.fondos[DEFECTOS["fondo"]].set_active(True)
+        self._poner_color(DEFECTOS["color_fondo"])
+        self.color_fondo.set_sensitive(DEFECTOS["fondo"] == "color")
         self.al_conectar[DEFECTOS["al_conectar"]].set_active(True)
         self._ignorar = False
 

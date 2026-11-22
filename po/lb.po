@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:39+0100\n"
+"POT-Creation-Date: 2026-11-22 21:52+0100\n"
 "PO-Revision-Date: 2026-11-22 13:41+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Lëtzebuergesch\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:281 confusb/ui.py:368
+#: confusb/ui.py:282 confusb/ui.py:369
 msgid "Capacity"
 msgstr "Kapazitéit"
 
@@ -174,14 +174,22 @@ msgid "No frame"
 msgstr "Ouni Rummen"
 
 #: confusb/preferencias.py:32
+msgid "Image (circuit board and logo)"
+msgstr "Bild (Leiterplack a Logo)"
+
+#: confusb/preferencias.py:33
+msgid "Solid color"
+msgstr "Eenfaarweg"
+
+#: confusb/preferencias.py:36
 msgid "Open a window with the information"
 msgstr "E Fënster mat den Informatioune opmaachen"
 
-#: confusb/preferencias.py:33
+#: confusb/preferencias.py:37
 msgid "Show a notification"
 msgstr "Eng Notifikatioun weisen"
 
-#: confusb/preferencias.py:34
+#: confusb/preferencias.py:38
 msgid "Do nothing"
 msgstr "Näischt maachen"
 
@@ -189,7 +197,7 @@ msgstr "Näischt maachen"
 msgid "USB device connected"
 msgstr "USB-Apparat verbonnen"
 
-#: confusb/servicio.py:190 confusb/ui.py:216
+#: confusb/servicio.py:190 confusb/ui.py:217
 msgid "View information"
 msgstr "Informatioune weisen"
 
@@ -357,7 +365,9 @@ msgstr "{used} benotzt"
 
 #: confusb/sondas.py:250
 msgid "Install adb (sudo apt install adb) to read the phone's hardware data."
-msgstr "Installéier adb (sudo apt install adb), fir d'Hardwaredate vum Telefon ze liesen."
+msgstr ""
+"Installéier adb (sudo apt install adb), fir d'Hardwaredate vum Telefon ze "
+"liesen."
 
 #: confusb/sondas.py:256
 msgid "The phone does not answer through adb: unplug it and plug it in again."
@@ -365,11 +375,14 @@ msgstr "D'Telefon äntwert net iwwer adb: Trenn et of a steck et nees un."
 
 #: confusb/sondas.py:258
 msgid "Unlock the phone and accept «Allow USB debugging?» to read its data."
-msgstr "Entspär d'Telefon an akzeptéier «USB-Debugging erlaben?», fir seng Date ze liesen."
+msgstr ""
+"Entspär d'Telefon an akzeptéier «USB-Debugging erlaben?», fir seng Date ze "
+"liesen."
 
 #: confusb/sondas.py:313
 msgid "Unlock the phone and open it in the file manager to see its storage."
-msgstr "Entspär d'Telefon an maach et am Dateemanager op, fir säi Späicher ze gesinn."
+msgstr ""
+"Entspär d'Telefon an maach et am Dateemanager op, fir säi Späicher ze gesinn."
 
 #: confusb/sondas.py:318
 msgid "Storage (MTP)"
@@ -379,124 +392,132 @@ msgstr "Späicher (MTP)"
 msgid "udev attributes (udevadm info -a)"
 msgstr "udev-Attributer (udevadm info -a)"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Installed"
 msgstr "Installéiert"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Active driver"
 msgstr "Treiber aktiv"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "User space"
 msgstr "Benotzerraum"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "OK"
 msgstr ""
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Supported"
 msgstr "Ënnerstëtzt"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Has driver"
 msgstr "Huet en Treiber"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Needs installing"
 msgstr "Muss installéiert ginn"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not bound"
 msgstr "Net verbonnen"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "No driver"
 msgstr "Kee Treiber"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not in the repositories"
 msgstr "Net an de Paketquellen"
 
-#: confusb/componentes.py:146
+#: confusb/componentes.py:147
 msgid "Language"
 msgstr "Sprooch"
 
-#: confusb/componentes.py:316
+#: confusb/componentes.py:317
 msgid "Close the notice"
 msgstr "Notifikatioun zoumaachen"
 
-#: confusb/componentes.py:501 confusb/ui.py:88
+#: confusb/componentes.py:502 confusb/ui.py:88
 msgid "Interface"
 msgstr "Interface"
 
-#: confusb/componentes.py:505
+#: confusb/componentes.py:506
 msgid "Cards"
 msgstr "Kaarten"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Card opacity"
 msgstr "Duerchsiichtegkeet vun de Kaarten"
 
-#: confusb/componentes.py:508
+#: confusb/componentes.py:509
 msgid "Corners"
 msgstr "Eck"
 
-#: confusb/componentes.py:511
+#: confusb/componentes.py:512
 msgid "Title color"
 msgstr "Faarf vun den Titelen"
 
-#: confusb/componentes.py:521
+#: confusb/componentes.py:522
 msgid "Frame"
 msgstr "Rummen"
 
-#: confusb/componentes.py:523
+#: confusb/componentes.py:524
 msgid "Shadow under the cards"
 msgstr "Schiet ënner de Kaarten"
 
-#: confusb/componentes.py:526
+#: confusb/componentes.py:527
 msgid "Show «View information →» on the cards"
 msgstr "«Informatioune kucken →» op de Kaarte weisen"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:531
+msgid "Window background"
+msgstr "Fënsterhannergrond"
+
+#: confusb/componentes.py:534 confusb/componentes.py:536
+msgid "Background color"
+msgstr "Hannergrondfaarf"
+
+#: confusb/componentes.py:543
 msgid "When a device is connected"
 msgstr "Wann en Apparat ugeschloss gëtt"
 
-#: confusb/componentes.py:532
+#: confusb/componentes.py:545
 msgid "Only for devices not seen before"
 msgstr "Nëmme fir Apparater, déi nach net gesi goufen"
 
-#: confusb/componentes.py:535
+#: confusb/componentes.py:548
 msgid "Open storage drives with the default application"
 msgstr "Späicherlaufwierker mat der Standardapplikatioun opmaachen"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "Forget known devices"
 msgstr "Bekannt Apparater vergiessen"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "The next time they are connected they will count as new"
 msgstr "Beim nächste Verbanne gi si als nei ugesinn"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:558
 msgid "Reset"
 msgstr "Zrécksetzen"
 
-#: confusb/componentes.py:545 confusb/componentes.py:599
+#: confusb/componentes.py:558 confusb/componentes.py:630
 msgid "Close"
 msgstr "Zoumaachen"
 
-#: confusb/componentes.py:583
+#: confusb/componentes.py:614
 msgid "About confusb"
 msgstr "Iwwer confusb"
 
-#: confusb/componentes.py:590
+#: confusb/componentes.py:621
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versioun {version}"
 
-#: confusb/componentes.py:591
+#: confusb/componentes.py:622
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -504,11 +525,11 @@ msgstr ""
 "Mellt, wann en USB-Apparat ugeschloss gëtt, weist seng Informatiounen an "
 "sicht säin Treiber an d'Uwendunge fir en ze benotzen."
 
-#: confusb/componentes.py:595
+#: confusb/componentes.py:626
 msgid "License GPL-3.0-or-later"
 msgstr "Lizenz GPL-3.0-or-later"
 
-#: confusb/componentes.py:596
+#: confusb/componentes.py:627
 msgid "Source code on GitHub"
 msgstr "Quellcode op GitHub"
 
@@ -861,12 +882,12 @@ msgstr "USB-Hub"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Vum «hub»-Treiber vum Kär verwalt."
 
-#: confusb/resolver.py:206 confusb/ui.py:383
+#: confusb/resolver.py:206 confusb/ui.py:384
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Interface {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:388
+#: confusb/resolver.py:207 confusb/ui.py:389
 msgid "none found"
 msgstr "keen fonnt"
 
@@ -1035,212 +1056,212 @@ msgstr ""
 msgid "About"
 msgstr "Iwwer"
 
-#: confusb/ui.py:150
+#: confusb/ui.py:151
 msgid "(no output)"
 msgstr "(keng Ausgab)"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "Connected USB devices"
 msgstr "Verbonnen USB-Apparater"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "USB devices"
 msgstr "USB-Apparater"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Refresh"
 msgstr "Aktualiséieren"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Read the connected devices again"
 msgstr "Déi verbonnen Apparater nach eng Kéier liesen"
 
-#: confusb/ui.py:200
+#: confusb/ui.py:201
 msgid "Notices"
 msgstr "Notifikatiounen"
 
-#: confusb/ui.py:204
+#: confusb/ui.py:205
 msgid "Dismiss all"
 msgstr "Alles ofleenen"
 
-#: confusb/ui.py:214
+#: confusb/ui.py:215
 #, python-brace-format
 msgid "Connected at {time}"
 msgstr "Verbonnen um {time}"
 
-#: confusb/ui.py:218
+#: confusb/ui.py:219
 msgid "Dismiss"
 msgstr "Ofleenen"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "Reading devices…"
 msgstr "Apparater gi gelies…"
 
-#: confusb/ui.py:249
+#: confusb/ui.py:250
 msgid "Could not read the devices"
 msgstr "D'Apparater konnten net gelies ginn"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:251
 msgid "Error reading the devices"
 msgstr "Feeler beim Liese vun den Apparater"
 
-#: confusb/ui.py:256
+#: confusb/ui.py:257
 msgid "No USB devices connected"
 msgstr "Keng USB-Apparater verbonnen"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:258
 msgid "Connect one and it will appear here automatically."
 msgstr "Schléis een un an en erschéngt hei automatesch."
 
-#: confusb/ui.py:259
+#: confusb/ui.py:260
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Verbonnen USB-Apparater: {n}"
 
-#: confusb/ui.py:276 confusb/ui.py:325 confusb/ui.py:366
+#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
 msgid "Unknown manufacturer"
 msgstr "Onbekannte Fabrikant"
 
-#: confusb/ui.py:279
+#: confusb/ui.py:280
 msgid "Type"
 msgstr "Typ"
 
-#: confusb/ui.py:282
+#: confusb/ui.py:283
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:284
 msgid "Driver"
 msgstr "Treiber"
 
-#: confusb/ui.py:283 confusb/ui.py:387
+#: confusb/ui.py:284 confusb/ui.py:388
 msgid "none"
 msgstr "keen"
 
-#: confusb/ui.py:285
+#: confusb/ui.py:286
 msgid "View information →"
 msgstr "Informatioune kucken →"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back"
 msgstr "Zréck"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back to the list of devices"
 msgstr "Zréck op d'Lëscht vun den Apparater"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy"
 msgstr "Kopéieren"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy all the information to the clipboard"
 msgstr "All Informatiounen an den Tëschespäicher kopéieren"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Information"
 msgstr "Informatiounen"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Drivers and applications"
 msgstr "Treiber an Uwendungen"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:330
 msgid "Connected"
 msgstr "Verbonnen"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:353
 msgid "Information copied to the clipboard"
 msgstr "Informatiounen an den Tëschespäicher kopéiert"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Interfaces"
 msgstr "Interfaces"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Each interface can have its own driver"
 msgstr "All Interface ka säin eegenen Treiber hunn"
 
-#: confusb/ui.py:385
+#: confusb/ui.py:386
 msgid "Class"
 msgstr "Klass"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:387
 msgid "Subclass / protocol"
 msgstr "Ënnerklass / Protokoll"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:388
 msgid "Bound driver"
 msgstr "Verbonnenen Treiber"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:389
 msgid "Kernel modules"
 msgstr "Kärmoduler"
 
-#: confusb/ui.py:395
+#: confusb/ui.py:396
 msgid "Nodes created in the system"
 msgstr "Am System erstallt Knäpp"
 
-#: confusb/ui.py:399
+#: confusb/ui.py:400
 msgid "Raw data"
 msgstr "Rohdaten"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:401
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev-Eegeschaften ({n})"
 
-#: confusb/ui.py:406
+#: confusb/ui.py:407
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Ausgab vu lsusb -v (komplett USB-Deskriptoren)"
 
-#: confusb/ui.py:423
+#: confusb/ui.py:424
 msgid "Reading more information from the device…"
 msgstr "Méi Informatioune vum Apparat ginn gelies…"
 
-#: confusb/ui.py:441
+#: confusb/ui.py:442
 msgid "Tips"
 msgstr "Tipps"
 
-#: confusb/ui.py:466
+#: confusb/ui.py:467
 msgid "Looking for drivers and applications…"
 msgstr "Treiber an Uwendunge ginn gesicht…"
 
-#: confusb/ui.py:519
+#: confusb/ui.py:520
 msgid "No terminal emulator found"
 msgstr "Keen Terminalemulator fonnt"
 
-#: confusb/ui.py:521
+#: confusb/ui.py:522
 msgid "Press Enter to close…"
 msgstr "Dréckt Enter fir zouzemaachen…"
 
-#: confusb/ui.py:532
+#: confusb/ui.py:533
 msgid "Working…"
 msgstr "Et gëtt geschafft…"
 
-#: confusb/ui.py:538
+#: confusb/ui.py:539
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Feeler: {error}"
 
-#: confusb/ui.py:541
+#: confusb/ui.py:542
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(Sortiescode {code})"
 
-#: confusb/ui.py:545
+#: confusb/ui.py:546
 msgid "Installation completed"
 msgstr "Installatioun ofgeschloss"
 
-#: confusb/ui.py:548
+#: confusb/ui.py:549
 msgid "The installation failed"
 msgstr "D'Installatioun ass feelgeschloen"
 
-#: confusb/ui.py:557
+#: confusb/ui.py:558
 msgid "Disconnected"
 msgstr "Getrennt"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:559
 msgid "The device has been disconnected"
 msgstr "Den Apparat gouf getrennt"
 

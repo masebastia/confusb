@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:39+0100\n"
+"POT-Creation-Date: 2026-11-22 21:52+0100\n"
 "PO-Revision-Date: 2026-11-22 13:31+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Slovenčina\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:281 confusb/ui.py:368
+#: confusb/ui.py:282 confusb/ui.py:369
 msgid "Capacity"
 msgstr "Kapacita"
 
@@ -174,14 +174,22 @@ msgid "No frame"
 msgstr "Bez rámika"
 
 #: confusb/preferencias.py:32
+msgid "Image (circuit board and logo)"
+msgstr "Obrázok (plošný spoj a logo)"
+
+#: confusb/preferencias.py:33
+msgid "Solid color"
+msgstr "Jednofarebné"
+
+#: confusb/preferencias.py:36
 msgid "Open a window with the information"
 msgstr "Otvoriť okno s informáciami"
 
-#: confusb/preferencias.py:33
+#: confusb/preferencias.py:37
 msgid "Show a notification"
 msgstr "Zobraziť oznámenie"
 
-#: confusb/preferencias.py:34
+#: confusb/preferencias.py:38
 msgid "Do nothing"
 msgstr "Nerobiť nič"
 
@@ -189,7 +197,7 @@ msgstr "Nerobiť nič"
 msgid "USB device connected"
 msgstr "Zariadenie USB pripojené"
 
-#: confusb/servicio.py:190 confusb/ui.py:216
+#: confusb/servicio.py:190 confusb/ui.py:217
 msgid "View information"
 msgstr "Zobraziť informácie"
 
@@ -357,7 +365,9 @@ msgstr "{used} využité"
 
 #: confusb/sondas.py:250
 msgid "Install adb (sudo apt install adb) to read the phone's hardware data."
-msgstr "Nainštalujte adb (sudo apt install adb), aby ste mohli čítať hardvérové údaje telefónu."
+msgstr ""
+"Nainštalujte adb (sudo apt install adb), aby ste mohli čítať hardvérové "
+"údaje telefónu."
 
 #: confusb/sondas.py:256
 msgid "The phone does not answer through adb: unplug it and plug it in again."
@@ -365,11 +375,15 @@ msgstr "Telefón neodpovedá cez adb: odpojte ho a znova pripojte."
 
 #: confusb/sondas.py:258
 msgid "Unlock the phone and accept «Allow USB debugging?» to read its data."
-msgstr "Odomknite telefón a potvrďte «Povoliť ladenie USB?», aby ste mohli čítať jeho údaje."
+msgstr ""
+"Odomknite telefón a potvrďte «Povoliť ladenie USB?», aby ste mohli čítať "
+"jeho údaje."
 
 #: confusb/sondas.py:313
 msgid "Unlock the phone and open it in the file manager to see its storage."
-msgstr "Odomknite telefón a otvorte ho v správcovi súborov, aby ste videli jeho úložisko."
+msgstr ""
+"Odomknite telefón a otvorte ho v správcovi súborov, aby ste videli jeho "
+"úložisko."
 
 #: confusb/sondas.py:318
 msgid "Storage (MTP)"
@@ -379,124 +393,132 @@ msgstr "Úložisko (MTP)"
 msgid "udev attributes (udevadm info -a)"
 msgstr "Atribúty udev (udevadm info -a)"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Installed"
 msgstr "Nainštalované"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Active driver"
 msgstr "Ovládač aktívny"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "User space"
 msgstr "Používateľský priestor"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "OK"
 msgstr ""
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Supported"
 msgstr "Podporované"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Has driver"
 msgstr "Má ovládač"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Needs installing"
 msgstr "Treba nainštalovať"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not bound"
 msgstr "Nepriradené"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "No driver"
 msgstr "Žiadny ovládač"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not in the repositories"
 msgstr "Nie je v repozitároch"
 
-#: confusb/componentes.py:146
+#: confusb/componentes.py:147
 msgid "Language"
 msgstr "Jazyk"
 
-#: confusb/componentes.py:316
+#: confusb/componentes.py:317
 msgid "Close the notice"
 msgstr "Zavrieť oznámenie"
 
-#: confusb/componentes.py:501 confusb/ui.py:88
+#: confusb/componentes.py:502 confusb/ui.py:88
 msgid "Interface"
 msgstr "Rozhranie"
 
-#: confusb/componentes.py:505
+#: confusb/componentes.py:506
 msgid "Cards"
 msgstr "Karty"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Card opacity"
 msgstr "Nepriehľadnosť kariet"
 
-#: confusb/componentes.py:508
+#: confusb/componentes.py:509
 msgid "Corners"
 msgstr "Rohy"
 
-#: confusb/componentes.py:511
+#: confusb/componentes.py:512
 msgid "Title color"
 msgstr "Farba nadpisov"
 
-#: confusb/componentes.py:521
+#: confusb/componentes.py:522
 msgid "Frame"
 msgstr "Rámik"
 
-#: confusb/componentes.py:523
+#: confusb/componentes.py:524
 msgid "Shadow under the cards"
 msgstr "Tieň pod kartami"
 
-#: confusb/componentes.py:526
+#: confusb/componentes.py:527
 msgid "Show «View information →» on the cards"
 msgstr "Zobrazovať «Zobraziť informácie →» na kartách"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:531
+msgid "Window background"
+msgstr "Pozadie okna"
+
+#: confusb/componentes.py:534 confusb/componentes.py:536
+msgid "Background color"
+msgstr "Farba pozadia"
+
+#: confusb/componentes.py:543
 msgid "When a device is connected"
 msgstr "Pri pripojení zariadenia"
 
-#: confusb/componentes.py:532
+#: confusb/componentes.py:545
 msgid "Only for devices not seen before"
 msgstr "Iba pre zariadenia, ktoré sa doteraz nevideli"
 
-#: confusb/componentes.py:535
+#: confusb/componentes.py:548
 msgid "Open storage drives with the default application"
 msgstr "Otvárať úložné jednotky vo východiskovej aplikácii"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "Forget known devices"
 msgstr "Zabudnúť známe zariadenia"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "The next time they are connected they will count as new"
 msgstr "Pri ďalšom pripojení sa budú považovať za nové"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:558
 msgid "Reset"
 msgstr "Obnoviť predvolené"
 
-#: confusb/componentes.py:545 confusb/componentes.py:599
+#: confusb/componentes.py:558 confusb/componentes.py:630
 msgid "Close"
 msgstr "Zavrieť"
 
-#: confusb/componentes.py:583
+#: confusb/componentes.py:614
 msgid "About confusb"
 msgstr "O aplikácii confusb"
 
-#: confusb/componentes.py:590
+#: confusb/componentes.py:621
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Verzia {version}"
 
-#: confusb/componentes.py:591
+#: confusb/componentes.py:622
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -504,11 +526,11 @@ msgstr ""
 "Upozorní na pripojenie zariadenia USB, zobrazí jeho informácie a vyhľadá "
 "jeho ovládač a aplikácie na jeho používanie."
 
-#: confusb/componentes.py:595
+#: confusb/componentes.py:626
 msgid "License GPL-3.0-or-later"
 msgstr "Licencia GPL-3.0-or-later"
 
-#: confusb/componentes.py:596
+#: confusb/componentes.py:627
 msgid "Source code on GitHub"
 msgstr "Zdrojový kód na GitHube"
 
@@ -860,12 +882,12 @@ msgstr "Rozbočovač USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Spravované ovládačom «hub» v jadre."
 
-#: confusb/resolver.py:206 confusb/ui.py:383
+#: confusb/resolver.py:206 confusb/ui.py:384
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Rozhranie {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:388
+#: confusb/resolver.py:207 confusb/ui.py:389
 msgid "none found"
 msgstr "žiadny nenájdený"
 
@@ -1030,212 +1052,212 @@ msgstr "Vzhľad aplikácie a čo urobiť pri pripojení zariadenia"
 msgid "About"
 msgstr "O aplikácii"
 
-#: confusb/ui.py:150
+#: confusb/ui.py:151
 msgid "(no output)"
 msgstr "(žiadny výstup)"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "Connected USB devices"
 msgstr "Pripojené zariadenia USB"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "USB devices"
 msgstr "Zariadenia USB"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Read the connected devices again"
 msgstr "Znova načítať pripojené zariadenia"
 
-#: confusb/ui.py:200
+#: confusb/ui.py:201
 msgid "Notices"
 msgstr "Oznámenia"
 
-#: confusb/ui.py:204
+#: confusb/ui.py:205
 msgid "Dismiss all"
 msgstr "Zavrieť všetko"
 
-#: confusb/ui.py:214
+#: confusb/ui.py:215
 #, python-brace-format
 msgid "Connected at {time}"
 msgstr "Pripojené o {time}"
 
-#: confusb/ui.py:218
+#: confusb/ui.py:219
 msgid "Dismiss"
 msgstr "Zavrieť"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "Reading devices…"
 msgstr "Načítavajú sa zariadenia…"
 
-#: confusb/ui.py:249
+#: confusb/ui.py:250
 msgid "Could not read the devices"
 msgstr "Zariadenia sa nepodarilo načítať"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:251
 msgid "Error reading the devices"
 msgstr "Chyba pri načítavaní zariadení"
 
-#: confusb/ui.py:256
+#: confusb/ui.py:257
 msgid "No USB devices connected"
 msgstr "Nie sú pripojené žiadne zariadenia USB"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:258
 msgid "Connect one and it will appear here automatically."
 msgstr "Pripojte nejaké a zobrazí sa tu automaticky."
 
-#: confusb/ui.py:259
+#: confusb/ui.py:260
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Pripojené zariadenia USB: {n}"
 
-#: confusb/ui.py:276 confusb/ui.py:325 confusb/ui.py:366
+#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
 msgid "Unknown manufacturer"
 msgstr "Neznámy výrobca"
 
-#: confusb/ui.py:279
+#: confusb/ui.py:280
 msgid "Type"
 msgstr "Typ"
 
-#: confusb/ui.py:282
+#: confusb/ui.py:283
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:284
 msgid "Driver"
 msgstr "Ovládač"
 
-#: confusb/ui.py:283 confusb/ui.py:387
+#: confusb/ui.py:284 confusb/ui.py:388
 msgid "none"
 msgstr "žiadny"
 
-#: confusb/ui.py:285
+#: confusb/ui.py:286
 msgid "View information →"
 msgstr "Zobraziť informácie →"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back"
 msgstr "Späť"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back to the list of devices"
 msgstr "Späť na zoznam zariadení"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy all the information to the clipboard"
 msgstr "Skopírovať všetky informácie do schránky"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Information"
 msgstr "Informácie"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Drivers and applications"
 msgstr "Ovládače a aplikácie"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:330
 msgid "Connected"
 msgstr "Pripojené"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:353
 msgid "Information copied to the clipboard"
 msgstr "Informácie skopírované do schránky"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Interfaces"
 msgstr "Rozhrania"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Each interface can have its own driver"
 msgstr "Každé rozhranie môže mať vlastný ovládač"
 
-#: confusb/ui.py:385
+#: confusb/ui.py:386
 msgid "Class"
 msgstr "Trieda"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:387
 msgid "Subclass / protocol"
 msgstr "Podtrieda / protokol"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:388
 msgid "Bound driver"
 msgstr "Priradený ovládač"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:389
 msgid "Kernel modules"
 msgstr "Moduly jadra"
 
-#: confusb/ui.py:395
+#: confusb/ui.py:396
 msgid "Nodes created in the system"
 msgstr "Uzly vytvorené v systéme"
 
-#: confusb/ui.py:399
+#: confusb/ui.py:400
 msgid "Raw data"
 msgstr "Nespracované údaje"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:401
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Vlastnosti udev ({n})"
 
-#: confusb/ui.py:406
+#: confusb/ui.py:407
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Výstup lsusb -v (úplné deskriptory USB)"
 
-#: confusb/ui.py:423
+#: confusb/ui.py:424
 msgid "Reading more information from the device…"
 msgstr "Načítavajú sa ďalšie informácie o zariadení…"
 
-#: confusb/ui.py:441
+#: confusb/ui.py:442
 msgid "Tips"
 msgstr "Tipy"
 
-#: confusb/ui.py:466
+#: confusb/ui.py:467
 msgid "Looking for drivers and applications…"
 msgstr "Hľadanie ovládačov a aplikácií…"
 
-#: confusb/ui.py:519
+#: confusb/ui.py:520
 msgid "No terminal emulator found"
 msgstr "Nenašiel sa žiadny emulátor terminálu"
 
-#: confusb/ui.py:521
+#: confusb/ui.py:522
 msgid "Press Enter to close…"
 msgstr "Zatvorte stlačením klávesu Enter…"
 
-#: confusb/ui.py:532
+#: confusb/ui.py:533
 msgid "Working…"
 msgstr "Pracuje sa…"
 
-#: confusb/ui.py:538
+#: confusb/ui.py:539
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Chyba: {error}"
 
-#: confusb/ui.py:541
+#: confusb/ui.py:542
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(návratový kód {code})"
 
-#: confusb/ui.py:545
+#: confusb/ui.py:546
 msgid "Installation completed"
 msgstr "Inštalácia dokončená"
 
-#: confusb/ui.py:548
+#: confusb/ui.py:549
 msgid "The installation failed"
 msgstr "Inštalácia zlyhala"
 
-#: confusb/ui.py:557
+#: confusb/ui.py:558
 msgid "Disconnected"
 msgstr "Odpojené"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:559
 msgid "The device has been disconnected"
 msgstr "Zariadenie bolo odpojené"
 

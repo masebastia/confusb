@@ -16,7 +16,8 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, GLib, Gtk  # noqa: E402
 
-from .preferencias import (AL_CONECTAR, COLORES, DEFECTOS, ESQUEMA, MARCOS, Preferencias)  # noqa: E402,F401
+from . import color  # noqa: E402
+from .preferencias import (AL_CONECTAR, COLORES, DEFECTOS, ESQUEMA, FONDOS, MARCOS, Preferencias)  # noqa: E402,F401
 
 RES = os.path.join(os.path.dirname(__file__), "recursos")
 
@@ -46,11 +47,29 @@ class Ajustes(Preferencias):
 
     @property
     def oscuro(self) -> bool:
+        """¿Tema oscuro? Con una imagen de fondo, el del sistema; con un color liso, el que haga falta para que se
+        lea sobre ese color (oscuro si el fondo es oscuro, claro si es claro)."""
+        if self.valores["fondo"] == "color":
+            return color.es_oscuro(self.valores["color_fondo"])
         return Adw.StyleManager.get_default().get_dark()
 
     @property
     def paleta(self) -> dict:
-        return OSCURO if self.oscuro else CLARO
+        base = OSCURO if self.oscuro else CLARO
+        if self.valores["fondo"] == "color":
+            return {**base, **color.derivar(self.valores["color_fondo"], self.oscuro)}
+        return base
+
+    def _aplicar_esquema(self):
+        """Con un color liso se fuerza el tema claro u oscuro de libadwaita (botones, barra de título…) para que
+        combine con él; con la imagen, se sigue el del sistema."""
+        esquema = Adw.ColorScheme.DEFAULT
+        if self.valores["fondo"] == "color":
+            esquema = Adw.ColorScheme.FORCE_DARK if color.es_oscuro(self.valores["color_fondo"]) \
+                else Adw.ColorScheme.FORCE_LIGHT
+        gestor = Adw.StyleManager.get_default()
+        if gestor.get_color_scheme() != esquema:
+            gestor.set_color_scheme(esquema)
 
     # ----------------------------------------------------------------- cambio
     def cambiar(self, **kw):
@@ -76,7 +95,7 @@ class Ajustes(Preferencias):
         self._instalado = True
         Gtk.StyleContext.add_provider_for_display(
             Gdk.Display.get_default(), self._proveedor, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-        Adw.StyleManager.get_default().set_color_scheme(Adw.ColorScheme.DEFAULT)   # claro/oscuro del sistema
+        self._aplicar_esquema()                                                     # claro/oscuro del sistema (o del fondo)
         Adw.StyleManager.get_default().connect("notify::dark", lambda *_: self._regenerar())
         self._regenerar()
 
@@ -85,6 +104,7 @@ class Ajustes(Preferencias):
         return f"rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, {alfa:.2f})"
 
     def _regenerar(self):
+        self._aplicar_esquema()
         p, v = self.paleta, self.valores
         op = v["opacidad"] / 100
         defs = f"""

@@ -10,7 +10,7 @@ import os
 
 from gi.repository import GLib
 
-from . import i18n
+from . import color, i18n
 from .i18n import N_
 
 COLORES = {
@@ -28,6 +28,10 @@ MARCOS = {
     "suave": N_("Subtle (discreet border, no glow)"),
     "sin": N_("No frame"),
 }
+FONDOS = {
+    "imagen": N_("Image (circuit board and logo)"),
+    "color": N_("Solid color"),
+}
 AL_CONECTAR = {
     "ventana": N_("Open a window with the information"),
     "notificar": N_("Show a notification"),
@@ -36,6 +40,7 @@ AL_CONECTAR = {
 ESQUEMA = 2   # 2: «al_conectar» pasa a «notificar» por defecto y se añaden «solo_nuevos» y «abrir_almacenamiento»
 DEFECTOS = {"opacidad": 80, "titulo": "normal", "marco": "resaltado", "sombra": False, "esquinas": 12,
             "pie": True, "al_conectar": "notificar", "solo_nuevos": True, "abrir_almacenamiento": True,
+            "fondo": "imagen", "color_fondo": "#0a1120",   # color del fondo cuando «fondo» es «color»
             "idioma": "", "esquema": ESQUEMA}   # idioma "" = el del sistema
 
 
@@ -74,6 +79,10 @@ class Preferencias:
         # Con el esquema 1 «ventana» era el valor por defecto y no se puede saber si se eligió: se pasa al nuevo.
         if d.get("al_conectar") in AL_CONECTAR and d.get("esquema", 1) >= ESQUEMA:
             v["al_conectar"] = d["al_conectar"]
+        if d.get("fondo") in FONDOS:
+            v["fondo"] = d["fondo"]
+        if color.valido(d.get("color_fondo")):
+            v["color_fondo"] = d["color_fondo"].lower()
         if d.get("idioma") in i18n.IDIOMAS:
             v["idioma"] = d["idioma"]
         for k in ("sombra", "pie", "solo_nuevos", "abrir_almacenamiento"):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:39+0100\n"
+"POT-Creation-Date: 2026-11-22 21:52+0100\n"
 "PO-Revision-Date: 2026-11-22 13:41+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Gaeilge\n"
@@ -19,7 +19,7 @@ msgstr ""
 "(n>6 && n<11) ? 3 : 4;\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:281 confusb/ui.py:368
+#: confusb/ui.py:282 confusb/ui.py:369
 msgid "Capacity"
 msgstr "Toilleadh"
 
@@ -175,14 +175,22 @@ msgid "No frame"
 msgstr "Gan fráma"
 
 #: confusb/preferencias.py:32
+msgid "Image (circuit board and logo)"
+msgstr "Íomhá (bord ciorcaid agus lógó)"
+
+#: confusb/preferencias.py:33
+msgid "Solid color"
+msgstr "Dath soladach"
+
+#: confusb/preferencias.py:36
 msgid "Open a window with the information"
 msgstr "Oscail fuinneog leis an eolas"
 
-#: confusb/preferencias.py:33
+#: confusb/preferencias.py:37
 msgid "Show a notification"
 msgstr "Taispeáin fógra"
 
-#: confusb/preferencias.py:34
+#: confusb/preferencias.py:38
 msgid "Do nothing"
 msgstr "Ná déan faic"
 
@@ -190,7 +198,7 @@ msgstr "Ná déan faic"
 msgid "USB device connected"
 msgstr "Gléas USB ceangailte"
 
-#: confusb/servicio.py:190 confusb/ui.py:216
+#: confusb/servicio.py:190 confusb/ui.py:217
 msgid "View information"
 msgstr "Taispeáin faisnéis"
 
@@ -358,7 +366,8 @@ msgstr "{used} in úsáid"
 
 #: confusb/sondas.py:250
 msgid "Install adb (sudo apt install adb) to read the phone's hardware data."
-msgstr "Suiteáil adb (sudo apt install adb) chun sonraí crua-earraí an fhóin a léamh."
+msgstr ""
+"Suiteáil adb (sudo apt install adb) chun sonraí crua-earraí an fhóin a léamh."
 
 #: confusb/sondas.py:256
 msgid "The phone does not answer through adb: unplug it and plug it in again."
@@ -366,11 +375,15 @@ msgstr "Ní fhreagraíonn an fón trí adb: dínasc é agus nasc arís é."
 
 #: confusb/sondas.py:258
 msgid "Unlock the phone and accept «Allow USB debugging?» to read its data."
-msgstr "Díghlasáil an fón agus glac le «Ceadaigh dífhabhtú USB?» chun a shonraí a léamh."
+msgstr ""
+"Díghlasáil an fón agus glac le «Ceadaigh dífhabhtú USB?» chun a shonraí a "
+"léamh."
 
 #: confusb/sondas.py:313
 msgid "Unlock the phone and open it in the file manager to see its storage."
-msgstr "Díghlasáil an fón agus oscail é sa bhainisteoir comhad chun a stóras a fheiceáil."
+msgstr ""
+"Díghlasáil an fón agus oscail é sa bhainisteoir comhad chun a stóras a "
+"fheiceáil."
 
 #: confusb/sondas.py:318
 msgid "Storage (MTP)"
@@ -380,124 +393,132 @@ msgstr "Stóras (MTP)"
 msgid "udev attributes (udevadm info -a)"
 msgstr "Tréithe udev (udevadm info -a)"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Installed"
 msgstr "Suiteáilte"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Active driver"
 msgstr "Tiománaí gníomhach"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "User space"
 msgstr "Spás úsáideora"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "OK"
 msgstr ""
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Supported"
 msgstr "Tacaithe"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Has driver"
 msgstr "Tá tiománaí aige"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Needs installing"
 msgstr "Ní mór é a shuiteáil"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not bound"
 msgstr "Gan cheangal"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "No driver"
 msgstr "Gan tiománaí"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not in the repositories"
 msgstr "Níl sna stórais"
 
-#: confusb/componentes.py:146
+#: confusb/componentes.py:147
 msgid "Language"
 msgstr "Teanga"
 
-#: confusb/componentes.py:316
+#: confusb/componentes.py:317
 msgid "Close the notice"
 msgstr "Dún an fógra"
 
-#: confusb/componentes.py:501 confusb/ui.py:88
+#: confusb/componentes.py:502 confusb/ui.py:88
 msgid "Interface"
 msgstr "Comhéadan"
 
-#: confusb/componentes.py:505
+#: confusb/componentes.py:506
 msgid "Cards"
 msgstr "Cártaí"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Card opacity"
 msgstr "Teimhneacht na gcártaí"
 
-#: confusb/componentes.py:508
+#: confusb/componentes.py:509
 msgid "Corners"
 msgstr "Cúinní"
 
-#: confusb/componentes.py:511
+#: confusb/componentes.py:512
 msgid "Title color"
 msgstr "Dath na dteideal"
 
-#: confusb/componentes.py:521
+#: confusb/componentes.py:522
 msgid "Frame"
 msgstr "Fráma"
 
-#: confusb/componentes.py:523
+#: confusb/componentes.py:524
 msgid "Shadow under the cards"
 msgstr "Scáth faoi na cártaí"
 
-#: confusb/componentes.py:526
+#: confusb/componentes.py:527
 msgid "Show «View information →» on the cards"
 msgstr "Taispeáin «Féach ar an eolas →» ar na cártaí"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:531
+msgid "Window background"
+msgstr "Cúlra na fuinneoige"
+
+#: confusb/componentes.py:534 confusb/componentes.py:536
+msgid "Background color"
+msgstr "Dath cúlra"
+
+#: confusb/componentes.py:543
 msgid "When a device is connected"
 msgstr "Nuair a cheanglaítear gléas"
 
-#: confusb/componentes.py:532
+#: confusb/componentes.py:545
 msgid "Only for devices not seen before"
 msgstr "Do ghléasanna nach bhfacthas roimhe seo amháin"
 
-#: confusb/componentes.py:535
+#: confusb/componentes.py:548
 msgid "Open storage drives with the default application"
 msgstr "Oscail tiomántáin stórála leis an bhfeidhmchlár réamhshocraithe"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "Forget known devices"
 msgstr "Déan dearmad ar ghléasanna aitheanta"
 
-#: confusb/componentes.py:540
+#: confusb/componentes.py:553
 msgid "The next time they are connected they will count as new"
 msgstr "An chéad uair eile a nascfar iad, áireofar mar nua iad"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:558
 msgid "Reset"
 msgstr "Athshocraigh"
 
-#: confusb/componentes.py:545 confusb/componentes.py:599
+#: confusb/componentes.py:558 confusb/componentes.py:630
 msgid "Close"
 msgstr "Dún"
 
-#: confusb/componentes.py:583
+#: confusb/componentes.py:614
 msgid "About confusb"
 msgstr "Maidir le confusb"
 
-#: confusb/componentes.py:590
+#: confusb/componentes.py:621
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Leagan {version}"
 
-#: confusb/componentes.py:591
+#: confusb/componentes.py:622
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -505,11 +526,11 @@ msgstr ""
 "Cuireann sé fógra nuair a cheanglaítear gléas USB, taispeánann sé a eolas "
 "agus lorgaíonn sé a thiománaí agus na feidhmchláir lena úsáid."
 
-#: confusb/componentes.py:595
+#: confusb/componentes.py:626
 msgid "License GPL-3.0-or-later"
 msgstr "Ceadúnas GPL-3.0-or-later"
 
-#: confusb/componentes.py:596
+#: confusb/componentes.py:627
 msgid "Source code on GitHub"
 msgstr "Cód foinseach ar GitHub"
 
@@ -864,12 +885,12 @@ msgstr "Mol USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Bainistithe ag tiománaí «hub» an eithne."
 
-#: confusb/resolver.py:206 confusb/ui.py:383
+#: confusb/resolver.py:206 confusb/ui.py:384
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Comhéadan {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:388
+#: confusb/resolver.py:207 confusb/ui.py:389
 msgid "none found"
 msgstr "níor aimsíodh aon cheann"
 
@@ -1037,212 +1058,212 @@ msgstr ""
 msgid "About"
 msgstr "Maidir leis"
 
-#: confusb/ui.py:150
+#: confusb/ui.py:151
 msgid "(no output)"
 msgstr "(gan aschur)"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "Connected USB devices"
 msgstr "Gléasanna USB ceangailte"
 
-#: confusb/ui.py:165
+#: confusb/ui.py:166
 msgid "USB devices"
 msgstr "Gléasanna USB"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Refresh"
 msgstr "Athnuaigh"
 
-#: confusb/ui.py:171
+#: confusb/ui.py:172
 msgid "Read the connected devices again"
 msgstr "Léigh na gléasanna ceangailte arís"
 
-#: confusb/ui.py:200
+#: confusb/ui.py:201
 msgid "Notices"
 msgstr "Fógraí"
 
-#: confusb/ui.py:204
+#: confusb/ui.py:205
 msgid "Dismiss all"
 msgstr "Cuir gach ceann i leataobh"
 
-#: confusb/ui.py:214
+#: confusb/ui.py:215
 #, python-brace-format
 msgid "Connected at {time}"
 msgstr "Nasctha ag {time}"
 
-#: confusb/ui.py:218
+#: confusb/ui.py:219
 msgid "Dismiss"
 msgstr "Cuir i leataobh"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "Reading devices…"
 msgstr "Gléasanna á léamh…"
 
-#: confusb/ui.py:249
+#: confusb/ui.py:250
 msgid "Could not read the devices"
 msgstr "Níorbh fhéidir na gléasanna a léamh"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:251
 msgid "Error reading the devices"
 msgstr "Earráid agus gléasanna á léamh"
 
-#: confusb/ui.py:256
+#: confusb/ui.py:257
 msgid "No USB devices connected"
 msgstr "Gan gléasanna USB ceangailte"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:258
 msgid "Connect one and it will appear here automatically."
 msgstr "Ceangail ceann agus beidh sé le feiceáil anseo go huathoibríoch."
 
-#: confusb/ui.py:259
+#: confusb/ui.py:260
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Gléasanna USB ceangailte: {n}"
 
-#: confusb/ui.py:276 confusb/ui.py:325 confusb/ui.py:366
+#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
 msgid "Unknown manufacturer"
 msgstr "Monaróir anaithnid"
 
-#: confusb/ui.py:279
+#: confusb/ui.py:280
 msgid "Type"
 msgstr "Cineál"
 
-#: confusb/ui.py:282
+#: confusb/ui.py:283
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:284
 msgid "Driver"
 msgstr "Tiománaí"
 
-#: confusb/ui.py:283 confusb/ui.py:387
+#: confusb/ui.py:284 confusb/ui.py:388
 msgid "none"
 msgstr "gan aon cheann"
 
-#: confusb/ui.py:285
+#: confusb/ui.py:286
 msgid "View information →"
 msgstr "Féach ar an eolas →"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back"
 msgstr "Ar ais"
 
-#: confusb/ui.py:311
+#: confusb/ui.py:312
 msgid "Back to the list of devices"
 msgstr "Ar ais chuig liosta na ngléasanna"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy"
 msgstr "Cóipeáil"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:313
 msgid "Copy all the information to the clipboard"
 msgstr "Cóipeáil an t-eolas ar fad chuig an ghearrthaisce"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Information"
 msgstr "Eolas"
 
-#: confusb/ui.py:320
+#: confusb/ui.py:321
 msgid "Drivers and applications"
 msgstr "Tiománaithe agus feidhmchláir"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:330
 msgid "Connected"
 msgstr "Ceangailte"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:353
 msgid "Information copied to the clipboard"
 msgstr "Cóipeáladh an t-eolas chuig an ghearrthaisce"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Interfaces"
 msgstr "Comhéadain"
 
-#: confusb/ui.py:381
+#: confusb/ui.py:382
 msgid "Each interface can have its own driver"
 msgstr "Féadann a thiománaí féin a bheith ag gach comhéadan"
 
-#: confusb/ui.py:385
+#: confusb/ui.py:386
 msgid "Class"
 msgstr "Aicme"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:387
 msgid "Subclass / protocol"
 msgstr "Fo-aicme / prótacal"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:388
 msgid "Bound driver"
 msgstr "Tiománaí ceangailte"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:389
 msgid "Kernel modules"
 msgstr "Modúil an eithne"
 
-#: confusb/ui.py:395
+#: confusb/ui.py:396
 msgid "Nodes created in the system"
 msgstr "Nóid a cruthaíodh sa chóras"
 
-#: confusb/ui.py:399
+#: confusb/ui.py:400
 msgid "Raw data"
 msgstr "Sonraí amha"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:401
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Airíonna udev ({n})"
 
-#: confusb/ui.py:406
+#: confusb/ui.py:407
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Aschur lsusb -v (tuairisceoirí USB iomlána)"
 
-#: confusb/ui.py:423
+#: confusb/ui.py:424
 msgid "Reading more information from the device…"
 msgstr "Tuilleadh faisnéise á léamh ón ngléas…"
 
-#: confusb/ui.py:441
+#: confusb/ui.py:442
 msgid "Tips"
 msgstr "Leideanna"
 
-#: confusb/ui.py:466
+#: confusb/ui.py:467
 msgid "Looking for drivers and applications…"
 msgstr "Tiománaithe agus feidhmchláir á lorg…"
 
-#: confusb/ui.py:519
+#: confusb/ui.py:520
 msgid "No terminal emulator found"
 msgstr "Níor aimsíodh aon fhorghníomhaitheoir teirminéil"
 
-#: confusb/ui.py:521
+#: confusb/ui.py:522
 msgid "Press Enter to close…"
 msgstr "Brúigh Enter chun dúnadh…"
 
-#: confusb/ui.py:532
+#: confusb/ui.py:533
 msgid "Working…"
 msgstr "Ag obair…"
 
-#: confusb/ui.py:538
+#: confusb/ui.py:539
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Earráid: {error}"
 
-#: confusb/ui.py:541
+#: confusb/ui.py:542
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(cód scoir {code})"
 
-#: confusb/ui.py:545
+#: confusb/ui.py:546
 msgid "Installation completed"
 msgstr "Suiteáil críochnaithe"
 
-#: confusb/ui.py:548
+#: confusb/ui.py:549
 msgid "The installation failed"
 msgstr "Theip ar an suiteáil"
 
-#: confusb/ui.py:557
+#: confusb/ui.py:558
 msgid "Disconnected"
 msgstr "Dícheangailte"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:559
 msgid "The device has been disconnected"
 msgstr "Dícheangladh an gléas"
 

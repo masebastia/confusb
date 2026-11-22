@@ -107,7 +107,8 @@ class VentanaBase(Gtk.ApplicationWindow):
 
     # ---- ajustes en caliente
     def _actualizar_fondo(self):
-        self.fondo.set_paintable(fondo.textura(AJUSTES.oscuro))
+        # Con un color liso no hay imagen: se ve el color de la ventana (CSS «window.confusb», de la paleta)
+        self.fondo.set_paintable(None if AJUSTES.fondo == "color" else fondo.textura(AJUSTES.oscuro))
 
     def _al_ajustes(self):
         self._actualizar_fondo()

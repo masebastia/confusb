@@ -26,7 +26,9 @@ detecta y ofrece instalarlo.
   («Instala adb…», «Acepta la depuración USB en el teléfono…»). confusb no monta nada, y si arranca el servidor
   de `adb` para consultar lo vuelve a parar. `confusb --dump DEV` lo imprime todo por la terminal.
 - **Interfaz** (botón «🎨 Interfaz»): opacidad y esquinas de las tarjetas, color de los títulos, marco
-  (resaltado, atenuado o sin marco), sombra, pie «Ver información →» y qué hacer al conectar un dispositivo
+  (resaltado, atenuado o sin marco), sombra, pie «Ver información →», **fondo de la ventana** (la imagen
+  de circuitos o un color liso a tu gusto; con un color liso el tema pasa a claro u oscuro, el que mejor se lea sobre
+  él) y qué hacer al conectar un dispositivo
   (notificación, abrir ventana o nada; solo los nuevos; abrir las unidades de almacenamiento). Los cambios se ven al momento y se guardan en
   `~/.config/confusb/ajustes.json`.
 

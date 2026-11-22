@@ -94,6 +94,11 @@ class Registro:
         if isinstance(d, dict) and isinstance(d.get("dispositivos"), dict):
             self.datos = {k: v for k, v in d["dispositivos"].items() if isinstance(v, dict)}
 
+    def recargar(self):
+        """Vuelve a leer el fichero: la ventana (otro proceso) puede haberlo vaciado con «Olvidar»."""
+        self.datos = {}
+        self._cargar()
+
     def _guardar(self):
         try:
             os.makedirs(os.path.dirname(self.ruta), exist_ok=True)

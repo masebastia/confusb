@@ -7,6 +7,7 @@ ID="es.masebastia.confusb"
 UNIT="$HOME/.config/systemd/user/confusb.service"
 APPS="$HOME/.local/share/applications"
 DESKTOP="$APPS/$ID.desktop"
+DESKTOP_SERVICIO="$APPS/$ID.servicio.desktop"   # entrada oculta: la usan las notificaciones del servicio
 ICONS="$HOME/.local/share/icons/hicolor"
 ICON="$ICONS/scalable/apps/$ID.svg"
 
@@ -17,7 +18,7 @@ refrescar() {
 
 if [[ "${1:-}" == "--uninstall" ]]; then
   systemctl --user disable --now confusb.service 2>/dev/null || true
-  rm -f "$UNIT" "$DESKTOP" "$ICON"
+  rm -f "$UNIT" "$DESKTOP" "$DESKTOP_SERVICIO" "$ICON"
   systemctl --user daemon-reload
   refrescar
   echo "confusb desinstalado."; exit 0
@@ -34,6 +35,7 @@ fi
 mkdir -p "$(dirname "$UNIT")" "$APPS" "$(dirname "$ICON")"
 sed "s|@PROJECT_DIR@|$DIR|" "$DIR/systemd/confusb.service.in" > "$UNIT"
 sed "s|@PROJECT_DIR@|$DIR|" "$DIR/data/$ID.desktop.in" > "$DESKTOP"
+cp "$DIR/data/$ID.servicio.desktop" "$DESKTOP_SERVICIO"
 cp "$DIR/confusb/recursos/icono.svg" "$ICON"
 refrescar
 systemctl --user daemon-reload

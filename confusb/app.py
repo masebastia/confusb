@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Servicio de confusb: escucha los eventos udev de USB y, según la política de «conexion» y los ajustes,
-abre una ventana con la información del dispositivo, ofrece abrirla con una notificación, abre la unidad de
-almacenamiento con la aplicación predeterminada o no hace nada."""
+"""La aplicación de confusb: las ventanas con la información de los dispositivos USB.
+
+Se abre con «confusb --devices» o «confusb --show DEV» (o desde el menú de aplicaciones) y termina, saliendo de
+la memoria, al cerrar la última ventana. La vigilancia de los USB y las notificaciones son del servicio
+(«servicio.py»), otro proceso que sigue en marcha. Mientras la ventana está abierta se mantiene al día por su
+cuenta (conexiones y desconexiones) y muestra los avisos que el servicio ha ido apuntando."""
 from __future__ import annotations
 
-import argparse
 import os
-import sys
 import threading
-from dataclasses import dataclass
 
 import gi
 
@@ -17,7 +17,7 @@ gi.require_version("Adw", "1")
 gi.require_version("GUdev", "1.0")
 from gi.repository import Adw, Gio, GLib, GUdev  # noqa: E402
 
-from . import APP_ID, __version__, almacenamiento, conexion, usbinfo  # noqa: E402
+from . import APP_ID, avisos, servicio, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
 from .i18n import _  # noqa: E402
 from .ui import DeviceWindow, DevicesWindow  # noqa: E402
@@ -26,69 +26,37 @@ SETTLE_MS = 1500          # esperar a que el kernel enlace drivers e interfaces
 IGNORED_VIDS = {"1d6b"}   # root hubs de Linux Foundation
 
 
-def resolve_target(target: str) -> str | None:
-    """Acepta '1-5', 'VID:PID' o una ruta sysfs."""
-    if os.path.isabs(target):
-        return target
-    cand = f"/sys/bus/usb/devices/{target}"
-    if os.path.exists(cand):
-        return os.path.realpath(cand)
-    for p in usbinfo.list_usb_devices():
-        if usbinfo.read(p + "/idVendor") and f"{usbinfo.read(p + '/idVendor')}:{usbinfo.read(p + '/idProduct')}" == target.lower():
-            return p
-    return None
-
-
-@dataclass
-class Aviso:
-    """Una notificación de «dispositivo conectado» pendiente: se muestra también dentro de la ventana principal."""
-    path: str          # ruta sysfs del dispositivo
-    titulo: str
-    usb_id: str
-    hora: GLib.DateTime
-
-    @property
-    def notificacion(self) -> str:
-        return f"usb-{self.usb_id}"
-
-
 class ConfusbApp(Adw.Application):
     def __init__(self):
         super().__init__(application_id=APP_ID, flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
         self.windows: dict[str, DeviceWindow] = {}
         self.client: GUdev.Client | None = None
-        self.held = False
         self.devices_win: DevicesWindow | None = None
-        self.avisos: dict[str, Aviso] = {}       # por ruta sysfs, en orden de llegada
-        accion = Gio.SimpleAction.new("detalle", GLib.VariantType.new("s"))   # la usan las notificaciones
-        accion.connect("activate", lambda _a, v: self.al_detalle(v.get_string()))
-        self.add_action(accion)
+        self.almacen = avisos.Almacen()
+        self._monitor: Gio.FileMonitor | None = None
+        self._repintar = 0
         self.add_main_option("devices", ord("d"), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
                              _("Show the list of connected USB devices"), None)
         self.add_main_option("show", ord("s"), GLib.OptionFlags.NONE, GLib.OptionArg.STRING,
                              _("Show a device's window (1-5, VID:PID or sysfs path)"), "DEV")
 
     # --------------------------------------------------------- ciclo de vida
+    def do_startup(self):
+        Adw.Application.do_startup(self)
+        self.client = GUdev.Client(subsystems=["usb"])      # para mantener la lista al día mientras hay ventanas
+        self.client.connect("uevent", self.on_uevent)
+        self._vigilar_avisos()
+
     def do_command_line(self, cmdline):
         opts = cmdline.get_options_dict().end().unpack()
-        if "devices" in opts:
-            self.show_devices()
-            return 0
-        if "show" in opts:
-            path = resolve_target(opts["show"])
+        if "show" in opts and "devices" not in opts:
+            path = usbinfo.resolve_target(opts["show"])
             if not path:
                 cmdline.printerr_literal(_("Device «{name}» not found").format(name=opts["show"]) + "\n")
                 return 1
             self.open_device(path)
-            return 0
-        if not self.held:  # modo servicio
-            self.hold()
-            self.held = True
-            self.client = GUdev.Client(subsystems=["usb"])
-            self.client.connect("uevent", self.on_uevent)
-            if not conexion.REGISTRO.existe:   # primer arranque: lo que ya está conectado cuenta como conocido
-                conexion.REGISTRO.sembrar(usbinfo.list_usb_devices())
-            print("confusb: watching USB connections…", flush=True)
+        else:
+            self.show_devices()
         return 0
 
     def cambiar_idioma(self, codigo: str):
@@ -117,30 +85,58 @@ class ConfusbApp(Adw.Application):
         self.marcar_leidos()
 
     # ----------------------------------------------------------------- avisos
-    def marcar_leidos(self):
-        """Los avisos ya se ven dentro de la aplicación: se retiran las notificaciones del sistema (y con ellas
-        el contador del icono). Siguen en la tarjeta «Avisos» hasta que se descarten."""
-        for a in self.avisos.values():
-            self.withdraw_notification(a.notificacion)
+    def lista_avisos(self) -> list[avisos.Aviso]:
+        return self.almacen.leer()
 
-    def descartar_aviso(self, path: str):
-        a = self.avisos.pop(path, None)
-        if a:
-            self.withdraw_notification(a.notificacion)
-        self._pintar_avisos()
+    def _vigilar_avisos(self):
+        """El servicio apunta los avisos en un fichero: al cambiar, la tarjeta «Avisos» se pone al día."""
+        carpeta = os.path.dirname(self.almacen.ruta)
+        try:
+            os.makedirs(carpeta, exist_ok=True)
+            self._monitor = Gio.File.new_for_path(carpeta).monitor_directory(Gio.FileMonitorFlags.WATCH_MOVES, None)
+        except (OSError, GLib.Error):
+            return
+        self._monitor.connect("changed", self._cambio_en_carpeta)
 
-    def descartar_avisos(self):
-        for path in list(self.avisos):
-            a = self.avisos.pop(path)
-            self.withdraw_notification(a.notificacion)
+    def _cambio_en_carpeta(self, _monitor, fichero, otro, _evento):
+        mio = os.path.basename(self.almacen.ruta)
+        if mio not in {f.get_basename() for f in (fichero, otro) if f is not None}:
+            return
+        if not self._repintar:      # el fichero se escribe en dos pasos (temporal y renombrado): se junta todo
+            self._repintar = GLib.timeout_add(150, self._pintar_avisos_diferido)
+
+    def _pintar_avisos_diferido(self):
+        self._repintar = 0
         self._pintar_avisos()
+        return False
 
     def _pintar_avisos(self):
         if self.devices_win:
             self.devices_win.pintar_avisos()
+            if self.devices_win.is_active():     # delante: ya se ven aquí, que no quede el contador en el icono
+                self.marcar_leidos()
+
+    def _retirar_notificaciones(self, avisos_: list[avisos.Aviso]):
+        ids = [a.notificacion for a in avisos_]
+        if ids:
+            servicio.llamar("retirar", GLib.Variant("as", ids))      # las notificaciones son del servicio
+
+    def marcar_leidos(self):
+        """Los avisos ya se ven dentro de la aplicación: se retiran las notificaciones del sistema (y con ellas
+        el contador del icono). Siguen en la tarjeta «Avisos» hasta que se descarten."""
+        self._retirar_notificaciones(self.almacen.leer())
+
+    def descartar_aviso(self, path: str):
+        quitado = self.almacen.quitar(path)
+        self._retirar_notificaciones([quitado] if quitado else [])
+        self._pintar_avisos()
+
+    def descartar_avisos(self):
+        self._retirar_notificaciones(self.almacen.vaciar())
+        self._pintar_avisos()
 
     def al_detalle(self, path: str):
-        """El usuario ha aceptado la oferta (notificación o tarjeta): se abre el dispositivo y el aviso se da por atendido."""
+        """El usuario ha aceptado la oferta desde la tarjeta: se abre el dispositivo y el aviso se da por atendido."""
         self.open_device(path)
         self.descartar_aviso(path)
 
@@ -158,68 +154,28 @@ class ConfusbApp(Adw.Application):
                       or _("USB device")).replace("_", " ")
             if path in self.windows:
                 self.windows[path].mark_disconnected()
-            self.descartar_aviso(path)       # ya no está: la oferta caduca
             if self.devices_win:
                 self.devices_win.refresh(aviso=_("Disconnected: {name}").format(name=nombre))
 
     def conectado(self, path: str):
-        """Un dispositivo nuevo, con el kernel ya asentado: actualizar la lista y decidir qué hacer."""
-        if not os.path.exists(path):
+        """Un dispositivo nuevo: se actualiza la lista (la decisión de ofrecerlo es del servicio)."""
+        if not os.path.exists(path) or not self.devices_win:
             return False
 
         def trabajo():
             try:
-                res = (usbinfo.collect(path, with_lsusb=False), conexion.sesion_activa(), almacenamiento.automount_open())
+                res = usbinfo.collect(path, with_lsusb=False)
             except Exception as e:  # noqa: BLE001
                 res = e
             GLib.idle_add(hecho, res)
 
-        def hecho(res):
-            if isinstance(res, Exception):
-                print(f"confusb: error reading {path}: {res}", flush=True)
-                return False
-            info, activa, gnome_abre = res
-            if self.devices_win:
+        def hecho(info):
+            if not isinstance(info, Exception) and self.devices_win:
                 self.devices_win.refresh(aviso=_("Connected: {name}").format(name=info.title))
-            previo = conexion.REGISTRO.buscar(info)
-            dec = conexion.decidir(info, activa=activa, previo=previo, modo=AJUSTES.al_conectar,
-                                   solo_nuevos=AJUSTES.solo_nuevos, abrir_almacenamiento=AJUSTES.abrir_almacenamiento,
-                                   automount_open=gnome_abre)
-            print(f"confusb: {info.usb_id} {info.title}: {dec.accion} ({dec.motivo})", flush=True)
-            if activa and not info.is_hub:
-                conexion.REGISTRO.anotar(info)       # ya ha estado conectado: la próxima vez no es nuevo
-            if dec.accion == "ventana":
-                self.open_device(path)
-            elif dec.accion == "notificar":
-                self.notificar(info, path)
-            elif dec.accion == "almacenamiento":
-                self.abrir_almacenamiento(info, path, nuevo=previo is None)
             return False
 
         threading.Thread(target=trabajo, daemon=True).start()
         return False
-
-    def notificar(self, info: usbinfo.DeviceInfo, path: str):
-        """Ofrece abrir la información del dispositivo: botón «Ver información» (o pulsar la notificación)."""
-        self.avisos[path] = Aviso(path, info.title, info.usb_id, GLib.DateTime.new_now_local())
-        self._pintar_avisos()
-        if self.devices_win and self.devices_win.is_active():
-            return        # la ventana está delante: el aviso ya se ve dentro, sin notificación ni contador
-        destino = GLib.Variant.new_string(path)
-        n = Gio.Notification.new(_("USB device connected"))
-        n.set_body(f"{info.title} · {info.usb_id}")
-        n.set_default_action_and_target("app.detalle", destino)
-        n.add_button_with_target(_("View information"), "app.detalle", destino)
-        self.send_notification(f"usb-{info.usb_id}", n)
-
-    def abrir_almacenamiento(self, info: usbinfo.DeviceInfo, path: str, nuevo: bool):
-        """Espera a que se monte la unidad y la abre con la aplicación predeterminada. Si no se monta (sin
-        formato, cifrada, montaje automático desactivado…) y es la primera vez, se ofrece ver su información."""
-        def al_agotar():
-            if nuevo:
-                self.notificar(info, path)
-
-        almacenamiento.EsperaMontaje(path, almacenamiento.abrir, al_agotar)
 
     def open_device(self, path: str):
         win = self.windows.get(path)
@@ -234,70 +190,33 @@ class ConfusbApp(Adw.Application):
         if not os.path.exists(path):  # ya se ha desconectado
             return False
 
-        def work():
-            return usbinfo.collect(path)
-
         def done(info):
-            if isinstance(info, Exception):
-                print(f"confusb: error reading {path}: {info}", flush=True)
-                return False
-            w = DeviceWindow(self, info)
-            self.windows[path] = w
-            def on_close(win, path=path):
-                if self.windows.get(path) is win:  # no borrar la ventana nueva del mismo puerto
-                    del self.windows[path]
-                return False
+            try:
+                if isinstance(info, Exception):
+                    print(f"confusb: error reading {path}: {info}", flush=True)
+                    return False
+                w = DeviceWindow(self, info)
+                self.windows[path] = w
 
-            w.connect("close-request", on_close)
-            w.present()
-            return False
+                def on_close(win, path=path):
+                    if self.windows.get(path) is win:  # no borrar la ventana nueva del mismo puerto
+                        del self.windows[path]
+                    return False
+
+                w.connect("close-request", on_close)
+                w.present()
+                return False
+            finally:
+                self.release()      # ya hay ventana (o no ha podido abrirse): el proceso vive con ella o termina
 
         def runner():
             try:
-                res = work()
+                res = usbinfo.collect(path)
             except Exception as e:  # noqa: BLE001
                 res = e
             GLib.idle_add(done, res)
 
+        # Leer el dispositivo tarda (lsusb): hasta que haya ventana, el proceso no debe terminar.
+        self.hold()
         threading.Thread(target=runner, daemon=True).start()
         return False
-
-
-def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(
-        prog="confusb",
-        description=_("Shows the information of a USB device when it is connected and looks for its driver "
-                      "and the applications to use it."),
-        epilog=_("Without arguments it runs as a service that watches the USB connections according to the settings."))
-    ap.add_argument("--devices", action="store_true", help=_("show the window with the connected devices"))
-    ap.add_argument("--show", metavar="DEV", help=_("open the details of a device (1-5, VID:PID or sysfs path)"))
-    ap.add_argument("--list", action="store_true", help=_("list the USB devices and exit"))
-    ap.add_argument("--dump", metavar="DEV",
-                    help=_("print all the information of a device and exit (1-5, VID:PID or sysfs path)"))
-    ap.add_argument("--version", action="store_true", help=_("show the version and exit"))
-    args, rest = ap.parse_known_args(argv[1:])
-    if args.version:
-        print(f"confusb {__version__}")
-        return 0
-    if args.list:
-        for p in usbinfo.list_usb_devices():
-            i = usbinfo.collect(p, with_lsusb=False)
-            print(f"{os.path.basename(p):8} {i.usb_id}  {i.vendor} — {i.product}")
-        return 0
-    if args.dump:
-        p = resolve_target(args.dump)
-        if not p:
-            print(_("Device «{name}» not found").format(name=args.dump))
-            return 1
-        print(usbinfo.collect(p).as_text())
-        return 0
-    if args.devices:   # estas dos las trata GApplication (y las reenvía a la instancia que ya está en marcha)
-        rest = ["--devices", *rest]
-    if args.show:
-        rest = ["--show", args.show, *rest]
-    return ConfusbApp().run([argv[0], *rest])
-
-
-def cli() -> None:
-    """Punto de entrada del comando «confusb»."""
-    sys.exit(main(sys.argv))

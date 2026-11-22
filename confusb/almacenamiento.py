@@ -257,12 +257,7 @@ def abrir(mount: Gio.Mount, hecho=None):
         app = aplicacion_para(mount, tipos)
         if app is not None:
             try:
-                try:
-                    from gi.repository import Gdk
-                    ctx = Gdk.Display.get_default().get_app_launch_context()
-                except (ImportError, AttributeError, ValueError):
-                    ctx = Gio.AppLaunchContext()
-                app.launch([mount.get_root()], ctx)
+                app.launch([mount.get_root()], Gio.AppLaunchContext())
             except GLib.Error as e:
                 print(f"confusb: no se pudo abrir {mount.get_name()}: {e.message}", flush=True)
                 app = None

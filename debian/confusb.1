@@ -24,6 +24,12 @@ Without arguments it runs as a service that watches the USB connections. It is
 normally started automatically with the graphical session by the systemd user
 unit
 .IR confusb.service .
+The service does not load the graphical toolkit and stays small. The windows
+are a separate process: they are opened with
+.B \-\-devices
+or
+.BR \-\-show ,
+and the process ends, leaving the memory, when the last window is closed.
 .SH OPTIONS
 .TP
 .B \-\-devices
@@ -61,6 +67,9 @@ button of the application.
 .TP
 .I ~/.local/share/confusb/dispositivos.json
 Devices that have already been connected (so that they are not offered again).
+.TP
+.I ~/.local/share/confusb/avisos.json
+Pending offers, passed from the service to the window.
 .SH ENVIRONMENT
 The interface language is chosen in the application (language drop-down); by
 default it follows the language of the desktop.

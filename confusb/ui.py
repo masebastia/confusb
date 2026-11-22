@@ -186,7 +186,7 @@ class DevicesWindow(VentanaBase):
         app = self.get_application()
         while (hijo := self.caja_avisos.get_first_child()) is not None:
             self.caja_avisos.remove(hijo)
-        avisos = list(app.avisos.values())
+        avisos = app.lista_avisos()
         self.caja_avisos.set_visible(bool(avisos))
         if not avisos:
             return
@@ -206,7 +206,7 @@ class DevicesWindow(VentanaBase):
             txt = pila(2)
             txt.set_hexpand(True)
             txt.append(label(f"{a.titulo} · {a.usb_id}", "mod-name"))
-            txt.append(label(_("Connected at {time}").format(time=a.hora.format("%R")), "dim"))
+            txt.append(label(_("Connected at {time}").format(time=a.hora), "dim"))
             fila.append(txt)
             ver = boton(_("View information"))
             ver.connect("clicked", lambda _b, p=a.path: app.al_detalle(p))

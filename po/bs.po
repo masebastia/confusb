@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:08+0100\n"
+"POT-Creation-Date: 2026-11-22 20:28+0100\n"
 "PO-Revision-Date: 2026-11-22 13:32+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Bosanski\n"
@@ -70,248 +70,248 @@ msgstr "nije montirano"
 msgid "Partition {name}"
 msgstr "Particija {name}"
 
-#: confusb/app.py:67
+#: confusb/app.py:39
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:69
+#: confusb/app.py:41
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:80 confusb/app.py:290
+#: confusb/app.py:55 confusb/cli.py:47
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Uređaj «{name}» nije pronađen"
 
-#: confusb/app.py:158
+#: confusb/app.py:154
 msgid "USB device"
 msgstr "USB uređaj"
 
-#: confusb/app.py:163
+#: confusb/app.py:158
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Isključeno: {name}"
 
-#: confusb/app.py:183
+#: confusb/app.py:174
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Povezano: {name}"
 
-#: confusb/app.py:209
-msgid "USB device connected"
-msgstr "USB uređaj povezan"
-
-#: confusb/app.py:212 confusb/ui.py:211
-msgid "View information"
-msgstr "Prikaži informacije"
-
-#: confusb/app.py:269
+#: confusb/cli.py:26
 msgid ""
 "Shows the information of a USB device when it is connected and looks for its "
 "driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:271
+#: confusb/cli.py:28
 msgid ""
 "Without arguments it runs as a service that watches the USB connections "
 "according to the settings."
 msgstr ""
 
-#: confusb/app.py:272
+#: confusb/cli.py:29
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:273
+#: confusb/cli.py:30
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:274
+#: confusb/cli.py:31
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:276
+#: confusb/cli.py:33
 msgid ""
 "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:277
+#: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
 
-#: confusb/ajustes.py:40
+#: confusb/preferencias.py:17
 msgid "Like the theme"
 msgstr "Kao tema"
 
-#: confusb/ajustes.py:41
+#: confusb/preferencias.py:18
 msgid "Blue"
 msgstr "Plava"
 
-#: confusb/ajustes.py:42
+#: confusb/preferencias.py:19
 msgid "Green"
 msgstr "Zelena"
 
-#: confusb/ajustes.py:43
+#: confusb/preferencias.py:20
 msgid "Cyan"
 msgstr "Cijan"
 
-#: confusb/ajustes.py:44
+#: confusb/preferencias.py:21
 msgid "Violet"
 msgstr "Ljubičasta"
 
-#: confusb/ajustes.py:45
+#: confusb/preferencias.py:22
 msgid "Pink"
 msgstr "Ružičasta"
 
-#: confusb/ajustes.py:46
+#: confusb/preferencias.py:23
 msgid "Amber"
 msgstr "Jantarna"
 
-#: confusb/ajustes.py:47
+#: confusb/preferencias.py:24
 msgid "Light gray"
 msgstr "Svijetlosiva"
 
-#: confusb/ajustes.py:50
+#: confusb/preferencias.py:27
 msgid "Highlighted (border and glow on hover)"
 msgstr "Istaknut (rub i sjaj pri prijelazu mišem)"
 
-#: confusb/ajustes.py:51
+#: confusb/preferencias.py:28
 msgid "Subtle (discreet border, no glow)"
 msgstr "Suzdržan (diskretan rub, bez sjaja)"
 
-#: confusb/ajustes.py:52
+#: confusb/preferencias.py:29
 msgid "No frame"
 msgstr "Bez okvira"
 
-#: confusb/ajustes.py:55
+#: confusb/preferencias.py:32
 msgid "Open a window with the information"
 msgstr "Otvori prozor s informacijama"
 
-#: confusb/ajustes.py:56
+#: confusb/preferencias.py:33
 msgid "Show a notification"
 msgstr "Prikaži obavijest"
 
-#: confusb/ajustes.py:57
+#: confusb/preferencias.py:34
 msgid "Do nothing"
 msgstr "Ne čini ništa"
 
-#: confusb/componentes.py:27
+#: confusb/servicio.py:148
+msgid "USB device connected"
+msgstr "USB uređaj povezan"
+
+#: confusb/servicio.py:152 confusb/ui.py:211
+msgid "View information"
+msgstr "Prikaži informacije"
+
+#: confusb/componentes.py:28
 msgid "Installed"
 msgstr "Instalirano"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Active driver"
 msgstr "Upravljački program aktivan"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "User space"
 msgstr "Korisnički prostor"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "OK"
 msgstr ""
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Supported"
 msgstr "Podržano"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Has driver"
 msgstr "Ima upravljački program"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Needs installing"
 msgstr "Treba instalirati"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Not bound"
 msgstr "Nepovezano"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "No driver"
 msgstr "Nema upravljačkog programa"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not in the repositories"
 msgstr "Nije u repozitorijima"
 
-#: confusb/componentes.py:141
+#: confusb/componentes.py:142
 msgid "Language"
 msgstr "Jezik"
 
-#: confusb/componentes.py:307
+#: confusb/componentes.py:308
 msgid "Close the notice"
 msgstr "Zatvori obavijest"
 
-#: confusb/componentes.py:454 confusb/ui.py:83
+#: confusb/componentes.py:483 confusb/ui.py:83
 msgid "Interface"
 msgstr "Sučelje"
 
-#: confusb/componentes.py:458
+#: confusb/componentes.py:487
 msgid "Cards"
 msgstr "Kartice"
 
-#: confusb/componentes.py:459
+#: confusb/componentes.py:488
 msgid "Card opacity"
 msgstr "Neprozirnost kartica"
 
-#: confusb/componentes.py:461
+#: confusb/componentes.py:490
 msgid "Corners"
 msgstr "Kutovi"
 
-#: confusb/componentes.py:464
+#: confusb/componentes.py:493
 msgid "Title color"
 msgstr "Boja naslova"
 
-#: confusb/componentes.py:474
+#: confusb/componentes.py:503
 msgid "Frame"
 msgstr "Okvir"
 
-#: confusb/componentes.py:476
+#: confusb/componentes.py:505
 msgid "Shadow under the cards"
 msgstr "Sjena ispod kartica"
 
-#: confusb/componentes.py:479
+#: confusb/componentes.py:508
 msgid "Show «View information →» on the cards"
 msgstr "Prikaži «Prikaži informacije →» na karticama"
 
-#: confusb/componentes.py:483
+#: confusb/componentes.py:512
 msgid "When a device is connected"
 msgstr "Kad se spoji uređaj"
 
-#: confusb/componentes.py:485
+#: confusb/componentes.py:514
 msgid "Only for devices not seen before"
 msgstr "Samo za uređaje koji nisu ranije viđeni"
 
-#: confusb/componentes.py:488
+#: confusb/componentes.py:517
 msgid "Open storage drives with the default application"
 msgstr "Otvaraj uređaje za pohranu zadanom aplikacijom"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:522
 msgid "Forget known devices"
 msgstr "Zaboravi poznate uređaje"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:522
 msgid "The next time they are connected they will count as new"
 msgstr "Sljedeći put kada budu priključeni, smatrat će se novim"
 
-#: confusb/componentes.py:498
+#: confusb/componentes.py:527
 msgid "Reset"
 msgstr "Vrati zadano"
 
-#: confusb/componentes.py:498 confusb/componentes.py:552
+#: confusb/componentes.py:527 confusb/componentes.py:581
 msgid "Close"
 msgstr "Zatvori"
 
-#: confusb/componentes.py:536
+#: confusb/componentes.py:565
 msgid "About confusb"
 msgstr "O programu confusb"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:572
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Verzija {version}"
 
-#: confusb/componentes.py:544
+#: confusb/componentes.py:573
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -319,11 +319,11 @@ msgstr ""
 "Obavještava kad se spoji USB uređaj, prikazuje njegove informacije te traži "
 "njegov upravljački program i aplikacije za njegovo korištenje."
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:577
 msgid "License GPL-3.0-or-later"
 msgstr "Licencija GPL-3.0-or-later"
 
-#: confusb/componentes.py:549
+#: confusb/componentes.py:578
 msgid "Source code on GitHub"
 msgstr "Izvorni kod na GitHubu"
 

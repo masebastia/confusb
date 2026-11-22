@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:08+0100\n"
+"POT-Creation-Date: 2026-11-22 20:28+0100\n"
 "PO-Revision-Date: 2026-11-22 13:21+0000\n"
 "Last-Translator: the confusb authors\n"
 "Language-Team: Español\n"
@@ -67,42 +67,34 @@ msgstr "sin montar"
 msgid "Partition {name}"
 msgstr "Partición {name}"
 
-#: confusb/app.py:67
+#: confusb/app.py:39
 msgid "Show the list of connected USB devices"
 msgstr "Mostrar la lista de dispositivos USB conectados"
 
-#: confusb/app.py:69
+#: confusb/app.py:41
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr "Mostrar la ventana de un dispositivo (1-5, VID:PID o ruta sysfs)"
 
-#: confusb/app.py:80 confusb/app.py:290
+#: confusb/app.py:55 confusb/cli.py:47
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "No se encuentra el dispositivo «{name}»"
 
-#: confusb/app.py:158
+#: confusb/app.py:154
 msgid "USB device"
 msgstr "dispositivo USB"
 
-#: confusb/app.py:163
+#: confusb/app.py:158
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Desconectado: {name}"
 
-#: confusb/app.py:183
+#: confusb/app.py:174
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Conectado: {name}"
 
-#: confusb/app.py:209
-msgid "USB device connected"
-msgstr "Dispositivo USB conectado"
-
-#: confusb/app.py:212 confusb/ui.py:211
-msgid "View information"
-msgstr "Ver información"
-
-#: confusb/app.py:269
+#: confusb/cli.py:26
 msgid ""
 "Shows the information of a USB device when it is connected and looks for its "
 "driver and the applications to use it."
@@ -110,7 +102,7 @@ msgstr ""
 "Muestra la información de un dispositivo USB al conectarlo y busca su "
 "controlador y las aplicaciones para usarlo."
 
-#: confusb/app.py:271
+#: confusb/cli.py:28
 msgid ""
 "Without arguments it runs as a service that watches the USB connections "
 "according to the settings."
@@ -118,203 +110,211 @@ msgstr ""
 "Sin argumentos se ejecuta como servicio que vigila las conexiones USB según "
 "los ajustes."
 
-#: confusb/app.py:272
+#: confusb/cli.py:29
 msgid "show the window with the connected devices"
 msgstr "mostrar la ventana con los dispositivos conectados"
 
-#: confusb/app.py:273
+#: confusb/cli.py:30
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr "abrir el detalle de un dispositivo (1-5, VID:PID o ruta sysfs)"
 
-#: confusb/app.py:274
+#: confusb/cli.py:31
 msgid "list the USB devices and exit"
 msgstr "listar los dispositivos USB y salir"
 
-#: confusb/app.py:276
+#: confusb/cli.py:33
 msgid ""
 "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 "imprimir toda la información de un dispositivo y salir (1-5, VID:PID o ruta "
 "sysfs)"
 
-#: confusb/app.py:277
+#: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr "mostrar la versión y salir"
 
-#: confusb/ajustes.py:40
+#: confusb/preferencias.py:17
 msgid "Like the theme"
 msgstr "Como el tema"
 
-#: confusb/ajustes.py:41
+#: confusb/preferencias.py:18
 msgid "Blue"
 msgstr "Azul"
 
-#: confusb/ajustes.py:42
+#: confusb/preferencias.py:19
 msgid "Green"
 msgstr "Verde"
 
-#: confusb/ajustes.py:43
+#: confusb/preferencias.py:20
 msgid "Cyan"
 msgstr "Cian"
 
-#: confusb/ajustes.py:44
+#: confusb/preferencias.py:21
 msgid "Violet"
 msgstr "Violeta"
 
-#: confusb/ajustes.py:45
+#: confusb/preferencias.py:22
 msgid "Pink"
 msgstr "Rosa"
 
-#: confusb/ajustes.py:46
+#: confusb/preferencias.py:23
 msgid "Amber"
 msgstr "Ámbar"
 
-#: confusb/ajustes.py:47
+#: confusb/preferencias.py:24
 msgid "Light gray"
 msgstr "Gris claro"
 
-#: confusb/ajustes.py:50
+#: confusb/preferencias.py:27
 msgid "Highlighted (border and glow on hover)"
 msgstr "Resaltado (borde y resplandor al pasar el ratón)"
 
-#: confusb/ajustes.py:51
+#: confusb/preferencias.py:28
 msgid "Subtle (discreet border, no glow)"
 msgstr "Atenuado (borde discreto, sin resplandor)"
 
-#: confusb/ajustes.py:52
+#: confusb/preferencias.py:29
 msgid "No frame"
 msgstr "Sin marco"
 
-#: confusb/ajustes.py:55
+#: confusb/preferencias.py:32
 msgid "Open a window with the information"
 msgstr "Abrir una ventana con la información"
 
-#: confusb/ajustes.py:56
+#: confusb/preferencias.py:33
 msgid "Show a notification"
 msgstr "Mostrar una notificación"
 
-#: confusb/ajustes.py:57
+#: confusb/preferencias.py:34
 msgid "Do nothing"
 msgstr "No hacer nada"
 
-#: confusb/componentes.py:27
+#: confusb/servicio.py:148
+msgid "USB device connected"
+msgstr "Dispositivo USB conectado"
+
+#: confusb/servicio.py:152 confusb/ui.py:211
+msgid "View information"
+msgstr "Ver información"
+
+#: confusb/componentes.py:28
 msgid "Installed"
 msgstr "Instalado"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Active driver"
 msgstr "Controlador activo"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "User space"
 msgstr "Espacio de usuario"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "OK"
 msgstr "OK"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Supported"
 msgstr "Soportado"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Has driver"
 msgstr "Con controlador"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Needs installing"
 msgstr "Falta instalar"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Not bound"
 msgstr "Sin vincular"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "No driver"
 msgstr "Sin controlador"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not in the repositories"
 msgstr "No está en los repositorios"
 
-#: confusb/componentes.py:141
+#: confusb/componentes.py:142
 msgid "Language"
 msgstr "Idioma"
 
-#: confusb/componentes.py:307
+#: confusb/componentes.py:308
 msgid "Close the notice"
 msgstr "Cerrar el aviso"
 
-#: confusb/componentes.py:454 confusb/ui.py:83
+#: confusb/componentes.py:483 confusb/ui.py:83
 msgid "Interface"
 msgstr "Interfaz"
 
-#: confusb/componentes.py:458
+#: confusb/componentes.py:487
 msgid "Cards"
 msgstr "Tarjetas"
 
-#: confusb/componentes.py:459
+#: confusb/componentes.py:488
 msgid "Card opacity"
 msgstr "Opacidad de las tarjetas"
 
-#: confusb/componentes.py:461
+#: confusb/componentes.py:490
 msgid "Corners"
 msgstr "Esquinas"
 
-#: confusb/componentes.py:464
+#: confusb/componentes.py:493
 msgid "Title color"
 msgstr "Color de los títulos"
 
-#: confusb/componentes.py:474
+#: confusb/componentes.py:503
 msgid "Frame"
 msgstr "Marco"
 
-#: confusb/componentes.py:476
+#: confusb/componentes.py:505
 msgid "Shadow under the cards"
 msgstr "Sombra bajo las tarjetas"
 
-#: confusb/componentes.py:479
+#: confusb/componentes.py:508
 msgid "Show «View information →» on the cards"
 msgstr "Mostrar «Ver información →» en las tarjetas"
 
-#: confusb/componentes.py:483
+#: confusb/componentes.py:512
 msgid "When a device is connected"
 msgstr "Al conectar un dispositivo"
 
-#: confusb/componentes.py:485
+#: confusb/componentes.py:514
 msgid "Only for devices not seen before"
 msgstr "Solo para dispositivos que no se hayan visto antes"
 
-#: confusb/componentes.py:488
+#: confusb/componentes.py:517
 msgid "Open storage drives with the default application"
 msgstr "Abrir las unidades de almacenamiento con la aplicación predeterminada"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:522
 msgid "Forget known devices"
 msgstr "Olvidar los dispositivos conocidos"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:522
 msgid "The next time they are connected they will count as new"
 msgstr "La próxima vez que se conecten contarán como nuevos"
 
-#: confusb/componentes.py:498
+#: confusb/componentes.py:527
 msgid "Reset"
 msgstr "Restablecer"
 
-#: confusb/componentes.py:498 confusb/componentes.py:552
+#: confusb/componentes.py:527 confusb/componentes.py:581
 msgid "Close"
 msgstr "Cerrar"
 
-#: confusb/componentes.py:536
+#: confusb/componentes.py:565
 msgid "About confusb"
 msgstr "Acerca de confusb"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:572
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versión {version}"
 
-#: confusb/componentes.py:544
+#: confusb/componentes.py:573
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -322,11 +322,11 @@ msgstr ""
 "Avisa al conectar un dispositivo USB, muestra su información y busca su "
 "controlador y las aplicaciones para usarlo."
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:577
 msgid "License GPL-3.0-or-later"
 msgstr "Licencia GPL-3.0-or-later"
 
-#: confusb/componentes.py:549
+#: confusb/componentes.py:578
 msgid "Source code on GitHub"
 msgstr "Código fuente en GitHub"
 

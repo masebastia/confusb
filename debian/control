@@ -6,9 +6,15 @@ Build-Depends:
  debhelper-compat (= 13),
  dh-sequence-python3,
  gettext,
+ gir1.2-adw-1 <!nocheck>,
+ gir1.2-graphene-1.0 <!nocheck>,
+ gir1.2-gtk-4.0 <!nocheck>,
+ gir1.2-gudev-1.0 <!nocheck>,
  pybuild-plugin-pyproject,
  python3-all,
+ python3-gi <!nocheck>,
  python3-setuptools,
+ udev <!nocheck>,
 Standards-Version: 4.7.2
 Rules-Requires-Root: no
 Homepage: https://github.com/masebastia/confusb
@@ -48,5 +54,7 @@ Description: USB device information and driver finder for the desktop
  with a smart card reader it detects that pcscd is missing and offers to
  install it.
  .
- The interface follows the system light or dark style and is available in the
- official languages of the European countries.
+ The watching service is small and does not load the toolkit; the windows are
+ a separate process that leaves the memory when closed. The interface follows
+ the system light or dark style and is available in the official languages of
+ the European countries.

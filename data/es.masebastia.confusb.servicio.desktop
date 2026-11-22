@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=confusb
+Comment=Watches the USB connections
+Comment[es]=Vigila las conexiones USB
+Exec=confusb
+Icon=es.masebastia.confusb
+NoDisplay=true
+Terminal=false
+Categories=System;Monitor;
+X-GNOME-UsesNotifications=true

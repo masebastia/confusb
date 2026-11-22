@@ -5,6 +5,8 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/confusb
+# Las ventanas que lanza el servicio son procesos suyos: reiniciarlo no debe cerrarlas.
+KillMode=process
 Restart=on-failure
 RestartSec=3
 

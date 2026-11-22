@@ -389,3 +389,16 @@ def list_usb_devices() -> list[str]:
         for d in os.listdir(base)
         if os.path.exists(os.path.join(base, d, "idVendor"))
     )
+
+
+def resolve_target(target: str) -> str | None:
+    """Acepta '1-5', 'VID:PID' o una ruta sysfs."""
+    if os.path.isabs(target):
+        return target
+    cand = f"/sys/bus/usb/devices/{target}"
+    if os.path.exists(cand):
+        return os.path.realpath(cand)
+    for p in list_usb_devices():
+        if read(p + "/idVendor") and f"{read(p + '/idVendor')}:{read(p + '/idProduct')}" == target.lower():
+            return p
+    return None

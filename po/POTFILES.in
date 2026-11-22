@@ -1,6 +1,8 @@
 confusb/almacenamiento.py
 confusb/app.py
-confusb/ajustes.py
+confusb/cli.py
+confusb/preferencias.py
+confusb/servicio.py
 confusb/componentes.py
 confusb/kb.py
 confusb/resolver.py

@@ -95,6 +95,18 @@ e instalarlo con `sudo apt install ./confusb_*_all.deb`.
 Dependencias (ya presentes en Debian con GNOME): `python3-gi`, `gir1.2-gtk-4.0`, `gir1.2-adw-1`,
 `gir1.2-gudev-1.0`, `usbutils`, `pkexec`.
 
+## Dos procesos: servicio y ventana
+
+- El **servicio** (`confusb` sin argumentos, lo arranca systemd con la sesión gráfica) vigila los USB y decide
+  qué hacer. No carga GTK, así que ocupa poco (unos 30 MB) y sigue en marcha todo el rato.
+- La **ventana** (`confusb --devices` o `--show`, o la entrada del menú) es otro proceso: al cerrar la última
+  ventana termina y se va de la memoria. Cuando el servicio tiene que abrirla (al pulsar una notificación o con
+  el ajuste «abrir ventana») la lanza como proceso aparte. Los avisos pendientes se pasan de uno a otro en
+  `~/.local/share/confusb/avisos.json`, y la ventana le pide al servicio que retire las notificaciones.
+
+Tras actualizar el paquete, reinicia el servicio para que use la versión nueva:
+`systemctl --user restart confusb.service` (o cierra la sesión y vuelve a abrirla).
+
 ## Uso desde la terminal
 
     python3 -m confusb --devices         # ventana con los dispositivos conectados

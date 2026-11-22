@@ -23,7 +23,7 @@ Homepage = "https://github.com/masebastia/confusb"
 Issues = "https://github.com/masebastia/confusb/issues"
 
 [project.scripts]
-confusb = "confusb.app:cli"
+confusb = "confusb.cli:cli"
 
 [tool.setuptools]
 packages = ["confusb"]

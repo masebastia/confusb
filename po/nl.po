@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:08+0100\n"
+"POT-Creation-Date: 2026-11-22 20:28+0100\n"
 "PO-Revision-Date: 2026-11-22 13:27+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Nederlands\n"
@@ -69,248 +69,248 @@ msgstr "niet gekoppeld"
 msgid "Partition {name}"
 msgstr "Partitie {name}"
 
-#: confusb/app.py:67
+#: confusb/app.py:39
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:69
+#: confusb/app.py:41
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:80 confusb/app.py:290
+#: confusb/app.py:55 confusb/cli.py:47
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Apparaat «{name}» niet gevonden"
 
-#: confusb/app.py:158
+#: confusb/app.py:154
 msgid "USB device"
 msgstr "USB-apparaat"
 
-#: confusb/app.py:163
+#: confusb/app.py:158
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Losgekoppeld: {name}"
 
-#: confusb/app.py:183
+#: confusb/app.py:174
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Verbonden: {name}"
 
-#: confusb/app.py:209
-msgid "USB device connected"
-msgstr "USB-apparaat verbonden"
-
-#: confusb/app.py:212 confusb/ui.py:211
-msgid "View information"
-msgstr "Informatie tonen"
-
-#: confusb/app.py:269
+#: confusb/cli.py:26
 msgid ""
 "Shows the information of a USB device when it is connected and looks for its "
 "driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:271
+#: confusb/cli.py:28
 msgid ""
 "Without arguments it runs as a service that watches the USB connections "
 "according to the settings."
 msgstr ""
 
-#: confusb/app.py:272
+#: confusb/cli.py:29
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:273
+#: confusb/cli.py:30
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:274
+#: confusb/cli.py:31
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:276
+#: confusb/cli.py:33
 msgid ""
 "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:277
+#: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
 
-#: confusb/ajustes.py:40
+#: confusb/preferencias.py:17
 msgid "Like the theme"
 msgstr "Zoals het thema"
 
-#: confusb/ajustes.py:41
+#: confusb/preferencias.py:18
 msgid "Blue"
 msgstr "Blauw"
 
-#: confusb/ajustes.py:42
+#: confusb/preferencias.py:19
 msgid "Green"
 msgstr "Groen"
 
-#: confusb/ajustes.py:43
+#: confusb/preferencias.py:20
 msgid "Cyan"
 msgstr "Cyaan"
 
-#: confusb/ajustes.py:44
+#: confusb/preferencias.py:21
 msgid "Violet"
 msgstr "Paars"
 
-#: confusb/ajustes.py:45
+#: confusb/preferencias.py:22
 msgid "Pink"
 msgstr "Roze"
 
-#: confusb/ajustes.py:46
+#: confusb/preferencias.py:23
 msgid "Amber"
 msgstr "Amber"
 
-#: confusb/ajustes.py:47
+#: confusb/preferencias.py:24
 msgid "Light gray"
 msgstr "Lichtgrijs"
 
-#: confusb/ajustes.py:50
+#: confusb/preferencias.py:27
 msgid "Highlighted (border and glow on hover)"
 msgstr "Gemarkeerd (rand en gloed bij aanwijzen)"
 
-#: confusb/ajustes.py:51
+#: confusb/preferencias.py:28
 msgid "Subtle (discreet border, no glow)"
 msgstr "Subtiel (discrete rand, geen gloed)"
 
-#: confusb/ajustes.py:52
+#: confusb/preferencias.py:29
 msgid "No frame"
 msgstr "Geen rand"
 
-#: confusb/ajustes.py:55
+#: confusb/preferencias.py:32
 msgid "Open a window with the information"
 msgstr "Een venster met de informatie openen"
 
-#: confusb/ajustes.py:56
+#: confusb/preferencias.py:33
 msgid "Show a notification"
 msgstr "Een melding tonen"
 
-#: confusb/ajustes.py:57
+#: confusb/preferencias.py:34
 msgid "Do nothing"
 msgstr "Niets doen"
 
-#: confusb/componentes.py:27
+#: confusb/servicio.py:148
+msgid "USB device connected"
+msgstr "USB-apparaat verbonden"
+
+#: confusb/servicio.py:152 confusb/ui.py:211
+msgid "View information"
+msgstr "Informatie tonen"
+
+#: confusb/componentes.py:28
 msgid "Installed"
 msgstr "Geïnstalleerd"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Active driver"
 msgstr "Stuurprogramma actief"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "User space"
 msgstr "Gebruikersruimte"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "OK"
 msgstr ""
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Supported"
 msgstr "Ondersteund"
 
-#: confusb/componentes.py:27
+#: confusb/componentes.py:28
 msgid "Has driver"
 msgstr "Heeft een stuurprogramma"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Needs installing"
 msgstr "Moet worden geïnstalleerd"
 
-#: confusb/componentes.py:28
+#: confusb/componentes.py:29
 msgid "Not bound"
 msgstr "Niet gekoppeld"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "No driver"
 msgstr "Geen stuurprogramma"
 
-#: confusb/componentes.py:29
+#: confusb/componentes.py:30
 msgid "Not in the repositories"
 msgstr "Niet in de pakketbronnen"
 
-#: confusb/componentes.py:141
+#: confusb/componentes.py:142
 msgid "Language"
 msgstr "Taal"
 
-#: confusb/componentes.py:307
+#: confusb/componentes.py:308
 msgid "Close the notice"
 msgstr "Melding sluiten"
 
-#: confusb/componentes.py:454 confusb/ui.py:83
+#: confusb/componentes.py:483 confusb/ui.py:83
 msgid "Interface"
 msgstr "Interface"
 
-#: confusb/componentes.py:458
+#: confusb/componentes.py:487
 msgid "Cards"
 msgstr "Kaarten"
 
-#: confusb/componentes.py:459
+#: confusb/componentes.py:488
 msgid "Card opacity"
 msgstr "Dekking van de kaarten"
 
-#: confusb/componentes.py:461
+#: confusb/componentes.py:490
 msgid "Corners"
 msgstr "Hoeken"
 
-#: confusb/componentes.py:464
+#: confusb/componentes.py:493
 msgid "Title color"
 msgstr "Kleur van de titels"
 
-#: confusb/componentes.py:474
+#: confusb/componentes.py:503
 msgid "Frame"
 msgstr "Rand"
 
-#: confusb/componentes.py:476
+#: confusb/componentes.py:505
 msgid "Shadow under the cards"
 msgstr "Schaduw onder de kaarten"
 
-#: confusb/componentes.py:479
+#: confusb/componentes.py:508
 msgid "Show «View information →» on the cards"
 msgstr "«Informatie bekijken →» op de kaarten tonen"
 
-#: confusb/componentes.py:483
+#: confusb/componentes.py:512
 msgid "When a device is connected"
 msgstr "Wanneer een apparaat wordt aangesloten"
 
-#: confusb/componentes.py:485
+#: confusb/componentes.py:514
 msgid "Only for devices not seen before"
 msgstr "Alleen voor apparaten die nog niet eerder zijn gezien"
 
-#: confusb/componentes.py:488
+#: confusb/componentes.py:517
 msgid "Open storage drives with the default application"
 msgstr "Opslagstations openen met de standaardtoepassing"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:522
 msgid "Forget known devices"
 msgstr "Bekende apparaten vergeten"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:522
 msgid "The next time they are connected they will count as new"
 msgstr "De volgende keer dat ze worden aangesloten, tellen ze als nieuw"
 
-#: confusb/componentes.py:498
+#: confusb/componentes.py:527
 msgid "Reset"
 msgstr "Herstellen"
 
-#: confusb/componentes.py:498 confusb/componentes.py:552
+#: confusb/componentes.py:527 confusb/componentes.py:581
 msgid "Close"
 msgstr "Sluiten"
 
-#: confusb/componentes.py:536
+#: confusb/componentes.py:565
 msgid "About confusb"
 msgstr "Over confusb"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:572
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versie {version}"
 
-#: confusb/componentes.py:544
+#: confusb/componentes.py:573
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -318,11 +318,11 @@ msgstr ""
 "Meldt wanneer een USB-apparaat wordt aangesloten, toont de informatie ervan "
 "en zoekt het stuurprogramma en de toepassingen om het te gebruiken."
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:577
 msgid "License GPL-3.0-or-later"
 msgstr "Licentie GPL-3.0-or-later"
 
-#: confusb/componentes.py:549
+#: confusb/componentes.py:578
 msgid "Source code on GitHub"
 msgstr "Broncode op GitHub"
 

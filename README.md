@@ -22,7 +22,7 @@ detecta y ofrece instalarlo.
   (abrir ventana, notificación o nada). Los cambios se ven al momento y se guardan en
   `~/.config/confusb/ajustes.json`.
 
-La estética es la de [Contabilizando](https://github.com/masebastia/contabilizando): azul azabache con
+La estética es la de Contabilizando (otra aplicación del mismo autor): azul azabache con
 degradado y el logotipo de la marca (un hexágono con el símbolo USB y un pulso) como marca de agua sobre
 motivos de hardware (pistas de circuito impreso, chips y conectores), cabecera con emblema, navegación en
 píldoras, tarjetas, barra inferior con etiqueta y subventanas de cristal difuminado. Sigue el tema claro u

@@ -14,8 +14,7 @@ Herramientas (una vez): `sudo apt install debhelper dh-python pybuild-plugin-pyp
 
 ## Antes de subirlo
 
-- [ ] Cambiar `Maintainer:` en `debian/control` y la firma de `debian/changelog` por el nombre y el correo
-      reales de quien mantiene el paquete (ahora lleva la dirección *noreply* de GitHub).
+- [x] `Maintainer:` en `debian/control` y firma de `debian/changelog` (revisar el nombre si se quiere uno real).
 - [ ] Abrir el ITP (abajo) y poner su número en el changelog: `* Initial release. (Closes: #NNNNNN)`.
 - [ ] Cambiar `UNRELEASED` por `unstable` en la primera línea del changelog.
 - [ ] Que `lintian -I --pedantic` no dé errores (solo avisos informativos).

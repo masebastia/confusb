@@ -1,8 +1,7 @@
 Source: confusb
 Section: utils
 Priority: optional
-# TODO: sustituir por el nombre y el correo reales de quien mantiene el paquete antes de subirlo a Debian.
-Maintainer: masebastia <106473214+masebastia@users.noreply.github.com>
+Maintainer: masebastia <msebastia@protonmail.com>
 Build-Depends:
  debhelper-compat (= 13),
  dh-sequence-python3,

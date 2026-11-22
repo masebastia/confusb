@@ -4,6 +4,9 @@
 Formato de cada entrada:
   title, desc            texto mostrado
   packages               paquetes Debian a instalar
+  externa                aplicación que se instala por fuera de los repositorios: {nombre, paquetes,
+                         comandos, lanzar, url}; se detecta si ya está instalada
+  flatpak                id de la aplicación Flatpak equivalente
   apps                   [{label, cmd, terminal?, capture?, needs?}]  (needs = paquete que provee cmd[0])
   links                  [(etiqueta, url)]
 """
@@ -41,6 +44,14 @@ CLASS_KB: dict[int, list[dict]] = {
             "packages": ["pcsc-tools"],
             "apps": [{"label": "Abrir pcsc_scan", "cmd": ["pcsc_scan"], "terminal": True,
                       "needs": "pcsc-tools"}],
+        },
+        {
+            "title": "AutoFirma (firma electrónica)",
+            "desc": "Aplicación oficial del Gobierno para firmar documentos con el DNIe o un certificado digital. "
+                    "No está en los repositorios de Debian: se descarga de firmaelectronica.gob.es.",
+            # «externa»: se instala por fuera de apt/Flatpak; se detecta por paquete o por comando
+            "externa": {"nombre": "AutoFirma", "paquetes": ["autofirma"], "comandos": ["autofirma", "AutoFirma"],
+                        "lanzar": ["autofirma"], "url": "https://firmaelectronica.gob.es/Home/Descargas.html"},
         },
     ],
     0x08: [

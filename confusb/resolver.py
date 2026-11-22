@@ -108,29 +108,86 @@ def terminal_cmd() -> list[str] | None:
     return None
 
 
-def make_item_from_kb(entry: dict, states: dict[str, str]) -> Item:
+def pkg_version(pkg: str) -> str:
+    out = run(["dpkg-query", "-W", "-f=${Version}", pkg], timeout=5).strip()
+    return out if out and " " not in out else ""
+
+
+def flatpaks_instalados() -> set[str]:
+    if not shutil.which("flatpak"):
+        return set()
+    return set(run(["flatpak", "list", "--app", "--columns=application"], timeout=10).split())
+
+
+def detectar_externa(ext: dict, states: dict[str, str]) -> tuple[bool, str]:
+    """¿Está instalada una aplicación que no viene de apt ni de Flatpak? (por paquete o por comando)."""
+    for p in ext.get("paquetes", []):
+        if states.get(p) == "installed":
+            return True, pkg_version(p)
+    if any(shutil.which(c) for c in ext.get("comandos", [])):
+        return True, ""
+    return False, ""
+
+
+def make_item_from_kb(entry: dict, states: dict[str, str], flatpaks: set[str] | frozenset = frozenset()) -> Item:
+    """Elemento ofrecido: siempre dice si ya está instalado y solo ofrece instalar lo que falta."""
     pkgs = entry.get("packages", [])
+    instalados = [p for p in pkgs if states.get(p) == "installed"]
     missing = [p for p in pkgs if states.get(p) == "available"]
     unavailable = [p for p in pkgs if states.get(p) == "missing"]
     item = Item(entry["title"], entry.get("desc", ""))
+    notas: list[str] = []
+    falta = bool(missing)
+
     if pkgs:
-        names = ", ".join(pkgs)
-        if not missing and not unavailable:
-            item.status = "Instalado"
-        elif missing:
-            item.status = "Falta instalar"
+        notas.append("Paquetes: " + ", ".join(pkgs))
+        if instalados and (missing or unavailable):
+            notas.append("Ya instalado: " + ", ".join(instalados))
+        if unavailable:
+            notas.append("No están en los repositorios: " + ", ".join(unavailable))
+        if missing:
             item.actions.append(Action(f"Instalar {', '.join(missing)}", "apt", missing))
+
+    ext = entry.get("externa")
+    if ext:
+        puesta, version = detectar_externa(ext, states)
+        if puesta:
+            notas.append(f"Ya está instalada en tu equipo{f' (versión {version})' if version else ''}.")
+            if ext.get("lanzar"):
+                exe = ext["lanzar"][0]
+                item.actions.append(Action(f"Abrir {ext['nombre']}", "launch", ext["lanzar"],
+                                           enabled=shutil.which(exe) is not None,
+                                           tooltip="" if shutil.which(exe) else f"No se encuentra «{exe}»"))
         else:
-            item.status = "No está en los repositorios"
-        item.desc = (item.desc + f"\nPaquetes: {names}").strip()
+            falta = True
+            notas.append(f"No está instalada.")
+            item.actions.append(Action(f"Descargar {ext['nombre']}", "url", ext["url"]))
+
+    fp = entry.get("flatpak")
+    if fp:
+        if fp in flatpaks:
+            notas.append(f"Ya instalada como Flatpak ({fp}).")
+            item.actions.append(Action("Abrir (Flatpak)", "launch", ["flatpak", "run", fp]))
+        else:
+            falta = True
+            item.actions.append(Action(f"Instalar Flatpak {fp}", "flatpak", fp))
+
+    if falta:
+        item.status = "Falta instalar"
+    elif unavailable:
+        item.status = "No está en los repositorios"
+    elif pkgs or ext or fp:
+        item.status = "Instalado"
+    if item.status == "Instalado" and pkgs and not ext and not fp:
+        notas.append("Ya está instalado en tu equipo.")
+    item.desc = "\n".join([item.desc, *notas]).strip()
+
     for app in entry.get("apps", []):
         exe = app["cmd"][0]
         ok = shutil.which(exe) is not None
         tip = "" if ok else f"Instala primero «{app.get('needs', exe)}»"
         kind = "capture" if app.get("capture") else ("terminal" if app.get("terminal") else "launch")
         item.actions.append(Action(app["label"], kind, app["cmd"], enabled=ok, tooltip=tip))
-    if entry.get("flatpak"):
-        item.actions.append(Action(f"Instalar Flatpak {entry['flatpak']}", "flatpak", entry["flatpak"]))
     return item
 
 
@@ -171,11 +228,12 @@ def kb_groups(info: DeviceInfo) -> list[Group]:
         entries.append((f"Recomendado para el fabricante ({info.vid})", e))
     if not entries:
         return []
-    all_pkgs = sorted({p for _, e in entries for p in e.get("packages", [])})
+    all_pkgs = sorted({p for _, e in entries for p in (*e.get("packages", []), *e.get("externa", {}).get("paquetes", []))})
     states = pkg_states(all_pkgs)
+    flatpaks = flatpaks_instalados() if any(e.get("flatpak") for _, e in entries) else set()
     groups: dict[str, list[Item]] = {}
     for title, e in entries:
-        groups.setdefault(title, []).append(make_item_from_kb(e, states))
+        groups.setdefault(title, []).append(make_item_from_kb(e, states, flatpaks))
     return [Group(t, items) for t, items in groups.items()]
 
 
@@ -269,9 +327,8 @@ def web_group(info: DeviceInfo) -> Group:
 def _class_links(info: DeviceInfo) -> list[Item]:
     if 0x0B in info.classes:
         return [
-            Item("DNIe: portal oficial y software", "Controladores, módulo PKCS#11 y guías del DNI electrónico.",
-                 "", [Action("DNIe", "url", "https://www.dnielectronico.es/"),
-                      Action("AutoFirma", "url", "https://firmaelectronica.gob.es/Home/Descargas.html")]),
+            Item("DNIe: portal oficial", "Controladores, módulo PKCS#11 y guías del DNI electrónico.",
+                 "", [Action("Abrir el portal del DNIe", "url", "https://www.dnielectronico.es/")]),
         ]
     return []
 

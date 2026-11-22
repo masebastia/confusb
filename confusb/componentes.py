@@ -198,6 +198,10 @@ class Masonry(Gtk.Box):
         self.items.insert(len(self.items) - 1 if before_last and self.items else len(self.items), w)
         self._dirty = True
 
+    def insert(self, w: Gtk.Widget, indice: int = 0):
+        self.items.insert(indice, w)
+        self._dirty = True
+
     def remove_item(self, w: Gtk.Widget):
         if w in self.items:
             self.items.remove(w)

@@ -20,6 +20,12 @@ do not show anything, and neither does a session that is not in the foreground
 when several users are logged in. Storage drives are opened with the default
 application for them (the file manager) once the system has mounted them.
 .PP
+It also asks the device itself for what sysfs and udev do not have: for an
+Android phone with USB debugging enabled and authorized it reads, through
+.BR adb (1),
+the model, Android version, processor, memory, screen, battery and storage; for any
+device it adds the full udev attribute tree.
+.PP
 Without arguments it runs as a service that watches the USB connections. It is
 normally started automatically with the graphical session by the systemd user
 unit

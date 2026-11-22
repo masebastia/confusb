@@ -17,6 +17,14 @@ detecta y ofrece instalarlo.
     USB y fabricante (con botón de instalar vía `pkexec apt-get`), paquetes Debian y Flatpak que coinciden
     por nombre, soporte de fwupd y enlaces a la web del fabricante. Las aplicaciones instaladas se pueden
     lanzar o probar desde la propia ventana (p. ej. listar lectores y certificados de un lector de DNIe).
+- **Más datos del propio aparato** («sondas»): lo que no está en sysfs ni en udev se le pregunta al dispositivo.
+  En un **teléfono Android** con la depuración USB activada y autorizada para este equipo se leen por `adb` el
+  nombre comercial, el modelo, la versión de Android y el parche de seguridad, el procesador, la RAM, la pantalla,
+  la batería (nivel, estado, salud, temperatura, tensión) y el almacenamiento interno; hace falta `adb`
+  (`sudo apt install adb`). Si el teléfono ya está montado por MTP, también su almacenamiento. Para **cualquier**
+  dispositivo se añade el árbol completo de atributos de udev. Cuando no se puede, un consejo dice qué hacer
+  («Instala adb…», «Acepta la depuración USB en el teléfono…»). confusb no monta nada, y si arranca el servidor
+  de `adb` para consultar lo vuelve a parar. `confusb --dump DEV` lo imprime todo por la terminal.
 - **Interfaz** (botón «🎨 Interfaz»): opacidad y esquinas de las tarjetas, color de los títulos, marco
   (resaltado, atenuado o sin marco), sombra, pie «Ver información →» y qué hacer al conectar un dispositivo
   (notificación, abrir ventana o nada; solo los nuevos; abrir las unidades de almacenamiento). Los cambios se ven al momento y se guardan en

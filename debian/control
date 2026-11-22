@@ -37,6 +37,7 @@ Depends:
 Recommends:
  pkexec,
 Suggests:
+ adb,
  flatpak,
  fwupd,
 Description: USB device information and driver finder for the desktop
@@ -46,6 +47,9 @@ Description: USB device information and driver finder for the desktop
  device nodes, power state, udev properties, the full lsusb output and, for
  storage drives, capacity and partitions. Known devices are not offered again,
  and storage drives are opened with the default application.
+ .
+ For an Android phone it also reads its hardware data through adb (model,
+ Android version, processor, memory, screen, battery, storage).
  .
  It also looks for the driver and the applications needed to use the device,
  using a built-in catalogue by USB class and manufacturer plus Debian and

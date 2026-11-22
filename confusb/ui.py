@@ -17,7 +17,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # noqa: E402
 
-from . import almacenamiento, fondo, resolver, usbinfo  # noqa: E402
+from . import almacenamiento, fondo, resolver, sondas, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
 from .i18n import _  # noqa: E402
 from .componentes import (HUECO, AcercaDeDialogo, BarraEstado, Cabecera, InterfazDialogo, Masonry, SelectorIdioma,  # noqa: E402
@@ -33,6 +33,8 @@ def emoji_de(info: DeviceInfo) -> str:
         return "🖱️"
     if "keyboard" in n or "teclado" in n:
         return "⌨️"
+    if sondas.es_mtp(info) or sondas.tiene_adb(info):      # teléfonos y tabletas (MTP o ADB)
+        return "📱"
     for clase, e in ((0x0B, "💳"), (0x0E, "📷"), (0x08, "💾"), (0x07, "🖨️"), (0xE0, "📶"), (0x01, "🔊"),
                      (0x09, "🔀"), (0x03, "🕹️")):
         if clase in c:
@@ -329,6 +331,7 @@ class DeviceWindow(VentanaBase):
         self.barra.derecha.append(self.estado_texto)
 
         self.cargar_software()
+        self.cargar_extra()
 
     @staticmethod
     def _con_margenes(w: Gtk.Widget) -> Gtk.Widget:
@@ -363,6 +366,7 @@ class DeviceWindow(VentanaBase):
         txt.append(label(f"{info.vendor or _('Unknown manufacturer')} · USB ID {info.usb_id}", "dim"))
         if info.capacidad:
             txt.append(label(f"{_('Capacity')}: {almacenamiento.formatear(info.capacidad)}", "dim"))
+        self.cab_txt = txt          # las sondas añaden aquí el nombre real del aparato (p. ej. «OPPO A9 2020»)
         fila.append(txt)
         cab.append(fila)
         pagina.append(cab)
@@ -396,12 +400,59 @@ class DeviceWindow(VentanaBase):
         ex = Gtk.Expander(label=_("udev properties ({n})").format(n=len(info.props)))
         ex.set_child(bruto("\n".join(f"{k}={v}" for k, v in sorted(info.props.items()))))
         c.append(ex)
+        self.crudos_card = c        # las sondas añaden aquí sus textos largos
+        self.cols = cols
         if info.lsusb:
             ex2 = Gtk.Expander(label=_("lsusb -v output (full USB descriptors)"))
             ex2.set_child(bruto(info.lsusb, 300))
             c.append(ex2)
         cols.add(c)
         return pagina
+
+    # ------------------------------------------------- más información (sondas)
+    def cargar_extra(self):
+        """Pregunta al propio aparato lo que no está en sysfs (p. ej. por ADB: modelo, Android, batería…) y lo
+        añade en tarjetas al principio de la página. Va en segundo plano: puede tardar unos segundos."""
+        self.gen_extra = getattr(self, "gen_extra", 0) + 1
+        gen = self.gen_extra
+        self.leyendo = None
+        if sondas.puede_tardar(self.info):
+            self.leyendo = tarjeta()
+            fila = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
+            fila.append(Gtk.Spinner(spinning=True))
+            fila.append(label(_("Reading more information from the device…"), "dim", wrap=False))
+            self.leyendo.append(fila)
+            self.cols.insert(self.leyendo, 0)
+        in_thread(lambda: sondas.completar(self.info), lambda r: self.mostrar_extra(gen, r))
+
+    def mostrar_extra(self, gen: int, res):
+        if gen != self.gen_extra:
+            return False
+        if self.leyendo is not None:
+            self.cols.remove_item(self.leyendo)
+            self.leyendo = None
+        if isinstance(res, Exception):
+            return False
+        info = self.info
+        if info.resumen:
+            self.cab_txt.append(label(info.resumen, "dim"))
+        posicion = 0
+        if info.consejos:
+            c = tarjeta(_("Tips"))
+            for consejo in info.consejos:
+                c.append(label(consejo, "dim"))
+            self.cols.insert(c, posicion)
+            posicion += 1
+        for titulo, filas in info.extra:
+            c = tarjeta(titulo)
+            c.append(datos(filas))
+            self.cols.insert(c, posicion)
+            posicion += 1
+        for titulo, texto in info.crudos:
+            ex = Gtk.Expander(label=titulo)
+            ex.set_child(bruto(texto, 300))
+            self.crudos_card.append(ex)
+        return False
 
     # ------------------------------------------------------------ software
     def cargar_software(self):

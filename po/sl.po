@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:28+0100\n"
+"POT-Creation-Date: 2026-11-22 21:39+0100\n"
 "PO-Revision-Date: 2026-11-22 13:31+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Slovenščina\n"
@@ -19,7 +19,7 @@ msgstr ""
 "n%100==4 ? 2 : 3);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:276 confusb/ui.py:360
+#: confusb/ui.py:281 confusb/ui.py:368
 msgid "Capacity"
 msgstr "Zmogljivost"
 
@@ -51,7 +51,7 @@ msgstr "Datotečni sistem"
 msgid "Mounted at"
 msgstr "Priklopljeno na"
 
-#: confusb/almacenamiento.py:174
+#: confusb/almacenamiento.py:174 confusb/sondas.py:225 confusb/sondas.py:315
 #, python-brace-format
 msgid "{free} free"
 msgstr "{free} prosto"
@@ -78,21 +78,21 @@ msgstr ""
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:55 confusb/cli.py:47
+#: confusb/app.py:58 confusb/cli.py:47
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Naprava «{name}» ni bila najdena"
 
-#: confusb/app.py:154
+#: confusb/app.py:166
 msgid "USB device"
 msgstr "naprava USB"
 
-#: confusb/app.py:158
+#: confusb/app.py:170
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Odklopljeno: {name}"
 
-#: confusb/app.py:174
+#: confusb/app.py:186
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Priklopljeno: {name}"
@@ -186,13 +186,199 @@ msgstr "Prikaži obvestilo"
 msgid "Do nothing"
 msgstr "Ne naredi ničesar"
 
-#: confusb/servicio.py:148
+#: confusb/servicio.py:186
 msgid "USB device connected"
 msgstr "Naprava USB priklopljena"
 
-#: confusb/servicio.py:152 confusb/ui.py:211
+#: confusb/servicio.py:190 confusb/ui.py:216
 msgid "View information"
 msgstr "Pokaži podatke"
+
+#: confusb/sondas.py:44 confusb/sondas.py:46 confusb/usbinfo.py:110
+msgid "Unknown"
+msgstr "Neznan"
+
+#: confusb/sondas.py:44
+msgid "Charging"
+msgstr "Polnjenje"
+
+#: confusb/sondas.py:44
+msgid "Discharging"
+msgstr "Praznjenje"
+
+#: confusb/sondas.py:44
+msgid "Not charging"
+msgstr "Ne polni se"
+
+#: confusb/sondas.py:45
+msgid "Full"
+msgstr "Polna"
+
+#: confusb/sondas.py:46
+msgid "Good"
+msgstr "Dobro"
+
+#: confusb/sondas.py:46
+msgid "Overheating"
+msgstr "Pregrevanje"
+
+#: confusb/sondas.py:46
+msgid "Dead"
+msgstr "Pokvarjena"
+
+#: confusb/sondas.py:47
+msgid "Over voltage"
+msgstr "Prenapetost"
+
+#: confusb/sondas.py:47
+msgid "Failure"
+msgstr "Napaka"
+
+#: confusb/sondas.py:47
+msgid "Cold"
+msgstr "Hladna"
+
+#: confusb/sondas.py:171
+#, python-brace-format
+msgid "{n} cores"
+msgstr "{n} jeder"
+
+#: confusb/sondas.py:178
+msgid "locked"
+msgstr "zaklenjen"
+
+#: confusb/sondas.py:178
+msgid "unlocked"
+msgstr "odklenjen"
+
+#: confusb/sondas.py:182
+msgid "Commercial name"
+msgstr "Tržno ime"
+
+#: confusb/sondas.py:183
+msgid "Manufacturer"
+msgstr "Proizvajalec"
+
+#: confusb/sondas.py:184
+msgid "Model"
+msgstr "Model"
+
+#: confusb/sondas.py:185
+msgid "Android version"
+msgstr "Različica Androida"
+
+#: confusb/sondas.py:186
+msgid "Security patch"
+msgstr "Varnostni popravek"
+
+#: confusb/sondas.py:187
+msgid "Build"
+msgstr "Izdaja"
+
+#: confusb/sondas.py:188
+msgid "Platform"
+msgstr "Platforma"
+
+#: confusb/sondas.py:189
+msgid "CPU architecture"
+msgstr "Arhitektura procesorja"
+
+#: confusb/sondas.py:190
+msgid "RAM"
+msgstr ""
+
+#: confusb/sondas.py:191
+msgid "Screen"
+msgstr "Zaslon"
+
+#: confusb/sondas.py:192
+msgid "Baseband"
+msgstr ""
+
+#: confusb/sondas.py:193
+msgid "Bootloader"
+msgstr ""
+
+#: confusb/sondas.py:195
+msgid "Android phone"
+msgstr "Telefon z Androidom"
+
+#: confusb/sondas.py:204
+msgid "Wireless"
+msgstr "Brezžično"
+
+#: confusb/sondas.py:207
+msgid "Level"
+msgstr "Raven"
+
+#: confusb/sondas.py:208
+msgid "Status"
+msgstr "Stanje"
+
+#: confusb/sondas.py:209
+msgid "Health"
+msgstr "Zdravje"
+
+#: confusb/sondas.py:210
+msgid "Temperature"
+msgstr "Temperatura"
+
+#: confusb/sondas.py:211
+msgid "Voltage"
+msgstr "Napetost"
+
+#: confusb/sondas.py:212
+msgid "Technology"
+msgstr "Tehnologija"
+
+#: confusb/sondas.py:213
+msgid "Power source"
+msgstr "Vir napajanja"
+
+#: confusb/sondas.py:213
+msgid "On battery"
+msgstr "Na baterijo"
+
+#: confusb/sondas.py:214
+msgid "Battery"
+msgstr "Baterija"
+
+#: confusb/sondas.py:222 confusb/sondas.py:312
+msgid "Phone storage"
+msgstr "Shramba telefona"
+
+#: confusb/sondas.py:223
+msgid "Internal storage"
+msgstr "Notranja shramba"
+
+#: confusb/sondas.py:224
+#, python-brace-format
+msgid "{used} used"
+msgstr "{used} zasedeno"
+
+#: confusb/sondas.py:250
+msgid "Install adb (sudo apt install adb) to read the phone's hardware data."
+msgstr "Namestite adb (sudo apt install adb), da preberete strojne podatke telefona."
+
+#: confusb/sondas.py:256
+msgid "The phone does not answer through adb: unplug it and plug it in again."
+msgstr "Telefon se ne odziva prek adb: izklopite ga in ga znova priklopite."
+
+#: confusb/sondas.py:258
+msgid "Unlock the phone and accept «Allow USB debugging?» to read its data."
+msgstr "Odklenite telefon in sprejmite «Dovoli odpravljanje napak USB?», da preberete njegove podatke."
+
+#: confusb/sondas.py:313
+msgid "Unlock the phone and open it in the file manager to see its storage."
+msgstr "Odklenite telefon in ga odprite v upravitelju datotek, da vidite njegovo shrambo."
+
+#: confusb/sondas.py:318
+msgid "Storage (MTP)"
+msgstr "Shramba (MTP)"
+
+#: confusb/sondas.py:325
+msgid "udev attributes (udevadm info -a)"
+msgstr "Atributi udev (udevadm info -a)"
 
 #: confusb/componentes.py:28
 msgid "Installed"
@@ -234,84 +420,84 @@ msgstr "Brez gonilnika"
 msgid "Not in the repositories"
 msgstr "Ni v repozitorijih"
 
-#: confusb/componentes.py:142
+#: confusb/componentes.py:146
 msgid "Language"
 msgstr "Jezik"
 
-#: confusb/componentes.py:308
+#: confusb/componentes.py:316
 msgid "Close the notice"
 msgstr "Zapri obvestilo"
 
-#: confusb/componentes.py:483 confusb/ui.py:83
+#: confusb/componentes.py:501 confusb/ui.py:88
 msgid "Interface"
 msgstr "Vmesnik"
 
-#: confusb/componentes.py:487
+#: confusb/componentes.py:505
 msgid "Cards"
 msgstr "Kartice"
 
-#: confusb/componentes.py:488
+#: confusb/componentes.py:506
 msgid "Card opacity"
 msgstr "Neprosojnost kartic"
 
-#: confusb/componentes.py:490
+#: confusb/componentes.py:508
 msgid "Corners"
 msgstr "Vogali"
 
-#: confusb/componentes.py:493
+#: confusb/componentes.py:511
 msgid "Title color"
 msgstr "Barva naslovov"
 
-#: confusb/componentes.py:503
+#: confusb/componentes.py:521
 msgid "Frame"
 msgstr "Okvir"
 
-#: confusb/componentes.py:505
+#: confusb/componentes.py:523
 msgid "Shadow under the cards"
 msgstr "Senca pod karticami"
 
-#: confusb/componentes.py:508
+#: confusb/componentes.py:526
 msgid "Show «View information →» on the cards"
 msgstr "Prikaži «Prikaži informacije →» na karticah"
 
-#: confusb/componentes.py:512
+#: confusb/componentes.py:530
 msgid "When a device is connected"
 msgstr "Ko se priklopi naprava"
 
-#: confusb/componentes.py:514
+#: confusb/componentes.py:532
 msgid "Only for devices not seen before"
 msgstr "Samo za naprave, ki še niso bile videne"
 
-#: confusb/componentes.py:517
+#: confusb/componentes.py:535
 msgid "Open storage drives with the default application"
 msgstr "Odpri pomnilniške pogone s privzetim programom"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:540
 msgid "Forget known devices"
 msgstr "Pozabi znane naprave"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:540
 msgid "The next time they are connected they will count as new"
 msgstr "Ob naslednjem priklopu bodo štete za nove"
 
-#: confusb/componentes.py:527
+#: confusb/componentes.py:545
 msgid "Reset"
 msgstr "Ponastavi"
 
-#: confusb/componentes.py:527 confusb/componentes.py:581
+#: confusb/componentes.py:545 confusb/componentes.py:599
 msgid "Close"
 msgstr "Zapri"
 
-#: confusb/componentes.py:565
+#: confusb/componentes.py:583
 msgid "About confusb"
 msgstr "O programu confusb"
 
-#: confusb/componentes.py:572
+#: confusb/componentes.py:590
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Različica {version}"
 
-#: confusb/componentes.py:573
+#: confusb/componentes.py:591
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -319,11 +505,11 @@ msgstr ""
 "Obvesti, ko se priklopi naprava USB, prikaže njene informacije ter poišče "
 "njen gonilnik in programe za njeno uporabo."
 
-#: confusb/componentes.py:577
+#: confusb/componentes.py:595
 msgid "License GPL-3.0-or-later"
 msgstr "Licenca GPL-3.0-or-later"
 
-#: confusb/componentes.py:578
+#: confusb/componentes.py:596
 msgid "Source code on GitHub"
 msgstr "Izvorna koda na GitHubu"
 
@@ -673,12 +859,12 @@ msgstr "Zvezdišče USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Upravlja ga gonilnik «hub» v jedru."
 
-#: confusb/resolver.py:206 confusb/ui.py:374
+#: confusb/resolver.py:206 confusb/ui.py:383
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Vmesnik {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:379
+#: confusb/resolver.py:207 confusb/ui.py:388
 msgid "none found"
 msgstr "nobenega ni bilo najdenega"
 
@@ -836,212 +1022,220 @@ msgstr "Napaka pri iskanju"
 msgid "Error while querying"
 msgstr "Napaka pri poizvedbi"
 
-#: confusb/ui.py:84
+#: confusb/ui.py:89
 msgid "Look of the application and what to do when a device is connected"
 msgstr "Videz programa in kaj naj se zgodi, ko se priklopi naprava"
 
-#: confusb/ui.py:85
+#: confusb/ui.py:90
 msgid "About"
 msgstr "O programu"
 
-#: confusb/ui.py:145
+#: confusb/ui.py:150
 msgid "(no output)"
 msgstr "(brez izpisa)"
 
-#: confusb/ui.py:160
+#: confusb/ui.py:165
 msgid "Connected USB devices"
 msgstr "Priklopljene naprave USB"
 
-#: confusb/ui.py:160
+#: confusb/ui.py:165
 msgid "USB devices"
 msgstr "Naprave USB"
 
-#: confusb/ui.py:166
+#: confusb/ui.py:171
 msgid "Refresh"
 msgstr "Osveži"
 
-#: confusb/ui.py:166
+#: confusb/ui.py:171
 msgid "Read the connected devices again"
 msgstr "Znova preberi priklopljene naprave"
 
-#: confusb/ui.py:195
+#: confusb/ui.py:200
 msgid "Notices"
 msgstr "Obvestila"
 
-#: confusb/ui.py:199
+#: confusb/ui.py:204
 msgid "Dismiss all"
 msgstr "Opusti vse"
 
-#: confusb/ui.py:209
+#: confusb/ui.py:214
 #, python-brace-format
 msgid "Connected at {time}"
 msgstr "Priključeno ob {time}"
 
-#: confusb/ui.py:213
+#: confusb/ui.py:218
 msgid "Dismiss"
 msgstr "Opusti"
 
-#: confusb/ui.py:231
+#: confusb/ui.py:236
 msgid "Reading devices…"
 msgstr "Branje naprav …"
 
-#: confusb/ui.py:244
+#: confusb/ui.py:249
 msgid "Could not read the devices"
 msgstr "Naprav ni bilo mogoče prebrati"
 
-#: confusb/ui.py:245
+#: confusb/ui.py:250
 msgid "Error reading the devices"
 msgstr "Napaka pri branju naprav"
 
-#: confusb/ui.py:251
+#: confusb/ui.py:256
 msgid "No USB devices connected"
 msgstr "Ni priklopljenih naprav USB"
 
-#: confusb/ui.py:252
+#: confusb/ui.py:257
 msgid "Connect one and it will appear here automatically."
 msgstr "Priklopite eno in prikazala se bo tukaj samodejno."
 
-#: confusb/ui.py:254
+#: confusb/ui.py:259
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Priklopljene naprave USB: {n}"
 
-#: confusb/ui.py:271 confusb/ui.py:320 confusb/ui.py:358
+#: confusb/ui.py:276 confusb/ui.py:325 confusb/ui.py:366
 msgid "Unknown manufacturer"
 msgstr "Neznan proizvajalec"
 
-#: confusb/ui.py:274
+#: confusb/ui.py:279
 msgid "Type"
 msgstr "Vrsta"
 
-#: confusb/ui.py:277
+#: confusb/ui.py:282
 msgid "Port"
 msgstr "Vrata"
 
-#: confusb/ui.py:278
+#: confusb/ui.py:283
 msgid "Driver"
 msgstr "Gonilnik"
 
-#: confusb/ui.py:278 confusb/ui.py:378
+#: confusb/ui.py:283 confusb/ui.py:387
 msgid "none"
 msgstr "noben"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:285
 msgid "View information →"
 msgstr "Prikaži informacije →"
 
-#: confusb/ui.py:306
+#: confusb/ui.py:311
 msgid "Back"
 msgstr "Nazaj"
 
-#: confusb/ui.py:306
+#: confusb/ui.py:311
 msgid "Back to the list of devices"
 msgstr "Nazaj na seznam naprav"
 
-#: confusb/ui.py:307
+#: confusb/ui.py:312
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: confusb/ui.py:307
+#: confusb/ui.py:312
 msgid "Copy all the information to the clipboard"
 msgstr "Kopiraj vse informacije v odložišče"
 
-#: confusb/ui.py:315
+#: confusb/ui.py:320
 msgid "Information"
 msgstr "Informacije"
 
-#: confusb/ui.py:315
+#: confusb/ui.py:320
 msgid "Drivers and applications"
 msgstr "Gonilniki in programi"
 
-#: confusb/ui.py:324
+#: confusb/ui.py:329
 msgid "Connected"
 msgstr "Priklopljeno"
 
-#: confusb/ui.py:344
+#: confusb/ui.py:352
 msgid "Information copied to the clipboard"
 msgstr "Informacije so kopirane v odložišče"
 
-#: confusb/ui.py:372
+#: confusb/ui.py:381
 msgid "Interfaces"
 msgstr "Vmesniki"
 
-#: confusb/ui.py:372
+#: confusb/ui.py:381
 msgid "Each interface can have its own driver"
 msgstr "Vsak vmesnik ima lahko svoj gonilnik"
 
-#: confusb/ui.py:376
+#: confusb/ui.py:385
 msgid "Class"
 msgstr "Razred"
 
-#: confusb/ui.py:377
+#: confusb/ui.py:386
 msgid "Subclass / protocol"
 msgstr "Podrazred / protokol"
 
-#: confusb/ui.py:378
+#: confusb/ui.py:387
 msgid "Bound driver"
 msgstr "Povezan gonilnik"
 
-#: confusb/ui.py:379
+#: confusb/ui.py:388
 msgid "Kernel modules"
 msgstr "Moduli jedra"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:395
 msgid "Nodes created in the system"
 msgstr "Vozlišča, ustvarjena v sistemu"
 
-#: confusb/ui.py:390
+#: confusb/ui.py:399
 msgid "Raw data"
 msgstr "Surovi podatki"
 
-#: confusb/ui.py:391
+#: confusb/ui.py:400
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Lastnosti udev ({n})"
 
-#: confusb/ui.py:395
+#: confusb/ui.py:406
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Izpis lsusb -v (popolni deskriptorji USB)"
 
-#: confusb/ui.py:410
+#: confusb/ui.py:423
+msgid "Reading more information from the device…"
+msgstr "Branje dodatnih podatkov iz naprave…"
+
+#: confusb/ui.py:441
+msgid "Tips"
+msgstr "Namigi"
+
+#: confusb/ui.py:466
 msgid "Looking for drivers and applications…"
 msgstr "Iskanje gonilnikov in programov …"
 
-#: confusb/ui.py:463
+#: confusb/ui.py:519
 msgid "No terminal emulator found"
 msgstr "Ni najden noben emulator terminala"
 
-#: confusb/ui.py:465
+#: confusb/ui.py:521
 msgid "Press Enter to close…"
 msgstr "Pritisnite Enter za zaprtje …"
 
-#: confusb/ui.py:476
+#: confusb/ui.py:532
 msgid "Working…"
 msgstr "Delo poteka …"
 
-#: confusb/ui.py:482
+#: confusb/ui.py:538
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Napaka: {error}"
 
-#: confusb/ui.py:485
+#: confusb/ui.py:541
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(izhodna koda {code})"
 
-#: confusb/ui.py:489
+#: confusb/ui.py:545
 msgid "Installation completed"
 msgstr "Namestitev je končana"
 
-#: confusb/ui.py:492
+#: confusb/ui.py:548
 msgid "The installation failed"
 msgstr "Namestitev ni uspela"
 
-#: confusb/ui.py:501
+#: confusb/ui.py:557
 msgid "Disconnected"
 msgstr "Odklopljeno"
 
-#: confusb/ui.py:502
+#: confusb/ui.py:558
 msgid "The device has been disconnected"
 msgstr "Naprava je bila odklopljena"
 
@@ -1217,144 +1411,140 @@ msgstr "Ime konfiguracije"
 msgid "Kernel quirks"
 msgstr "Posebnosti jedra"
 
-#: confusb/usbinfo.py:110
-msgid "Unknown"
-msgstr "Neznan"
-
-#: confusb/usbinfo.py:174
+#: confusb/usbinfo.py:179
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:175
+#: confusb/usbinfo.py:180
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:177
+#: confusb/usbinfo.py:182
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:178
+#: confusb/usbinfo.py:183
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:181
+#: confusb/usbinfo.py:194
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:213
+#: confusb/usbinfo.py:228
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:246
+#: confusb/usbinfo.py:261
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "omrežni vmesnik {name}"
 
-#: confusb/usbinfo.py:293
+#: confusb/usbinfo.py:308
 msgid "Manufacturer (usb.ids)"
 msgstr "Proizvajalec (usb.ids)"
 
-#: confusb/usbinfo.py:294
+#: confusb/usbinfo.py:309
 msgid "Product (usb.ids)"
 msgstr "Izdelek (usb.ids)"
 
-#: confusb/usbinfo.py:295
+#: confusb/usbinfo.py:310
 msgid "sysfs path"
 msgstr "pot sysfs"
 
-#: confusb/usbinfo.py:296
+#: confusb/usbinfo.py:311
 msgid "/dev node"
 msgstr "vozlišče /dev"
 
-#: confusb/usbinfo.py:297
+#: confusb/usbinfo.py:312
 msgid "Subsystem / type"
 msgstr "Podsistem / vrsta"
 
-#: confusb/usbinfo.py:298
+#: confusb/usbinfo.py:313
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:299
+#: confusb/usbinfo.py:314
 msgid "Device driver"
 msgstr "Gonilnik naprave"
 
-#: confusb/usbinfo.py:301
+#: confusb/usbinfo.py:316
 msgid "Persistent paths (ID_PATH)"
 msgstr "Trajne poti (ID_PATH)"
 
-#: confusb/usbinfo.py:302
+#: confusb/usbinfo.py:317
 msgid "udev tags (TAGS)"
 msgstr "Oznake udev (TAGS)"
 
-#: confusb/usbinfo.py:305
+#: confusb/usbinfo.py:320
 msgid "Identification"
 msgstr "Identifikacija"
 
-#: confusb/usbinfo.py:306
+#: confusb/usbinfo.py:321
 msgid "Descriptors and configuration"
 msgstr "Deskriptorji in konfiguracija"
 
-#: confusb/usbinfo.py:307
+#: confusb/usbinfo.py:322
 msgid "System"
 msgstr "Sistem"
 
-#: confusb/usbinfo.py:311
+#: confusb/usbinfo.py:326
 msgid "Power control"
 msgstr "Nadzor napajanja"
 
-#: confusb/usbinfo.py:312
+#: confusb/usbinfo.py:327
 msgid "Power state"
 msgstr "Stanje napajanja"
 
-#: confusb/usbinfo.py:313
+#: confusb/usbinfo.py:328
 msgid "Autosuspend delay (ms)"
 msgstr "Zakasnitev samodejnega mirovanja (ms)"
 
-#: confusb/usbinfo.py:314
+#: confusb/usbinfo.py:329
 msgid "Persistence"
 msgstr "Obstojnost"
 
-#: confusb/usbinfo.py:315
+#: confusb/usbinfo.py:330
 msgid "System wake-up"
 msgstr "Prebujanje sistema"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:331
 msgid "Active time (ms)"
 msgstr "Čas aktivnosti (ms)"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:332
 msgid "Connected time (ms)"
 msgstr "Čas priklopa (ms)"
 
-#: confusb/usbinfo.py:318
+#: confusb/usbinfo.py:333
 msgid "URBs processed"
 msgstr "Obdelani URB"
 
-#: confusb/usbinfo.py:324
+#: confusb/usbinfo.py:339
 msgid "Power and statistics"
 msgstr "Napajanje in statistika"
 
-#: confusb/usbinfo.py:330
+#: confusb/usbinfo.py:345
 msgid "Topology"
 msgstr "Topologija"
 
-#: confusb/usbinfo.py:331
+#: confusb/usbinfo.py:346
 msgid "Connected to"
 msgstr "Priklopljeno na"
 
-#: confusb/usbinfo.py:332
+#: confusb/usbinfo.py:347
 msgid "Parent path"
 msgstr "Pot nadrejenega"
 
-#: confusb/usbinfo.py:359
+#: confusb/usbinfo.py:374
 #, python-brace-format
 msgid "{module} (loaded)"
 msgstr "{module} (naložen)"
 
-#: confusb/usbinfo.py:375
+#: confusb/usbinfo.py:390
 msgid "Storage"
 msgstr "Shramba"

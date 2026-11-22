@@ -3,6 +3,7 @@ confusb/app.py
 confusb/cli.py
 confusb/preferencias.py
 confusb/servicio.py
+confusb/sondas.py
 confusb/componentes.py
 confusb/kb.py
 confusb/resolver.py

@@ -142,6 +142,11 @@ class DeviceInfo:
     drivers: list[str] = field(default_factory=list)
     props: dict[str, str] = field(default_factory=dict)
     lsusb: str = ""
+    # Lo que añaden las sondas («sondas.py»): preguntan al propio aparato o al sistema datos que no están en sysfs
+    resumen: str = ""                                                    # p. ej. «OPPO A9 2020 · Android 11»
+    extra: list[tuple[str, list[tuple[str, str]]]] = field(default_factory=list)   # secciones (título, filas)
+    crudos: list[tuple[str, str]] = field(default_factory=list)          # textos largos (título, contenido)
+    consejos: list[str] = field(default_factory=list)                    # qué hacer para ver más datos
 
     @property
     def title(self) -> str:
@@ -178,8 +183,18 @@ class DeviceInfo:
                 driver=i.driver or _("(none)"), modules=", ".join(i.modules) or "-"))
             out += [f"  Endpoint {e}" for e in i.endpoints]
             out.append("")
+        for title, rows in self.extra:
+            out.append(f"== {title} ==")
+            out += [f"{k}: {v}" for k, v in rows]
+            out.append("")
+        for consejo in self.consejos:
+            out.append(f"* {consejo}")
+        if self.consejos:
+            out.append("")
         out.append(_("== udev properties =="))
         out += [f"{k}={v}" for k, v in sorted(self.props.items())]
+        for titulo, texto in self.crudos:
+            out += ["", f"== {titulo} ==", texto]
         out += ["", "== lsusb -v ==", self.lsusb]
         return "\n".join(out)
 

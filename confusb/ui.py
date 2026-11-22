@@ -70,6 +70,9 @@ class VentanaBase(Gtk.ApplicationWindow):
             columna.append(w)
         self.pagina = Gtk.Overlay(child=self.fondo)            # lo que se captura para el cristal difuminado
         self.pagina.add_overlay(columna)
+        # Que el Overlay mida a su contenido: si no, la ventana se puede encoger por debajo de lo que necesita la
+        # cabecera (unos 720 px) y todo se sale y se recorta por la derecha.
+        self.pagina.set_measure_overlay(columna, True)
         self.exterior = Gtk.Overlay(child=self.pagina)
         self.toasts = Adw.ToastOverlay(child=self.exterior)
         self.set_child(self.toasts)

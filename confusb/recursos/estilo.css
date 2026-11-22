@@ -64,7 +64,7 @@ button.cerrar:hover { background-color: alpha(@cx_text, 0.12); }
 .punto.desconectado { background-color: @cx_danger; }
 
 .aviso-error { border-radius: 6px; padding: 8px 10px; background-color: alpha(@cx_danger, 0.16); color: @cx_danger; }
-.bruto { font-family: "DejaVu Sans Mono", "SF Mono", Consolas, monospace; font-size: 12px; }
+.bruto { font-family: "DejaVu Sans Mono", "SF Mono", Consolas, monospace; font-size: 12px; line-height: 1.5; }
 expander title { padding: 4px 0; }
 scrolledwindow, scrolledwindow > viewport { background: transparent; }
 scale trough highlight { background-color: @accent_bg_color; }

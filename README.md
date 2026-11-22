@@ -37,6 +37,10 @@ confusb no salta con cada conexión. Al enchufar un dispositivo comprueba, por e
    predeterminada para unidades (el gestor de archivos, o la de su tipo de contenido si se ha configurado en
    GNOME). Si GNOME ya la abre por sí mismo (*Configuración › Medios extraíbles*), confusb no la abre otra vez.
 
+Lo que se ha ofrecido y sigue pendiente también aparece dentro de la aplicación, en la tarjeta **Avisos** de la
+ventana principal (con *Ver información* y *Descartar*). Al abrir la ventana se retiran las notificaciones del
+sistema y con ellas el contador del icono; el aviso caduca solo si el dispositivo se desconecta.
+
 Las dos últimas reglas se pueden cambiar en «Interfaz», que además tiene un botón para olvidar los
 dispositivos conocidos. De las unidades de almacenamiento se muestra la **capacidad**, el modelo, la tabla de
 particiones y, por partición, el sistema de ficheros, la etiqueta, el espacio libre y dónde está montada.

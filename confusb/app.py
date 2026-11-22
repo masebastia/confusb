@@ -8,6 +8,7 @@ import argparse
 import os
 import sys
 import threading
+from dataclasses import dataclass
 
 import gi
 
@@ -38,6 +39,19 @@ def resolve_target(target: str) -> str | None:
     return None
 
 
+@dataclass
+class Aviso:
+    """Una notificación de «dispositivo conectado» pendiente: se muestra también dentro de la ventana principal."""
+    path: str          # ruta sysfs del dispositivo
+    titulo: str
+    usb_id: str
+    hora: GLib.DateTime
+
+    @property
+    def notificacion(self) -> str:
+        return f"usb-{self.usb_id}"
+
+
 class ConfusbApp(Adw.Application):
     def __init__(self):
         super().__init__(application_id=APP_ID, flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
@@ -45,8 +59,9 @@ class ConfusbApp(Adw.Application):
         self.client: GUdev.Client | None = None
         self.held = False
         self.devices_win: DevicesWindow | None = None
+        self.avisos: dict[str, Aviso] = {}       # por ruta sysfs, en orden de llegada
         accion = Gio.SimpleAction.new("detalle", GLib.VariantType.new("s"))   # la usan las notificaciones
-        accion.connect("activate", lambda _a, v: self.open_device(v.get_string()))
+        accion.connect("activate", lambda _a, v: self.al_detalle(v.get_string()))
         self.add_action(accion)
         self.add_main_option("devices", ord("d"), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
                              _("Show the list of connected USB devices"), None)
@@ -99,6 +114,35 @@ class ConfusbApp(Adw.Application):
             self.devices_win = DevicesWindow(self, self.open_device)
             self.devices_win.connect("close-request", lambda *_: setattr(self, "devices_win", None) or False)
         self.devices_win.present()
+        self.marcar_leidos()
+
+    # ----------------------------------------------------------------- avisos
+    def marcar_leidos(self):
+        """Los avisos ya se ven dentro de la aplicación: se retiran las notificaciones del sistema (y con ellas
+        el contador del icono). Siguen en la tarjeta «Avisos» hasta que se descarten."""
+        for a in self.avisos.values():
+            self.withdraw_notification(a.notificacion)
+
+    def descartar_aviso(self, path: str):
+        a = self.avisos.pop(path, None)
+        if a:
+            self.withdraw_notification(a.notificacion)
+        self._pintar_avisos()
+
+    def descartar_avisos(self):
+        for path in list(self.avisos):
+            a = self.avisos.pop(path)
+            self.withdraw_notification(a.notificacion)
+        self._pintar_avisos()
+
+    def _pintar_avisos(self):
+        if self.devices_win:
+            self.devices_win.pintar_avisos()
+
+    def al_detalle(self, path: str):
+        """El usuario ha aceptado la oferta (notificación o tarjeta): se abre el dispositivo y el aviso se da por atendido."""
+        self.open_device(path)
+        self.descartar_aviso(path)
 
     # ---------------------------------------------------------------- eventos
     def on_uevent(self, _client, action: str, device: GUdev.Device):
@@ -114,6 +158,7 @@ class ConfusbApp(Adw.Application):
                       or _("USB device")).replace("_", " ")
             if path in self.windows:
                 self.windows[path].mark_disconnected()
+            self.descartar_aviso(path)       # ya no está: la oferta caduca
             if self.devices_win:
                 self.devices_win.refresh(aviso=_("Disconnected: {name}").format(name=nombre))
 
@@ -156,6 +201,10 @@ class ConfusbApp(Adw.Application):
 
     def notificar(self, info: usbinfo.DeviceInfo, path: str):
         """Ofrece abrir la información del dispositivo: botón «Ver información» (o pulsar la notificación)."""
+        self.avisos[path] = Aviso(path, info.title, info.usb_id, GLib.DateTime.new_now_local())
+        self._pintar_avisos()
+        if self.devices_win and self.devices_win.is_active():
+            return        # la ventana está delante: el aviso ya se ve dentro, sin notificación ni contador
         destino = GLib.Variant.new_string(path)
         n = Gio.Notification.new(_("USB device connected"))
         n.set_body(f"{info.title} · {info.usb_id}")

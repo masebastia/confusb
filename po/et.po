@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:01+0100\n"
+"POT-Creation-Date: 2026-11-22 20:08+0100\n"
 "PO-Revision-Date: 2026-11-22 13:37+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Eesti\n"
@@ -17,123 +17,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
-#: confusb/ui.py:233 confusb/ui.py:317
+#: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
+#: confusb/ui.py:276 confusb/ui.py:360
 msgid "Capacity"
 msgstr "Maht"
 
-#: confusb/almacenamiento.py:154
+#: confusb/almacenamiento.py:155
 msgid "No media inserted"
 msgstr "Andmekandjat pole sisestatud"
 
-#: confusb/almacenamiento.py:157
+#: confusb/almacenamiento.py:158
 msgid "Drive model"
 msgstr "Draivi mudel"
 
-#: confusb/almacenamiento.py:159
+#: confusb/almacenamiento.py:160
 msgid "Access"
 msgstr "Juurdepääs"
 
-#: confusb/almacenamiento.py:159
+#: confusb/almacenamiento.py:160
 msgid "Read-only"
 msgstr "Kirjutuskaitstud"
 
-#: confusb/almacenamiento.py:161
+#: confusb/almacenamiento.py:162
 msgid "Partition table"
 msgstr "Partitsioonitabel"
 
-#: confusb/almacenamiento.py:163
+#: confusb/almacenamiento.py:164
 msgid "File system"
 msgstr "Failisüsteem"
 
-#: confusb/almacenamiento.py:165
+#: confusb/almacenamiento.py:166
 msgid "Mounted at"
 msgstr "Haagitud asukohta"
 
-#: confusb/almacenamiento.py:173
+#: confusb/almacenamiento.py:174
 #, python-brace-format
 msgid "{free} free"
 msgstr "{free} vaba"
 
-#: confusb/almacenamiento.py:175
+#: confusb/almacenamiento.py:176
 #, python-brace-format
 msgid "mounted at {path}"
 msgstr "haagitud asukohta {path}"
 
-#: confusb/almacenamiento.py:177
+#: confusb/almacenamiento.py:178
 msgid "not mounted"
 msgstr "haakimata"
 
-#: confusb/almacenamiento.py:178
+#: confusb/almacenamiento.py:179
 #, python-brace-format
 msgid "Partition {name}"
 msgstr "Partitsioon {name}"
 
-#: confusb/app.py:52
+#: confusb/app.py:67
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:54
+#: confusb/app.py:69
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:65 confusb/app.py:241
+#: confusb/app.py:80 confusb/app.py:290
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Seadet «{name}» ei leitud"
 
-#: confusb/app.py:114
+#: confusb/app.py:158
 msgid "USB device"
 msgstr "USB-seade"
 
-#: confusb/app.py:118
+#: confusb/app.py:163
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Lahti ühendatud: {name}"
 
-#: confusb/app.py:138
+#: confusb/app.py:183
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Ühendatud: {name}"
 
-#: confusb/app.py:160
+#: confusb/app.py:209
 msgid "USB device connected"
 msgstr "USB-seade ühendatud"
 
-#: confusb/app.py:163
+#: confusb/app.py:212 confusb/ui.py:211
 msgid "View information"
 msgstr "Näita teavet"
 
-#: confusb/app.py:220
+#: confusb/app.py:269
 msgid ""
 "Shows the information of a USB device when it is connected and looks for its "
 "driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:222
+#: confusb/app.py:271
 msgid ""
 "Without arguments it runs as a service that watches the USB connections "
 "according to the settings."
 msgstr ""
 
-#: confusb/app.py:223
+#: confusb/app.py:272
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:224
+#: confusb/app.py:273
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:225
+#: confusb/app.py:274
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:227
+#: confusb/app.py:276
 msgid ""
 "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:228
+#: confusb/app.py:277
 msgid "show the version and exit"
 msgstr ""
 
@@ -674,12 +674,12 @@ msgstr "USB-jaotur"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Haldab tuuma «hub»-draiver."
 
-#: confusb/resolver.py:206 confusb/ui.py:331
+#: confusb/resolver.py:206 confusb/ui.py:374
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Liides {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:336
+#: confusb/resolver.py:207 confusb/ui.py:379
 msgid "none found"
 msgstr "ühtegi ei leitud"
 
@@ -863,167 +863,184 @@ msgstr "Värskenda"
 msgid "Read the connected devices again"
 msgstr "Loe ühendatud seadmed uuesti"
 
-#: confusb/ui.py:188
+#: confusb/ui.py:195
+msgid "Notices"
+msgstr "Teavitused"
+
+#: confusb/ui.py:199
+msgid "Dismiss all"
+msgstr "Loobu kõigist"
+
+#: confusb/ui.py:209
+#, python-brace-format
+msgid "Connected at {time}"
+msgstr "Ühendatud kell {time}"
+
+#: confusb/ui.py:213
+msgid "Dismiss"
+msgstr "Loobu"
+
+#: confusb/ui.py:231
 msgid "Reading devices…"
 msgstr "Seadmete lugemine…"
 
-#: confusb/ui.py:201
+#: confusb/ui.py:244
 msgid "Could not read the devices"
 msgstr "Seadmeid ei õnnestunud lugeda"
 
-#: confusb/ui.py:202
+#: confusb/ui.py:245
 msgid "Error reading the devices"
 msgstr "Viga seadmete lugemisel"
 
-#: confusb/ui.py:208
+#: confusb/ui.py:251
 msgid "No USB devices connected"
 msgstr "Ühtegi USB-seadet pole ühendatud"
 
-#: confusb/ui.py:209
+#: confusb/ui.py:252
 msgid "Connect one and it will appear here automatically."
 msgstr "Ühenda üks ja see ilmub siia automaatselt."
 
-#: confusb/ui.py:211
+#: confusb/ui.py:254
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Ühendatud USB-seadmed: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
+#: confusb/ui.py:271 confusb/ui.py:320 confusb/ui.py:358
 msgid "Unknown manufacturer"
 msgstr "Tundmatu tootja"
 
-#: confusb/ui.py:231
+#: confusb/ui.py:274
 msgid "Type"
 msgstr "Tüüp"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:277
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:235
+#: confusb/ui.py:278
 msgid "Driver"
 msgstr "Draiver"
 
-#: confusb/ui.py:235 confusb/ui.py:335
+#: confusb/ui.py:278 confusb/ui.py:378
 msgid "none"
 msgstr "puudub"
 
-#: confusb/ui.py:237
+#: confusb/ui.py:280
 msgid "View information →"
 msgstr "Vaata teavet →"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:306
 msgid "Back"
 msgstr "Tagasi"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:306
 msgid "Back to the list of devices"
 msgstr "Tagasi seadmete loendisse"
 
-#: confusb/ui.py:264
+#: confusb/ui.py:307
 msgid "Copy"
 msgstr "Kopeeri"
 
-#: confusb/ui.py:264
+#: confusb/ui.py:307
 msgid "Copy all the information to the clipboard"
 msgstr "Kopeeri kogu teave lõikelauale"
 
-#: confusb/ui.py:272
+#: confusb/ui.py:315
 msgid "Information"
 msgstr "Teave"
 
-#: confusb/ui.py:272
+#: confusb/ui.py:315
 msgid "Drivers and applications"
 msgstr "Draiverid ja rakendused"
 
-#: confusb/ui.py:281
+#: confusb/ui.py:324
 msgid "Connected"
 msgstr "Ühendatud"
 
-#: confusb/ui.py:301
+#: confusb/ui.py:344
 msgid "Information copied to the clipboard"
 msgstr "Teave kopeeriti lõikelauale"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:372
 msgid "Interfaces"
 msgstr "Liidesed"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:372
 msgid "Each interface can have its own driver"
 msgstr "Igal liidesel võib olla oma draiver"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:376
 msgid "Class"
 msgstr "Klass"
 
-#: confusb/ui.py:334
+#: confusb/ui.py:377
 msgid "Subclass / protocol"
 msgstr "Alamklass / protokoll"
 
-#: confusb/ui.py:335
+#: confusb/ui.py:378
 msgid "Bound driver"
 msgstr "Seotud draiver"
 
-#: confusb/ui.py:336
+#: confusb/ui.py:379
 msgid "Kernel modules"
 msgstr "Tuumamoodulid"
 
-#: confusb/ui.py:343
+#: confusb/ui.py:386
 msgid "Nodes created in the system"
 msgstr "Süsteemis loodud sõlmed"
 
-#: confusb/ui.py:347
+#: confusb/ui.py:390
 msgid "Raw data"
 msgstr "Töötlemata andmed"
 
-#: confusb/ui.py:348
+#: confusb/ui.py:391
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udevi atribuudid ({n})"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:395
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "lsusb -v väljund (täielikud USB-deskriptorid)"
 
-#: confusb/ui.py:367
+#: confusb/ui.py:410
 msgid "Looking for drivers and applications…"
 msgstr "Draiverite ja rakenduste otsimine…"
 
-#: confusb/ui.py:420
+#: confusb/ui.py:463
 msgid "No terminal emulator found"
 msgstr "Terminaliemulaatorit ei leitud"
 
-#: confusb/ui.py:422
+#: confusb/ui.py:465
 msgid "Press Enter to close…"
 msgstr "Sulgemiseks vajuta Enter…"
 
-#: confusb/ui.py:433
+#: confusb/ui.py:476
 msgid "Working…"
 msgstr "Töötan…"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:482
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Viga: {error}"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:485
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(väljumiskood {code})"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:489
 msgid "Installation completed"
 msgstr "Installimine lõpetatud"
 
-#: confusb/ui.py:449
+#: confusb/ui.py:492
 msgid "The installation failed"
 msgstr "Installimine ebaõnnestus"
 
-#: confusb/ui.py:458
+#: confusb/ui.py:501
 msgid "Disconnected"
 msgstr "Lahti ühendatud"
 
-#: confusb/ui.py:459
+#: confusb/ui.py:502
 msgid "The device has been disconnected"
 msgstr "Seade on lahti ühendatud"
 

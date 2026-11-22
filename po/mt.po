@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:01+0100\n"
+"POT-Creation-Date: 2026-11-22 20:08+0100\n"
 "PO-Revision-Date: 2026-11-22 13:39+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Malti\n"
@@ -18,123 +18,123 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==0 || ( n%100>1 && "
 "n%100<11) ? 1 : (n%100>10 && n%100<20 ) ? 2 : 3);\n"
 
-#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
-#: confusb/ui.py:233 confusb/ui.py:317
+#: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
+#: confusb/ui.py:276 confusb/ui.py:360
 msgid "Capacity"
 msgstr "Kapaċità"
 
-#: confusb/almacenamiento.py:154
+#: confusb/almacenamiento.py:155
 msgid "No media inserted"
 msgstr "Ebda mezz imdaħħal"
 
-#: confusb/almacenamiento.py:157
+#: confusb/almacenamiento.py:158
 msgid "Drive model"
 msgstr "Mudell tad-drajv"
 
-#: confusb/almacenamiento.py:159
+#: confusb/almacenamiento.py:160
 msgid "Access"
 msgstr "Aċċess"
 
-#: confusb/almacenamiento.py:159
+#: confusb/almacenamiento.py:160
 msgid "Read-only"
 msgstr "Qari biss"
 
-#: confusb/almacenamiento.py:161
+#: confusb/almacenamiento.py:162
 msgid "Partition table"
 msgstr "Tabella tal-partizzjonijiet"
 
-#: confusb/almacenamiento.py:163
+#: confusb/almacenamiento.py:164
 msgid "File system"
 msgstr "Sistema tal-fajls"
 
-#: confusb/almacenamiento.py:165
+#: confusb/almacenamiento.py:166
 msgid "Mounted at"
 msgstr "Immuntat fuq"
 
-#: confusb/almacenamiento.py:173
+#: confusb/almacenamiento.py:174
 #, python-brace-format
 msgid "{free} free"
 msgstr "{free} liberu"
 
-#: confusb/almacenamiento.py:175
+#: confusb/almacenamiento.py:176
 #, python-brace-format
 msgid "mounted at {path}"
 msgstr "immuntat fuq {path}"
 
-#: confusb/almacenamiento.py:177
+#: confusb/almacenamiento.py:178
 msgid "not mounted"
 msgstr "mhux immuntat"
 
-#: confusb/almacenamiento.py:178
+#: confusb/almacenamiento.py:179
 #, python-brace-format
 msgid "Partition {name}"
 msgstr "Partizzjoni {name}"
 
-#: confusb/app.py:52
+#: confusb/app.py:67
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:54
+#: confusb/app.py:69
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:65 confusb/app.py:241
+#: confusb/app.py:80 confusb/app.py:290
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "L-apparat «{name}» ma nstabx"
 
-#: confusb/app.py:114
+#: confusb/app.py:158
 msgid "USB device"
 msgstr "apparat USB"
 
-#: confusb/app.py:118
+#: confusb/app.py:163
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Skonnettjat: {name}"
 
-#: confusb/app.py:138
+#: confusb/app.py:183
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Konness: {name}"
 
-#: confusb/app.py:160
+#: confusb/app.py:209
 msgid "USB device connected"
 msgstr "Apparat USB konness"
 
-#: confusb/app.py:163
+#: confusb/app.py:212 confusb/ui.py:211
 msgid "View information"
 msgstr "Uri l-informazzjoni"
 
-#: confusb/app.py:220
+#: confusb/app.py:269
 msgid ""
 "Shows the information of a USB device when it is connected and looks for its "
 "driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:222
+#: confusb/app.py:271
 msgid ""
 "Without arguments it runs as a service that watches the USB connections "
 "according to the settings."
 msgstr ""
 
-#: confusb/app.py:223
+#: confusb/app.py:272
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:224
+#: confusb/app.py:273
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:225
+#: confusb/app.py:274
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:227
+#: confusb/app.py:276
 msgid ""
 "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:228
+#: confusb/app.py:277
 msgid "show the version and exit"
 msgstr ""
 
@@ -675,12 +675,12 @@ msgstr "Hub USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Immaniġġjat mid-driver «hub» tal-kernel."
 
-#: confusb/resolver.py:206 confusb/ui.py:331
+#: confusb/resolver.py:206 confusb/ui.py:374
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Interfaċċja {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:336
+#: confusb/resolver.py:207 confusb/ui.py:379
 msgid "none found"
 msgstr "ma nstab ebda wieħed"
 
@@ -865,167 +865,184 @@ msgstr "Irfreska"
 msgid "Read the connected devices again"
 msgstr "Aqra mill-ġdid l-apparati konnessi"
 
-#: confusb/ui.py:188
+#: confusb/ui.py:195
+msgid "Notices"
+msgstr "Notifiki"
+
+#: confusb/ui.py:199
+msgid "Dismiss all"
+msgstr "Ċaħħad kollha"
+
+#: confusb/ui.py:209
+#, python-brace-format
+msgid "Connected at {time}"
+msgstr "Imqabbad fil-{time}"
+
+#: confusb/ui.py:213
+msgid "Dismiss"
+msgstr "Ċaħħad"
+
+#: confusb/ui.py:231
 msgid "Reading devices…"
 msgstr "Qed jinqraw l-apparati…"
 
-#: confusb/ui.py:201
+#: confusb/ui.py:244
 msgid "Could not read the devices"
 msgstr "L-apparati ma setgħux jinqraw"
 
-#: confusb/ui.py:202
+#: confusb/ui.py:245
 msgid "Error reading the devices"
 msgstr "Żball fil-qari tal-apparati"
 
-#: confusb/ui.py:208
+#: confusb/ui.py:251
 msgid "No USB devices connected"
 msgstr "Ebda apparat USB konness"
 
-#: confusb/ui.py:209
+#: confusb/ui.py:252
 msgid "Connect one and it will appear here automatically."
 msgstr "Qabbad wieħed u jidher hawn awtomatikament."
 
-#: confusb/ui.py:211
+#: confusb/ui.py:254
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Apparati USB konnessi: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
+#: confusb/ui.py:271 confusb/ui.py:320 confusb/ui.py:358
 msgid "Unknown manufacturer"
 msgstr "Manifattur mhux magħruf"
 
-#: confusb/ui.py:231
+#: confusb/ui.py:274
 msgid "Type"
 msgstr "Tip"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:277
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:235
+#: confusb/ui.py:278
 msgid "Driver"
 msgstr "Driver"
 
-#: confusb/ui.py:235 confusb/ui.py:335
+#: confusb/ui.py:278 confusb/ui.py:378
 msgid "none"
 msgstr "xejn"
 
-#: confusb/ui.py:237
+#: confusb/ui.py:280
 msgid "View information →"
 msgstr "Ara l-informazzjoni →"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:306
 msgid "Back"
 msgstr "Lura"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:306
 msgid "Back to the list of devices"
 msgstr "Lura għal-lista tal-apparati"
 
-#: confusb/ui.py:264
+#: confusb/ui.py:307
 msgid "Copy"
 msgstr "Ikkopja"
 
-#: confusb/ui.py:264
+#: confusb/ui.py:307
 msgid "Copy all the information to the clipboard"
 msgstr "Ikkopja l-informazzjoni kollha fil-clipboard"
 
-#: confusb/ui.py:272
+#: confusb/ui.py:315
 msgid "Information"
 msgstr "Informazzjoni"
 
-#: confusb/ui.py:272
+#: confusb/ui.py:315
 msgid "Drivers and applications"
 msgstr "Drivers u applikazzjonijiet"
 
-#: confusb/ui.py:281
+#: confusb/ui.py:324
 msgid "Connected"
 msgstr "Konness"
 
-#: confusb/ui.py:301
+#: confusb/ui.py:344
 msgid "Information copied to the clipboard"
 msgstr "L-informazzjoni ġiet ikkopjata fil-clipboard"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:372
 msgid "Interfaces"
 msgstr "Interfaċċji"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:372
 msgid "Each interface can have its own driver"
 msgstr "Kull interfaċċja jista' jkollha d-driver tagħha stess"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:376
 msgid "Class"
 msgstr "Klassi"
 
-#: confusb/ui.py:334
+#: confusb/ui.py:377
 msgid "Subclass / protocol"
 msgstr "Subklassi / protokoll"
 
-#: confusb/ui.py:335
+#: confusb/ui.py:378
 msgid "Bound driver"
 msgstr "Driver marbut"
 
-#: confusb/ui.py:336
+#: confusb/ui.py:379
 msgid "Kernel modules"
 msgstr "Moduli tal-kernel"
 
-#: confusb/ui.py:343
+#: confusb/ui.py:386
 msgid "Nodes created in the system"
 msgstr "Nodi maħluqa fis-sistema"
 
-#: confusb/ui.py:347
+#: confusb/ui.py:390
 msgid "Raw data"
 msgstr "Dejta mhux ipproċessata"
 
-#: confusb/ui.py:348
+#: confusb/ui.py:391
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Proprjetajiet udev ({n})"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:395
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Output ta' lsusb -v (deskrittori USB sħaħ)"
 
-#: confusb/ui.py:367
+#: confusb/ui.py:410
 msgid "Looking for drivers and applications…"
 msgstr "Qed jinstabu drivers u applikazzjonijiet…"
 
-#: confusb/ui.py:420
+#: confusb/ui.py:463
 msgid "No terminal emulator found"
 msgstr "Ma nstab ebda emulatur tat-terminal"
 
-#: confusb/ui.py:422
+#: confusb/ui.py:465
 msgid "Press Enter to close…"
 msgstr "Agħfas Enter biex tagħlaq…"
 
-#: confusb/ui.py:433
+#: confusb/ui.py:476
 msgid "Working…"
 msgstr "Qed jaħdem…"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:482
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Żball: {error}"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:485
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(kodiċi tal-ħruġ {code})"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:489
 msgid "Installation completed"
 msgstr "L-installazzjoni tlestiet"
 
-#: confusb/ui.py:449
+#: confusb/ui.py:492
 msgid "The installation failed"
 msgstr "L-installazzjoni falliet"
 
-#: confusb/ui.py:458
+#: confusb/ui.py:501
 msgid "Disconnected"
 msgstr "Skonnettjat"
 
-#: confusb/ui.py:459
+#: confusb/ui.py:502
 msgid "The device has been disconnected"
 msgstr "L-apparat ġie skonnettjat"
 

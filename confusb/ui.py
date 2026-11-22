@@ -171,8 +171,51 @@ class DevicesWindow(VentanaBase):
         self.grid.set_margin_end(20)
         self.grid.set_margin_bottom(16)
         self.grid.set_margin_top(8)
-        self.cuerpo.append(desplazable(self.grid))
+        self.caja_avisos = pila(0)          # tarjeta «Avisos»: lo que se ha ofrecido al conectar y sigue pendiente
+        self.caja_avisos.set_margin_start(20)
+        self.caja_avisos.set_margin_end(20)
+        self.caja_avisos.set_margin_top(8)
+        contenido = pila(0)
+        contenido.append(self.caja_avisos)
+        contenido.append(self.grid)
+        self.cuerpo.append(desplazable(contenido))
+        self.pintar_avisos()
         self.refresh()
+
+    def pintar_avisos(self):
+        app = self.get_application()
+        while (hijo := self.caja_avisos.get_first_child()) is not None:
+            self.caja_avisos.remove(hijo)
+        avisos = list(app.avisos.values())
+        self.caja_avisos.set_visible(bool(avisos))
+        if not avisos:
+            return
+        c = tarjeta()
+        cab = Gtk.Box(spacing=10)
+        titulo = label(_("Notices"), "section")
+        titulo.set_hexpand(True)
+        cab.append(titulo)
+        if len(avisos) > 1:
+            todos = boton(_("Dismiss all"))
+            todos.connect("clicked", lambda *_: app.descartar_avisos())
+            cab.append(todos)
+        c.append(cab)
+        for a in avisos:
+            fila = Gtk.Box(spacing=10)
+            fila.append(Gtk.Label(label="🔔", css_classes=["mod-icon"]))
+            txt = pila(2)
+            txt.set_hexpand(True)
+            txt.append(label(f"{a.titulo} · {a.usb_id}", "mod-name"))
+            txt.append(label(_("Connected at {time}").format(time=a.hora.format("%R")), "dim"))
+            fila.append(txt)
+            ver = boton(_("View information"))
+            ver.connect("clicked", lambda _b, p=a.path: app.al_detalle(p))
+            descartar = boton(_("Dismiss"))
+            descartar.connect("clicked", lambda _b, p=a.path: app.descartar_aviso(p))
+            fila.append(ver)
+            fila.append(descartar)
+            c.append(fila)
+        self.caja_avisos.append(c)
 
     def al_cambiar_ajustes(self):
         for p in self.pies:

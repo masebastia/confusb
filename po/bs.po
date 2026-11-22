@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 20:01+0100\n"
+"POT-Creation-Date: 2026-11-22 20:08+0100\n"
 "PO-Revision-Date: 2026-11-22 13:32+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Bosanski\n"
@@ -18,123 +18,123 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
-#: confusb/ui.py:233 confusb/ui.py:317
+#: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
+#: confusb/ui.py:276 confusb/ui.py:360
 msgid "Capacity"
 msgstr "Kapacitet"
 
-#: confusb/almacenamiento.py:154
+#: confusb/almacenamiento.py:155
 msgid "No media inserted"
 msgstr "Medij nije umetnut"
 
-#: confusb/almacenamiento.py:157
+#: confusb/almacenamiento.py:158
 msgid "Drive model"
 msgstr "Model uređaja"
 
-#: confusb/almacenamiento.py:159
+#: confusb/almacenamiento.py:160
 msgid "Access"
 msgstr "Pristup"
 
-#: confusb/almacenamiento.py:159
+#: confusb/almacenamiento.py:160
 msgid "Read-only"
 msgstr "Samo za čitanje"
 
-#: confusb/almacenamiento.py:161
+#: confusb/almacenamiento.py:162
 msgid "Partition table"
 msgstr "Tabela particija"
 
-#: confusb/almacenamiento.py:163
+#: confusb/almacenamiento.py:164
 msgid "File system"
 msgstr "Datotečni sistem"
 
-#: confusb/almacenamiento.py:165
+#: confusb/almacenamiento.py:166
 msgid "Mounted at"
 msgstr "Montirano na"
 
-#: confusb/almacenamiento.py:173
+#: confusb/almacenamiento.py:174
 #, python-brace-format
 msgid "{free} free"
 msgstr "{free} slobodno"
 
-#: confusb/almacenamiento.py:175
+#: confusb/almacenamiento.py:176
 #, python-brace-format
 msgid "mounted at {path}"
 msgstr "montirano na {path}"
 
-#: confusb/almacenamiento.py:177
+#: confusb/almacenamiento.py:178
 msgid "not mounted"
 msgstr "nije montirano"
 
-#: confusb/almacenamiento.py:178
+#: confusb/almacenamiento.py:179
 #, python-brace-format
 msgid "Partition {name}"
 msgstr "Particija {name}"
 
-#: confusb/app.py:52
+#: confusb/app.py:67
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:54
+#: confusb/app.py:69
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:65 confusb/app.py:241
+#: confusb/app.py:80 confusb/app.py:290
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Uređaj «{name}» nije pronađen"
 
-#: confusb/app.py:114
+#: confusb/app.py:158
 msgid "USB device"
 msgstr "USB uređaj"
 
-#: confusb/app.py:118
+#: confusb/app.py:163
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Isključeno: {name}"
 
-#: confusb/app.py:138
+#: confusb/app.py:183
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Povezano: {name}"
 
-#: confusb/app.py:160
+#: confusb/app.py:209
 msgid "USB device connected"
 msgstr "USB uređaj povezan"
 
-#: confusb/app.py:163
+#: confusb/app.py:212 confusb/ui.py:211
 msgid "View information"
 msgstr "Prikaži informacije"
 
-#: confusb/app.py:220
+#: confusb/app.py:269
 msgid ""
 "Shows the information of a USB device when it is connected and looks for its "
 "driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:222
+#: confusb/app.py:271
 msgid ""
 "Without arguments it runs as a service that watches the USB connections "
 "according to the settings."
 msgstr ""
 
-#: confusb/app.py:223
+#: confusb/app.py:272
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:224
+#: confusb/app.py:273
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:225
+#: confusb/app.py:274
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:227
+#: confusb/app.py:276
 msgid ""
 "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:228
+#: confusb/app.py:277
 msgid "show the version and exit"
 msgstr ""
 
@@ -675,12 +675,12 @@ msgstr "USB razdjelnik"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Upravlja njime upravljački program «hub» u jezgri."
 
-#: confusb/resolver.py:206 confusb/ui.py:331
+#: confusb/resolver.py:206 confusb/ui.py:374
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Sučelje {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:336
+#: confusb/resolver.py:207 confusb/ui.py:379
 msgid "none found"
 msgstr "nijedan nije pronađen"
 
@@ -869,167 +869,184 @@ msgstr "Osvježi"
 msgid "Read the connected devices again"
 msgstr "Ponovno pročitaj povezane uređaje"
 
-#: confusb/ui.py:188
+#: confusb/ui.py:195
+msgid "Notices"
+msgstr "Obavještenja"
+
+#: confusb/ui.py:199
+msgid "Dismiss all"
+msgstr "Odbaci sve"
+
+#: confusb/ui.py:209
+#, python-brace-format
+msgid "Connected at {time}"
+msgstr "Priključeno u {time}"
+
+#: confusb/ui.py:213
+msgid "Dismiss"
+msgstr "Odbaci"
+
+#: confusb/ui.py:231
 msgid "Reading devices…"
 msgstr "Čitanje uređaja…"
 
-#: confusb/ui.py:201
+#: confusb/ui.py:244
 msgid "Could not read the devices"
 msgstr "Uređaje nije bilo moguće pročitati"
 
-#: confusb/ui.py:202
+#: confusb/ui.py:245
 msgid "Error reading the devices"
 msgstr "Greška pri čitanju uređaja"
 
-#: confusb/ui.py:208
+#: confusb/ui.py:251
 msgid "No USB devices connected"
 msgstr "Nema povezanih USB uređaja"
 
-#: confusb/ui.py:209
+#: confusb/ui.py:252
 msgid "Connect one and it will appear here automatically."
 msgstr "Spojite jedan i pojavit će se ovdje automatski."
 
-#: confusb/ui.py:211
+#: confusb/ui.py:254
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Povezani USB uređaji: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
+#: confusb/ui.py:271 confusb/ui.py:320 confusb/ui.py:358
 msgid "Unknown manufacturer"
 msgstr "Nepoznati proizvođač"
 
-#: confusb/ui.py:231
+#: confusb/ui.py:274
 msgid "Type"
 msgstr "Vrsta"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:277
 msgid "Port"
 msgstr "Priključak"
 
-#: confusb/ui.py:235
+#: confusb/ui.py:278
 msgid "Driver"
 msgstr "Upravljački program"
 
-#: confusb/ui.py:235 confusb/ui.py:335
+#: confusb/ui.py:278 confusb/ui.py:378
 msgid "none"
 msgstr "nijedan"
 
-#: confusb/ui.py:237
+#: confusb/ui.py:280
 msgid "View information →"
 msgstr "Prikaži informacije →"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:306
 msgid "Back"
 msgstr "Natrag"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:306
 msgid "Back to the list of devices"
 msgstr "Natrag na popis uređaja"
 
-#: confusb/ui.py:264
+#: confusb/ui.py:307
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: confusb/ui.py:264
+#: confusb/ui.py:307
 msgid "Copy all the information to the clipboard"
 msgstr "Kopiraj sve informacije u međuspremnik"
 
-#: confusb/ui.py:272
+#: confusb/ui.py:315
 msgid "Information"
 msgstr "Informacije"
 
-#: confusb/ui.py:272
+#: confusb/ui.py:315
 msgid "Drivers and applications"
 msgstr "Upravljački programi i aplikacije"
 
-#: confusb/ui.py:281
+#: confusb/ui.py:324
 msgid "Connected"
 msgstr "Povezano"
 
-#: confusb/ui.py:301
+#: confusb/ui.py:344
 msgid "Information copied to the clipboard"
 msgstr "Informacije kopirane u međuspremnik"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:372
 msgid "Interfaces"
 msgstr "Sučelja"
 
-#: confusb/ui.py:329
+#: confusb/ui.py:372
 msgid "Each interface can have its own driver"
 msgstr "Svako sučelje može imati vlastiti upravljački program"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:376
 msgid "Class"
 msgstr "Klasa"
 
-#: confusb/ui.py:334
+#: confusb/ui.py:377
 msgid "Subclass / protocol"
 msgstr "Podklasa / protokol"
 
-#: confusb/ui.py:335
+#: confusb/ui.py:378
 msgid "Bound driver"
 msgstr "Povezani upravljački program"
 
-#: confusb/ui.py:336
+#: confusb/ui.py:379
 msgid "Kernel modules"
 msgstr "Moduli jezgre"
 
-#: confusb/ui.py:343
+#: confusb/ui.py:386
 msgid "Nodes created in the system"
 msgstr "Čvorovi stvoreni u sustavu"
 
-#: confusb/ui.py:347
+#: confusb/ui.py:390
 msgid "Raw data"
 msgstr "Neobrađeni podaci"
 
-#: confusb/ui.py:348
+#: confusb/ui.py:391
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Svojstva udev ({n})"
 
-#: confusb/ui.py:352
+#: confusb/ui.py:395
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Izlaz naredbe lsusb -v (potpuni USB deskriptori)"
 
-#: confusb/ui.py:367
+#: confusb/ui.py:410
 msgid "Looking for drivers and applications…"
 msgstr "Traženje upravljačkih programa i aplikacija…"
 
-#: confusb/ui.py:420
+#: confusb/ui.py:463
 msgid "No terminal emulator found"
 msgstr "Nije pronađen nijedan emulator terminala"
 
-#: confusb/ui.py:422
+#: confusb/ui.py:465
 msgid "Press Enter to close…"
 msgstr "Pritisnite Enter za zatvaranje…"
 
-#: confusb/ui.py:433
+#: confusb/ui.py:476
 msgid "Working…"
 msgstr "Radim…"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:482
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Greška: {error}"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:485
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(izlazni kod {code})"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:489
 msgid "Installation completed"
 msgstr "Instalacija je dovršena"
 
-#: confusb/ui.py:449
+#: confusb/ui.py:492
 msgid "The installation failed"
 msgstr "Instalacija nije uspjela"
 
-#: confusb/ui.py:458
+#: confusb/ui.py:501
 msgid "Disconnected"
 msgstr "Isključeno"
 
-#: confusb/ui.py:459
+#: confusb/ui.py:502
 msgid "The device has been disconnected"
 msgstr "Uređaj je odpovezan"
 

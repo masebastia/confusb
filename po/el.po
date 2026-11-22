@@ -1,0 +1,1205 @@
+# Translation of confusb into Ελληνικά (el).
+# This file is distributed under the same license as the confusb package.
+# The translations in this file were generated with AI (Claude) and are pending review by native speakers:
+# corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: confusb 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
+"POT-Creation-Date: 2026-11-22 13:37+0000\n"
+"PO-Revision-Date: 2026-11-22 13:37+0000\n"
+"Last-Translator: Claude (AI), pending native review\n"
+"Language-Team: Ελληνικά\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: confusb/app.py:50
+msgid "Show the list of connected USB devices"
+msgstr ""
+
+#: confusb/app.py:52
+msgid "Show a device's window (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:63 confusb/app.py:212
+#, python-brace-format
+msgid "Device «{name}» not found"
+msgstr "Η συσκευή «{name}» δεν βρέθηκε"
+
+#: confusb/app.py:110
+msgid "USB device"
+msgstr "συσκευή USB"
+
+#: confusb/app.py:114
+#, python-brace-format
+msgid "Disconnected: {name}"
+msgstr "Αποσυνδέθηκε: {name}"
+
+#: confusb/app.py:125
+#, python-brace-format
+msgid "Connected: {name}"
+msgstr "Συνδέθηκε: {name}"
+
+#: confusb/app.py:130
+msgid "USB device connected"
+msgstr "Συνδέθηκε συσκευή USB"
+
+#: confusb/app.py:191
+msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+msgstr ""
+
+#: confusb/app.py:193
+msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+msgstr ""
+
+#: confusb/app.py:194
+msgid "show the window with the connected devices"
+msgstr ""
+
+#: confusb/app.py:195
+msgid "open the details of a device (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:196
+msgid "list the USB devices and exit"
+msgstr ""
+
+#: confusb/app.py:198
+msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:199
+msgid "show the version and exit"
+msgstr ""
+
+#: confusb/ajustes.py:40
+msgid "Like the theme"
+msgstr "Όπως το θέμα"
+
+#: confusb/ajustes.py:41
+msgid "Blue"
+msgstr "Μπλε"
+
+#: confusb/ajustes.py:42
+msgid "Green"
+msgstr "Πράσινο"
+
+#: confusb/ajustes.py:43
+msgid "Cyan"
+msgstr "Κυανό"
+
+#: confusb/ajustes.py:44
+msgid "Violet"
+msgstr "Βιολετί"
+
+#: confusb/ajustes.py:45
+msgid "Pink"
+msgstr "Ροζ"
+
+#: confusb/ajustes.py:46
+msgid "Amber"
+msgstr "Κεχριμπαρί"
+
+#: confusb/ajustes.py:47
+msgid "Light gray"
+msgstr "Ανοιχτό γκρι"
+
+#: confusb/ajustes.py:50
+msgid "Highlighted (border and glow on hover)"
+msgstr "Τονισμένο (περίγραμμα και λάμψη στο πέρασμα του ποντικιού)"
+
+#: confusb/ajustes.py:51
+msgid "Subtle (discreet border, no glow)"
+msgstr "Διακριτικό (διακριτικό περίγραμμα, χωρίς λάμψη)"
+
+#: confusb/ajustes.py:52
+msgid "No frame"
+msgstr "Χωρίς πλαίσιο"
+
+#: confusb/ajustes.py:55
+msgid "Open a window with the information"
+msgstr "Άνοιγμα παραθύρου με τις πληροφορίες"
+
+#: confusb/ajustes.py:56
+msgid "Show a notification"
+msgstr "Εμφάνιση ειδοποίησης"
+
+#: confusb/ajustes.py:57
+msgid "Do nothing"
+msgstr "Καμία ενέργεια"
+
+#: confusb/componentes.py:27
+msgid "Installed"
+msgstr "Εγκατεστημένο"
+
+#: confusb/componentes.py:27
+msgid "Active driver"
+msgstr "Ενεργό πρόγραμμα οδήγησης"
+
+#: confusb/componentes.py:27
+msgid "User space"
+msgstr "Χώρος χρήστη"
+
+#: confusb/componentes.py:27
+msgid "OK"
+msgstr ""
+
+#: confusb/componentes.py:27
+msgid "Supported"
+msgstr "Υποστηρίζεται"
+
+#: confusb/componentes.py:27
+msgid "Has driver"
+msgstr "Έχει πρόγραμμα οδήγησης"
+
+#: confusb/componentes.py:28
+msgid "Needs installing"
+msgstr "Απαιτείται εγκατάσταση"
+
+#: confusb/componentes.py:28
+msgid "Not bound"
+msgstr "Μη συσχετισμένο"
+
+#: confusb/componentes.py:29
+msgid "No driver"
+msgstr "Χωρίς πρόγραμμα οδήγησης"
+
+#: confusb/componentes.py:29
+msgid "Not in the repositories"
+msgstr "Δεν υπάρχει στα αποθετήρια"
+
+#: confusb/componentes.py:141
+msgid "Language"
+msgstr "Γλώσσα"
+
+#: confusb/componentes.py:307
+msgid "Close the notice"
+msgstr "Κλείσιμο της ειδοποίησης"
+
+#: confusb/componentes.py:454 confusb/ui.py:83
+msgid "Interface"
+msgstr "Διεπαφή"
+
+#: confusb/componentes.py:458
+msgid "Cards"
+msgstr "Κάρτες"
+
+#: confusb/componentes.py:459
+msgid "Card opacity"
+msgstr "Αδιαφάνεια καρτών"
+
+#: confusb/componentes.py:461
+msgid "Corners"
+msgstr "Γωνίες"
+
+#: confusb/componentes.py:464
+msgid "Title color"
+msgstr "Χρώμα τίτλων"
+
+#: confusb/componentes.py:474
+msgid "Frame"
+msgstr "Πλαίσιο"
+
+#: confusb/componentes.py:476
+msgid "Shadow under the cards"
+msgstr "Σκιά κάτω από τις κάρτες"
+
+#: confusb/componentes.py:479
+msgid "Show «View information →» on the cards"
+msgstr "Εμφάνιση του «Προβολή πληροφοριών →» στις κάρτες"
+
+#: confusb/componentes.py:483
+msgid "When a device is connected"
+msgstr "Όταν συνδέεται μια συσκευή"
+
+#: confusb/componentes.py:486
+msgid "Reset"
+msgstr "Επαναφορά"
+
+#: confusb/componentes.py:486 confusb/componentes.py:533
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: confusb/componentes.py:517
+msgid "About confusb"
+msgstr "Σχετικά με το confusb"
+
+#: confusb/componentes.py:524
+#, python-brace-format
+msgid "Version {version}"
+msgstr "Έκδοση {version}"
+
+#: confusb/componentes.py:525
+msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
+msgstr "Ειδοποιεί όταν συνδέεται μια συσκευή USB, εμφανίζει τις πληροφορίες της και αναζητά το πρόγραμμα οδήγησης και τις εφαρμογές για τη χρήση της."
+
+#: confusb/componentes.py:529
+msgid "License GPL-3.0-or-later"
+msgstr "Άδεια GPL-3.0-or-later"
+
+#: confusb/componentes.py:530
+msgid "Source code on GitHub"
+msgstr "Πηγαίος κώδικας στο GitHub"
+
+#: confusb/kb.py:17
+msgid "PC/SC service and CCID drivers"
+msgstr "Υπηρεσία PC/SC και προγράμματα οδήγησης CCID"
+
+#: confusb/kb.py:18
+msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
+msgstr "Το pcscd είναι η υπηρεσία που διαχειρίζεται τους αναγνώστες έξυπνων καρτών· το libccid παρέχει το πρόγραμμα οδήγησης για τυπικούς αναγνώστες USB (CCID). Χωρίς το pcscd ο αναγνώστης εμφανίζεται στο USB αλλά καμία εφαρμογή δεν μπορεί να τον χρησιμοποιήσει."
+
+#: confusb/kb.py:22
+msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
+msgstr "OpenSC (PKCS#11, υποστηρίζει το DNIe και άλλες κάρτες)"
+
+#: confusb/kb.py:23
+msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
+msgstr "Βιβλιοθήκη και εργαλεία για κρυπτογραφικές κάρτες. Περιλαμβάνει υποστήριξη για το DNIe (3.0/4.0) και την ενότητα PKCS#11 που χρησιμοποιούν το Firefox/Chromium και το AutoFirma. Τα παλαιότερα DNIe (2.0) μπορεί να χρειάζονται την επίσημη ενότητα DNIe."
+
+#: confusb/kb.py:26
+msgid "List readers"
+msgstr "Λίστα αναγνωστών"
+
+#: confusb/kb.py:27
+msgid "Card info (ATR)"
+msgstr "Πληροφορίες κάρτας (ATR)"
+
+#: confusb/kb.py:28
+msgid "List PKCS#11 slots"
+msgstr "Λίστα θυρών PKCS#11"
+
+#: confusb/kb.py:29
+msgid "List certificates"
+msgstr "Λίστα πιστοποιητικών"
+
+#: confusb/kb.py:34
+msgid "pcsc-tools (reader and card monitor)"
+msgstr "pcsc-tools (παρακολούθηση αναγνωστών και καρτών)"
+
+#: confusb/kb.py:35
+msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
+msgstr "Το pcsc_scan εμφανίζει σε πραγματικό χρόνο πότε εισάγεται ή αφαιρείται μια κάρτα και αποκωδικοποιεί το ATR της."
+
+#: confusb/kb.py:37
+msgid "Open pcsc_scan"
+msgstr "Άνοιγμα του pcsc_scan"
+
+#: confusb/kb.py:40
+msgid "AutoFirma (electronic signature)"
+msgstr "AutoFirma (ηλεκτρονική υπογραφή)"
+
+#: confusb/kb.py:41
+msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
+msgstr "Επίσημη εφαρμογή της ισπανικής κυβέρνησης για την υπογραφή εγγράφων με το DNIe ή ψηφιακό πιστοποιητικό. Δεν υπάρχει στα αποθετήρια του Debian: λαμβάνεται από το firmaelectronica.gob.es."
+
+#: confusb/kb.py:48 confusb/usbinfo.py:23
+msgid "Mass storage"
+msgstr "Μαζική αποθήκευση"
+
+#: confusb/kb.py:48
+msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
+msgstr "Το σύστημα το προσαρτά αυτόματα (udisks2). Για μορφοποίηση ή έλεγχο χρησιμοποιήστε τους Δίσκους."
+
+#: confusb/kb.py:49
+msgid "Open Disks"
+msgstr "Άνοιγμα των Δίσκων"
+
+#: confusb/kb.py:52
+msgid "Printer (CUPS)"
+msgstr "Εκτυπωτής (CUPS)"
+
+#: confusb/kb.py:52
+msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
+msgstr "Το CUPS ανιχνεύει αυτόματα τους εκτυπωτές USB· ρυθμίζεται στις Ρυθμίσεις → Εκτυπωτές."
+
+#: confusb/kb.py:53
+msgid "Configure printers"
+msgstr "Ρύθμιση εκτυπωτών"
+
+#: confusb/kb.py:56
+msgid "Camera / video (UVC)"
+msgstr "Κάμερα / βίντεο (UVC)"
+
+#: confusb/kb.py:56
+msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
+msgstr "Υποστηρίζεται από το πρόγραμμα οδήγησης uvcvideo του πυρήνα. Δοκιμάστε την με το Snapshot/Cheese."
+
+#: confusb/kb.py:57
+msgid "List video devices"
+msgstr "Λίστα συσκευών βίντεο"
+
+#: confusb/kb.py:58
+msgid "Open Snapshot"
+msgstr "Άνοιγμα του Snapshot"
+
+#: confusb/kb.py:61
+msgid "USB audio"
+msgstr "Ήχος USB"
+
+#: confusb/kb.py:61
+msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr "Υποστηρίζεται από το snd-usb-audio. Ρυθμίστε την ένταση και τις εξόδους με το pavucontrol."
+
+#: confusb/kb.py:62
+msgid "Volume control"
+msgstr "Έλεγχος έντασης"
+
+#: confusb/kb.py:65
+msgid "BlueZ stack with a graphical manager."
+msgstr "Στοίβα BlueZ με γραφικό διαχειριστή."
+
+#: confusb/kb.py:66
+msgid "Bluetooth manager"
+msgstr "Διαχειριστής Bluetooth"
+
+#: confusb/kb.py:69
+msgid "Still camera / image scanner"
+msgstr "Φωτογραφική μηχανή / σαρωτής εικόνων"
+
+#: confusb/kb.py:69
+msgid "libgphoto2 for PTP cameras; SANE for scanners."
+msgstr "libgphoto2 για μηχανές PTP· SANE για σαρωτές."
+
+#: confusb/kb.py:70
+msgid "Detect cameras"
+msgstr "Εντοπισμός μηχανών"
+
+#: confusb/kb.py:71
+msgid "Scan documents"
+msgstr "Σάρωση εγγράφων"
+
+#: confusb/kb.py:74
+msgid "DFU / application specific device"
+msgstr "Συσκευή DFU / ειδική για εφαρμογή"
+
+#: confusb/kb.py:74
+msgid "To update firmware over DFU."
+msgstr "Για ενημέρωση υλικολογισμικού μέσω DFU."
+
+#: confusb/kb.py:75
+msgid "List DFU devices"
+msgstr "Λίστα συσκευών DFU"
+
+#: confusb/kb.py:78
+msgid "Modem / CDC serial port"
+msgstr "Μόντεμ / σειριακή θύρα CDC"
+
+#: confusb/kb.py:78
+msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
+msgstr "Το ModemManager διαχειρίζεται μόντεμ· για σειριακές κονσόλες χρησιμοποιήστε minicom/picocom."
+
+#: confusb/kb.py:79
+msgid "List modems"
+msgstr "Λίστα μόντεμ"
+
+#: confusb/kb.py:85
+msgid "Manages Unifying/Bolt receivers and Logitech devices."
+msgstr "Διαχειρίζεται δέκτες Unifying/Bolt και συσκευές Logitech."
+
+#: confusb/kb.py:86
+msgid "Open Solaar"
+msgstr "Άνοιγμα του Solaar"
+
+#: confusb/kb.py:87
+msgid "Yubico: YubiKey tools"
+msgstr "Yubico: εργαλεία YubiKey"
+
+#: confusb/kb.py:87
+msgid "YubiKey manager and U2F/PAM support."
+msgstr "Διαχειριστής YubiKey και υποστήριξη U2F/PAM."
+
+#: confusb/kb.py:89
+msgid "YubiKey information"
+msgstr "Πληροφορίες YubiKey"
+
+#: confusb/kb.py:90
+msgid "Arduino IDE and CLI."
+msgstr "Arduino IDE και CLI."
+
+#: confusb/kb.py:91
+msgid "ST-Link tools."
+msgstr "Εργαλεία ST-Link."
+
+#: confusb/kb.py:94
+msgid "Device information"
+msgstr "Πληροφορίες συσκευής"
+
+#: confusb/kb.py:95 confusb/kb.py:97
+msgid "ADB and MTP access."
+msgstr "Πρόσβαση ADB και MTP."
+
+#: confusb/kb.py:98
+msgid "Drivers and utilities for HP printers and scanners."
+msgstr "Προγράμματα οδήγησης και βοηθητικά προγράμματα για εκτυπωτές και σαρωτές HP."
+
+#: confusb/kb.py:100
+msgid "Support for Canon printers and scanners."
+msgstr "Υποστήριξη εκτυπωτών και σαρωτών Canon."
+
+#: confusb/kb.py:101
+msgid "Support for Epson printers and scanners."
+msgstr "Υποστήριξη εκτυπωτών και σαρωτών Epson."
+
+#: confusb/kb.py:102
+msgid "Firmware for Realtek Wi-Fi/Bluetooth/Ethernet adapters."
+msgstr "Υλικολογισμικό για προσαρμογείς Realtek Wi-Fi/Bluetooth/Ethernet."
+
+#: confusb/kb.py:103
+msgid "Atheros firmware."
+msgstr "Υλικολογισμικό Atheros."
+
+#: confusb/kb.py:104
+msgid "MediaTek firmware."
+msgstr "Υλικολογισμικό MediaTek."
+
+#: confusb/kb.py:105
+msgid "WCH CH340 (USB serial)"
+msgstr "WCH CH340 (σειριακό USB)"
+
+#: confusb/kb.py:105 confusb/kb.py:106 confusb/kb.py:107
+#, python-brace-format
+msgid "Supported by the kernel ({module})."
+msgstr "Υποστηρίζεται από τον πυρήνα ({module})."
+
+#: confusb/kb.py:106
+msgid "FTDI (USB serial)"
+msgstr "FTDI (σειριακό USB)"
+
+#: confusb/kb.py:108
+msgid "OpenMoko / free projects"
+msgstr "OpenMoko / ελεύθερα έργα"
+
+#: confusb/kb.py:108
+msgid "Many free hardware devices use this VID."
+msgstr "Πολλές ελεύθερες συσκευές υλικού χρησιμοποιούν αυτό το VID."
+
+#: confusb/resolver.py:146
+#, python-brace-format
+msgid "Packages: {list}"
+msgstr "Πακέτα: {list}"
+
+#: confusb/resolver.py:148
+#, python-brace-format
+msgid "Already installed: {list}"
+msgstr "Ήδη εγκατεστημένο: {list}"
+
+#: confusb/resolver.py:150
+#, python-brace-format
+msgid "Not in the repositories: {list}"
+msgstr "Δεν υπάρχουν στα αποθετήρια: {list}"
+
+#: confusb/resolver.py:152
+#, python-brace-format
+msgid "Install {packages}"
+msgstr "Εγκατάσταση του {packages}"
+
+#: confusb/resolver.py:158
+#, python-brace-format
+msgid "The application is already installed on your computer (version {version})."
+msgstr "Η εφαρμογή είναι ήδη εγκατεστημένη στον υπολογιστή σας (έκδοση {version})."
+
+#: confusb/resolver.py:159
+msgid "The application is already installed on your computer."
+msgstr "Η εφαρμογή είναι ήδη εγκατεστημένη στον υπολογιστή σας."
+
+#: confusb/resolver.py:162
+#, python-brace-format
+msgid "Open {name}"
+msgstr "Άνοιγμα του {name}"
+
+#: confusb/resolver.py:164
+#, python-brace-format
+msgid "«{exe}» not found"
+msgstr "Το «{exe}» δεν βρέθηκε"
+
+#: confusb/resolver.py:167
+msgid "It is not installed."
+msgstr "Δεν είναι εγκατεστημένη."
+
+#: confusb/resolver.py:168
+#, python-brace-format
+msgid "Download {name}"
+msgstr "Λήψη του {name}"
+
+#: confusb/resolver.py:173
+#, python-brace-format
+msgid "Already installed as a Flatpak ({id})."
+msgstr "Ήδη εγκατεστημένο ως Flatpak ({id})."
+
+#: confusb/resolver.py:174
+msgid "Open (Flatpak)"
+msgstr "Άνοιγμα (Flatpak)"
+
+#: confusb/resolver.py:177
+#, python-brace-format
+msgid "Install Flatpak {id}"
+msgstr "Εγκατάσταση του Flatpak {id}"
+
+#: confusb/resolver.py:186
+msgid "Already installed on your computer."
+msgstr "Ήδη εγκατεστημένο στον υπολογιστή σας."
+
+#: confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Εγκαταστήστε πρώτα το «{name}»"
+
+#: confusb/resolver.py:203
+msgid "USB hub"
+msgstr "Διανομέας USB"
+
+#: confusb/resolver.py:203
+msgid "Managed by the kernel's «hub» driver."
+msgstr "Διαχειρίζεται από το πρόγραμμα οδήγησης «hub» του πυρήνα."
+
+#: confusb/resolver.py:206 confusb/ui.py:328
+#, python-brace-format
+msgid "Interface {number} · {label}"
+msgstr "Διεπαφή {number} · {label}"
+
+#: confusb/resolver.py:207 confusb/ui.py:333
+msgid "none found"
+msgstr "δεν βρέθηκε καμία"
+
+#: confusb/resolver.py:209
+#, python-brace-format
+msgid "Driver: {driver}"
+msgstr "Πρόγραμμα οδήγησης: {driver}"
+
+#: confusb/resolver.py:210
+#, python-brace-format
+msgid "Candidate modules: {modules}"
+msgstr "Υποψήφιες ενότητες: {modules}"
+
+#: confusb/resolver.py:212
+msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
+msgstr "Φυσιολογικό: οι αναγνώστες έξυπνων καρτών CCID δεν χρησιμοποιούν πρόγραμμα οδήγησης του πυρήνα· τους διαχειρίζεται η υπηρεσία pcscd (χώρος χρήστη) με το libccid."
+
+#: confusb/resolver.py:215
+#, python-brace-format
+msgid "No driver bound, but there are candidate modules: {modules}."
+msgstr "Δεν υπάρχει συσχετισμένο πρόγραμμα οδήγησης, αλλά υπάρχουν υποψήφιες ενότητες: {modules}."
+
+#: confusb/resolver.py:216
+msgid "Try: sudo modprobe <module>"
+msgstr "Δοκιμάστε: sudo modprobe <ενότητα>"
+
+#: confusb/resolver.py:218
+msgid "The kernel has no module for this interface."
+msgstr "Ο πυρήνας δεν έχει καμία ενότητα για αυτή τη διεπαφή."
+
+#: confusb/resolver.py:219
+msgid "It probably needs user-space software (see below) or an external driver."
+msgstr "Πιθανότατα χρειάζεται λογισμικό στον χώρο χρήστη (δείτε παρακάτω) ή εξωτερικό πρόγραμμα οδήγησης."
+
+#: confusb/resolver.py:221
+msgid "No interfaces"
+msgstr "Καμία διεπαφή"
+
+#: confusb/resolver.py:221
+msgid "The device's interfaces could not be read."
+msgstr "Δεν ήταν δυνατή η ανάγνωση των διεπαφών της συσκευής."
+
+#: confusb/resolver.py:222
+msgid "Kernel driver status"
+msgstr "Κατάσταση του προγράμματος οδήγησης στον πυρήνα"
+
+#: confusb/resolver.py:230
+#, python-brace-format
+msgid "Recommended for the «{name}» class"
+msgstr "Συνιστάται για την κλάση «{name}»"
+
+#: confusb/resolver.py:232
+#, python-brace-format
+msgid "Recommended for the manufacturer ({vid})"
+msgstr "Συνιστάται για τον κατασκευαστή ({vid})"
+
+#: confusb/resolver.py:265 confusb/resolver.py:292
+msgid "Install"
+msgstr "Εγκατάσταση"
+
+#: confusb/resolver.py:267
+msgid "Debian packages whose name matches"
+msgstr "Πακέτα Debian με ταιριαστό όνομα"
+
+#: confusb/resolver.py:268 confusb/resolver.py:295
+#, python-brace-format
+msgid "Searched for: {terms}"
+msgstr "Αναζήτηση για: {terms}"
+
+#: confusb/resolver.py:290 confusb/resolver.py:324 confusb/resolver.py:326
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: confusb/resolver.py:294
+msgid "Related Flatpak applications"
+msgstr "Σχετικές εφαρμογές Flatpak"
+
+#: confusb/resolver.py:305
+msgid "fwupd recognizes this device"
+msgstr "Το fwupd αναγνωρίζει αυτή τη συσκευή"
+
+#: confusb/resolver.py:306
+msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
+msgstr "Οι επίσημες ενημερώσεις υλικολογισμικού του κατασκευαστή (LVFS) μπορούν να ελεγχθούν και να εφαρμοστούν."
+
+#: confusb/resolver.py:308
+msgid "Check for updates"
+msgstr "Αναζήτηση ενημερώσεων"
+
+#: confusb/resolver.py:317
+msgid "Manufacturer website and databases"
+msgstr "Ιστότοπος κατασκευαστή και βάσεις δεδομένων"
+
+#: confusb/resolver.py:318
+msgid "Search for the manufacturer's official driver"
+msgstr "Αναζήτηση του επίσημου προγράμματος οδήγησης του κατασκευαστή"
+
+#: confusb/resolver.py:318 confusb/resolver.py:320
+#, python-brace-format
+msgid "Search: «{query}»"
+msgstr "Αναζήτηση: «{query}»"
+
+#: confusb/resolver.py:319 confusb/resolver.py:321
+msgid "Open search"
+msgstr "Άνοιγμα αναζήτησης"
+
+#: confusb/resolver.py:320
+msgid "Official site / support"
+msgstr "Επίσημος ιστότοπος / υποστήριξη"
+
+#: confusb/resolver.py:323
+msgid "Probes from other users with this same device and the driver they used."
+msgstr "Μετρήσεις άλλων χρηστών με την ίδια συσκευή και το πρόγραμμα οδήγησης που χρησιμοποίησαν."
+
+#: confusb/resolver.py:325
+msgid "USB ID database"
+msgstr "Βάση δεδομένων USB ID"
+
+#: confusb/resolver.py:325
+#, python-brace-format
+msgid "Page for ID {id}."
+msgstr "Καρτέλα του ID {id}."
+
+#: confusb/resolver.py:334
+msgid "DNIe: official portal"
+msgstr "DNIe: επίσημη πύλη"
+
+#: confusb/resolver.py:334
+msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
+msgstr "Προγράμματα οδήγησης, ενότητα PKCS#11 και οδηγοί για την ισπανική ηλεκτρονική ταυτότητα."
+
+#: confusb/resolver.py:335
+msgid "Open the DNIe portal"
+msgstr "Άνοιγμα της πύλης του DNIe"
+
+#: confusb/resolver.py:351
+msgid "Search error"
+msgstr "Σφάλμα αναζήτησης"
+
+#: confusb/resolver.py:351
+msgid "Error while querying"
+msgstr "Σφάλμα κατά το ερώτημα"
+
+#: confusb/ui.py:84
+msgid "Look of the application and what to do when a device is connected"
+msgstr "Εμφάνιση της εφαρμογής και τι να γίνεται όταν συνδέεται μια συσκευή"
+
+#: confusb/ui.py:85
+msgid "About"
+msgstr "Σχετικά"
+
+#: confusb/ui.py:145
+msgid "(no output)"
+msgstr "(καμία έξοδος)"
+
+#: confusb/ui.py:160
+msgid "Connected USB devices"
+msgstr "Συνδεδεμένες συσκευές USB"
+
+#: confusb/ui.py:160
+msgid "USB devices"
+msgstr "Συσκευές USB"
+
+#: confusb/ui.py:166
+msgid "Refresh"
+msgstr "Ανανέωση"
+
+#: confusb/ui.py:166
+msgid "Read the connected devices again"
+msgstr "Εκ νέου ανάγνωση των συνδεδεμένων συσκευών"
+
+#: confusb/ui.py:188
+msgid "Reading devices…"
+msgstr "Ανάγνωση συσκευών…"
+
+#: confusb/ui.py:201
+msgid "Could not read the devices"
+msgstr "Δεν ήταν δυνατή η ανάγνωση των συσκευών"
+
+#: confusb/ui.py:202
+msgid "Error reading the devices"
+msgstr "Σφάλμα ανάγνωσης των συσκευών"
+
+#: confusb/ui.py:208
+msgid "No USB devices connected"
+msgstr "Δεν υπάρχουν συνδεδεμένες συσκευές USB"
+
+#: confusb/ui.py:209
+msgid "Connect one and it will appear here automatically."
+msgstr "Συνδέστε μία και θα εμφανιστεί εδώ αυτόματα."
+
+#: confusb/ui.py:211
+#, python-brace-format
+msgid "Connected USB devices: {n}"
+msgstr "Συνδεδεμένες συσκευές USB: {n}"
+
+#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+msgid "Unknown manufacturer"
+msgstr "Άγνωστος κατασκευαστής"
+
+#: confusb/ui.py:232
+msgid "Type"
+msgstr "Τύπος"
+
+#: confusb/ui.py:233
+msgid "Port"
+msgstr "Θύρα"
+
+#: confusb/ui.py:234
+msgid "Driver"
+msgstr "Πρόγραμμα οδήγησης"
+
+#: confusb/ui.py:234 confusb/ui.py:332
+msgid "none"
+msgstr "κανένα"
+
+#: confusb/ui.py:236
+msgid "View information →"
+msgstr "Προβολή πληροφοριών →"
+
+#: confusb/ui.py:262
+msgid "Back"
+msgstr "Πίσω"
+
+#: confusb/ui.py:262
+msgid "Back to the list of devices"
+msgstr "Επιστροφή στη λίστα συσκευών"
+
+#: confusb/ui.py:263
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+#: confusb/ui.py:263
+msgid "Copy all the information to the clipboard"
+msgstr "Αντιγραφή όλων των πληροφοριών στο πρόχειρο"
+
+#: confusb/ui.py:271
+msgid "Information"
+msgstr "Πληροφορίες"
+
+#: confusb/ui.py:271
+msgid "Drivers and applications"
+msgstr "Προγράμματα οδήγησης και εφαρμογές"
+
+#: confusb/ui.py:280
+msgid "Connected"
+msgstr "Συνδεδεμένο"
+
+#: confusb/ui.py:300
+msgid "Information copied to the clipboard"
+msgstr "Οι πληροφορίες αντιγράφηκαν στο πρόχειρο"
+
+#: confusb/ui.py:326
+msgid "Interfaces"
+msgstr "Διεπαφές"
+
+#: confusb/ui.py:326
+msgid "Each interface can have its own driver"
+msgstr "Κάθε διεπαφή μπορεί να έχει το δικό της πρόγραμμα οδήγησης"
+
+#: confusb/ui.py:330
+msgid "Class"
+msgstr "Κλάση"
+
+#: confusb/ui.py:331
+msgid "Subclass / protocol"
+msgstr "Υποκλάση / πρωτόκολλο"
+
+#: confusb/ui.py:332
+msgid "Bound driver"
+msgstr "Συσχετισμένο πρόγραμμα οδήγησης"
+
+#: confusb/ui.py:333
+msgid "Kernel modules"
+msgstr "Ενότητες πυρήνα"
+
+#: confusb/ui.py:340
+msgid "Nodes created in the system"
+msgstr "Κόμβοι που δημιουργήθηκαν στο σύστημα"
+
+#: confusb/ui.py:344
+msgid "Raw data"
+msgstr "Ακατέργαστα δεδομένα"
+
+#: confusb/ui.py:345
+#, python-brace-format
+msgid "udev properties ({n})"
+msgstr "Ιδιότητες udev ({n})"
+
+#: confusb/ui.py:349
+msgid "lsusb -v output (full USB descriptors)"
+msgstr "Έξοδος του lsusb -v (πλήρεις περιγραφείς USB)"
+
+#: confusb/ui.py:364
+msgid "Looking for drivers and applications…"
+msgstr "Αναζήτηση προγραμμάτων οδήγησης και εφαρμογών…"
+
+#: confusb/ui.py:417
+msgid "No terminal emulator found"
+msgstr "Δεν βρέθηκε εξομοιωτής τερματικού"
+
+#: confusb/ui.py:419
+msgid "Press Enter to close…"
+msgstr "Πατήστε Enter για κλείσιμο…"
+
+#: confusb/ui.py:430
+msgid "Working…"
+msgstr "Σε εξέλιξη…"
+
+#: confusb/ui.py:436
+#, python-brace-format
+msgid "Error: {error}"
+msgstr "Σφάλμα: {error}"
+
+#: confusb/ui.py:439
+#, python-brace-format
+msgid "(exit code {code})"
+msgstr "(κωδικός εξόδου {code})"
+
+#: confusb/ui.py:443
+msgid "Installation completed"
+msgstr "Η εγκατάσταση ολοκληρώθηκε"
+
+#: confusb/ui.py:446
+msgid "The installation failed"
+msgstr "Η εγκατάσταση απέτυχε"
+
+#: confusb/ui.py:455
+msgid "Disconnected"
+msgstr "Αποσυνδέθηκε"
+
+#: confusb/ui.py:456
+msgid "The device has been disconnected"
+msgstr "Η συσκευή αποσυνδέθηκε"
+
+#: confusb/usbinfo.py:16
+msgid "Defined at interface level"
+msgstr "Ορίζεται σε επίπεδο διεπαφής"
+
+#: confusb/usbinfo.py:17
+msgid "Audio"
+msgstr ""
+
+#: confusb/usbinfo.py:18
+msgid "Communications (CDC)"
+msgstr "Επικοινωνίες (CDC)"
+
+#: confusb/usbinfo.py:19
+msgid "Human interface device (HID)"
+msgstr "Συσκευή ανθρώπινης διεπαφής (HID)"
+
+#: confusb/usbinfo.py:20
+msgid "Physical"
+msgstr "Φυσική"
+
+#: confusb/usbinfo.py:21
+msgid "Image"
+msgstr "Εικόνα"
+
+#: confusb/usbinfo.py:22
+msgid "Printer"
+msgstr "Εκτυπωτής"
+
+#: confusb/usbinfo.py:24
+msgid "Hub"
+msgstr ""
+
+#: confusb/usbinfo.py:26
+msgid "Smart card (CCID)"
+msgstr "Έξυπνη κάρτα (CCID)"
+
+#: confusb/usbinfo.py:27
+msgid "Content security"
+msgstr "Ασφάλεια περιεχομένου"
+
+#: confusb/usbinfo.py:28
+msgid "Video"
+msgstr "Βίντεο"
+
+#: confusb/usbinfo.py:29
+msgid "Personal healthcare"
+msgstr "Προσωπική υγεία"
+
+#: confusb/usbinfo.py:30
+msgid "Audio/Video"
+msgstr "Ήχος/Βίντεο"
+
+#: confusb/usbinfo.py:32
+msgid "Diagnostic"
+msgstr "Διαγνωστικά"
+
+#: confusb/usbinfo.py:33
+msgid "Wireless (e.g. Bluetooth)"
+msgstr "Ασύρματη (π.χ. Bluetooth)"
+
+#: confusb/usbinfo.py:34
+msgid "Miscellaneous"
+msgstr "Διάφορα"
+
+#: confusb/usbinfo.py:35
+msgid "Application specific (DFU, IrDA...)"
+msgstr "Ειδική για εφαρμογή (DFU, IrDA...)"
+
+#: confusb/usbinfo.py:36
+msgid "Vendor specific"
+msgstr "Ειδική για κατασκευαστή"
+
+#: confusb/usbinfo.py:50
+msgid "Manufacturer (descriptor)"
+msgstr "Κατασκευαστής (περιγραφέας)"
+
+#: confusb/usbinfo.py:51
+msgid "Product (descriptor)"
+msgstr "Προϊόν (περιγραφέας)"
+
+#: confusb/usbinfo.py:52
+msgid "Serial number"
+msgstr "Σειριακός αριθμός"
+
+#: confusb/usbinfo.py:53
+msgid "Vendor ID (VID)"
+msgstr "Αναγνωριστικό κατασκευαστή (VID)"
+
+#: confusb/usbinfo.py:54
+msgid "Product ID (PID)"
+msgstr "Αναγνωριστικό προϊόντος (PID)"
+
+#: confusb/usbinfo.py:55
+msgid "Device version (bcdDevice)"
+msgstr "Έκδοση συσκευής (bcdDevice)"
+
+#: confusb/usbinfo.py:56
+msgid "USB version"
+msgstr "Έκδοση USB"
+
+#: confusb/usbinfo.py:57
+msgid "Negotiated speed (Mb/s)"
+msgstr "Συμφωνημένη ταχύτητα (Mb/s)"
+
+#: confusb/usbinfo.py:58
+msgid "Device class"
+msgstr "Κλάση συσκευής"
+
+#: confusb/usbinfo.py:59
+msgid "Device subclass"
+msgstr "Υποκλάση συσκευής"
+
+#: confusb/usbinfo.py:60
+msgid "Device protocol"
+msgstr "Πρωτόκολλο συσκευής"
+
+#: confusb/usbinfo.py:61
+msgid "Max. EP0 packet size"
+msgstr "Μέγ. μέγεθος πακέτου EP0"
+
+#: confusb/usbinfo.py:62
+msgid "Number of configurations"
+msgstr "Αριθμός διαμορφώσεων"
+
+#: confusb/usbinfo.py:63
+msgid "Active configuration"
+msgstr "Ενεργή διαμόρφωση"
+
+#: confusb/usbinfo.py:64
+msgid "Number of interfaces"
+msgstr "Αριθμός διεπαφών"
+
+#: confusb/usbinfo.py:65
+msgid "Configuration attributes"
+msgstr "Χαρακτηριστικά διαμόρφωσης"
+
+#: confusb/usbinfo.py:66
+msgid "Declared maximum power"
+msgstr "Δηλωμένη μέγιστη κατανάλωση"
+
+#: confusb/usbinfo.py:67
+msgid "Bus"
+msgstr ""
+
+#: confusb/usbinfo.py:68
+msgid "Address on the bus"
+msgstr "Διεύθυνση στον δίαυλο"
+
+#: confusb/usbinfo.py:69
+msgid "Port path (devpath)"
+msgstr "Διαδρομή θυρών (devpath)"
+
+#: confusb/usbinfo.py:70
+msgid "Child ports"
+msgstr "Θυγατρικές θύρες"
+
+#: confusb/usbinfo.py:71
+msgid "Removable"
+msgstr "Αφαιρούμενη"
+
+#: confusb/usbinfo.py:72
+msgid "Authorized"
+msgstr "Εξουσιοδοτημένη"
+
+#: confusb/usbinfo.py:73
+msgid "Configuration name"
+msgstr "Όνομα διαμόρφωσης"
+
+#: confusb/usbinfo.py:75
+msgid "Kernel quirks"
+msgstr "Ιδιαιτερότητες πυρήνα"
+
+#: confusb/usbinfo.py:108
+msgid "Unknown"
+msgstr "Άγνωστη"
+
+#: confusb/usbinfo.py:162
+#, python-brace-format
+msgid "== Interface {name} =="
+msgstr ""
+
+#: confusb/usbinfo.py:163
+#, python-brace-format
+msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
+msgstr ""
+
+#: confusb/usbinfo.py:165
+#, python-brace-format
+msgid "driver={driver} modules={modules}"
+msgstr ""
+
+#: confusb/usbinfo.py:166
+msgid "(none)"
+msgstr ""
+
+#: confusb/usbinfo.py:169
+msgid "== udev properties =="
+msgstr ""
+
+#: confusb/usbinfo.py:201
+#, python-brace-format
+msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
+msgstr ""
+
+#: confusb/usbinfo.py:232
+#, python-brace-format
+msgid "network interface {name}"
+msgstr "διεπαφή δικτύου {name}"
+
+#: confusb/usbinfo.py:279
+msgid "Manufacturer (usb.ids)"
+msgstr "Κατασκευαστής (usb.ids)"
+
+#: confusb/usbinfo.py:280
+msgid "Product (usb.ids)"
+msgstr "Προϊόν (usb.ids)"
+
+#: confusb/usbinfo.py:281
+msgid "sysfs path"
+msgstr "διαδρομή sysfs"
+
+#: confusb/usbinfo.py:282
+msgid "/dev node"
+msgstr "κόμβος /dev"
+
+#: confusb/usbinfo.py:283
+msgid "Subsystem / type"
+msgstr "Υποσύστημα / τύπος"
+
+#: confusb/usbinfo.py:284
+msgid "Interfaces (ID_USB_INTERFACES)"
+msgstr ""
+
+#: confusb/usbinfo.py:285
+msgid "Device driver"
+msgstr "Πρόγραμμα οδήγησης συσκευής"
+
+#: confusb/usbinfo.py:287
+msgid "Persistent paths (ID_PATH)"
+msgstr "Μόνιμες διαδρομές (ID_PATH)"
+
+#: confusb/usbinfo.py:288
+msgid "udev tags (TAGS)"
+msgstr "Ετικέτες udev (TAGS)"
+
+#: confusb/usbinfo.py:291
+msgid "Identification"
+msgstr "Αναγνώριση"
+
+#: confusb/usbinfo.py:292
+msgid "Descriptors and configuration"
+msgstr "Περιγραφείς και διαμόρφωση"
+
+#: confusb/usbinfo.py:293
+msgid "System"
+msgstr "Σύστημα"
+
+#: confusb/usbinfo.py:297
+msgid "Power control"
+msgstr "Έλεγχος ισχύος"
+
+#: confusb/usbinfo.py:298
+msgid "Power state"
+msgstr "Κατάσταση ισχύος"
+
+#: confusb/usbinfo.py:299
+msgid "Autosuspend delay (ms)"
+msgstr "Καθυστέρηση αυτόματης αναστολής (ms)"
+
+#: confusb/usbinfo.py:300
+msgid "Persistence"
+msgstr "Μονιμότητα"
+
+#: confusb/usbinfo.py:301
+msgid "System wake-up"
+msgstr "Αφύπνιση του συστήματος"
+
+#: confusb/usbinfo.py:302
+msgid "Active time (ms)"
+msgstr "Χρόνος δραστηριότητας (ms)"
+
+#: confusb/usbinfo.py:303
+msgid "Connected time (ms)"
+msgstr "Χρόνος σύνδεσης (ms)"
+
+#: confusb/usbinfo.py:304
+msgid "URBs processed"
+msgstr "URB που επεξεργάστηκαν"
+
+#: confusb/usbinfo.py:310
+msgid "Power and statistics"
+msgstr "Ισχύς και στατιστικά"
+
+#: confusb/usbinfo.py:316
+msgid "Topology"
+msgstr "Τοπολογία"
+
+#: confusb/usbinfo.py:317
+msgid "Connected to"
+msgstr "Συνδεδεμένο με"
+
+#: confusb/usbinfo.py:318
+msgid "Parent path"
+msgstr "Διαδρομή του γονέα"

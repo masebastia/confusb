@@ -19,8 +19,9 @@ from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # noqa: E402
 
 from . import fondo, resolver, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
-from .componentes import (HUECO, AcercaDeDialogo, BarraEstado, Cabecera, InterfazDialogo, Masonry, boton,  # noqa: E402
-                          bruto, datos, desplazable, estado, in_thread, label, pastillas, pila, rubrica,
+from .i18n import _  # noqa: E402
+from .componentes import (HUECO, AcercaDeDialogo, BarraEstado, Cabecera, InterfazDialogo, Masonry, SelectorIdioma,  # noqa: E402
+                          boton, bruto, datos, desplazable, estado, in_thread, label, pastillas, pila, rubrica,
                           run_capture, tarjeta)
 from .usbinfo import CLASS_NAMES, DeviceInfo, class_name  # noqa: E402
 
@@ -79,9 +80,10 @@ class VentanaBase(Gtk.ApplicationWindow):
 
     # ---- botones comunes de la cabecera (a la derecha)
     def botones_comunes(self):
-        self.cabecera.boton("🎨  Interfaz", lambda: self.alternar_dialogo(InterfazDialogo),
-                            "Aspecto de la aplicación y qué hacer al conectar un dispositivo")
-        self.cabecera.boton("Acerca de", lambda: self.alternar_dialogo(AcercaDeDialogo))
+        self.cabecera.boton("🎨  " + _("Interface"), lambda: self.alternar_dialogo(InterfazDialogo),
+                            _("Look of the application and what to do when a device is connected"))
+        self.cabecera.boton(_("About"), lambda: self.alternar_dialogo(AcercaDeDialogo))
+        self.cabecera.derecha.append(SelectorIdioma(lambda codigo: self.get_application().cambiar_idioma(codigo)))
 
     def _al_cerrar(self, *_):
         AJUSTES.olvidar(self._al_ajustes)
@@ -140,7 +142,7 @@ class OutputWindow(Gtk.Window):
         super().__init__(transient_for=parent, default_width=640, default_height=440, title=titulo)
         self.add_css_class("confusb")
         card = tarjeta(titulo)
-        card.append(bruto(texto or "(sin salida)", 300))
+        card.append(bruto(texto or _("(no output)"), 300))
         card.set_margin_top(12)
         card.set_margin_bottom(12)
         card.set_margin_start(12)
@@ -155,13 +157,13 @@ class DevicesWindow(VentanaBase):
     desconectar; al pulsar un dispositivo se abre su detalle en otra ventana."""
 
     def __init__(self, app, al_abrir):
-        super().__init__(app, "confusb · Dispositivos USB conectados", "Dispositivos USB", 1280, 800)
+        super().__init__(app, "confusb · " + _("Connected USB devices"), _("USB devices"), 1280, 800)
         self.maximize()
         self.al_abrir = al_abrir
         self.gen = 0
         self.pies: list[Gtk.Widget] = []
 
-        self.cabecera.boton("🔄  Actualizar", self.refresh, "Volver a leer los dispositivos conectados")
+        self.cabecera.boton("🔄  " + _("Refresh"), self.refresh, _("Read the connected devices again"))
         self.botones_comunes()
 
         self.grid = Masonry(min_col=340)
@@ -183,7 +185,7 @@ class DevicesWindow(VentanaBase):
             espera = tarjeta()
             fila = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
             fila.append(Gtk.Spinner(spinning=True))
-            fila.append(label("Leyendo dispositivos…", "dim", wrap=False))
+            fila.append(label(_("Reading devices…"), "dim", wrap=False))
             espera.append(fila)
             self.grid.add(espera)
 
@@ -196,17 +198,17 @@ class DevicesWindow(VentanaBase):
             self.grid.clear()
             self.pies = []
             if isinstance(res, Exception):
-                self.grid.add(tarjeta("No se han podido leer los dispositivos", str(res)))
-                self.barra.poner("Error al leer los dispositivos")
+                self.grid.add(tarjeta(_("Could not read the devices"), str(res)))
+                self.barra.poner(_("Error reading the devices"))
                 return
             lista = [i for i in res if i.vid != "1d6b"]  # sin los root hubs del kernel
             for info in lista:
                 self.grid.add(self.tarjeta_dispositivo(info))
             if not lista:
-                self.grid.add(tarjeta("No hay dispositivos USB conectados",
-                                      "Conecta uno y aparecerá aquí automáticamente."))
+                self.grid.add(tarjeta(_("No USB devices connected"),
+                                      _("Connect one and it will appear here automatically.")))
             n = len(lista)
-            self.barra.poner(f"{n} dispositivo{'s' if n != 1 else ''} USB conectado{'s' if n != 1 else ''}")
+            self.barra.poner(_("Connected USB devices: {n}").format(n=n))
             if aviso:
                 self.barra.aviso(aviso)
 
@@ -221,17 +223,17 @@ class DevicesWindow(VentanaBase):
         nombre.set_hexpand(True)
         cab.append(nombre)
         if info.drivers and info.drivers != ["usbfs"]:
-            cab.append(estado("Con controlador"))
+            cab.append(estado("Has driver"))
         c.append(cab)
-        c.append(label(info.vendor or "Fabricante desconocido", "dim"))
+        c.append(label(info.vendor or _("Unknown manufacturer"), "dim"))
         c.append(label(info.usb_id, "mod-big", wrap=False))
-        tipos = ", ".join(CLASS_NAMES.get(k, f"0x{k:02x}") for k in sorted(info.classes) if k != 0) or "—"
+        tipos = ", ".join(_(CLASS_NAMES[k]) if k in CLASS_NAMES else f"0x{k:02x}" for k in sorted(info.classes) if k != 0) or "—"
         c.append(datos([
-            ("Tipo", tipos),
-            ("Puerto", os.path.basename(info.syspath)),
-            ("Controlador", ", ".join(info.drivers) or "ninguno"),
+            (_("Type"), tipos),
+            (_("Port"), os.path.basename(info.syspath)),
+            (_("Driver"), ", ".join(info.drivers) or _("none")),
         ]))
-        pie = label("Ver información →", "mod-pie", wrap=False)
+        pie = label(_("View information →"), "mod-pie", wrap=False)
         pie.set_margin_top(4)
         pie.set_visible(AJUSTES.pie)
         self.pies.append(pie)
@@ -257,8 +259,8 @@ class DeviceWindow(VentanaBase):
         self.gen = 0
 
         # ---- cabecera: volver a la izquierda; copiar, interfaz y acerca de a la derecha
-        self.cabecera.boton("←  Volver", self.volver, "Volver a la lista de dispositivos", izquierda=True)
-        self.cabecera.boton("📋  Copiar", self.copiar, "Copiar toda la información al portapapeles")
+        self.cabecera.boton("←  " + _("Back"), self.volver, _("Back to the list of devices"), izquierda=True)
+        self.cabecera.boton("📋  " + _("Copy"), self.copiar, _("Copy all the information to the clipboard"))
         self.botones_comunes()
 
         # ---- páginas, con navegación en píldoras
@@ -266,16 +268,16 @@ class DeviceWindow(VentanaBase):
         self.stack.add_named(self._con_margenes(desplazable(self.pagina_info())), "info")
         self.sw_box = Masonry()
         self.stack.add_named(self._con_margenes(desplazable(self.sw_box)), "sw")
-        self.cuerpo.append(pastillas([("info", "Información"), ("sw", "Controladores y aplicaciones")],
+        self.cuerpo.append(pastillas([("info", _("Information")), ("sw", _("Drivers and applications"))],
                                      self.stack.set_visible_child_name))
         self.cuerpo.append(self.stack)
 
         # ---- barra inferior
-        self.barra.poner(f"{info.usb_id} · {info.vendor or 'Fabricante desconocido'}")
+        self.barra.poner(f"{info.usb_id} · {info.vendor or _('Unknown manufacturer')}")
         self.punto = Gtk.Box(valign=Gtk.Align.CENTER)
         self.punto.add_css_class("punto")
         self.punto.add_css_class("conectado")
-        self.estado_texto = label("Conectado", wrap=False)
+        self.estado_texto = label(_("Connected"), wrap=False)
         self.barra.derecha.append(self.punto)
         self.barra.derecha.append(self.estado_texto)
 
@@ -295,7 +297,7 @@ class DeviceWindow(VentanaBase):
 
     def copiar(self):
         self.get_clipboard().set(self.info.as_text())
-        self.toasts.add_toast(Adw.Toast(title="Información copiada al portapapeles"))
+        self.toasts.add_toast(Adw.Toast(title=_("Information copied to the clipboard")))
 
     # ---------------------------------------------------------------- info
     def pagina_info(self) -> Gtk.Widget:
@@ -309,7 +311,7 @@ class DeviceWindow(VentanaBase):
         txt = pila(2)
         txt.set_hexpand(True)
         txt.append(label(info.title, "mod-name"))
-        txt.append(label(f"{info.vendor or 'Fabricante desconocido'} · USB ID {info.usb_id}", "dim"))
+        txt.append(label(f"{info.vendor or _('Unknown manufacturer')} · USB ID {info.usb_id}", "dim"))
         fila.append(txt)
         cab.append(fila)
         pagina.append(cab)
@@ -321,30 +323,30 @@ class DeviceWindow(VentanaBase):
             cols.add(c)
 
         if info.interfaces:
-            c = tarjeta("Interfaces", "Cada interfaz puede tener su propio controlador")
+            c = tarjeta(_("Interfaces"), _("Each interface can have its own driver"))
             for i in info.interfaces:
-                c.append(rubrica(f"Interfaz {i.number} · {i.label or class_name(i.cls)}"))
+                c.append(rubrica(_("Interface {number} · {label}").format(number=i.number, label=i.label or class_name(i.cls))))
                 c.append(datos([
-                    ("Clase", class_name(i.cls)),
-                    ("Subclase / protocolo", f"0x{(i.subcls or 0):02x} / 0x{(i.proto or 0):02x}"),
-                    ("Controlador vinculado", i.driver or "ninguno"),
-                    ("Módulos del kernel", ", ".join(i.modules) or "ninguno encontrado"),
+                    (_("Class"), class_name(i.cls)),
+                    (_("Subclass / protocol"), f"0x{(i.subcls or 0):02x} / 0x{(i.proto or 0):02x}"),
+                    (_("Bound driver"), i.driver or _("none")),
+                    (_("Kernel modules"), ", ".join(i.modules) or _("none found")),
                     ("Modalias", i.modalias or "—"),
-                    *[("Endpoint", e.removeprefix("Endpoint ")) for e in i.endpoints],
+                    *[("Endpoint", e) for e in i.endpoints],
                 ]))
             cols.add(c)
 
         if info.nodes:
-            c = tarjeta("Nodos creados en el sistema")
+            c = tarjeta(_("Nodes created in the system"))
             c.append(datos([(nodo, sub) for sub, nodo in info.nodes]))
             cols.add(c)
 
-        c = tarjeta("Datos en bruto")
-        ex = Gtk.Expander(label=f"Propiedades udev ({len(info.props)})")
+        c = tarjeta(_("Raw data"))
+        ex = Gtk.Expander(label=_("udev properties ({n})").format(n=len(info.props)))
         ex.set_child(bruto("\n".join(f"{k}={v}" for k, v in sorted(info.props.items()))))
         c.append(ex)
         if info.lsusb:
-            ex2 = Gtk.Expander(label="Salida de lsusb -v (descriptores USB completos)")
+            ex2 = Gtk.Expander(label=_("lsusb -v output (full USB descriptors)"))
             ex2.set_child(bruto(info.lsusb, 300))
             c.append(ex2)
         cols.add(c)
@@ -359,7 +361,7 @@ class DeviceWindow(VentanaBase):
         self.buscando = tarjeta()
         fila = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
         fila.append(Gtk.Spinner(spinning=True))
-        fila.append(label("Buscando controladores y aplicaciones…", "dim", wrap=False))
+        fila.append(label(_("Looking for drivers and applications…"), "dim", wrap=False))
         self.buscando.append(fila)
         self.sw_box.add(self.buscando)
 
@@ -412,9 +414,9 @@ class DeviceWindow(VentanaBase):
         elif k == "terminal":
             term = resolver.terminal_cmd()
             if not term:
-                self.toasts.add_toast(Adw.Toast(title="No se ha encontrado ningún emulador de terminal"))
+                self.toasts.add_toast(Adw.Toast(title=_("No terminal emulator found")))
                 return
-            script = f'{shlex.join(p)}; echo; read -rp "Pulsa Intro para cerrar…"'
+            script = f'{shlex.join(p)}; echo; read -rp {shlex.quote(_("Press Enter to close…"))}'
             subprocess.Popen([*term, "bash", "-c", script], start_new_session=True)
         elif k in ("capture", "apt", "flatpak"):
             if k == "apt":
@@ -425,23 +427,23 @@ class DeviceWindow(VentanaBase):
                 cmd, timeout = p, 40
             antes = btn.get_label()
             btn.set_sensitive(False)
-            btn.set_label("Trabajando…")
+            btn.set_label(_("Working…"))
 
             def hecho(res):
                 btn.set_label(antes)
                 btn.set_sensitive(True)
                 if isinstance(res, Exception):
-                    self.toasts.add_toast(Adw.Toast(title=f"Error: {res}"))
+                    self.toasts.add_toast(Adw.Toast(title=_("Error: {error}").format(error=res)))
                     return
                 rc, out = res
-                cuerpo = f"$ {shlex.join(cmd)}\n(código de salida {rc})\n\n{out}"
+                cuerpo = f"$ {shlex.join(cmd)}\n" + _("(exit code {code})").format(code=rc) + f"\n\n{out}"
                 if k == "capture":
                     OutputWindow(self, " ".join(cmd), cuerpo).present()
                 elif rc == 0:
-                    self.toasts.add_toast(Adw.Toast(title="Instalación completada"))
+                    self.toasts.add_toast(Adw.Toast(title=_("Installation completed")))
                     self.cargar_software()
                 else:
-                    OutputWindow(self, "La instalación ha fallado", cuerpo).present()
+                    OutputWindow(self, _("The installation failed"), cuerpo).present()
 
             in_thread(run_capture(cmd, timeout), hecho)
 
@@ -450,5 +452,5 @@ class DeviceWindow(VentanaBase):
         self.disconnected = True
         self.punto.remove_css_class("conectado")
         self.punto.add_css_class("desconectado")
-        self.estado_texto.set_label("Desconectado")
-        self.barra.aviso("El dispositivo se ha desconectado", grave=True)
+        self.estado_texto.set_label(_("Disconnected"))
+        self.barra.aviso(_("The device has been disconnected"), grave=True)

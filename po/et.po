@@ -1,0 +1,1205 @@
+# Translation of confusb into Eesti (et).
+# This file is distributed under the same license as the confusb package.
+# The translations in this file were generated with AI (Claude) and are pending review by native speakers:
+# corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: confusb 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
+"POT-Creation-Date: 2026-11-22 13:37+0000\n"
+"PO-Revision-Date: 2026-11-22 13:37+0000\n"
+"Last-Translator: Claude (AI), pending native review\n"
+"Language-Team: Eesti\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: confusb/app.py:50
+msgid "Show the list of connected USB devices"
+msgstr ""
+
+#: confusb/app.py:52
+msgid "Show a device's window (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:63 confusb/app.py:212
+#, python-brace-format
+msgid "Device «{name}» not found"
+msgstr "Seadet «{name}» ei leitud"
+
+#: confusb/app.py:110
+msgid "USB device"
+msgstr "USB-seade"
+
+#: confusb/app.py:114
+#, python-brace-format
+msgid "Disconnected: {name}"
+msgstr "Lahti ühendatud: {name}"
+
+#: confusb/app.py:125
+#, python-brace-format
+msgid "Connected: {name}"
+msgstr "Ühendatud: {name}"
+
+#: confusb/app.py:130
+msgid "USB device connected"
+msgstr "USB-seade ühendatud"
+
+#: confusb/app.py:191
+msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+msgstr ""
+
+#: confusb/app.py:193
+msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+msgstr ""
+
+#: confusb/app.py:194
+msgid "show the window with the connected devices"
+msgstr ""
+
+#: confusb/app.py:195
+msgid "open the details of a device (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:196
+msgid "list the USB devices and exit"
+msgstr ""
+
+#: confusb/app.py:198
+msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:199
+msgid "show the version and exit"
+msgstr ""
+
+#: confusb/ajustes.py:40
+msgid "Like the theme"
+msgstr "Nagu teema"
+
+#: confusb/ajustes.py:41
+msgid "Blue"
+msgstr "Sinine"
+
+#: confusb/ajustes.py:42
+msgid "Green"
+msgstr "Roheline"
+
+#: confusb/ajustes.py:43
+msgid "Cyan"
+msgstr "Tsüaan"
+
+#: confusb/ajustes.py:44
+msgid "Violet"
+msgstr "Violetne"
+
+#: confusb/ajustes.py:45
+msgid "Pink"
+msgstr "Roosa"
+
+#: confusb/ajustes.py:46
+msgid "Amber"
+msgstr "Merevaigukarva"
+
+#: confusb/ajustes.py:47
+msgid "Light gray"
+msgstr "Helehall"
+
+#: confusb/ajustes.py:50
+msgid "Highlighted (border and glow on hover)"
+msgstr "Esiletõstetud (äär ja hõõgus kursorit peale viies)"
+
+#: confusb/ajustes.py:51
+msgid "Subtle (discreet border, no glow)"
+msgstr "Tagasihoidlik (diskreetne äär, ilma hõõguseta)"
+
+#: confusb/ajustes.py:52
+msgid "No frame"
+msgstr "Ilma raamita"
+
+#: confusb/ajustes.py:55
+msgid "Open a window with the information"
+msgstr "Ava aken koos teabega"
+
+#: confusb/ajustes.py:56
+msgid "Show a notification"
+msgstr "Kuva teavitus"
+
+#: confusb/ajustes.py:57
+msgid "Do nothing"
+msgstr "Ära tee midagi"
+
+#: confusb/componentes.py:27
+msgid "Installed"
+msgstr "Installitud"
+
+#: confusb/componentes.py:27
+msgid "Active driver"
+msgstr "Draiver aktiivne"
+
+#: confusb/componentes.py:27
+msgid "User space"
+msgstr "Kasutajaruum"
+
+#: confusb/componentes.py:27
+msgid "OK"
+msgstr ""
+
+#: confusb/componentes.py:27
+msgid "Supported"
+msgstr "Toetatud"
+
+#: confusb/componentes.py:27
+msgid "Has driver"
+msgstr "Draiver olemas"
+
+#: confusb/componentes.py:28
+msgid "Needs installing"
+msgstr "Vaja installida"
+
+#: confusb/componentes.py:28
+msgid "Not bound"
+msgstr "Sidumata"
+
+#: confusb/componentes.py:29
+msgid "No driver"
+msgstr "Draiverit pole"
+
+#: confusb/componentes.py:29
+msgid "Not in the repositories"
+msgstr "Pole hoidlates"
+
+#: confusb/componentes.py:141
+msgid "Language"
+msgstr "Keel"
+
+#: confusb/componentes.py:307
+msgid "Close the notice"
+msgstr "Sulge teade"
+
+#: confusb/componentes.py:454 confusb/ui.py:83
+msgid "Interface"
+msgstr "Liides"
+
+#: confusb/componentes.py:458
+msgid "Cards"
+msgstr "Kaardid"
+
+#: confusb/componentes.py:459
+msgid "Card opacity"
+msgstr "Kaartide läbipaistmatus"
+
+#: confusb/componentes.py:461
+msgid "Corners"
+msgstr "Nurgad"
+
+#: confusb/componentes.py:464
+msgid "Title color"
+msgstr "Pealkirjade värv"
+
+#: confusb/componentes.py:474
+msgid "Frame"
+msgstr "Raam"
+
+#: confusb/componentes.py:476
+msgid "Shadow under the cards"
+msgstr "Kaartide alune vari"
+
+#: confusb/componentes.py:479
+msgid "Show «View information →» on the cards"
+msgstr "Kuva kaartidel «Vaata teavet →»"
+
+#: confusb/componentes.py:483
+msgid "When a device is connected"
+msgstr "Kui seade ühendatakse"
+
+#: confusb/componentes.py:486
+msgid "Reset"
+msgstr "Lähtesta"
+
+#: confusb/componentes.py:486 confusb/componentes.py:533
+msgid "Close"
+msgstr "Sulge"
+
+#: confusb/componentes.py:517
+msgid "About confusb"
+msgstr "Teave confusb kohta"
+
+#: confusb/componentes.py:524
+#, python-brace-format
+msgid "Version {version}"
+msgstr "Versioon {version}"
+
+#: confusb/componentes.py:525
+msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
+msgstr "Teavitab, kui USB-seade ühendatakse, näitab selle teavet ning otsib selle draiverit ja rakendusi selle kasutamiseks."
+
+#: confusb/componentes.py:529
+msgid "License GPL-3.0-or-later"
+msgstr "Litsents GPL-3.0-or-later"
+
+#: confusb/componentes.py:530
+msgid "Source code on GitHub"
+msgstr "Lähtekood GitHubis"
+
+#: confusb/kb.py:17
+msgid "PC/SC service and CCID drivers"
+msgstr "PC/SC-teenus ja CCID-draiverid"
+
+#: confusb/kb.py:18
+msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
+msgstr "pcscd on deemon, mis haldab kiipkaardilugejaid; libccid pakub draiverit standardsetele USB-lugejatele (CCID). Ilma pcscd-ta on lugeja USB-s nähtav, kuid ükski rakendus ei saa seda kasutada."
+
+#: confusb/kb.py:22
+msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
+msgstr "OpenSC (PKCS#11, toetab DNIe-d ja muid kaarte)"
+
+#: confusb/kb.py:23
+msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
+msgstr "Teek ja tööriistad krüptograafiliste kaartide jaoks. Sisaldab DNIe (3.0/4.0) tuge ja PKCS#11 moodulit, mida kasutavad Firefox/Chromium ja AutoFirma. Vanemad DNIe-d (2.0) võivad vajada ametlikku DNIe moodulit."
+
+#: confusb/kb.py:26
+msgid "List readers"
+msgstr "Loetle lugejad"
+
+#: confusb/kb.py:27
+msgid "Card info (ATR)"
+msgstr "Kaardi teave (ATR)"
+
+#: confusb/kb.py:28
+msgid "List PKCS#11 slots"
+msgstr "Loetle PKCS#11 pesad"
+
+#: confusb/kb.py:29
+msgid "List certificates"
+msgstr "Loetle sertifikaadid"
+
+#: confusb/kb.py:34
+msgid "pcsc-tools (reader and card monitor)"
+msgstr "pcsc-tools (lugejate ja kaartide monitor)"
+
+#: confusb/kb.py:35
+msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
+msgstr "pcsc_scan näitab reaalajas, millal kaart sisestatakse või eemaldatakse, ning dekodeerib selle ATR-i."
+
+#: confusb/kb.py:37
+msgid "Open pcsc_scan"
+msgstr "Ava pcsc_scan"
+
+#: confusb/kb.py:40
+msgid "AutoFirma (electronic signature)"
+msgstr "AutoFirma (digiallkiri)"
+
+#: confusb/kb.py:41
+msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
+msgstr "Hispaania valitsuse ametlik rakendus dokumentide allkirjastamiseks DNIe või digitaalse sertifikaadiga. Seda pole Debiani hoidlates: see laaditakse alla aadressilt firmaelectronica.gob.es."
+
+#: confusb/kb.py:48 confusb/usbinfo.py:23
+msgid "Mass storage"
+msgstr "Massmälu"
+
+#: confusb/kb.py:48
+msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
+msgstr "Süsteem ühendab selle automaatselt (udisks2). Vormindamiseks või kontrollimiseks kasuta Kettaid."
+
+#: confusb/kb.py:49
+msgid "Open Disks"
+msgstr "Ava Kettad"
+
+#: confusb/kb.py:52
+msgid "Printer (CUPS)"
+msgstr "Printer (CUPS)"
+
+#: confusb/kb.py:52
+msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
+msgstr "CUPS tuvastab USB-printerid automaatselt; seadistamine toimub jaotises Seaded → Printerid."
+
+#: confusb/kb.py:53
+msgid "Configure printers"
+msgstr "Seadista printerid"
+
+#: confusb/kb.py:56
+msgid "Camera / video (UVC)"
+msgstr "Kaamera / video (UVC)"
+
+#: confusb/kb.py:56
+msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
+msgstr "Seda toetab tuuma uvcvideo draiver. Proovi seda rakendusega Snapshot/Cheese."
+
+#: confusb/kb.py:57
+msgid "List video devices"
+msgstr "Loetle videoseadmed"
+
+#: confusb/kb.py:58
+msgid "Open Snapshot"
+msgstr "Ava Snapshot"
+
+#: confusb/kb.py:61
+msgid "USB audio"
+msgstr "USB-heli"
+
+#: confusb/kb.py:61
+msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr "Toetab snd-usb-audio. Reguleeri helitugevust ja väljundeid rakendusega pavucontrol."
+
+#: confusb/kb.py:62
+msgid "Volume control"
+msgstr "Helitugevuse juhtimine"
+
+#: confusb/kb.py:65
+msgid "BlueZ stack with a graphical manager."
+msgstr "BlueZ-i komplekt graafilise halduriga."
+
+#: confusb/kb.py:66
+msgid "Bluetooth manager"
+msgstr "Bluetoothi haldur"
+
+#: confusb/kb.py:69
+msgid "Still camera / image scanner"
+msgstr "Fotokaamera / pildiskanner"
+
+#: confusb/kb.py:69
+msgid "libgphoto2 for PTP cameras; SANE for scanners."
+msgstr "libgphoto2 PTP-kaamerate jaoks; SANE skannerite jaoks."
+
+#: confusb/kb.py:70
+msgid "Detect cameras"
+msgstr "Tuvasta kaamerad"
+
+#: confusb/kb.py:71
+msgid "Scan documents"
+msgstr "Skaneeri dokumente"
+
+#: confusb/kb.py:74
+msgid "DFU / application specific device"
+msgstr "DFU- / rakendusespetsiifiline seade"
+
+#: confusb/kb.py:74
+msgid "To update firmware over DFU."
+msgstr "Püsivara uuendamiseks DFU kaudu."
+
+#: confusb/kb.py:75
+msgid "List DFU devices"
+msgstr "Loetle DFU-seadmed"
+
+#: confusb/kb.py:78
+msgid "Modem / CDC serial port"
+msgstr "Modem / jadaport CDC"
+
+#: confusb/kb.py:78
+msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
+msgstr "ModemManager haldab modemeid; jadakonsoolide jaoks kasuta minicom/picocom."
+
+#: confusb/kb.py:79
+msgid "List modems"
+msgstr "Loetle modemid"
+
+#: confusb/kb.py:85
+msgid "Manages Unifying/Bolt receivers and Logitech devices."
+msgstr "Haldab Unifying/Bolt-vastuvõtjaid ja Logitechi seadmeid."
+
+#: confusb/kb.py:86
+msgid "Open Solaar"
+msgstr "Ava Solaar"
+
+#: confusb/kb.py:87
+msgid "Yubico: YubiKey tools"
+msgstr "Yubico: YubiKey tööriistad"
+
+#: confusb/kb.py:87
+msgid "YubiKey manager and U2F/PAM support."
+msgstr "YubiKey haldur ja U2F/PAM-i tugi."
+
+#: confusb/kb.py:89
+msgid "YubiKey information"
+msgstr "YubiKey teave"
+
+#: confusb/kb.py:90
+msgid "Arduino IDE and CLI."
+msgstr "Arduino IDE ja CLI."
+
+#: confusb/kb.py:91
+msgid "ST-Link tools."
+msgstr "ST-Linki tööriistad."
+
+#: confusb/kb.py:94
+msgid "Device information"
+msgstr "Seadme teave"
+
+#: confusb/kb.py:95 confusb/kb.py:97
+msgid "ADB and MTP access."
+msgstr "ADB ja MTP juurdepääs."
+
+#: confusb/kb.py:98
+msgid "Drivers and utilities for HP printers and scanners."
+msgstr "Draiverid ja utiliidid HP printeritele ja skanneritele."
+
+#: confusb/kb.py:100
+msgid "Support for Canon printers and scanners."
+msgstr "Canoni printerite ja skannerite tugi."
+
+#: confusb/kb.py:101
+msgid "Support for Epson printers and scanners."
+msgstr "Epsoni printerite ja skannerite tugi."
+
+#: confusb/kb.py:102
+msgid "Firmware for Realtek Wi-Fi/Bluetooth/Ethernet adapters."
+msgstr "Püsivara Realtek Wi-Fi/Bluetooth/Ethernet-adapteritele."
+
+#: confusb/kb.py:103
+msgid "Atheros firmware."
+msgstr "Atherose püsivara."
+
+#: confusb/kb.py:104
+msgid "MediaTek firmware."
+msgstr "MediaTeki püsivara."
+
+#: confusb/kb.py:105
+msgid "WCH CH340 (USB serial)"
+msgstr "WCH CH340 (USB-jada)"
+
+#: confusb/kb.py:105 confusb/kb.py:106 confusb/kb.py:107
+#, python-brace-format
+msgid "Supported by the kernel ({module})."
+msgstr "Toetab tuum ({module})."
+
+#: confusb/kb.py:106
+msgid "FTDI (USB serial)"
+msgstr "FTDI (USB-jada)"
+
+#: confusb/kb.py:108
+msgid "OpenMoko / free projects"
+msgstr "OpenMoko / vabad projektid"
+
+#: confusb/kb.py:108
+msgid "Many free hardware devices use this VID."
+msgstr "Paljud vaba riistvara seadmed kasutavad seda VID-i."
+
+#: confusb/resolver.py:146
+#, python-brace-format
+msgid "Packages: {list}"
+msgstr "Paketid: {list}"
+
+#: confusb/resolver.py:148
+#, python-brace-format
+msgid "Already installed: {list}"
+msgstr "Juba installitud: {list}"
+
+#: confusb/resolver.py:150
+#, python-brace-format
+msgid "Not in the repositories: {list}"
+msgstr "Pole hoidlates: {list}"
+
+#: confusb/resolver.py:152
+#, python-brace-format
+msgid "Install {packages}"
+msgstr "Installi {packages}"
+
+#: confusb/resolver.py:158
+#, python-brace-format
+msgid "The application is already installed on your computer (version {version})."
+msgstr "Rakendus on teie arvutisse juba installitud (versioon {version})."
+
+#: confusb/resolver.py:159
+msgid "The application is already installed on your computer."
+msgstr "Rakendus on teie arvutisse juba installitud."
+
+#: confusb/resolver.py:162
+#, python-brace-format
+msgid "Open {name}"
+msgstr "Ava {name}"
+
+#: confusb/resolver.py:164
+#, python-brace-format
+msgid "«{exe}» not found"
+msgstr "«{exe}» ei leitud"
+
+#: confusb/resolver.py:167
+msgid "It is not installed."
+msgstr "Pole installitud."
+
+#: confusb/resolver.py:168
+#, python-brace-format
+msgid "Download {name}"
+msgstr "Laadi alla {name}"
+
+#: confusb/resolver.py:173
+#, python-brace-format
+msgid "Already installed as a Flatpak ({id})."
+msgstr "Juba installitud Flatpakina ({id})."
+
+#: confusb/resolver.py:174
+msgid "Open (Flatpak)"
+msgstr "Ava (Flatpak)"
+
+#: confusb/resolver.py:177
+#, python-brace-format
+msgid "Install Flatpak {id}"
+msgstr "Installi Flatpak {id}"
+
+#: confusb/resolver.py:186
+msgid "Already installed on your computer."
+msgstr "Juba teie arvutisse installitud."
+
+#: confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Installi kõigepealt «{name}»"
+
+#: confusb/resolver.py:203
+msgid "USB hub"
+msgstr "USB-jaotur"
+
+#: confusb/resolver.py:203
+msgid "Managed by the kernel's «hub» driver."
+msgstr "Haldab tuuma «hub»-draiver."
+
+#: confusb/resolver.py:206 confusb/ui.py:328
+#, python-brace-format
+msgid "Interface {number} · {label}"
+msgstr "Liides {number} · {label}"
+
+#: confusb/resolver.py:207 confusb/ui.py:333
+msgid "none found"
+msgstr "ühtegi ei leitud"
+
+#: confusb/resolver.py:209
+#, python-brace-format
+msgid "Driver: {driver}"
+msgstr "Draiver: {driver}"
+
+#: confusb/resolver.py:210
+#, python-brace-format
+msgid "Candidate modules: {modules}"
+msgstr "Kandidaatmoodulid: {modules}"
+
+#: confusb/resolver.py:212
+msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
+msgstr "Normaalne: CCID kiipkaardilugejad ei kasuta tuumadraiverit; neid haldab deemon pcscd (kasutajaruum) koos libccid-iga."
+
+#: confusb/resolver.py:215
+#, python-brace-format
+msgid "No driver bound, but there are candidate modules: {modules}."
+msgstr "Draiverit pole seotud, kuid on kandidaatmooduleid: {modules}."
+
+#: confusb/resolver.py:216
+msgid "Try: sudo modprobe <module>"
+msgstr "Proovi: sudo modprobe <moodul>"
+
+#: confusb/resolver.py:218
+msgid "The kernel has no module for this interface."
+msgstr "Tuumal pole sellele liidesele ühtegi moodulit."
+
+#: confusb/resolver.py:219
+msgid "It probably needs user-space software (see below) or an external driver."
+msgstr "Tõenäoliselt vajab see tarkvara kasutajaruumis (vt allpool) või välist draiverit."
+
+#: confusb/resolver.py:221
+msgid "No interfaces"
+msgstr "Liideseid pole"
+
+#: confusb/resolver.py:221
+msgid "The device's interfaces could not be read."
+msgstr "Seadme liideseid ei õnnestunud lugeda."
+
+#: confusb/resolver.py:222
+msgid "Kernel driver status"
+msgstr "Draiveri olek tuumas"
+
+#: confusb/resolver.py:230
+#, python-brace-format
+msgid "Recommended for the «{name}» class"
+msgstr "Soovitatud klassile «{name}»"
+
+#: confusb/resolver.py:232
+#, python-brace-format
+msgid "Recommended for the manufacturer ({vid})"
+msgstr "Soovitatud tootjale ({vid})"
+
+#: confusb/resolver.py:265 confusb/resolver.py:292
+msgid "Install"
+msgstr "Installi"
+
+#: confusb/resolver.py:267
+msgid "Debian packages whose name matches"
+msgstr "Sobiva nimega Debiani paketid"
+
+#: confusb/resolver.py:268 confusb/resolver.py:295
+#, python-brace-format
+msgid "Searched for: {terms}"
+msgstr "Otsiti: {terms}"
+
+#: confusb/resolver.py:290 confusb/resolver.py:324 confusb/resolver.py:326
+msgid "Open"
+msgstr "Ava"
+
+#: confusb/resolver.py:294
+msgid "Related Flatpak applications"
+msgstr "Seotud Flatpaki rakendused"
+
+#: confusb/resolver.py:305
+msgid "fwupd recognizes this device"
+msgstr "fwupd tunneb selle seadme ära"
+
+#: confusb/resolver.py:306
+msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
+msgstr "Tootja ametlikke püsivara uuendusi (LVFS) saab vaadata ja rakendada."
+
+#: confusb/resolver.py:308
+msgid "Check for updates"
+msgstr "Otsi uuendusi"
+
+#: confusb/resolver.py:317
+msgid "Manufacturer website and databases"
+msgstr "Tootja veebisait ja andmebaasid"
+
+#: confusb/resolver.py:318
+msgid "Search for the manufacturer's official driver"
+msgstr "Otsi tootja ametlikku draiverit"
+
+#: confusb/resolver.py:318 confusb/resolver.py:320
+#, python-brace-format
+msgid "Search: «{query}»"
+msgstr "Otsing: «{query}»"
+
+#: confusb/resolver.py:319 confusb/resolver.py:321
+msgid "Open search"
+msgstr "Ava otsing"
+
+#: confusb/resolver.py:320
+msgid "Official site / support"
+msgstr "Ametlik sait / tugi"
+
+#: confusb/resolver.py:323
+msgid "Probes from other users with this same device and the driver they used."
+msgstr "Teiste kasutajate mõõtmised sama seadmega ja draiver, mida nad kasutasid."
+
+#: confusb/resolver.py:325
+msgid "USB ID database"
+msgstr "USB ID andmebaas"
+
+#: confusb/resolver.py:325
+#, python-brace-format
+msgid "Page for ID {id}."
+msgstr "ID {id} kaart."
+
+#: confusb/resolver.py:334
+msgid "DNIe: official portal"
+msgstr "DNIe: ametlik portaal"
+
+#: confusb/resolver.py:334
+msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
+msgstr "Draiverid, PKCS#11 moodul ja juhendid Hispaania elektroonilise isikutunnistuse kohta."
+
+#: confusb/resolver.py:335
+msgid "Open the DNIe portal"
+msgstr "Ava DNIe portaal"
+
+#: confusb/resolver.py:351
+msgid "Search error"
+msgstr "Otsinguviga"
+
+#: confusb/resolver.py:351
+msgid "Error while querying"
+msgstr "Päringu viga"
+
+#: confusb/ui.py:84
+msgid "Look of the application and what to do when a device is connected"
+msgstr "Rakenduse välimus ja mida teha, kui seade ühendatakse"
+
+#: confusb/ui.py:85
+msgid "About"
+msgstr "Teave"
+
+#: confusb/ui.py:145
+msgid "(no output)"
+msgstr "(väljundit pole)"
+
+#: confusb/ui.py:160
+msgid "Connected USB devices"
+msgstr "Ühendatud USB-seadmed"
+
+#: confusb/ui.py:160
+msgid "USB devices"
+msgstr "USB-seadmed"
+
+#: confusb/ui.py:166
+msgid "Refresh"
+msgstr "Värskenda"
+
+#: confusb/ui.py:166
+msgid "Read the connected devices again"
+msgstr "Loe ühendatud seadmed uuesti"
+
+#: confusb/ui.py:188
+msgid "Reading devices…"
+msgstr "Seadmete lugemine…"
+
+#: confusb/ui.py:201
+msgid "Could not read the devices"
+msgstr "Seadmeid ei õnnestunud lugeda"
+
+#: confusb/ui.py:202
+msgid "Error reading the devices"
+msgstr "Viga seadmete lugemisel"
+
+#: confusb/ui.py:208
+msgid "No USB devices connected"
+msgstr "Ühtegi USB-seadet pole ühendatud"
+
+#: confusb/ui.py:209
+msgid "Connect one and it will appear here automatically."
+msgstr "Ühenda üks ja see ilmub siia automaatselt."
+
+#: confusb/ui.py:211
+#, python-brace-format
+msgid "Connected USB devices: {n}"
+msgstr "Ühendatud USB-seadmed: {n}"
+
+#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+msgid "Unknown manufacturer"
+msgstr "Tundmatu tootja"
+
+#: confusb/ui.py:232
+msgid "Type"
+msgstr "Tüüp"
+
+#: confusb/ui.py:233
+msgid "Port"
+msgstr "Port"
+
+#: confusb/ui.py:234
+msgid "Driver"
+msgstr "Draiver"
+
+#: confusb/ui.py:234 confusb/ui.py:332
+msgid "none"
+msgstr "puudub"
+
+#: confusb/ui.py:236
+msgid "View information →"
+msgstr "Vaata teavet →"
+
+#: confusb/ui.py:262
+msgid "Back"
+msgstr "Tagasi"
+
+#: confusb/ui.py:262
+msgid "Back to the list of devices"
+msgstr "Tagasi seadmete loendisse"
+
+#: confusb/ui.py:263
+msgid "Copy"
+msgstr "Kopeeri"
+
+#: confusb/ui.py:263
+msgid "Copy all the information to the clipboard"
+msgstr "Kopeeri kogu teave lõikelauale"
+
+#: confusb/ui.py:271
+msgid "Information"
+msgstr "Teave"
+
+#: confusb/ui.py:271
+msgid "Drivers and applications"
+msgstr "Draiverid ja rakendused"
+
+#: confusb/ui.py:280
+msgid "Connected"
+msgstr "Ühendatud"
+
+#: confusb/ui.py:300
+msgid "Information copied to the clipboard"
+msgstr "Teave kopeeriti lõikelauale"
+
+#: confusb/ui.py:326
+msgid "Interfaces"
+msgstr "Liidesed"
+
+#: confusb/ui.py:326
+msgid "Each interface can have its own driver"
+msgstr "Igal liidesel võib olla oma draiver"
+
+#: confusb/ui.py:330
+msgid "Class"
+msgstr "Klass"
+
+#: confusb/ui.py:331
+msgid "Subclass / protocol"
+msgstr "Alamklass / protokoll"
+
+#: confusb/ui.py:332
+msgid "Bound driver"
+msgstr "Seotud draiver"
+
+#: confusb/ui.py:333
+msgid "Kernel modules"
+msgstr "Tuumamoodulid"
+
+#: confusb/ui.py:340
+msgid "Nodes created in the system"
+msgstr "Süsteemis loodud sõlmed"
+
+#: confusb/ui.py:344
+msgid "Raw data"
+msgstr "Töötlemata andmed"
+
+#: confusb/ui.py:345
+#, python-brace-format
+msgid "udev properties ({n})"
+msgstr "udevi atribuudid ({n})"
+
+#: confusb/ui.py:349
+msgid "lsusb -v output (full USB descriptors)"
+msgstr "lsusb -v väljund (täielikud USB-deskriptorid)"
+
+#: confusb/ui.py:364
+msgid "Looking for drivers and applications…"
+msgstr "Draiverite ja rakenduste otsimine…"
+
+#: confusb/ui.py:417
+msgid "No terminal emulator found"
+msgstr "Terminaliemulaatorit ei leitud"
+
+#: confusb/ui.py:419
+msgid "Press Enter to close…"
+msgstr "Sulgemiseks vajuta Enter…"
+
+#: confusb/ui.py:430
+msgid "Working…"
+msgstr "Töötan…"
+
+#: confusb/ui.py:436
+#, python-brace-format
+msgid "Error: {error}"
+msgstr "Viga: {error}"
+
+#: confusb/ui.py:439
+#, python-brace-format
+msgid "(exit code {code})"
+msgstr "(väljumiskood {code})"
+
+#: confusb/ui.py:443
+msgid "Installation completed"
+msgstr "Installimine lõpetatud"
+
+#: confusb/ui.py:446
+msgid "The installation failed"
+msgstr "Installimine ebaõnnestus"
+
+#: confusb/ui.py:455
+msgid "Disconnected"
+msgstr "Lahti ühendatud"
+
+#: confusb/ui.py:456
+msgid "The device has been disconnected"
+msgstr "Seade on lahti ühendatud"
+
+#: confusb/usbinfo.py:16
+msgid "Defined at interface level"
+msgstr "Määratud liidese tasemel"
+
+#: confusb/usbinfo.py:17
+msgid "Audio"
+msgstr ""
+
+#: confusb/usbinfo.py:18
+msgid "Communications (CDC)"
+msgstr "Sidevahendid (CDC)"
+
+#: confusb/usbinfo.py:19
+msgid "Human interface device (HID)"
+msgstr "Inimliidese seade (HID)"
+
+#: confusb/usbinfo.py:20
+msgid "Physical"
+msgstr "Füüsiline"
+
+#: confusb/usbinfo.py:21
+msgid "Image"
+msgstr "Pilt"
+
+#: confusb/usbinfo.py:22
+msgid "Printer"
+msgstr "Printer"
+
+#: confusb/usbinfo.py:24
+msgid "Hub"
+msgstr ""
+
+#: confusb/usbinfo.py:26
+msgid "Smart card (CCID)"
+msgstr "Kiipkaart (CCID)"
+
+#: confusb/usbinfo.py:27
+msgid "Content security"
+msgstr "Sisu turvalisus"
+
+#: confusb/usbinfo.py:28
+msgid "Video"
+msgstr "Video"
+
+#: confusb/usbinfo.py:29
+msgid "Personal healthcare"
+msgstr "Isiklik tervishoid"
+
+#: confusb/usbinfo.py:30
+msgid "Audio/Video"
+msgstr "Heli/Video"
+
+#: confusb/usbinfo.py:32
+msgid "Diagnostic"
+msgstr "Diagnostika"
+
+#: confusb/usbinfo.py:33
+msgid "Wireless (e.g. Bluetooth)"
+msgstr "Juhtmevaba (nt Bluetooth)"
+
+#: confusb/usbinfo.py:34
+msgid "Miscellaneous"
+msgstr "Mitmesugust"
+
+#: confusb/usbinfo.py:35
+msgid "Application specific (DFU, IrDA...)"
+msgstr "Rakendusespetsiifiline (DFU, IrDA...)"
+
+#: confusb/usbinfo.py:36
+msgid "Vendor specific"
+msgstr "Tootjaspetsiifiline"
+
+#: confusb/usbinfo.py:50
+msgid "Manufacturer (descriptor)"
+msgstr "Tootja (deskriptor)"
+
+#: confusb/usbinfo.py:51
+msgid "Product (descriptor)"
+msgstr "Toode (deskriptor)"
+
+#: confusb/usbinfo.py:52
+msgid "Serial number"
+msgstr "Seerianumber"
+
+#: confusb/usbinfo.py:53
+msgid "Vendor ID (VID)"
+msgstr "Tootja ID (VID)"
+
+#: confusb/usbinfo.py:54
+msgid "Product ID (PID)"
+msgstr "Toote ID (PID)"
+
+#: confusb/usbinfo.py:55
+msgid "Device version (bcdDevice)"
+msgstr "Seadme versioon (bcdDevice)"
+
+#: confusb/usbinfo.py:56
+msgid "USB version"
+msgstr "USB versioon"
+
+#: confusb/usbinfo.py:57
+msgid "Negotiated speed (Mb/s)"
+msgstr "Kokkulepitud kiirus (Mb/s)"
+
+#: confusb/usbinfo.py:58
+msgid "Device class"
+msgstr "Seadme klass"
+
+#: confusb/usbinfo.py:59
+msgid "Device subclass"
+msgstr "Seadme alamklass"
+
+#: confusb/usbinfo.py:60
+msgid "Device protocol"
+msgstr "Seadme protokoll"
+
+#: confusb/usbinfo.py:61
+msgid "Max. EP0 packet size"
+msgstr "Maks. EP0 paketi suurus"
+
+#: confusb/usbinfo.py:62
+msgid "Number of configurations"
+msgstr "Konfiguratsioonide arv"
+
+#: confusb/usbinfo.py:63
+msgid "Active configuration"
+msgstr "Aktiivne konfiguratsioon"
+
+#: confusb/usbinfo.py:64
+msgid "Number of interfaces"
+msgstr "Liideste arv"
+
+#: confusb/usbinfo.py:65
+msgid "Configuration attributes"
+msgstr "Konfiguratsiooni atribuudid"
+
+#: confusb/usbinfo.py:66
+msgid "Declared maximum power"
+msgstr "Deklareeritud maksimaalne võimsus"
+
+#: confusb/usbinfo.py:67
+msgid "Bus"
+msgstr ""
+
+#: confusb/usbinfo.py:68
+msgid "Address on the bus"
+msgstr "Aadress siinil"
+
+#: confusb/usbinfo.py:69
+msgid "Port path (devpath)"
+msgstr "Portide tee (devpath)"
+
+#: confusb/usbinfo.py:70
+msgid "Child ports"
+msgstr "Alluvad pordid"
+
+#: confusb/usbinfo.py:71
+msgid "Removable"
+msgstr "Eemaldatav"
+
+#: confusb/usbinfo.py:72
+msgid "Authorized"
+msgstr "Volitatud"
+
+#: confusb/usbinfo.py:73
+msgid "Configuration name"
+msgstr "Konfiguratsiooni nimi"
+
+#: confusb/usbinfo.py:75
+msgid "Kernel quirks"
+msgstr "Tuuma iseärasused"
+
+#: confusb/usbinfo.py:108
+msgid "Unknown"
+msgstr "Tundmatu"
+
+#: confusb/usbinfo.py:162
+#, python-brace-format
+msgid "== Interface {name} =="
+msgstr ""
+
+#: confusb/usbinfo.py:163
+#, python-brace-format
+msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
+msgstr ""
+
+#: confusb/usbinfo.py:165
+#, python-brace-format
+msgid "driver={driver} modules={modules}"
+msgstr ""
+
+#: confusb/usbinfo.py:166
+msgid "(none)"
+msgstr ""
+
+#: confusb/usbinfo.py:169
+msgid "== udev properties =="
+msgstr ""
+
+#: confusb/usbinfo.py:201
+#, python-brace-format
+msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
+msgstr ""
+
+#: confusb/usbinfo.py:232
+#, python-brace-format
+msgid "network interface {name}"
+msgstr "võrguliides {name}"
+
+#: confusb/usbinfo.py:279
+msgid "Manufacturer (usb.ids)"
+msgstr "Tootja (usb.ids)"
+
+#: confusb/usbinfo.py:280
+msgid "Product (usb.ids)"
+msgstr "Toode (usb.ids)"
+
+#: confusb/usbinfo.py:281
+msgid "sysfs path"
+msgstr "sysfs-tee"
+
+#: confusb/usbinfo.py:282
+msgid "/dev node"
+msgstr "/dev-sõlm"
+
+#: confusb/usbinfo.py:283
+msgid "Subsystem / type"
+msgstr "Alamsüsteem / tüüp"
+
+#: confusb/usbinfo.py:284
+msgid "Interfaces (ID_USB_INTERFACES)"
+msgstr ""
+
+#: confusb/usbinfo.py:285
+msgid "Device driver"
+msgstr "Seadme draiver"
+
+#: confusb/usbinfo.py:287
+msgid "Persistent paths (ID_PATH)"
+msgstr "Püsivad teed (ID_PATH)"
+
+#: confusb/usbinfo.py:288
+msgid "udev tags (TAGS)"
+msgstr "udevi sildid (TAGS)"
+
+#: confusb/usbinfo.py:291
+msgid "Identification"
+msgstr "Tuvastus"
+
+#: confusb/usbinfo.py:292
+msgid "Descriptors and configuration"
+msgstr "Deskriptorid ja konfiguratsioon"
+
+#: confusb/usbinfo.py:293
+msgid "System"
+msgstr "Süsteem"
+
+#: confusb/usbinfo.py:297
+msgid "Power control"
+msgstr "Toitehaldus"
+
+#: confusb/usbinfo.py:298
+msgid "Power state"
+msgstr "Toite olek"
+
+#: confusb/usbinfo.py:299
+msgid "Autosuspend delay (ms)"
+msgstr "Automaatse uinumise viivitus (ms)"
+
+#: confusb/usbinfo.py:300
+msgid "Persistence"
+msgstr "Püsivus"
+
+#: confusb/usbinfo.py:301
+msgid "System wake-up"
+msgstr "Süsteemi äratus"
+
+#: confusb/usbinfo.py:302
+msgid "Active time (ms)"
+msgstr "Aktiivne aeg (ms)"
+
+#: confusb/usbinfo.py:303
+msgid "Connected time (ms)"
+msgstr "Ühenduse aeg (ms)"
+
+#: confusb/usbinfo.py:304
+msgid "URBs processed"
+msgstr "Töödeldud URB-d"
+
+#: confusb/usbinfo.py:310
+msgid "Power and statistics"
+msgstr "Toide ja statistika"
+
+#: confusb/usbinfo.py:316
+msgid "Topology"
+msgstr "Topoloogia"
+
+#: confusb/usbinfo.py:317
+msgid "Connected to"
+msgstr "Ühendatud"
+
+#: confusb/usbinfo.py:318
+msgid "Parent path"
+msgstr "Vanema tee"

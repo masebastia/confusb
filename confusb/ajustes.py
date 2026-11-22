@@ -17,6 +17,9 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, GLib, Gtk  # noqa: E402
 
+from . import i18n  # noqa: E402
+from .i18n import N_  # noqa: E402
+
 RES = os.path.join(os.path.dirname(__file__), "recursos")
 
 # Paleta de Contabilizando (theme.py). Oscuro: azul azabache con un leve degradado.
@@ -34,27 +37,27 @@ CLARO = {
 }
 
 COLORES = {
-    "normal": ("Como el tema", None),
-    "azul": ("Azul", "#4fa3ff"),
-    "verde": ("Verde", "#3fb950"),
-    "cian": ("Cian", "#39c5cf"),
-    "violeta": ("Violeta", "#a78bfa"),
-    "rosa": ("Rosa", "#f472b6"),
-    "ambar": ("Ámbar", "#e3b341"),
-    "gris": ("Gris claro", "#a9b4bf"),
+    "normal": (N_("Like the theme"), None),
+    "azul": (N_("Blue"), "#4fa3ff"),
+    "verde": (N_("Green"), "#3fb950"),
+    "cian": (N_("Cyan"), "#39c5cf"),
+    "violeta": (N_("Violet"), "#a78bfa"),
+    "rosa": (N_("Pink"), "#f472b6"),
+    "ambar": (N_("Amber"), "#e3b341"),
+    "gris": (N_("Light gray"), "#a9b4bf"),
 }
 MARCOS = {
-    "resaltado": "Resaltado (borde y resplandor al pasar el ratón)",
-    "suave": "Atenuado (borde discreto, sin resplandor)",
-    "sin": "Sin marco",
+    "resaltado": N_("Highlighted (border and glow on hover)"),
+    "suave": N_("Subtle (discreet border, no glow)"),
+    "sin": N_("No frame"),
 }
 AL_CONECTAR = {
-    "ventana": "Abrir una ventana con la información",
-    "notificar": "Mostrar una notificación",
-    "nada": "No hacer nada",
+    "ventana": N_("Open a window with the information"),
+    "notificar": N_("Show a notification"),
+    "nada": N_("Do nothing"),
 }
 DEFECTOS = {"opacidad": 80, "titulo": "normal", "marco": "resaltado", "sombra": False, "esquinas": 12,
-            "pie": True, "al_conectar": "ventana"}
+            "pie": True, "al_conectar": "ventana", "idioma": ""}   # idioma "" = el del sistema
 
 
 class Ajustes:
@@ -62,6 +65,7 @@ class Ajustes:
         self.ruta = os.path.join(GLib.get_user_config_dir(), "confusb", "ajustes.json")
         self.valores = dict(DEFECTOS)
         self._cargar()
+        i18n.activar(self.idioma_efectivo)
         self._oyentes: list[Callable[[], None]] = []
         self._proveedor = Gtk.CssProvider()
         self._instalado = False
@@ -86,6 +90,8 @@ class Ajustes:
             v["marco"] = d["marco"]
         if d.get("al_conectar") in AL_CONECTAR:
             v["al_conectar"] = d["al_conectar"]
+        if d.get("idioma") in i18n.IDIOMAS:
+            v["idioma"] = d["idioma"]
         for k in ("sombra", "pie"):
             if isinstance(d.get(k), bool):
                 v[k] = d[k]
@@ -106,6 +112,11 @@ class Ajustes:
         raise AttributeError(nombre)
 
     @property
+    def idioma_efectivo(self) -> str:
+        """El idioma elegido o, si no se ha elegido ninguno, el del sistema."""
+        return self.valores["idioma"] or i18n.idioma_del_sistema()
+
+    @property
     def oscuro(self) -> bool:
         return Adw.StyleManager.get_default().get_dark()
 
@@ -117,10 +128,12 @@ class Ajustes:
     def cambiar(self, **kw):
         self.valores.update(kw)
         self._guardar()
+        if "idioma" in kw:
+            i18n.activar(self.idioma_efectivo)
         self._regenerar()
 
     def restablecer(self):
-        self.valores = dict(DEFECTOS)
+        self.valores = {**DEFECTOS, "idioma": self.valores["idioma"]}   # el idioma elegido se conserva
         self._guardar()
         self._regenerar()
 

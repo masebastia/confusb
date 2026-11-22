@@ -28,6 +28,27 @@ motivos de hardware (pistas de circuito impreso, chips y conectores), cabecera c
 píldoras, tarjetas, barra inferior con etiqueta y subventanas de cristal difuminado. Sigue el tema claro u
 oscuro del sistema, y los botones usan el color de acento del sistema.
 
+## Idiomas
+
+confusb habla los idiomas oficiales de los países de Europa: alemán, albanés, bielorruso, bosnio, búlgaro,
+checo, croata, danés, eslovaco, esloveno, español, estonio, finés, francés, griego, húngaro, inglés, irlandés,
+islandés, italiano, letón, lituano, luxemburgués, macedonio, maltés, montenegrino, neerlandés, noruego (bokmål),
+polaco, portugués, rumano, ruso, serbio, sueco, turco y ucraniano. Se cambia con el desplegable de la esquina
+superior derecha (bandera y abreviatura, «🇪🇸 ES»); la ventana se reabre en el idioma elegido y se recuerda.
+Por defecto usa el idioma del sistema, o inglés si no lo tiene.
+
+Los textos del código están en inglés y las traducciones son los `po/<código>.po` (gettext). El español es el
+original del autor; **las demás traducciones las ha generado una IA y están pendientes de revisión por
+hablantes nativos**: las correcciones son bienvenidas (basta editar el `.po` y abrir un *pull request*).
+La ayuda de la línea de comandos solo está traducida al español.
+
+    tools/i18n.py extract   # regenera po/confusb.pot a partir del código
+    tools/i18n.py merge     # actualiza los .po con los textos nuevos
+    tools/i18n.py check     # valida los .po (sintaxis y {marcadores})
+    tools/i18n.py compile   # compila a locale/<idioma>/LC_MESSAGES/confusb.mo (necesita gettext)
+
+Al ejecutar desde el código fuente se leen los `.po` directamente, sin compilar.
+
 ## Instalación
 
 Desde el código fuente:

@@ -16,6 +16,7 @@ from gi.repository import Adw, Gio, GLib, GUdev  # noqa: E402
 
 from . import APP_ID, __version__, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
+from .i18n import _  # noqa: E402
 from .ui import DeviceWindow, DevicesWindow  # noqa: E402
 
 SETTLE_MS = 1500          # esperar a que el kernel enlace drivers e interfaces
@@ -46,9 +47,9 @@ class ConfusbApp(Adw.Application):
         accion.connect("activate", lambda _a, v: self.open_device(v.get_string()))
         self.add_action(accion)
         self.add_main_option("devices", ord("d"), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
-                             "Mostrar la lista de dispositivos USB conectados", None)
+                             _("Show the list of connected USB devices"), None)
         self.add_main_option("show", ord("s"), GLib.OptionFlags.NONE, GLib.OptionArg.STRING,
-                             "Mostrar la ventana de un dispositivo (1-5, VID:PID o ruta sysfs)", "DISP")
+                             _("Show a device's window (1-5, VID:PID or sysfs path)"), "DEV")
 
     # --------------------------------------------------------- ciclo de vida
     def do_command_line(self, cmdline):
@@ -59,7 +60,7 @@ class ConfusbApp(Adw.Application):
         if "show" in opts:
             path = resolve_target(opts["show"])
             if not path:
-                cmdline.printerr_literal(f"No se encuentra el dispositivo «{opts['show']}»\n")
+                cmdline.printerr_literal(_("Device «{name}» not found").format(name=opts["show"]) + "\n")
                 return 1
             self.open_device(path)
             return 0
@@ -68,8 +69,26 @@ class ConfusbApp(Adw.Application):
             self.held = True
             self.client = GUdev.Client(subsystems=["usb"])
             self.client.connect("uevent", self.on_uevent)
-            print("confusb: vigilando conexiones USB…", flush=True)
+            print("confusb: watching USB connections…", flush=True)
         return 0
+
+    def cambiar_idioma(self, codigo: str):
+        """Cambia el idioma y reabre las ventanas para que se vean en él."""
+        AJUSTES.cambiar(idioma=codigo)
+        GLib.idle_add(self._reconstruir)
+
+    def _reconstruir(self):
+        abiertas = list(self.windows)                    # detalles abiertos (por ruta sysfs)
+        con_principal = self.devices_win is not None
+        self.hold()                                      # que la aplicación no termine entre medias
+        for w in list(self.get_windows()):
+            w.close()
+        if con_principal:
+            self.show_devices()
+        for path in abiertas:
+            self.open_device(path)
+        GLib.timeout_add_seconds(5, lambda: self.release() or False)
+        return False
 
     def show_devices(self):
         if self.devices_win is None:
@@ -88,11 +107,11 @@ class ConfusbApp(Adw.Application):
             GLib.timeout_add(SETTLE_MS, self.conectado, path)
         elif action == "remove":
             nombre = (device.get_property("ID_MODEL_FROM_DATABASE") or device.get_property("ID_MODEL")
-                      or "dispositivo USB").replace("_", " ")
+                      or _("USB device")).replace("_", " ")
             if path in self.windows:
                 self.windows[path].mark_disconnected()
             if self.devices_win:
-                self.devices_win.refresh(aviso=f"Desconectado: {nombre}")
+                self.devices_win.refresh(aviso=_("Disconnected: {name}").format(name=nombre))
 
     def conectado(self, path: str):
         """Un dispositivo nuevo, con el kernel ya asentado: actualizar la lista y aplicar el ajuste."""
@@ -103,12 +122,12 @@ class ConfusbApp(Adw.Application):
             if isinstance(info, Exception):
                 return False
             if self.devices_win:
-                self.devices_win.refresh(aviso=f"Conectado: {info.title}")
+                self.devices_win.refresh(aviso=_("Connected: {name}").format(name=info.title))
             modo = AJUSTES.al_conectar
             if modo == "ventana":
                 self.open_device(path)
             elif modo == "notificar":
-                n = Gio.Notification.new("Dispositivo USB conectado")
+                n = Gio.Notification.new(_("USB device connected"))
                 n.set_body(f"{info.title} · {info.usb_id}")
                 n.set_default_action(f"app.detalle({GLib.Variant.new_string(path).print_(False)})")
                 self.send_notification(f"usb-{info.usb_id}", n)
@@ -142,7 +161,7 @@ class ConfusbApp(Adw.Application):
 
         def done(info):
             if isinstance(info, Exception):
-                print(f"confusb: error leyendo {path}: {info}", flush=True)
+                print(f"confusb: error reading {path}: {info}", flush=True)
                 return False
             w = DeviceWindow(self, info)
             self.windows[path] = w
@@ -167,22 +186,20 @@ class ConfusbApp(Adw.Application):
 
 
 def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(prog="confusb", add_help=False)
-    ap.add_argument("--list", action="store_true", help="Listar dispositivos USB y salir")
-    ap.add_argument("--dump", metavar="DISP", help="Imprimir toda la información de un dispositivo y salir")
-    ap.add_argument("-h", "--help", action="store_true")
-    ap.add_argument("--version", action="store_true")
+    ap = argparse.ArgumentParser(
+        prog="confusb",
+        description=_("Shows the information of a USB device when it is connected and looks for its driver "
+                      "and the applications to use it."),
+        epilog=_("Without arguments it runs as a service that watches the USB connections according to the settings."))
+    ap.add_argument("--devices", action="store_true", help=_("show the window with the connected devices"))
+    ap.add_argument("--show", metavar="DEV", help=_("open the details of a device (1-5, VID:PID or sysfs path)"))
+    ap.add_argument("--list", action="store_true", help=_("list the USB devices and exit"))
+    ap.add_argument("--dump", metavar="DEV",
+                    help=_("print all the information of a device and exit (1-5, VID:PID or sysfs path)"))
+    ap.add_argument("--version", action="store_true", help=_("show the version and exit"))
     args, rest = ap.parse_known_args(argv[1:])
     if args.version:
         print(f"confusb {__version__}")
-        return 0
-    if args.help:
-        print("uso: confusb            servicio (vigila conexiones USB según los ajustes)\n"
-              "     confusb --devices  ventana con los dispositivos conectados\n"
-              "     confusb --show X   abrir el detalle de un dispositivo (1-5, 058f:9540, ruta sysfs)\n"
-              "     confusb --list     listar dispositivos\n"
-              "     confusb --dump X   volcar toda la información en texto\n"
-              "     confusb --version")
         return 0
     if args.list:
         for p in usbinfo.list_usb_devices():
@@ -192,8 +209,12 @@ def main(argv: list[str]) -> int:
     if args.dump:
         p = resolve_target(args.dump)
         if not p:
-            print("dispositivo no encontrado")
+            print(_("Device «{name}» not found").format(name=args.dump))
             return 1
         print(usbinfo.collect(p).as_text())
         return 0
+    if args.devices:   # estas dos las trata GApplication (y las reenvía a la instancia que ya está en marcha)
+        rest = ["--devices", *rest]
+    if args.show:
+        rest = ["--show", args.show, *rest]
     return ConfusbApp().run([argv[0], *rest])

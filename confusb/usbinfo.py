@@ -8,34 +8,36 @@ import shutil
 import subprocess
 from dataclasses import dataclass, field
 
+from .i18n import N_, _
+
 ENV = {**os.environ, "LC_ALL": "C"}
 
 CLASS_NAMES = {
-    0x00: "Definida a nivel de interfaz",
-    0x01: "Audio",
-    0x02: "Comunicaciones (CDC)",
-    0x03: "Dispositivo de interfaz humana (HID)",
-    0x05: "Físico",
-    0x06: "Imagen",
-    0x07: "Impresora",
-    0x08: "Almacenamiento masivo",
-    0x09: "Hub",
+    0x00: N_("Defined at interface level"),
+    0x01: N_("Audio"),
+    0x02: N_("Communications (CDC)"),
+    0x03: N_("Human interface device (HID)"),
+    0x05: N_("Physical"),
+    0x06: N_("Image"),
+    0x07: N_("Printer"),
+    0x08: N_("Mass storage"),
+    0x09: N_("Hub"),
     0x0A: "CDC-Data",
-    0x0B: "Tarjeta inteligente (CCID)",
-    0x0D: "Seguridad / contenido",
-    0x0E: "Vídeo",
-    0x0F: "Salud personal",
-    0x10: "Audio/Vídeo",
+    0x0B: N_("Smart card (CCID)"),
+    0x0D: N_("Content security"),
+    0x0E: N_("Video"),
+    0x0F: N_("Personal healthcare"),
+    0x10: N_("Audio/Video"),
     0x11: "Billboard",
-    0xDC: "Diagnóstico",
-    0xE0: "Inalámbrico (p. ej. Bluetooth)",
-    0xEF: "Miscelánea",
-    0xFE: "Específica de aplicación (DFU, IrDA...)",
-    0xFF: "Específica del fabricante",
+    0xDC: N_("Diagnostic"),
+    0xE0: N_("Wireless (e.g. Bluetooth)"),
+    0xEF: N_("Miscellaneous"),
+    0xFE: N_("Application specific (DFU, IrDA...)"),
+    0xFF: N_("Vendor specific"),
 }
 
 SPEEDS = {
-    "1.5": "Low Speed (1,5 Mb/s) · USB 1.0",
+    "1.5": "Low Speed (1.5 Mb/s) · USB 1.0",
     "12": "Full Speed (12 Mb/s) · USB 1.1",
     "480": "High Speed (480 Mb/s) · USB 2.0",
     "5000": "SuperSpeed (5 Gb/s) · USB 3.0",
@@ -43,34 +45,34 @@ SPEEDS = {
     "20000": "SuperSpeed+ (20 Gb/s) · USB 3.2",
 }
 
-# Atributos de sysfs del dispositivo: (fichero, etiqueta)
+# Atributos de sysfs del dispositivo: (fichero, etiqueta traducible)
 DEVICE_ATTRS = [
-    ("manufacturer", "Fabricante (descriptor)"),
-    ("product", "Producto (descriptor)"),
-    ("serial", "Nº de serie"),
-    ("idVendor", "ID de fabricante (VID)"),
-    ("idProduct", "ID de producto (PID)"),
-    ("bcdDevice", "Versión del dispositivo (bcdDevice)"),
-    ("version", "Versión de USB"),
-    ("speed", "Velocidad negociada (Mb/s)"),
-    ("bDeviceClass", "Clase del dispositivo"),
-    ("bDeviceSubClass", "Subclase del dispositivo"),
-    ("bDeviceProtocol", "Protocolo del dispositivo"),
-    ("bMaxPacketSize0", "Tamaño máx. de paquete EP0"),
-    ("bNumConfigurations", "Nº de configuraciones"),
-    ("bConfigurationValue", "Configuración activa"),
-    ("bNumInterfaces", "Nº de interfaces"),
-    ("bmAttributes", "Atributos de configuración"),
-    ("bMaxPower", "Consumo máximo declarado"),
-    ("busnum", "Bus"),
-    ("devnum", "Dirección en el bus"),
-    ("devpath", "Ruta de puertos (devpath)"),
-    ("maxchild", "Puertos hijos"),
-    ("removable", "Extraíble"),
-    ("authorized", "Autorizado"),
-    ("configuration", "Nombre de la configuración"),
+    ("manufacturer", N_("Manufacturer (descriptor)")),
+    ("product", N_("Product (descriptor)")),
+    ("serial", N_("Serial number")),
+    ("idVendor", N_("Vendor ID (VID)")),
+    ("idProduct", N_("Product ID (PID)")),
+    ("bcdDevice", N_("Device version (bcdDevice)")),
+    ("version", N_("USB version")),
+    ("speed", N_("Negotiated speed (Mb/s)")),
+    ("bDeviceClass", N_("Device class")),
+    ("bDeviceSubClass", N_("Device subclass")),
+    ("bDeviceProtocol", N_("Device protocol")),
+    ("bMaxPacketSize0", N_("Max. EP0 packet size")),
+    ("bNumConfigurations", N_("Number of configurations")),
+    ("bConfigurationValue", N_("Active configuration")),
+    ("bNumInterfaces", N_("Number of interfaces")),
+    ("bmAttributes", N_("Configuration attributes")),
+    ("bMaxPower", N_("Declared maximum power")),
+    ("busnum", N_("Bus")),
+    ("devnum", N_("Address on the bus")),
+    ("devpath", N_("Port path (devpath)")),
+    ("maxchild", N_("Child ports")),
+    ("removable", N_("Removable")),
+    ("authorized", N_("Authorized")),
+    ("configuration", N_("Configuration name")),
     ("ltm_capable", "LTM"),
-    ("quirks", "Quirks del kernel"),
+    ("quirks", N_("Kernel quirks")),
 ]
 
 NODE_SKIP = {"power", "driver", "subsystem", "firmware_node", "device"}
@@ -102,7 +104,8 @@ def run(cmd: list[str], timeout: float = 10.0) -> str:
 def class_name(code: int | None) -> str:
     if code is None:
         return "?"
-    return f"0x{code:02x} · {CLASS_NAMES.get(code, 'Desconocida')}"
+    nombre = CLASS_NAMES.get(code)
+    return f"0x{code:02x} · {_(nombre) if nombre else _('Unknown')}"
 
 
 @dataclass
@@ -156,12 +159,14 @@ class DeviceInfo:
             out += [f"{k}: {v}" for k, v in rows]
             out.append("")
         for i in self.interfaces:
-            out.append(f"== Interfaz {i.name} ==")
-            out.append(f"clase={class_name(i.cls)} sub=0x{i.subcls or 0:02x} proto=0x{i.proto or 0:02x}")
-            out.append(f"controlador={i.driver or '(ninguno)'} módulos={', '.join(i.modules) or '-'}")
-            out += [f"  {e}" for e in i.endpoints]
+            out.append(_("== Interface {name} ==").format(name=i.name))
+            out.append(_("class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}").format(
+                cls=class_name(i.cls), sub=i.subcls or 0, proto=i.proto or 0))
+            out.append(_("driver={driver} modules={modules}").format(
+                driver=i.driver or _("(none)"), modules=", ".join(i.modules) or "-"))
+            out += [f"  Endpoint {e}" for e in i.endpoints]
             out.append("")
-        out.append("== Propiedades udev ==")
+        out.append(_("== udev properties =="))
         out += [f"{k}={v}" for k, v in sorted(self.props.items())]
         out += ["", "== lsusb -v ==", self.lsusb]
         return "\n".join(out)
@@ -193,12 +198,12 @@ def read_endpoints(ifpath: str) -> list[str]:
             continue
         p = os.path.join(ifpath, e)
         eps.append(
-            "Endpoint {} · {} · {} · máx. paquete {} B · intervalo {}".format(
-                read(f"{p}/bEndpointAddress"),
-                read(f"{p}/type"),
-                read(f"{p}/direction"),
-                int(read(f"{p}/wMaxPacketSize") or "0", 16),
-                read(f"{p}/bInterval"),
+            _("{addr} · {type} · {dir} · max. packet {size} B · interval {interval}").format(
+                addr=read(f"{p}/bEndpointAddress"),
+                type=read(f"{p}/type"),
+                dir=read(f"{p}/direction"),
+                size=int(read(f"{p}/wMaxPacketSize") or "0", 16),
+                interval=read(f"{p}/bInterval"),
             )
         )
     return eps
@@ -224,7 +229,7 @@ def collect_nodes(root: str) -> list[tuple[str, str]]:
             if "DEVNAME" in uev:
                 nodes.append((subsystem, "/dev/" + uev["DEVNAME"]))
             elif "INTERFACE" in uev:
-                nodes.append((subsystem, "interfaz de red " + uev["INTERFACE"]))
+                nodes.append((subsystem, _("network interface {name}").format(name=uev["INTERFACE"])))
             elif subsystem not in ("input",):
                 nodes.append((subsystem, os.path.basename(cur)))
     return sorted(set(nodes))
@@ -269,50 +274,48 @@ def collect(syspath: str, with_lsusb: bool = True) -> DeviceInfo:
             v = class_name(hexint(v))
         elif fname == "bMaxPower":
             v = v.strip()
-        rows.append((label, v))
+        rows.append((label, v))        # label = texto fuente (inglés): se traduce al construir las secciones
     general = [
-        ("Fabricante (usb.ids)", p.get("ID_VENDOR_FROM_DATABASE", "—")),
-        ("Producto (usb.ids)", p.get("ID_MODEL_FROM_DATABASE", "—")),
-        ("Ruta sysfs", syspath),
-        ("Nodo /dev", p.get("DEVNAME", "—")),
-        ("Subsistema / tipo", f"{p.get('SUBSYSTEM', '?')} / {p.get('DEVTYPE', '?')}"),
-        ("Interfaces (ID_USB_INTERFACES)", p.get("ID_USB_INTERFACES", "—")),
-        ("Controlador del dispositivo", os.path.basename(os.path.realpath(f"{syspath}/driver"))
+        (_("Manufacturer (usb.ids)"), p.get("ID_VENDOR_FROM_DATABASE", "—")),
+        (_("Product (usb.ids)"), p.get("ID_MODEL_FROM_DATABASE", "—")),
+        (_("sysfs path"), syspath),
+        (_("/dev node"), p.get("DEVNAME", "—")),
+        (_("Subsystem / type"), f"{p.get('SUBSYSTEM', '?')} / {p.get('DEVTYPE', '?')}"),
+        (_("Interfaces (ID_USB_INTERFACES)"), p.get("ID_USB_INTERFACES", "—")),
+        (_("Device driver"), os.path.basename(os.path.realpath(f"{syspath}/driver"))
          if os.path.islink(f"{syspath}/driver") else "—"),
-        ("Rutas persistentes (ID_PATH)", p.get("ID_PATH", "—")),
-        ("Etiquetas udev (TAGS)", p.get("TAGS", "—")),
+        (_("Persistent paths (ID_PATH)"), p.get("ID_PATH", "—")),
+        (_("udev tags (TAGS)"), p.get("TAGS", "—")),
     ]
-    ident_labels = {"Fabricante (descriptor)", "Producto (descriptor)", "Nº de serie", "ID de fabricante (VID)",
-                    "ID de producto (PID)", "Versión del dispositivo (bcdDevice)", "Versión de USB",
-                    "Velocidad negociada (Mb/s)"}
-    info.sections.append(("Identificación", [r for r in rows if r[0] in ident_labels]))
-    info.sections.append(("Descriptores y configuración", [r for r in rows if r[0] not in ident_labels]))
-    info.sections.append(("Sistema", general))
+    ident_labels = ['Manufacturer (descriptor)', 'Product (descriptor)', 'Serial number', 'Vendor ID (VID)', 'Product ID (PID)', 'Device version (bcdDevice)', 'USB version', 'Negotiated speed (Mb/s)']
+    info.sections.append((_("Identification"), [(_(k), v) for k, v in rows if k in ident_labels]))
+    info.sections.append((_("Descriptors and configuration"), [(_(k), v) for k, v in rows if k not in ident_labels]))
+    info.sections.append((_("System"), general))
 
     power = []
     for fname, label in [
-        ("power/control", "Control de energía"),
-        ("power/runtime_status", "Estado de energía"),
-        ("power/autosuspend_delay_ms", "Retardo de autosuspensión (ms)"),
-        ("power/persist", "Persistencia"),
-        ("power/wakeup", "Despertar del sistema"),
-        ("power/active_duration", "Tiempo activo (ms)"),
-        ("power/connected_duration", "Tiempo conectado (ms)"),
-        ("urbnum", "URBs procesados"),
+        ("power/control", _("Power control")),
+        ("power/runtime_status", _("Power state")),
+        ("power/autosuspend_delay_ms", _("Autosuspend delay (ms)")),
+        ("power/persist", _("Persistence")),
+        ("power/wakeup", _("System wake-up")),
+        ("power/active_duration", _("Active time (ms)")),
+        ("power/connected_duration", _("Connected time (ms)")),
+        ("urbnum", _("URBs processed")),
     ]:
         v = read(f"{syspath}/{fname}")
         if v:
             power.append((label, v))
     if power:
-        info.sections.append(("Energía y estadísticas", power))
+        info.sections.append((_("Power and statistics"), power))
 
     # Topología
     parent = os.path.dirname(syspath)
     pv, pp = read(f"{parent}/idVendor"), read(f"{parent}/idProduct")
     if pv:
-        info.sections.append(("Topología", [
-            ("Conectado a", f"{pv}:{pp} {read(parent + '/product') or ''}".strip()),
-            ("Ruta del padre", parent),
+        info.sections.append((_("Topology"), [
+            (_("Connected to"), f"{pv}:{pp} {read(parent + '/product') or ''}".strip()),
+            (_("Parent path"), parent),
         ]))
 
     # --- interfaces ---

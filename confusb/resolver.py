@@ -22,6 +22,7 @@ from dataclasses import dataclass, field
 from typing import Callable
 
 from . import kb
+from .i18n import _
 from .usbinfo import CLASS_NAMES, ENV, DeviceInfo, run
 
 
@@ -130,64 +131,67 @@ def detectar_externa(ext: dict, states: dict[str, str]) -> tuple[bool, str]:
 
 
 def make_item_from_kb(entry: dict, states: dict[str, str], flatpaks: set[str] | frozenset = frozenset()) -> Item:
-    """Elemento ofrecido: siempre dice si ya está instalado y solo ofrece instalar lo que falta."""
+    """Elemento ofrecido: siempre dice si ya está instalado y solo ofrece instalar lo que falta.
+    El estado (item.status) es el texto fuente en inglés: la interfaz lo clasifica y lo traduce."""
     pkgs = entry.get("packages", [])
     instalados = [p for p in pkgs if states.get(p) == "installed"]
     missing = [p for p in pkgs if states.get(p) == "available"]
     unavailable = [p for p in pkgs if states.get(p) == "missing"]
-    item = Item(entry["title"], entry.get("desc", ""))
+    desc = _(entry["desc"]).format(**entry["desc_args"]) if entry.get("desc_args") else _(entry.get("desc", ""))
+    item = Item(_(entry["title"]), desc)
     notas: list[str] = []
     falta = bool(missing)
 
     if pkgs:
-        notas.append("Paquetes: " + ", ".join(pkgs))
+        notas.append(_("Packages: {list}").format(list=", ".join(pkgs)))
         if instalados and (missing or unavailable):
-            notas.append("Ya instalado: " + ", ".join(instalados))
+            notas.append(_("Already installed: {list}").format(list=", ".join(instalados)))
         if unavailable:
-            notas.append("No están en los repositorios: " + ", ".join(unavailable))
+            notas.append(_("Not in the repositories: {list}").format(list=", ".join(unavailable)))
         if missing:
-            item.actions.append(Action(f"Instalar {', '.join(missing)}", "apt", missing))
+            item.actions.append(Action(_("Install {packages}").format(packages=", ".join(missing)), "apt", missing))
 
     ext = entry.get("externa")
     if ext:
         puesta, version = detectar_externa(ext, states)
         if puesta:
-            notas.append(f"Ya está instalada en tu equipo{f' (versión {version})' if version else ''}.")
+            notas.append(_("The application is already installed on your computer (version {version}).").format(version=version)
+                         if version else _("The application is already installed on your computer."))
             if ext.get("lanzar"):
                 exe = ext["lanzar"][0]
-                item.actions.append(Action(f"Abrir {ext['nombre']}", "launch", ext["lanzar"],
+                item.actions.append(Action(_("Open {name}").format(name=ext["nombre"]), "launch", ext["lanzar"],
                                            enabled=shutil.which(exe) is not None,
-                                           tooltip="" if shutil.which(exe) else f"No se encuentra «{exe}»"))
+                                           tooltip="" if shutil.which(exe) else _("«{exe}» not found").format(exe=exe)))
         else:
             falta = True
-            notas.append(f"No está instalada.")
-            item.actions.append(Action(f"Descargar {ext['nombre']}", "url", ext["url"]))
+            notas.append(_("It is not installed."))
+            item.actions.append(Action(_("Download {name}").format(name=ext["nombre"]), "url", ext["url"]))
 
     fp = entry.get("flatpak")
     if fp:
         if fp in flatpaks:
-            notas.append(f"Ya instalada como Flatpak ({fp}).")
-            item.actions.append(Action("Abrir (Flatpak)", "launch", ["flatpak", "run", fp]))
+            notas.append(_("Already installed as a Flatpak ({id}).").format(id=fp))
+            item.actions.append(Action(_("Open (Flatpak)"), "launch", ["flatpak", "run", fp]))
         else:
             falta = True
-            item.actions.append(Action(f"Instalar Flatpak {fp}", "flatpak", fp))
+            item.actions.append(Action(_("Install Flatpak {id}").format(id=fp), "flatpak", fp))
 
     if falta:
-        item.status = "Falta instalar"
+        item.status = "Needs installing"
     elif unavailable:
-        item.status = "No está en los repositorios"
+        item.status = "Not in the repositories"
     elif pkgs or ext or fp:
-        item.status = "Instalado"
-    if item.status == "Instalado" and pkgs and not ext and not fp:
-        notas.append("Ya está instalado en tu equipo.")
+        item.status = "Installed"
+    if item.status == "Installed" and pkgs and not ext and not fp:
+        notas.append(_("Already installed on your computer."))
     item.desc = "\n".join([item.desc, *notas]).strip()
 
     for app in entry.get("apps", []):
         exe = app["cmd"][0]
         ok = shutil.which(exe) is not None
-        tip = "" if ok else f"Instala primero «{app.get('needs', exe)}»"
+        tip = "" if ok else _("Install «{name}» first").format(name=app.get("needs", exe))
         kind = "capture" if app.get("capture") else ("terminal" if app.get("terminal") else "launch")
-        item.actions.append(Action(app["label"], kind, app["cmd"], enabled=ok, tooltip=tip))
+        item.actions.append(Action(_(app["label"]), kind, app["cmd"], enabled=ok, tooltip=tip))
     return item
 
 
@@ -196,41 +200,41 @@ def make_item_from_kb(entry: dict, states: dict[str, str], flatpaks: set[str] | 
 def kernel_group(info: DeviceInfo) -> Group:
     items: list[Item] = []
     if info.is_hub:
-        items.append(Item("Hub USB", "Gestionado por el controlador «hub» del kernel.", "OK"))
+        items.append(Item(_("USB hub"), _("Managed by the kernel's «hub» driver."), "OK"))
     for i in info.interfaces:
-        cname = CLASS_NAMES.get(i.cls or -1, "?")
-        label = f"Interfaz {i.number} · {i.label or cname}"
-        mods = ", ".join(i.modules) if i.modules else "ninguno encontrado"
+        cname = _(CLASS_NAMES[i.cls]) if i.cls in CLASS_NAMES else "?"
+        label = _("Interface {number} · {label}").format(number=i.number, label=i.label or cname)
+        mods = ", ".join(i.modules) if i.modules else _("none found")
         if i.driver:
-            items.append(Item(label, f"Controlador: {i.driver}\nMódulos candidatos: {mods}", "Controlador activo"))
+            items.append(Item(label, _("Driver: {driver}").format(driver=i.driver) + "\n"
+                              + _("Candidate modules: {modules}").format(modules=mods), "Active driver"))
         elif i.cls == 0x0B:
-            items.append(Item(label, "Normal: los lectores de tarjetas CCID no usan controlador del kernel; los "
-                                     "gestiona el demonio pcscd (espacio de usuario) con libccid.",
-                              "Espacio de usuario"))
+            items.append(Item(label, _("Normal: CCID smart card readers do not use a kernel driver; they are "
+                                       "managed by the pcscd daemon (user space) with libccid."), "User space"))
         elif i.modules:
-            items.append(Item(label, f"Sin controlador vinculado, pero existen módulos candidatos: {mods}.\n"
-                                     "Prueba: sudo modprobe <módulo>", "Sin vincular"))
+            items.append(Item(label, _("No driver bound, but there are candidate modules: {modules}.").format(modules=mods)
+                              + "\n" + _("Try: sudo modprobe <module>"), "Not bound"))
         else:
-            items.append(Item(label, "El kernel no tiene ningún módulo para esta interfaz.\n"
-                                     "Probablemente necesite software en espacio de usuario (ver abajo) "
-                                     "o un controlador externo.", "Sin controlador"))
+            items.append(Item(label, _("The kernel has no module for this interface.") + "\n"
+                              + _("It probably needs user-space software (see below) or an external driver."), "No driver"))
     if not items:
-        items.append(Item("Sin interfaces", "No se han podido leer las interfaces del dispositivo."))
-    return Group("Estado del controlador en el kernel", items)
+        items.append(Item(_("No interfaces"), _("The device's interfaces could not be read.")))
+    return Group(_("Kernel driver status"), items)
 
 
 def kb_groups(info: DeviceInfo) -> list[Group]:
     entries: list[tuple[str, dict]] = []
     for cls in sorted(info.classes):
+        nombre = _(CLASS_NAMES[cls]) if cls in CLASS_NAMES else str(cls)
         for e in kb.CLASS_KB.get(cls, []):
-            entries.append((f"Recomendado para clase «{CLASS_NAMES.get(cls, cls)}»", e))
+            entries.append((_("Recommended for the «{name}» class").format(name=nombre), e))
     for e in kb.VENDOR_KB.get(info.vid, []):
-        entries.append((f"Recomendado para el fabricante ({info.vid})", e))
+        entries.append((_("Recommended for the manufacturer ({vid})").format(vid=info.vid), e))
     if not entries:
         return []
-    all_pkgs = sorted({p for _, e in entries for p in (*e.get("packages", []), *e.get("externa", {}).get("paquetes", []))})
+    all_pkgs = sorted({p for _t, e in entries for p in (*e.get("packages", []), *e.get("externa", {}).get("paquetes", []))})
     states = pkg_states(all_pkgs)
-    flatpaks = flatpaks_instalados() if any(e.get("flatpak") for _, e in entries) else set()
+    flatpaks = flatpaks_instalados() if any(e.get("flatpak") for _t, e in entries) else set()
     groups: dict[str, list[Item]] = {}
     for title, e in entries:
         groups.setdefault(title, []).append(make_item_from_kb(e, states, flatpaks))
@@ -256,12 +260,12 @@ def apt_group(info: DeviceInfo) -> Group | None:
     items = []
     for name, desc in found.items():
         st = states.get(name)
-        it = Item(name, desc, "Instalado" if st == "installed" else "")
+        it = Item(name, desc, "Installed" if st == "installed" else "")
         if st == "available":
-            it.actions.append(Action("Instalar", "apt", [name]))
+            it.actions.append(Action(_("Install"), "apt", [name]))
         items.append(it)
-    return Group("Paquetes Debian cuyo nombre coincide", items,
-                 subtitle="Búsqueda por: " + ", ".join(queries))
+    return Group(_("Debian packages whose name matches"), items,
+                 subtitle=_("Searched for: {terms}").format(terms=", ".join(queries)))
 
 
 def flatpak_group(info: DeviceInfo) -> Group | None:
@@ -281,13 +285,14 @@ def flatpak_group(info: DeviceInfo) -> Group | None:
         return None
     items = []
     for app_id, (name, desc) in found.items():
-        it = Item(name, f"{desc}\n{app_id}", "Instalada" if app_id in installed else "")
+        it = Item(name, f"{desc}\n{app_id}", "Installed" if app_id in installed else "")
         if app_id in installed:
-            it.actions.append(Action("Abrir", "launch", ["flatpak", "run", app_id]))
+            it.actions.append(Action(_("Open"), "launch", ["flatpak", "run", app_id]))
         else:
-            it.actions.append(Action("Instalar", "flatpak", app_id))
+            it.actions.append(Action(_("Install"), "flatpak", app_id))
         items.append(it)
-    return Group("Aplicaciones Flatpak relacionadas", items, subtitle="Búsqueda por: " + ", ".join(queries))
+    return Group(_("Related Flatpak applications"), items,
+                 subtitle=_("Searched for: {terms}").format(terms=", ".join(queries)))
 
 
 def fwupd_group(info: DeviceInfo) -> Group | None:
@@ -297,29 +302,28 @@ def fwupd_group(info: DeviceInfo) -> Group | None:
     if f"VID_{info.vid.upper()}&PID_{info.pid.upper()}" not in out.upper():
         return None
     return Group("Firmware (fwupd)", [Item(
-        "fwupd reconoce este dispositivo",
-        "Se pueden consultar y aplicar actualizaciones de firmware oficiales del fabricante (LVFS).",
-        "Soportado",
-        [Action("Buscar actualizaciones", "capture", ["fwupdmgr", "get-updates", "--no-unreported-check"])],
+        _("fwupd recognizes this device"),
+        _("Official firmware updates from the manufacturer (LVFS) can be checked and applied."),
+        "Supported",
+        [Action(_("Check for updates"), "capture", ["fwupdmgr", "get-updates", "--no-unreported-check"])],
     )])
 
 
 def web_group(info: DeviceInfo) -> Group:
     name = f"{info.vendor} {info.product}".strip() or info.usb_id
     q = lambda s: urllib.parse.quote_plus(s)
-    return Group("Web del fabricante y bases de datos", [
-        Item("Buscar el controlador oficial del fabricante",
-             f"Búsqueda: «{name} linux driver download»", "",
-             [Action("Abrir búsqueda", "url", "https://duckduckgo.com/?q=" + q(f"{name} linux driver download"))]),
-        Item("Sitio oficial / soporte",
-             f"Búsqueda: «{info.vendor} soporte descargas»", "",
-             [Action("Abrir búsqueda", "url", "https://duckduckgo.com/?q=" + q(f"{info.vendor} support downloads"))]),
+    consulta1 = f"{name} linux driver download"
+    consulta2 = f"{info.vendor} support downloads"
+    return Group(_("Manufacturer website and databases"), [
+        Item(_("Search for the manufacturer's official driver"), _("Search: «{query}»").format(query=consulta1), "",
+             [Action(_("Open search"), "url", "https://duckduckgo.com/?q=" + q(consulta1))]),
+        Item(_("Official site / support"), _("Search: «{query}»").format(query=consulta2), "",
+             [Action(_("Open search"), "url", "https://duckduckgo.com/?q=" + q(consulta2))]),
         Item("Linux Hardware Database",
-             "Sondas de otros usuarios con este mismo dispositivo y el controlador que usaron.", "",
-             [Action("Abrir", "url", f"https://linux-hardware.org/?id=usb:{info.vid}-{info.pid}")]),
-        Item("Base de datos USB ID",
-             f"Ficha del ID {info.usb_id}.", "",
-             [Action("Abrir", "url", f"https://devicehunt.com/view/type/usb/vendor/{info.vid.upper()}/device/{info.pid.upper()}")]),
+             _("Probes from other users with this same device and the driver they used."), "",
+             [Action(_("Open"), "url", f"https://linux-hardware.org/?id=usb:{info.vid}-{info.pid}")]),
+        Item(_("USB ID database"), _("Page for ID {id}.").format(id=info.usb_id), "",
+             [Action(_("Open"), "url", f"https://devicehunt.com/view/type/usb/vendor/{info.vid.upper()}/device/{info.pid.upper()}")]),
         *_class_links(info),
     ])
 
@@ -327,8 +331,8 @@ def web_group(info: DeviceInfo) -> Group:
 def _class_links(info: DeviceInfo) -> list[Item]:
     if 0x0B in info.classes:
         return [
-            Item("DNIe: portal oficial", "Controladores, módulo PKCS#11 y guías del DNI electrónico.",
-                 "", [Action("Abrir el portal del DNIe", "url", "https://www.dnielectronico.es/")]),
+            Item(_("DNIe: official portal"), _("Drivers, PKCS#11 module and guides for the Spanish electronic ID card."),
+                 "", [Action(_("Open the DNIe portal"), "url", "https://www.dnielectronico.es/")]),
         ]
     return []
 
@@ -344,7 +348,7 @@ def resolve(info: DeviceInfo, emit: Callable[[Group], None]) -> None:
         try:
             g = fn(info)
         except Exception as e:  # una fuente fallida no debe tumbar las demás
-            g = Group(fn.__name__, [Item("Error al consultar", str(e))])
+            g = Group(_("Search error"), [Item(_("Error while querying"), str(e))])
         if g:
             emit(g)
     emit(web_group(info))

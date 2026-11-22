@@ -68,3 +68,8 @@ button.cerrar:hover { background-color: alpha(@cx_text, 0.12); }
 expander title { padding: 4px 0; }
 scrolledwindow, scrolledwindow > viewport { background: transparent; }
 scale trough highlight { background-color: @accent_bg_color; }
+
+/* ---- Selector de idioma: bandera + abreviatura, con el acento del sistema como el resto de botones ---- */
+dropdown.idioma > button { background-image: none; background-color: @accent_bg_color; color: @accent_fg_color;
+  border-radius: 7px; padding: 6px 10px; box-shadow: none; }
+dropdown.idioma > button label { font-weight: 600; }

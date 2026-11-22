@@ -1,143 +1,111 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Conocimiento integrado: qué paquetes/aplicaciones hacen funcionar cada tipo de dispositivo.
+"""Conocimiento integrado: qué paquetes y aplicaciones hacen funcionar cada tipo de dispositivo.
 
-Formato de cada entrada:
-  title, desc            texto mostrado
+Formato de cada entrada (los textos llevan N_() para poder traducirlos; los nombres de marca van tal cual):
+  title, desc            texto mostrado (desc_args: valores para los {marcadores} de desc)
   packages               paquetes Debian a instalar
   externa                aplicación que se instala por fuera de los repositorios: {nombre, paquetes,
                          comandos, lanzar, url}; se detecta si ya está instalada
   flatpak                id de la aplicación Flatpak equivalente
   apps                   [{label, cmd, terminal?, capture?, needs?}]  (needs = paquete que provee cmd[0])
-  links                  [(etiqueta, url)]
 """
+from .i18n import N_
 
 CLASS_KB: dict[int, list[dict]] = {
     0x0B: [  # Lectores de tarjetas inteligentes (DNIe, tarjetas bancarias, FNMT...)
         {
-            "title": "Servicio PC/SC y controladores CCID",
-            "desc": "pcscd es el demonio que gestiona los lectores de tarjetas; libccid trae el controlador "
-                    "para lectores USB estándar (CCID). Sin pcscd el lector se ve en USB pero ninguna "
-                    "aplicación puede usarlo.",
+            "title": N_("PC/SC service and CCID drivers"),
+            "desc": N_("pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."),
             "packages": ["pcscd", "libccid"],
         },
         {
-            "title": "OpenSC (PKCS#11, soporta DNIe y otras tarjetas)",
-            "desc": "Librería y herramientas para tarjetas criptográficas. Incluye soporte del DNIe "
-                    "(3.0/4.0) y el módulo PKCS#11 que usan Firefox/Chromium y AutoFirma. Para DNIe "
-                    "antiguos (2.0) puede hacer falta el módulo oficial del DNIe.",
+            "title": N_("OpenSC (PKCS#11, supports DNIe and other cards)"),
+            "desc": N_("Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."),
             "packages": ["opensc", "opensc-pkcs11"],
             "apps": [
-                {"label": "Listar lectores", "cmd": ["opensc-tool", "--list-readers"],
-                 "capture": True, "needs": "opensc"},
-                {"label": "Info de la tarjeta (ATR)", "cmd": ["opensc-tool", "--atr"],
-                 "capture": True, "needs": "opensc"},
-                {"label": "Listar slots PKCS#11", "cmd": ["pkcs11-tool", "--list-slots"],
-                 "capture": True, "needs": "opensc"},
-                {"label": "Listar certificados", "cmd": ["pkcs11-tool", "--list-objects", "--type", "cert"],
+                {"label": N_("List readers"), "cmd": ["opensc-tool", "--list-readers"], "capture": True, "needs": "opensc"},
+                {"label": N_("Card info (ATR)"), "cmd": ["opensc-tool", "--atr"], "capture": True, "needs": "opensc"},
+                {"label": N_("List PKCS#11 slots"), "cmd": ["pkcs11-tool", "--list-slots"], "capture": True, "needs": "opensc"},
+                {"label": N_("List certificates"), "cmd": ["pkcs11-tool", "--list-objects", "--type", "cert"],
                  "capture": True, "needs": "opensc"},
             ],
         },
         {
-            "title": "pcsc-tools (monitor de lectores y tarjetas)",
-            "desc": "pcsc_scan muestra en tiempo real cuándo se inserta/retira una tarjeta y decodifica "
-                    "su ATR.",
+            "title": N_("pcsc-tools (reader and card monitor)"),
+            "desc": N_("pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."),
             "packages": ["pcsc-tools"],
-            "apps": [{"label": "Abrir pcsc_scan", "cmd": ["pcsc_scan"], "terminal": True,
-                      "needs": "pcsc-tools"}],
+            "apps": [{"label": N_("Open pcsc_scan"), "cmd": ["pcsc_scan"], "terminal": True, "needs": "pcsc-tools"}],
         },
         {
-            "title": "AutoFirma (firma electrónica)",
-            "desc": "Aplicación oficial del Gobierno para firmar documentos con el DNIe o un certificado digital. "
-                    "No está en los repositorios de Debian: se descarga de firmaelectronica.gob.es.",
+            "title": N_("AutoFirma (electronic signature)"),
+            "desc": N_("Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."),
             # «externa»: se instala por fuera de apt/Flatpak; se detecta por paquete o por comando
             "externa": {"nombre": "AutoFirma", "paquetes": ["autofirma"], "comandos": ["autofirma", "AutoFirma"],
                         "lanzar": ["autofirma"], "url": "https://firmaelectronica.gob.es/Home/Descargas.html"},
         },
     ],
     0x08: [
-        {"title": "Almacenamiento masivo", "desc": "El sistema lo monta automáticamente (udisks2). "
-         "Para formatear o inspeccionar usa Discos.", "packages": ["udisks2"],
-         "apps": [{"label": "Abrir Discos", "cmd": ["gnome-disks"], "needs": "gnome-disk-utility"}]},
+        {"title": N_("Mass storage"), "desc": N_("The system mounts it automatically (udisks2). To format or inspect it, use Disks."), "packages": ["udisks2"],
+         "apps": [{"label": N_("Open Disks"), "cmd": ["gnome-disks"], "needs": "gnome-disk-utility"}]},
     ],
     0x07: [
-        {"title": "Impresora (CUPS)", "desc": "CUPS detecta impresoras USB automáticamente; "
-         "se configura en Ajustes → Impresoras.", "packages": ["cups", "system-config-printer"],
-         "apps": [{"label": "Configurar impresoras", "cmd": ["system-config-printer"],
-                   "needs": "system-config-printer"}]},
+        {"title": N_("Printer (CUPS)"), "desc": N_("CUPS detects USB printers automatically; it is configured in Settings → Printers."), "packages": ["cups", "system-config-printer"],
+         "apps": [{"label": N_("Configure printers"), "cmd": ["system-config-printer"], "needs": "system-config-printer"}]},
     ],
     0x0E: [
-        {"title": "Cámara / vídeo (UVC)", "desc": "El controlador uvcvideo del kernel la soporta. "
-         "Pruébala con Snapshot/Cheese.", "packages": ["v4l-utils"],
-         "apps": [{"label": "Listar dispositivos de vídeo", "cmd": ["v4l2-ctl", "--list-devices"],
-                   "capture": True, "needs": "v4l-utils"},
-                  {"label": "Abrir Snapshot", "cmd": ["snapshot"], "needs": "snapshot"}]},
+        {"title": N_("Camera / video (UVC)"), "desc": N_("The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."), "packages": ["v4l-utils"],
+         "apps": [{"label": N_("List video devices"), "cmd": ["v4l2-ctl", "--list-devices"], "capture": True, "needs": "v4l-utils"},
+                  {"label": N_("Open Snapshot"), "cmd": ["snapshot"], "needs": "snapshot"}]},
     ],
     0x01: [
-        {"title": "Audio USB", "desc": "Soportado por snd-usb-audio. Ajusta volúmenes y salidas "
-         "con pavucontrol.", "packages": ["pavucontrol"],
-         "apps": [{"label": "Control de volumen", "cmd": ["pavucontrol"], "needs": "pavucontrol"}]},
+        {"title": N_("USB audio"), "desc": N_("Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."), "packages": ["pavucontrol"],
+         "apps": [{"label": N_("Volume control"), "cmd": ["pavucontrol"], "needs": "pavucontrol"}]},
     ],
     0xE0: [
-        {"title": "Bluetooth", "desc": "Pila BlueZ con gestor gráfico.", "packages": ["bluez", "blueman"],
-         "apps": [{"label": "Gestor Bluetooth", "cmd": ["blueman-manager"], "needs": "blueman"}]},
+        {"title": "Bluetooth", "desc": N_("BlueZ stack with a graphical manager."), "packages": ["bluez", "blueman"],
+         "apps": [{"label": N_("Bluetooth manager"), "cmd": ["blueman-manager"], "needs": "blueman"}]},
     ],
     0x06: [
-        {"title": "Cámara fotográfica / escáner de imagen", "desc": "libgphoto2 para cámaras PTP; "
-         "SANE para escáneres.", "packages": ["gphoto2", "sane-utils", "simple-scan"],
-         "apps": [{"label": "Detectar cámaras", "cmd": ["gphoto2", "--auto-detect"], "capture": True,
-                   "needs": "gphoto2"},
-                  {"label": "Escanear documentos", "cmd": ["simple-scan"], "needs": "simple-scan"}]},
+        {"title": N_("Still camera / image scanner"), "desc": N_("libgphoto2 for PTP cameras; SANE for scanners."), "packages": ["gphoto2", "sane-utils", "simple-scan"],
+         "apps": [{"label": N_("Detect cameras"), "cmd": ["gphoto2", "--auto-detect"], "capture": True, "needs": "gphoto2"},
+                  {"label": N_("Scan documents"), "cmd": ["simple-scan"], "needs": "simple-scan"}]},
     ],
     0xFE: [
-        {"title": "Dispositivo DFU / específico de aplicación", "desc": "Para actualizar firmware "
-         "por DFU.", "packages": ["dfu-util"],
-         "apps": [{"label": "Listar dispositivos DFU", "cmd": ["dfu-util", "-l"], "capture": True,
-                   "needs": "dfu-util"}]},
+        {"title": N_("DFU / application specific device"), "desc": N_("To update firmware over DFU."), "packages": ["dfu-util"],
+         "apps": [{"label": N_("List DFU devices"), "cmd": ["dfu-util", "-l"], "capture": True, "needs": "dfu-util"}]},
     ],
     0x02: [
-        {"title": "Módem / puerto serie CDC", "desc": "ModemManager gestiona módems; para consolas "
-         "serie usa minicom/picocom.", "packages": ["modemmanager", "picocom"],
-         "apps": [{"label": "Listar módems", "cmd": ["mmcli", "-L"], "capture": True,
-                   "needs": "modemmanager"}]},
+        {"title": N_("Modem / CDC serial port"), "desc": N_("ModemManager manages modems; for serial consoles use minicom/picocom."), "packages": ["modemmanager", "picocom"],
+         "apps": [{"label": N_("List modems"), "cmd": ["mmcli", "-L"], "capture": True, "needs": "modemmanager"}]},
     ],
 }
 
-# Conocimiento por fabricante (VID) y, opcionalmente, producto (VID:PID)
+# Conocimiento por fabricante (VID)
 VENDOR_KB: dict[str, list[dict]] = {
-    "046d": [{"title": "Logitech: Solaar", "desc": "Gestiona receptores Unifying/Bolt y dispositivos "
-              "Logitech.", "packages": ["solaar"], "apps": [{"label": "Abrir Solaar", "cmd": ["solaar"],
-              "needs": "solaar"}]}],
-    "1050": [{"title": "Yubico: herramientas YubiKey", "desc": "Gestor de YubiKey y soporte U2F/PAM.",
+    "046d": [{"title": "Logitech: Solaar", "desc": N_("Manages Unifying/Bolt receivers and Logitech devices."), "packages": ["solaar"],
+              "apps": [{"label": N_("Open Solaar"), "cmd": ["solaar"], "needs": "solaar"}]}],
+    "1050": [{"title": N_("Yubico: YubiKey tools"), "desc": N_("YubiKey manager and U2F/PAM support."),
               "packages": ["yubikey-manager", "libpam-u2f", "yubikey-personalization"],
-              "apps": [{"label": "Información de la YubiKey", "cmd": ["ykman", "info"], "capture": True,
-                        "needs": "yubikey-manager"}]}],
-    "2341": [{"title": "Arduino", "desc": "IDE y CLI de Arduino.", "packages": ["arduino-cli"],
-              "flatpak": "cc.arduino.IDE2"}],
-    "0483": [{"title": "STMicroelectronics (ST-Link/DFU)", "desc": "Herramientas ST-Link.",
-              "packages": ["stlink-tools"]}],
+              "apps": [{"label": N_("YubiKey information"), "cmd": ["ykman", "info"], "capture": True, "needs": "yubikey-manager"}]}],
+    "2341": [{"title": "Arduino", "desc": N_("Arduino IDE and CLI."), "packages": ["arduino-cli"], "flatpak": "cc.arduino.IDE2"}],
+    "0483": [{"title": "STMicroelectronics (ST-Link/DFU)", "desc": N_("ST-Link tools."), "packages": ["stlink-tools"]}],
     "05ac": [{"title": "Apple (iPhone/iPad)", "desc": "usbmuxd + libimobiledevice.",
               "packages": ["usbmuxd", "libimobiledevice-utils", "ifuse"],
-              "apps": [{"label": "Información del dispositivo", "cmd": ["ideviceinfo"], "capture": True,
-                        "needs": "libimobiledevice-utils"}]}],
-    "18d1": [{"title": "Android / Google", "desc": "ADB y acceso MTP.", "packages": ["adb", "gvfs-backends"],
-              "apps": [{"label": "adb devices", "cmd": ["adb", "devices", "-l"], "capture": True,
-                        "needs": "adb"}]}],
-    "04e8": [{"title": "Samsung (Android)", "desc": "ADB y acceso MTP.", "packages": ["adb", "gvfs-backends"]}],
-    "03f0": [{"title": "HP: HPLIP", "desc": "Controladores y utilidades de impresoras/escáneres HP.",
-              "packages": ["hplip"], "apps": [{"label": "HP Toolbox", "cmd": ["hp-toolbox"], "needs": "hplip-gui"}]}],
-    "04a9": [{"title": "Canon", "desc": "Soporte de impresoras/escáneres Canon.", "packages": ["printer-driver-gutenprint"]}],
-    "04b8": [{"title": "Epson", "desc": "Soporte de impresoras/escáneres Epson.",
-              "packages": ["printer-driver-escpr", "sane-utils"]}],
-    "0bda": [{"title": "Realtek: firmware", "desc": "Firmware de adaptadores Wi-Fi/Bluetooth/Ethernet Realtek.",
-              "packages": ["firmware-realtek"]}],
-    "0cf3": [{"title": "Qualcomm Atheros: firmware", "desc": "Firmware Atheros.", "packages": ["firmware-atheros"]}],
-    "0e8d": [{"title": "MediaTek: firmware", "desc": "Firmware MediaTek.", "packages": ["firmware-misc-nonfree"]}],
-    "1a86": [{"title": "WCH CH340 (serie USB)", "desc": "Soportado por el kernel (ch341).",
-              "packages": ["picocom"]}],
-    "0403": [{"title": "FTDI (serie USB)", "desc": "Soportado por el kernel (ftdi_sio).", "packages": ["picocom"]}],
-    "10c4": [{"title": "Silicon Labs (CP210x)", "desc": "Soportado por el kernel (cp210x).", "packages": ["picocom"]}],
-    "1d50": [{"title": "OpenMoko/proyectos libres", "desc": "Muchos dispositivos libres usan este VID.",
-              "packages": ["dfu-util"]}],
+              "apps": [{"label": N_("Device information"), "cmd": ["ideviceinfo"], "capture": True, "needs": "libimobiledevice-utils"}]}],
+    "18d1": [{"title": "Android / Google", "desc": N_("ADB and MTP access."), "packages": ["adb", "gvfs-backends"],
+              "apps": [{"label": "adb devices", "cmd": ["adb", "devices", "-l"], "capture": True, "needs": "adb"}]}],
+    "04e8": [{"title": "Samsung (Android)", "desc": N_("ADB and MTP access."), "packages": ["adb", "gvfs-backends"]}],
+    "03f0": [{"title": "HP: HPLIP", "desc": N_("Drivers and utilities for HP printers and scanners."), "packages": ["hplip"],
+              "apps": [{"label": "HP Toolbox", "cmd": ["hp-toolbox"], "needs": "hplip-gui"}]}],
+    "04a9": [{"title": "Canon", "desc": N_("Support for Canon printers and scanners."), "packages": ["printer-driver-gutenprint"]}],
+    "04b8": [{"title": "Epson", "desc": N_("Support for Epson printers and scanners."), "packages": ["printer-driver-escpr", "sane-utils"]}],
+    "0bda": [{"title": "Realtek: firmware", "desc": N_("Firmware for Realtek Wi-Fi/Bluetooth/Ethernet adapters."), "packages": ["firmware-realtek"]}],
+    "0cf3": [{"title": "Qualcomm Atheros: firmware", "desc": N_("Atheros firmware."), "packages": ["firmware-atheros"]}],
+    "0e8d": [{"title": "MediaTek: firmware", "desc": N_("MediaTek firmware."), "packages": ["firmware-misc-nonfree"]}],
+    "1a86": [{"title": N_("WCH CH340 (USB serial)"), "desc": N_("Supported by the kernel ({module})."), "desc_args": {"module": "ch341"}, "packages": ["picocom"]}],
+    "0403": [{"title": N_("FTDI (USB serial)"), "desc": N_("Supported by the kernel ({module})."), "desc_args": {"module": "ftdi_sio"}, "packages": ["picocom"]}],
+    "10c4": [{"title": "Silicon Labs (CP210x)", "desc": N_("Supported by the kernel ({module})."), "desc_args": {"module": "cp210x"}, "packages": ["picocom"]}],
+    "1d50": [{"title": N_("OpenMoko / free projects"), "desc": N_("Many free hardware devices use this VID."), "packages": ["dfu-util"]}],
 }
 
 # Palabras demasiado genéricas para buscar paquetes por nombre

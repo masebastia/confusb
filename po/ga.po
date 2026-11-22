@@ -1,0 +1,1205 @@
+# Translation of confusb into Gaeilge (ga).
+# This file is distributed under the same license as the confusb package.
+# The translations in this file were generated with AI (Claude) and are pending review by native speakers:
+# corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: confusb 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
+"POT-Creation-Date: 2026-11-22 13:41+0000\n"
+"PO-Revision-Date: 2026-11-22 13:41+0000\n"
+"Last-Translator: Claude (AI), pending native review\n"
+"Language-Team: Gaeilge\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : (n>2 && n<7) ? 2 :(n>6 && n<11) ? 3 : 4;\n"
+
+
+#: confusb/app.py:50
+msgid "Show the list of connected USB devices"
+msgstr ""
+
+#: confusb/app.py:52
+msgid "Show a device's window (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:63 confusb/app.py:212
+#, python-brace-format
+msgid "Device «{name}» not found"
+msgstr "Níor aimsíodh an gléas «{name}»"
+
+#: confusb/app.py:110
+msgid "USB device"
+msgstr "gléas USB"
+
+#: confusb/app.py:114
+#, python-brace-format
+msgid "Disconnected: {name}"
+msgstr "Dícheangailte: {name}"
+
+#: confusb/app.py:125
+#, python-brace-format
+msgid "Connected: {name}"
+msgstr "Ceangailte: {name}"
+
+#: confusb/app.py:130
+msgid "USB device connected"
+msgstr "Gléas USB ceangailte"
+
+#: confusb/app.py:191
+msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+msgstr ""
+
+#: confusb/app.py:193
+msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+msgstr ""
+
+#: confusb/app.py:194
+msgid "show the window with the connected devices"
+msgstr ""
+
+#: confusb/app.py:195
+msgid "open the details of a device (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:196
+msgid "list the USB devices and exit"
+msgstr ""
+
+#: confusb/app.py:198
+msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:199
+msgid "show the version and exit"
+msgstr ""
+
+#: confusb/ajustes.py:40
+msgid "Like the theme"
+msgstr "Mar an téama"
+
+#: confusb/ajustes.py:41
+msgid "Blue"
+msgstr "Gorm"
+
+#: confusb/ajustes.py:42
+msgid "Green"
+msgstr "Glas"
+
+#: confusb/ajustes.py:43
+msgid "Cyan"
+msgstr "Cian"
+
+#: confusb/ajustes.py:44
+msgid "Violet"
+msgstr "Sailéad"
+
+#: confusb/ajustes.py:45
+msgid "Pink"
+msgstr "Bándearg"
+
+#: confusb/ajustes.py:46
+msgid "Amber"
+msgstr "Ómra"
+
+#: confusb/ajustes.py:47
+msgid "Light gray"
+msgstr "Liath éadrom"
+
+#: confusb/ajustes.py:50
+msgid "Highlighted (border and glow on hover)"
+msgstr "Aibhsithe (imeall agus glóir nuair a théann an luch thairis)"
+
+#: confusb/ajustes.py:51
+msgid "Subtle (discreet border, no glow)"
+msgstr "Séimh (imeall discréideach, gan glóir)"
+
+#: confusb/ajustes.py:52
+msgid "No frame"
+msgstr "Gan fráma"
+
+#: confusb/ajustes.py:55
+msgid "Open a window with the information"
+msgstr "Oscail fuinneog leis an eolas"
+
+#: confusb/ajustes.py:56
+msgid "Show a notification"
+msgstr "Taispeáin fógra"
+
+#: confusb/ajustes.py:57
+msgid "Do nothing"
+msgstr "Ná déan faic"
+
+#: confusb/componentes.py:27
+msgid "Installed"
+msgstr "Suiteáilte"
+
+#: confusb/componentes.py:27
+msgid "Active driver"
+msgstr "Tiománaí gníomhach"
+
+#: confusb/componentes.py:27
+msgid "User space"
+msgstr "Spás úsáideora"
+
+#: confusb/componentes.py:27
+msgid "OK"
+msgstr ""
+
+#: confusb/componentes.py:27
+msgid "Supported"
+msgstr "Tacaithe"
+
+#: confusb/componentes.py:27
+msgid "Has driver"
+msgstr "Tá tiománaí aige"
+
+#: confusb/componentes.py:28
+msgid "Needs installing"
+msgstr "Ní mór é a shuiteáil"
+
+#: confusb/componentes.py:28
+msgid "Not bound"
+msgstr "Gan cheangal"
+
+#: confusb/componentes.py:29
+msgid "No driver"
+msgstr "Gan tiománaí"
+
+#: confusb/componentes.py:29
+msgid "Not in the repositories"
+msgstr "Níl sna stórais"
+
+#: confusb/componentes.py:141
+msgid "Language"
+msgstr "Teanga"
+
+#: confusb/componentes.py:307
+msgid "Close the notice"
+msgstr "Dún an fógra"
+
+#: confusb/componentes.py:454 confusb/ui.py:83
+msgid "Interface"
+msgstr "Comhéadan"
+
+#: confusb/componentes.py:458
+msgid "Cards"
+msgstr "Cártaí"
+
+#: confusb/componentes.py:459
+msgid "Card opacity"
+msgstr "Teimhneacht na gcártaí"
+
+#: confusb/componentes.py:461
+msgid "Corners"
+msgstr "Cúinní"
+
+#: confusb/componentes.py:464
+msgid "Title color"
+msgstr "Dath na dteideal"
+
+#: confusb/componentes.py:474
+msgid "Frame"
+msgstr "Fráma"
+
+#: confusb/componentes.py:476
+msgid "Shadow under the cards"
+msgstr "Scáth faoi na cártaí"
+
+#: confusb/componentes.py:479
+msgid "Show «View information →» on the cards"
+msgstr "Taispeáin «Féach ar an eolas →» ar na cártaí"
+
+#: confusb/componentes.py:483
+msgid "When a device is connected"
+msgstr "Nuair a cheanglaítear gléas"
+
+#: confusb/componentes.py:486
+msgid "Reset"
+msgstr "Athshocraigh"
+
+#: confusb/componentes.py:486 confusb/componentes.py:533
+msgid "Close"
+msgstr "Dún"
+
+#: confusb/componentes.py:517
+msgid "About confusb"
+msgstr "Maidir le confusb"
+
+#: confusb/componentes.py:524
+#, python-brace-format
+msgid "Version {version}"
+msgstr "Leagan {version}"
+
+#: confusb/componentes.py:525
+msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
+msgstr "Cuireann sé fógra nuair a cheanglaítear gléas USB, taispeánann sé a eolas agus lorgaíonn sé a thiománaí agus na feidhmchláir lena úsáid."
+
+#: confusb/componentes.py:529
+msgid "License GPL-3.0-or-later"
+msgstr "Ceadúnas GPL-3.0-or-later"
+
+#: confusb/componentes.py:530
+msgid "Source code on GitHub"
+msgstr "Cód foinseach ar GitHub"
+
+#: confusb/kb.py:17
+msgid "PC/SC service and CCID drivers"
+msgstr "Seirbhís PC/SC agus tiománaithe CCID"
+
+#: confusb/kb.py:18
+msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
+msgstr "Is é pcscd an deamhan a bhainistíonn léitheoirí cártaí cliste; soláthraíonn libccid an tiománaí do ghnáthléitheoirí USB (CCID). Gan pcscd, feictear an léitheoir sa USB ach ní féidir le feidhmchlár ar bith é a úsáid."
+
+#: confusb/kb.py:22
+msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
+msgstr "OpenSC (PKCS#11, tacaíonn sé leis an DNIe agus le cártaí eile)"
+
+#: confusb/kb.py:23
+msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
+msgstr "Leabharlann agus uirlisí do chártaí cripteagrafacha. Áirítear tacaíocht don DNIe (3.0/4.0) agus an modúl PKCS#11 a úsáideann Firefox/Chromium agus AutoFirma. D’fhéadfadh go mbeadh modúl oifigiúil an DNIe de dhíth ar DNIe níos sine (2.0)."
+
+#: confusb/kb.py:26
+msgid "List readers"
+msgstr "Liostaigh na léitheoirí"
+
+#: confusb/kb.py:27
+msgid "Card info (ATR)"
+msgstr "Eolas faoin gcárta (ATR)"
+
+#: confusb/kb.py:28
+msgid "List PKCS#11 slots"
+msgstr "Liostaigh sliotáin PKCS#11"
+
+#: confusb/kb.py:29
+msgid "List certificates"
+msgstr "Liostaigh deimhnithe"
+
+#: confusb/kb.py:34
+msgid "pcsc-tools (reader and card monitor)"
+msgstr "pcsc-tools (monatóir léitheoirí agus cártaí)"
+
+#: confusb/kb.py:35
+msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
+msgstr "Taispeánann pcsc_scan i bhfíor-am nuair a chuirtear cárta isteach nó nuair a bhainfear amach é, agus díchódaíonn sé a ATR."
+
+#: confusb/kb.py:37
+msgid "Open pcsc_scan"
+msgstr "Oscail pcsc_scan"
+
+#: confusb/kb.py:40
+msgid "AutoFirma (electronic signature)"
+msgstr "AutoFirma (síniú leictreonach)"
+
+#: confusb/kb.py:41
+msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
+msgstr "Feidhmchlár oifigiúil Rialtas na Spáinne chun doiciméid a shíniú leis an DNIe nó le deimhniú digiteach. Níl sé i stórais Debian: íoslódáiltear é ó firmaelectronica.gob.es."
+
+#: confusb/kb.py:48 confusb/usbinfo.py:23
+msgid "Mass storage"
+msgstr "Stóras mais"
+
+#: confusb/kb.py:48
+msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
+msgstr "Feistíonn an córas go huathoibríoch é (udisks2). Chun é a fhormáidiú nó a iniúchadh, úsáid Dioscaí."
+
+#: confusb/kb.py:49
+msgid "Open Disks"
+msgstr "Oscail Dioscaí"
+
+#: confusb/kb.py:52
+msgid "Printer (CUPS)"
+msgstr "Printéir (CUPS)"
+
+#: confusb/kb.py:52
+msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
+msgstr "Braitheann CUPS printéirí USB go huathoibríoch; cumraítear é in Socruithe → Printéirí."
+
+#: confusb/kb.py:53
+msgid "Configure printers"
+msgstr "Cumraigh printéirí"
+
+#: confusb/kb.py:56
+msgid "Camera / video (UVC)"
+msgstr "Ceamara / físeán (UVC)"
+
+#: confusb/kb.py:56
+msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
+msgstr "Tacaíonn tiománaí uvcvideo an eithne leis. Bain triail as le Snapshot/Cheese."
+
+#: confusb/kb.py:57
+msgid "List video devices"
+msgstr "Liostaigh gléasanna físe"
+
+#: confusb/kb.py:58
+msgid "Open Snapshot"
+msgstr "Oscail Snapshot"
+
+#: confusb/kb.py:61
+msgid "USB audio"
+msgstr "Fuaim USB"
+
+#: confusb/kb.py:61
+msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr "Tacaithe ag snd-usb-audio. Coigeartaigh na hairdeanna agus na haschuir le pavucontrol."
+
+#: confusb/kb.py:62
+msgid "Volume control"
+msgstr "Rialú airde"
+
+#: confusb/kb.py:65
+msgid "BlueZ stack with a graphical manager."
+msgstr "Cruach BlueZ le bainisteoir grafach."
+
+#: confusb/kb.py:66
+msgid "Bluetooth manager"
+msgstr "Bainisteoir Bluetooth"
+
+#: confusb/kb.py:69
+msgid "Still camera / image scanner"
+msgstr "Ceamara grianghraf / scanóir íomhánna"
+
+#: confusb/kb.py:69
+msgid "libgphoto2 for PTP cameras; SANE for scanners."
+msgstr "libgphoto2 do cheamaraí PTP; SANE do scanóirí."
+
+#: confusb/kb.py:70
+msgid "Detect cameras"
+msgstr "Aimsigh ceamaraí"
+
+#: confusb/kb.py:71
+msgid "Scan documents"
+msgstr "Scan doiciméid"
+
+#: confusb/kb.py:74
+msgid "DFU / application specific device"
+msgstr "Gléas DFU / sainiúil d'fheidhmchlár"
+
+#: confusb/kb.py:74
+msgid "To update firmware over DFU."
+msgstr "Chun an dochtearraí a nuashonrú trí DFU."
+
+#: confusb/kb.py:75
+msgid "List DFU devices"
+msgstr "Liostaigh gléasanna DFU"
+
+#: confusb/kb.py:78
+msgid "Modem / CDC serial port"
+msgstr "Móideim / port sraitheach CDC"
+
+#: confusb/kb.py:78
+msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
+msgstr "Bainistíonn ModemManager móideimeanna; do chonsóil shraitheacha úsáid minicom/picocom."
+
+#: confusb/kb.py:79
+msgid "List modems"
+msgstr "Liostaigh móideimeanna"
+
+#: confusb/kb.py:85
+msgid "Manages Unifying/Bolt receivers and Logitech devices."
+msgstr "Bainistíonn sé glacadóirí Unifying/Bolt agus gléasanna Logitech."
+
+#: confusb/kb.py:86
+msgid "Open Solaar"
+msgstr "Oscail Solaar"
+
+#: confusb/kb.py:87
+msgid "Yubico: YubiKey tools"
+msgstr "Yubico: uirlisí YubiKey"
+
+#: confusb/kb.py:87
+msgid "YubiKey manager and U2F/PAM support."
+msgstr "Bainisteoir YubiKey agus tacaíocht U2F/PAM."
+
+#: confusb/kb.py:89
+msgid "YubiKey information"
+msgstr "Eolas faoi YubiKey"
+
+#: confusb/kb.py:90
+msgid "Arduino IDE and CLI."
+msgstr "Arduino IDE agus CLI."
+
+#: confusb/kb.py:91
+msgid "ST-Link tools."
+msgstr "Uirlisí ST-Link."
+
+#: confusb/kb.py:94
+msgid "Device information"
+msgstr "Eolas faoin ngléas"
+
+#: confusb/kb.py:95 confusb/kb.py:97
+msgid "ADB and MTP access."
+msgstr "Rochtain ADB agus MTP."
+
+#: confusb/kb.py:98
+msgid "Drivers and utilities for HP printers and scanners."
+msgstr "Tiománaithe agus áirgiúlachtaí do phrintéirí agus scanóirí HP."
+
+#: confusb/kb.py:100
+msgid "Support for Canon printers and scanners."
+msgstr "Tacaíocht do phrintéirí agus scanóirí Canon."
+
+#: confusb/kb.py:101
+msgid "Support for Epson printers and scanners."
+msgstr "Tacaíocht do phrintéirí agus scanóirí Epson."
+
+#: confusb/kb.py:102
+msgid "Firmware for Realtek Wi-Fi/Bluetooth/Ethernet adapters."
+msgstr "Dochtearraí d'adapóirí Realtek Wi-Fi/Bluetooth/Ethernet."
+
+#: confusb/kb.py:103
+msgid "Atheros firmware."
+msgstr "Dochtearraí Atheros."
+
+#: confusb/kb.py:104
+msgid "MediaTek firmware."
+msgstr "Dochtearraí MediaTek."
+
+#: confusb/kb.py:105
+msgid "WCH CH340 (USB serial)"
+msgstr "WCH CH340 (USB sraitheach)"
+
+#: confusb/kb.py:105 confusb/kb.py:106 confusb/kb.py:107
+#, python-brace-format
+msgid "Supported by the kernel ({module})."
+msgstr "Tacaithe ag an eithne ({module})."
+
+#: confusb/kb.py:106
+msgid "FTDI (USB serial)"
+msgstr "FTDI (USB sraitheach)"
+
+#: confusb/kb.py:108
+msgid "OpenMoko / free projects"
+msgstr "OpenMoko / tionscadail shaora"
+
+#: confusb/kb.py:108
+msgid "Many free hardware devices use this VID."
+msgstr "Úsáideann a lán gléasanna crua-earraí saora an VID seo."
+
+#: confusb/resolver.py:146
+#, python-brace-format
+msgid "Packages: {list}"
+msgstr "Pacáistí: {list}"
+
+#: confusb/resolver.py:148
+#, python-brace-format
+msgid "Already installed: {list}"
+msgstr "Suiteáilte cheana: {list}"
+
+#: confusb/resolver.py:150
+#, python-brace-format
+msgid "Not in the repositories: {list}"
+msgstr "Níl sna stórais: {list}"
+
+#: confusb/resolver.py:152
+#, python-brace-format
+msgid "Install {packages}"
+msgstr "Suiteáil {packages}"
+
+#: confusb/resolver.py:158
+#, python-brace-format
+msgid "The application is already installed on your computer (version {version})."
+msgstr "Tá an feidhmchlár suiteáilte cheana ar do ríomhaire (leagan {version})."
+
+#: confusb/resolver.py:159
+msgid "The application is already installed on your computer."
+msgstr "Tá an feidhmchlár suiteáilte cheana ar do ríomhaire."
+
+#: confusb/resolver.py:162
+#, python-brace-format
+msgid "Open {name}"
+msgstr "Oscail {name}"
+
+#: confusb/resolver.py:164
+#, python-brace-format
+msgid "«{exe}» not found"
+msgstr "Níor aimsíodh «{exe}»"
+
+#: confusb/resolver.py:167
+msgid "It is not installed."
+msgstr "Níl sé suiteáilte."
+
+#: confusb/resolver.py:168
+#, python-brace-format
+msgid "Download {name}"
+msgstr "Íoslódáil {name}"
+
+#: confusb/resolver.py:173
+#, python-brace-format
+msgid "Already installed as a Flatpak ({id})."
+msgstr "Suiteáilte cheana mar Flatpak ({id})."
+
+#: confusb/resolver.py:174
+msgid "Open (Flatpak)"
+msgstr "Oscail (Flatpak)"
+
+#: confusb/resolver.py:177
+#, python-brace-format
+msgid "Install Flatpak {id}"
+msgstr "Suiteáil an Flatpak {id}"
+
+#: confusb/resolver.py:186
+msgid "Already installed on your computer."
+msgstr "Suiteáilte cheana ar do ríomhaire."
+
+#: confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Suiteáil «{name}» ar dtús"
+
+#: confusb/resolver.py:203
+msgid "USB hub"
+msgstr "Mol USB"
+
+#: confusb/resolver.py:203
+msgid "Managed by the kernel's «hub» driver."
+msgstr "Bainistithe ag tiománaí «hub» an eithne."
+
+#: confusb/resolver.py:206 confusb/ui.py:328
+#, python-brace-format
+msgid "Interface {number} · {label}"
+msgstr "Comhéadan {number} · {label}"
+
+#: confusb/resolver.py:207 confusb/ui.py:333
+msgid "none found"
+msgstr "níor aimsíodh aon cheann"
+
+#: confusb/resolver.py:209
+#, python-brace-format
+msgid "Driver: {driver}"
+msgstr "Tiománaí: {driver}"
+
+#: confusb/resolver.py:210
+#, python-brace-format
+msgid "Candidate modules: {modules}"
+msgstr "Modúil iarrthóirí: {modules}"
+
+#: confusb/resolver.py:212
+msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
+msgstr "Gnáth: ní úsáideann léitheoirí cártaí cliste CCID tiománaí eithne; bainistíonn an deamhan pcscd (spás úsáideora) iad le libccid."
+
+#: confusb/resolver.py:215
+#, python-brace-format
+msgid "No driver bound, but there are candidate modules: {modules}."
+msgstr "Gan tiománaí ceangailte, ach tá modúil iarrthóirí ann: {modules}."
+
+#: confusb/resolver.py:216
+msgid "Try: sudo modprobe <module>"
+msgstr "Bain triail as: sudo modprobe <modúl>"
+
+#: confusb/resolver.py:218
+msgid "The kernel has no module for this interface."
+msgstr "Níl aon mhodúl ag an eithne don chomhéadan seo."
+
+#: confusb/resolver.py:219
+msgid "It probably needs user-space software (see below) or an external driver."
+msgstr "Is dócha go bhfuil bogearraí de dhíth i spás an úsáideora (féach thíos) nó tiománaí seachtrach."
+
+#: confusb/resolver.py:221
+msgid "No interfaces"
+msgstr "Gan comhéadain"
+
+#: confusb/resolver.py:221
+msgid "The device's interfaces could not be read."
+msgstr "Níorbh fhéidir comhéadain an ghléis a léamh."
+
+#: confusb/resolver.py:222
+msgid "Kernel driver status"
+msgstr "Stádas an tiománaí san eithne"
+
+#: confusb/resolver.py:230
+#, python-brace-format
+msgid "Recommended for the «{name}» class"
+msgstr "Molta don aicme «{name}»"
+
+#: confusb/resolver.py:232
+#, python-brace-format
+msgid "Recommended for the manufacturer ({vid})"
+msgstr "Molta don mhonaróir ({vid})"
+
+#: confusb/resolver.py:265 confusb/resolver.py:292
+msgid "Install"
+msgstr "Suiteáil"
+
+#: confusb/resolver.py:267
+msgid "Debian packages whose name matches"
+msgstr "Pacáistí Debian a bhfuil a n-ainm ag teacht"
+
+#: confusb/resolver.py:268 confusb/resolver.py:295
+#, python-brace-format
+msgid "Searched for: {terms}"
+msgstr "Cuardaithe: {terms}"
+
+#: confusb/resolver.py:290 confusb/resolver.py:324 confusb/resolver.py:326
+msgid "Open"
+msgstr "Oscail"
+
+#: confusb/resolver.py:294
+msgid "Related Flatpak applications"
+msgstr "Feidhmchláir Flatpak gaolmhara"
+
+#: confusb/resolver.py:305
+msgid "fwupd recognizes this device"
+msgstr "Aithníonn fwupd an gléas seo"
+
+#: confusb/resolver.py:306
+msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
+msgstr "Is féidir nuashonruithe oifigiúla dochtearraí an mhonaróra (LVFS) a sheiceáil agus a chur i bhfeidhm."
+
+#: confusb/resolver.py:308
+msgid "Check for updates"
+msgstr "Cuardaigh nuashonruithe"
+
+#: confusb/resolver.py:317
+msgid "Manufacturer website and databases"
+msgstr "Suíomh gréasáin an mhonaróra agus bunachair sonraí"
+
+#: confusb/resolver.py:318
+msgid "Search for the manufacturer's official driver"
+msgstr "Cuardaigh tiománaí oifigiúil an mhonaróra"
+
+#: confusb/resolver.py:318 confusb/resolver.py:320
+#, python-brace-format
+msgid "Search: «{query}»"
+msgstr "Cuardach: «{query}»"
+
+#: confusb/resolver.py:319 confusb/resolver.py:321
+msgid "Open search"
+msgstr "Oscail an cuardach"
+
+#: confusb/resolver.py:320
+msgid "Official site / support"
+msgstr "Suíomh oifigiúil / tacaíocht"
+
+#: confusb/resolver.py:323
+msgid "Probes from other users with this same device and the driver they used."
+msgstr "Tomhais ó úsáideoirí eile leis an ngléas céanna agus an tiománaí a d'úsáid siad."
+
+#: confusb/resolver.py:325
+msgid "USB ID database"
+msgstr "Bunachar sonraí USB ID"
+
+#: confusb/resolver.py:325
+#, python-brace-format
+msgid "Page for ID {id}."
+msgstr "Cárta don ID {id}."
+
+#: confusb/resolver.py:334
+msgid "DNIe: official portal"
+msgstr "DNIe: tairseach oifigiúil"
+
+#: confusb/resolver.py:334
+msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
+msgstr "Tiománaithe, modúl PKCS#11 agus treoracha don chárta aitheantais leictreonach Spáinneach."
+
+#: confusb/resolver.py:335
+msgid "Open the DNIe portal"
+msgstr "Oscail tairseach an DNIe"
+
+#: confusb/resolver.py:351
+msgid "Search error"
+msgstr "Earráid chuardaigh"
+
+#: confusb/resolver.py:351
+msgid "Error while querying"
+msgstr "Earráid san iarratas"
+
+#: confusb/ui.py:84
+msgid "Look of the application and what to do when a device is connected"
+msgstr "Cuma an fheidhmchláir agus cad ba cheart a tharlú nuair a cheanglaítear gléas"
+
+#: confusb/ui.py:85
+msgid "About"
+msgstr "Maidir leis"
+
+#: confusb/ui.py:145
+msgid "(no output)"
+msgstr "(gan aschur)"
+
+#: confusb/ui.py:160
+msgid "Connected USB devices"
+msgstr "Gléasanna USB ceangailte"
+
+#: confusb/ui.py:160
+msgid "USB devices"
+msgstr "Gléasanna USB"
+
+#: confusb/ui.py:166
+msgid "Refresh"
+msgstr "Athnuaigh"
+
+#: confusb/ui.py:166
+msgid "Read the connected devices again"
+msgstr "Léigh na gléasanna ceangailte arís"
+
+#: confusb/ui.py:188
+msgid "Reading devices…"
+msgstr "Gléasanna á léamh…"
+
+#: confusb/ui.py:201
+msgid "Could not read the devices"
+msgstr "Níorbh fhéidir na gléasanna a léamh"
+
+#: confusb/ui.py:202
+msgid "Error reading the devices"
+msgstr "Earráid agus gléasanna á léamh"
+
+#: confusb/ui.py:208
+msgid "No USB devices connected"
+msgstr "Gan gléasanna USB ceangailte"
+
+#: confusb/ui.py:209
+msgid "Connect one and it will appear here automatically."
+msgstr "Ceangail ceann agus beidh sé le feiceáil anseo go huathoibríoch."
+
+#: confusb/ui.py:211
+#, python-brace-format
+msgid "Connected USB devices: {n}"
+msgstr "Gléasanna USB ceangailte: {n}"
+
+#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+msgid "Unknown manufacturer"
+msgstr "Monaróir anaithnid"
+
+#: confusb/ui.py:232
+msgid "Type"
+msgstr "Cineál"
+
+#: confusb/ui.py:233
+msgid "Port"
+msgstr "Port"
+
+#: confusb/ui.py:234
+msgid "Driver"
+msgstr "Tiománaí"
+
+#: confusb/ui.py:234 confusb/ui.py:332
+msgid "none"
+msgstr "gan aon cheann"
+
+#: confusb/ui.py:236
+msgid "View information →"
+msgstr "Féach ar an eolas →"
+
+#: confusb/ui.py:262
+msgid "Back"
+msgstr "Ar ais"
+
+#: confusb/ui.py:262
+msgid "Back to the list of devices"
+msgstr "Ar ais chuig liosta na ngléasanna"
+
+#: confusb/ui.py:263
+msgid "Copy"
+msgstr "Cóipeáil"
+
+#: confusb/ui.py:263
+msgid "Copy all the information to the clipboard"
+msgstr "Cóipeáil an t-eolas ar fad chuig an ghearrthaisce"
+
+#: confusb/ui.py:271
+msgid "Information"
+msgstr "Eolas"
+
+#: confusb/ui.py:271
+msgid "Drivers and applications"
+msgstr "Tiománaithe agus feidhmchláir"
+
+#: confusb/ui.py:280
+msgid "Connected"
+msgstr "Ceangailte"
+
+#: confusb/ui.py:300
+msgid "Information copied to the clipboard"
+msgstr "Cóipeáladh an t-eolas chuig an ghearrthaisce"
+
+#: confusb/ui.py:326
+msgid "Interfaces"
+msgstr "Comhéadain"
+
+#: confusb/ui.py:326
+msgid "Each interface can have its own driver"
+msgstr "Féadann a thiománaí féin a bheith ag gach comhéadan"
+
+#: confusb/ui.py:330
+msgid "Class"
+msgstr "Aicme"
+
+#: confusb/ui.py:331
+msgid "Subclass / protocol"
+msgstr "Fo-aicme / prótacal"
+
+#: confusb/ui.py:332
+msgid "Bound driver"
+msgstr "Tiománaí ceangailte"
+
+#: confusb/ui.py:333
+msgid "Kernel modules"
+msgstr "Modúil an eithne"
+
+#: confusb/ui.py:340
+msgid "Nodes created in the system"
+msgstr "Nóid a cruthaíodh sa chóras"
+
+#: confusb/ui.py:344
+msgid "Raw data"
+msgstr "Sonraí amha"
+
+#: confusb/ui.py:345
+#, python-brace-format
+msgid "udev properties ({n})"
+msgstr "Airíonna udev ({n})"
+
+#: confusb/ui.py:349
+msgid "lsusb -v output (full USB descriptors)"
+msgstr "Aschur lsusb -v (tuairisceoirí USB iomlána)"
+
+#: confusb/ui.py:364
+msgid "Looking for drivers and applications…"
+msgstr "Tiománaithe agus feidhmchláir á lorg…"
+
+#: confusb/ui.py:417
+msgid "No terminal emulator found"
+msgstr "Níor aimsíodh aon fhorghníomhaitheoir teirminéil"
+
+#: confusb/ui.py:419
+msgid "Press Enter to close…"
+msgstr "Brúigh Enter chun dúnadh…"
+
+#: confusb/ui.py:430
+msgid "Working…"
+msgstr "Ag obair…"
+
+#: confusb/ui.py:436
+#, python-brace-format
+msgid "Error: {error}"
+msgstr "Earráid: {error}"
+
+#: confusb/ui.py:439
+#, python-brace-format
+msgid "(exit code {code})"
+msgstr "(cód scoir {code})"
+
+#: confusb/ui.py:443
+msgid "Installation completed"
+msgstr "Suiteáil críochnaithe"
+
+#: confusb/ui.py:446
+msgid "The installation failed"
+msgstr "Theip ar an suiteáil"
+
+#: confusb/ui.py:455
+msgid "Disconnected"
+msgstr "Dícheangailte"
+
+#: confusb/ui.py:456
+msgid "The device has been disconnected"
+msgstr "Dícheangladh an gléas"
+
+#: confusb/usbinfo.py:16
+msgid "Defined at interface level"
+msgstr "Sainithe ag leibhéal an chomhéadain"
+
+#: confusb/usbinfo.py:17
+msgid "Audio"
+msgstr ""
+
+#: confusb/usbinfo.py:18
+msgid "Communications (CDC)"
+msgstr "Cumarsáid (CDC)"
+
+#: confusb/usbinfo.py:19
+msgid "Human interface device (HID)"
+msgstr "Gléas comhéadain dhaonna (HID)"
+
+#: confusb/usbinfo.py:20
+msgid "Physical"
+msgstr "Fisiciúil"
+
+#: confusb/usbinfo.py:21
+msgid "Image"
+msgstr "Íomhá"
+
+#: confusb/usbinfo.py:22
+msgid "Printer"
+msgstr "Printéir"
+
+#: confusb/usbinfo.py:24
+msgid "Hub"
+msgstr ""
+
+#: confusb/usbinfo.py:26
+msgid "Smart card (CCID)"
+msgstr "Cárta cliste (CCID)"
+
+#: confusb/usbinfo.py:27
+msgid "Content security"
+msgstr "Slándáil ábhair"
+
+#: confusb/usbinfo.py:28
+msgid "Video"
+msgstr "Físeán"
+
+#: confusb/usbinfo.py:29
+msgid "Personal healthcare"
+msgstr "Cúram sláinte pearsanta"
+
+#: confusb/usbinfo.py:30
+msgid "Audio/Video"
+msgstr "Fuaim/Físeán"
+
+#: confusb/usbinfo.py:32
+msgid "Diagnostic"
+msgstr "Diagnóisic"
+
+#: confusb/usbinfo.py:33
+msgid "Wireless (e.g. Bluetooth)"
+msgstr "Gan sreang (m.sh. Bluetooth)"
+
+#: confusb/usbinfo.py:34
+msgid "Miscellaneous"
+msgstr "Ilchineálach"
+
+#: confusb/usbinfo.py:35
+msgid "Application specific (DFU, IrDA...)"
+msgstr "Sainiúil d'fheidhmchlár (DFU, IrDA...)"
+
+#: confusb/usbinfo.py:36
+msgid "Vendor specific"
+msgstr "Sainiúil don mhonaróir"
+
+#: confusb/usbinfo.py:50
+msgid "Manufacturer (descriptor)"
+msgstr "Monaróir (tuairisceoir)"
+
+#: confusb/usbinfo.py:51
+msgid "Product (descriptor)"
+msgstr "Táirge (tuairisceoir)"
+
+#: confusb/usbinfo.py:52
+msgid "Serial number"
+msgstr "Sraithuimhir"
+
+#: confusb/usbinfo.py:53
+msgid "Vendor ID (VID)"
+msgstr "ID an mhonaróra (VID)"
+
+#: confusb/usbinfo.py:54
+msgid "Product ID (PID)"
+msgstr "ID an táirge (PID)"
+
+#: confusb/usbinfo.py:55
+msgid "Device version (bcdDevice)"
+msgstr "Leagan an ghléis (bcdDevice)"
+
+#: confusb/usbinfo.py:56
+msgid "USB version"
+msgstr "Leagan USB"
+
+#: confusb/usbinfo.py:57
+msgid "Negotiated speed (Mb/s)"
+msgstr "Luas comhaontaithe (Mb/s)"
+
+#: confusb/usbinfo.py:58
+msgid "Device class"
+msgstr "Aicme an ghléis"
+
+#: confusb/usbinfo.py:59
+msgid "Device subclass"
+msgstr "Fo-aicme an ghléis"
+
+#: confusb/usbinfo.py:60
+msgid "Device protocol"
+msgstr "Prótacal an ghléis"
+
+#: confusb/usbinfo.py:61
+msgid "Max. EP0 packet size"
+msgstr "Uasmhéid pacáiste EP0"
+
+#: confusb/usbinfo.py:62
+msgid "Number of configurations"
+msgstr "Líon na gcumraíochtaí"
+
+#: confusb/usbinfo.py:63
+msgid "Active configuration"
+msgstr "Cumraíocht ghníomhach"
+
+#: confusb/usbinfo.py:64
+msgid "Number of interfaces"
+msgstr "Líon na gcomhéadan"
+
+#: confusb/usbinfo.py:65
+msgid "Configuration attributes"
+msgstr "Tréithe na cumraíochta"
+
+#: confusb/usbinfo.py:66
+msgid "Declared maximum power"
+msgstr "Uaschaitheamh cumhachta dearbhaithe"
+
+#: confusb/usbinfo.py:67
+msgid "Bus"
+msgstr ""
+
+#: confusb/usbinfo.py:68
+msgid "Address on the bus"
+msgstr "Seoladh ar an mbus"
+
+#: confusb/usbinfo.py:69
+msgid "Port path (devpath)"
+msgstr "Cosán na bport (devpath)"
+
+#: confusb/usbinfo.py:70
+msgid "Child ports"
+msgstr "Poirt dhílse"
+
+#: confusb/usbinfo.py:71
+msgid "Removable"
+msgstr "Inbhainte"
+
+#: confusb/usbinfo.py:72
+msgid "Authorized"
+msgstr "Údaraithe"
+
+#: confusb/usbinfo.py:73
+msgid "Configuration name"
+msgstr "Ainm na cumraíochta"
+
+#: confusb/usbinfo.py:75
+msgid "Kernel quirks"
+msgstr "Saintréithe an eithne"
+
+#: confusb/usbinfo.py:108
+msgid "Unknown"
+msgstr "Anaithnid"
+
+#: confusb/usbinfo.py:162
+#, python-brace-format
+msgid "== Interface {name} =="
+msgstr ""
+
+#: confusb/usbinfo.py:163
+#, python-brace-format
+msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
+msgstr ""
+
+#: confusb/usbinfo.py:165
+#, python-brace-format
+msgid "driver={driver} modules={modules}"
+msgstr ""
+
+#: confusb/usbinfo.py:166
+msgid "(none)"
+msgstr ""
+
+#: confusb/usbinfo.py:169
+msgid "== udev properties =="
+msgstr ""
+
+#: confusb/usbinfo.py:201
+#, python-brace-format
+msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
+msgstr ""
+
+#: confusb/usbinfo.py:232
+#, python-brace-format
+msgid "network interface {name}"
+msgstr "comhéadan líonra {name}"
+
+#: confusb/usbinfo.py:279
+msgid "Manufacturer (usb.ids)"
+msgstr "Monaróir (usb.ids)"
+
+#: confusb/usbinfo.py:280
+msgid "Product (usb.ids)"
+msgstr "Táirge (usb.ids)"
+
+#: confusb/usbinfo.py:281
+msgid "sysfs path"
+msgstr "cosán sysfs"
+
+#: confusb/usbinfo.py:282
+msgid "/dev node"
+msgstr "nód /dev"
+
+#: confusb/usbinfo.py:283
+msgid "Subsystem / type"
+msgstr "Fochóras / cineál"
+
+#: confusb/usbinfo.py:284
+msgid "Interfaces (ID_USB_INTERFACES)"
+msgstr ""
+
+#: confusb/usbinfo.py:285
+msgid "Device driver"
+msgstr "Tiománaí an ghléis"
+
+#: confusb/usbinfo.py:287
+msgid "Persistent paths (ID_PATH)"
+msgstr "Cosáin leanúnacha (ID_PATH)"
+
+#: confusb/usbinfo.py:288
+msgid "udev tags (TAGS)"
+msgstr "Clibeanna udev (TAGS)"
+
+#: confusb/usbinfo.py:291
+msgid "Identification"
+msgstr "Aitheantas"
+
+#: confusb/usbinfo.py:292
+msgid "Descriptors and configuration"
+msgstr "Tuairisceoirí agus cumraíocht"
+
+#: confusb/usbinfo.py:293
+msgid "System"
+msgstr "Córas"
+
+#: confusb/usbinfo.py:297
+msgid "Power control"
+msgstr "Rialú cumhachta"
+
+#: confusb/usbinfo.py:298
+msgid "Power state"
+msgstr "Stádas cumhachta"
+
+#: confusb/usbinfo.py:299
+msgid "Autosuspend delay (ms)"
+msgstr "Moill an fhionraí uathoibríoch (ms)"
+
+#: confusb/usbinfo.py:300
+msgid "Persistence"
+msgstr "Leanúnachas"
+
+#: confusb/usbinfo.py:301
+msgid "System wake-up"
+msgstr "Múscailt an chórais"
+
+#: confusb/usbinfo.py:302
+msgid "Active time (ms)"
+msgstr "Am gníomhach (ms)"
+
+#: confusb/usbinfo.py:303
+msgid "Connected time (ms)"
+msgstr "Am ceangailte (ms)"
+
+#: confusb/usbinfo.py:304
+msgid "URBs processed"
+msgstr "URBanna próiseáilte"
+
+#: confusb/usbinfo.py:310
+msgid "Power and statistics"
+msgstr "Cumhacht agus staitisticí"
+
+#: confusb/usbinfo.py:316
+msgid "Topology"
+msgstr "Topeolaíocht"
+
+#: confusb/usbinfo.py:317
+msgid "Connected to"
+msgstr "Ceangailte le"
+
+#: confusb/usbinfo.py:318
+msgid "Parent path"
+msgstr "Cosán an tuismitheora"

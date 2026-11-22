@@ -1,0 +1,7 @@
+confusb/app.py
+confusb/ajustes.py
+confusb/componentes.py
+confusb/kb.py
+confusb/resolver.py
+confusb/ui.py
+confusb/usbinfo.py

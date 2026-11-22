@@ -16,15 +16,17 @@ from gi.repository import GLib, Graphene, Gtk, Pango  # noqa: E402
 
 from . import __version__, fondo  # noqa: E402
 from .ajustes import AJUSTES, AL_CONECTAR, COLORES, DEFECTOS, MARCOS  # noqa: E402
+from .i18n import IDIOMAS, N_, _, etiqueta, mayusculas  # noqa: E402
 from .usbinfo import ENV  # noqa: E402
 
 HUECO = 8
 REPO_URL = "https://github.com/masebastia/confusb"
 
 STATUS_CLASS = {
-    "ok": {"Instalado", "Instalada", "Controlador activo", "Espacio de usuario", "OK", "Soportado", "Con controlador"},
-    "aviso": {"Falta instalar", "Sin vincular"},
-    "error": {"Sin controlador", "No está en los repositorios"},
+    # los estados se identifican por su texto fuente (inglés) y se traducen al mostrarlos
+    "ok": {N_("Installed"), N_("Active driver"), N_("User space"), N_("OK"), N_("Supported"), N_("Has driver")},
+    "aviso": {N_("Needs installing"), N_("Not bound")},
+    "error": {N_("No driver"), N_("Not in the repositories")},
 }
 
 
@@ -78,7 +80,7 @@ def tarjeta(titulo: str = "", subtitulo: str = "", clase: str = "card") -> Gtk.B
 
 
 def rubrica(texto: str) -> Gtk.Label:
-    lb = label(texto.upper(), "card-title", "rubrica")
+    lb = label(mayusculas(texto), "card-title", "rubrica")
     lb.set_margin_top(10)
     return lb
 
@@ -101,7 +103,7 @@ def datos(rows: list[tuple[str, str]]) -> Gtk.Grid:
 
 
 def estado(texto: str) -> Gtk.Label:
-    lb = label(texto, "estado", wrap=False, xalign=0.5)
+    lb = label(_(texto), "estado", wrap=False, xalign=0.5)
     lb.set_valign(Gtk.Align.CENTER)
     for cls, names in STATUS_CLASS.items():
         if texto in names:
@@ -126,6 +128,43 @@ def bruto(texto: str, alto: int = 220) -> Gtk.Widget:
 def desplazable(content: Gtk.Widget) -> Gtk.ScrolledWindow:
     """Desplazamiento vertical que usa todo el ancho disponible."""
     return Gtk.ScrolledWindow(child=content, hscrollbar_policy=Gtk.PolicyType.NEVER, hexpand=True, vexpand=True)
+
+
+# --------------------------------------------------------------- selector de idioma
+
+class SelectorIdioma(Gtk.DropDown):
+    """Desplegable de idioma: el botón muestra la bandera y la abreviatura («🇪🇸 ES»); la lista, además,
+    el nombre del idioma en su propio idioma."""
+
+    def __init__(self, al_elegir: Callable[[str], None]):
+        codigos = sorted(IDIOMAS)
+        super().__init__(model=Gtk.StringList.new(codigos), tooltip_text=_("Language"))
+        self.add_css_class("idioma")
+        self._codigos = codigos
+
+        def preparar(_fabrica, item):
+            item.set_child(Gtk.Label(xalign=0))
+
+        def boton(_fabrica, item):
+            item.get_child().set_label(etiqueta(item.get_item().get_string()))
+
+        def lista(_fabrica, item):
+            c = item.get_item().get_string()
+            item.get_child().set_label(f"{etiqueta(c)}   {IDIOMAS[c][1]}")
+
+        f_boton, f_lista = Gtk.SignalListItemFactory(), Gtk.SignalListItemFactory()
+        for f, bind in ((f_boton, boton), (f_lista, lista)):
+            f.connect("setup", preparar)
+            f.connect("bind", bind)
+        self.set_factory(f_boton)
+        self.set_list_factory(f_lista)
+        self.set_selected(codigos.index(AJUSTES.idioma_efectivo) if AJUSTES.idioma_efectivo in codigos else 0)
+        self.connect("notify::selected", lambda d, *args: self._cambio(d, al_elegir))
+
+    def _cambio(self, desplegable, al_elegir):
+        codigo = self._codigos[desplegable.get_selected()]
+        if codigo != AJUSTES.idioma_efectivo:
+            al_elegir(codigo)
 
 
 # ---------------------------------------------------------- reparto en columnas
@@ -185,7 +224,7 @@ class Masonry(Gtk.Box):
                 child = nxt
             super().remove(col)
         self.cols = []
-        for _ in range(n):
+        for __ in range(n):
             col = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=self.gap, valign=Gtk.Align.START)
             self.cols.append(col)
             self.append(col)
@@ -265,7 +304,7 @@ class BarraEstado(Gtk.Box):
         self.avisos = Gtk.Box(spacing=6, visible=False)
         self.icono_aviso = Gtk.Image(icon_name="dialog-information-symbolic", pixel_size=14)
         self.texto_aviso = label("", wrap=False)
-        cerrar = Gtk.Button(icon_name="window-close-symbolic", tooltip_text="Cerrar el aviso")
+        cerrar = Gtk.Button(icon_name="window-close-symbolic", tooltip_text=_("Close the notice"))
         cerrar.add_css_class("cerrar")
         cerrar.connect("clicked", lambda *_: self.avisos.set_visible(False))
         for w in (self.icono_aviso, self.texto_aviso, cerrar):
@@ -412,45 +451,45 @@ class InterfazDialogo(CristalDialogo):
     Los cambios se ven al momento."""
 
     def __init__(self, anfitrion, al_cerrar):
-        super().__init__(anfitrion, "🎨  Interfaz", al_cerrar, derecha=True)
+        super().__init__(anfitrion, "🎨  " + _("Interface"), al_cerrar, derecha=True)
         self.cuerpo.set_size_request(380, -1)
         self._ignorar = False
         c = self.cuerpo
-        c.append(rubrica("Tarjetas"))
-        c.append(_con_valor("Opacidad de las tarjetas", 20, 100, AJUSTES.opacidad, " %",
+        c.append(rubrica(_("Cards")))
+        c.append(_con_valor(_("Card opacity"), 20, 100, AJUSTES.opacidad, " %",
                             lambda v: AJUSTES.cambiar(opacidad=v)))
-        c.append(_con_valor("Esquinas", 0, 24, AJUSTES.esquinas, " px", lambda v: AJUSTES.cambiar(esquinas=v)))
+        c.append(_con_valor(_("Corners"), 0, 24, AJUSTES.esquinas, " px", lambda v: AJUSTES.cambiar(esquinas=v)))
 
         fila = Gtk.Box(spacing=12)
-        fila.append(label("Color de los títulos", wrap=False))
+        fila.append(label(_("Title color"), wrap=False))
         fila.append(Gtk.Box(hexpand=True))
         claves = list(COLORES)
-        self.colores = Gtk.DropDown.new_from_strings([COLORES[k][0] for k in claves])
+        self.colores = Gtk.DropDown.new_from_strings([_(COLORES[k][0]) for k in claves])
         self.colores.set_selected(claves.index(AJUSTES.titulo))
         self.colores.connect("notify::selected", lambda d, *_: not self._ignorar and
                              AJUSTES.cambiar(titulo=claves[d.get_selected()]))
         fila.append(self.colores)
         c.append(fila)
 
-        c.append(label("Marco", wrap=False))
+        c.append(label(_("Frame"), wrap=False))
         self.marcos = self._radios(MARCOS, AJUSTES.marco, lambda k: AJUSTES.cambiar(marco=k), c)
-        self.sombra = Gtk.CheckButton(label="Sombra bajo las tarjetas", active=AJUSTES.sombra)
+        self.sombra = Gtk.CheckButton(label=_("Shadow under the cards"), active=AJUSTES.sombra)
         self.sombra.connect("toggled", lambda w: not self._ignorar and AJUSTES.cambiar(sombra=w.get_active()))
         c.append(self.sombra)
-        self.pie = Gtk.CheckButton(label="Mostrar «Ver información →» en las tarjetas", active=AJUSTES.pie)
+        self.pie = Gtk.CheckButton(label=_("Show «View information →» on the cards"), active=AJUSTES.pie)
         self.pie.connect("toggled", lambda w: not self._ignorar and AJUSTES.cambiar(pie=w.get_active()))
         c.append(self.pie)
 
-        c.append(rubrica("Al conectar un dispositivo"))
+        c.append(rubrica(_("When a device is connected")))
         self.al_conectar = self._radios(AL_CONECTAR, AJUSTES.al_conectar, lambda k: AJUSTES.cambiar(al_conectar=k), c)
 
-        self.anadir_botones([("Restablecer", self._restablecer), ("Cerrar", al_cerrar)])
+        self.anadir_botones([(_("Reset"), self._restablecer), (_("Close"), al_cerrar)])
 
     @staticmethod
     def _radios(opciones: dict, actual: str, al_elegir, destino: Gtk.Box) -> dict[str, Gtk.CheckButton]:
         radios, primero = {}, None
         for k, nombre in opciones.items():
-            r = Gtk.CheckButton(label=nombre)
+            r = Gtk.CheckButton(label=_(nombre))
             if primero is None:
                 primero = r
             else:
@@ -475,20 +514,20 @@ class InterfazDialogo(CristalDialogo):
 
 class AcercaDeDialogo(CristalDialogo):
     def __init__(self, anfitrion, al_cerrar):
-        super().__init__(anfitrion, "Acerca de confusb", al_cerrar, modal=True)
+        super().__init__(anfitrion, _("About confusb"), al_cerrar, modal=True)
         tex = fondo.textura_svg("logo.svg", 480, AJUSTES.oscuro)
         if tex:
             img = Gtk.Image(pixel_size=240, halign=Gtk.Align.CENTER)
             img.set_from_paintable(tex)
             self.cuerpo.append(img)
         self.cuerpo.set_size_request(400, -1)
-        self.cuerpo.append(label(f"Versión {__version__}", "dim", xalign=0.5))
-        desc = label("Avisa al conectar un dispositivo USB, muestra su información y busca su "
-                     "controlador y las aplicaciones para usarlo.", xalign=0.5)
+        self.cuerpo.append(label(_("Version {version}").format(version=__version__), "dim", xalign=0.5))
+        desc = label(_("Notifies when a USB device is connected, shows its information and looks for its "
+                       "driver and the applications to use it."), xalign=0.5)
         desc.set_justify(Gtk.Justification.CENTER)
         self.cuerpo.append(desc)
-        self.cuerpo.append(label("Licencia GPL-3.0-or-later", "dim", xalign=0.5))
-        enlace = Gtk.LinkButton.new_with_label(REPO_URL, "Código fuente en GitHub")
+        self.cuerpo.append(label(_("License GPL-3.0-or-later"), "dim", xalign=0.5))
+        enlace = Gtk.LinkButton.new_with_label(REPO_URL, _("Source code on GitHub"))
         enlace.set_halign(Gtk.Align.CENTER)
         self.cuerpo.append(enlace)
-        self.anadir_botones([("Cerrar", al_cerrar)])
+        self.anadir_botones([(_("Close"), al_cerrar)])

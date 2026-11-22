@@ -1,0 +1,1205 @@
+# Translation of confusb into Português (pt).
+# This file is distributed under the same license as the confusb package.
+# The translations in this file were generated with AI (Claude) and are pending review by native speakers:
+# corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: confusb 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
+"POT-Creation-Date: 2026-11-22 13:25+0000\n"
+"PO-Revision-Date: 2026-11-22 13:25+0000\n"
+"Last-Translator: Claude (AI), pending native review\n"
+"Language-Team: Português\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: confusb/app.py:50
+msgid "Show the list of connected USB devices"
+msgstr ""
+
+#: confusb/app.py:52
+msgid "Show a device's window (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:63 confusb/app.py:212
+#, python-brace-format
+msgid "Device «{name}» not found"
+msgstr "Dispositivo «{name}» não encontrado"
+
+#: confusb/app.py:110
+msgid "USB device"
+msgstr "dispositivo USB"
+
+#: confusb/app.py:114
+#, python-brace-format
+msgid "Disconnected: {name}"
+msgstr "Desligado: {name}"
+
+#: confusb/app.py:125
+#, python-brace-format
+msgid "Connected: {name}"
+msgstr "Ligado: {name}"
+
+#: confusb/app.py:130
+msgid "USB device connected"
+msgstr "Dispositivo USB ligado"
+
+#: confusb/app.py:191
+msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+msgstr ""
+
+#: confusb/app.py:193
+msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+msgstr ""
+
+#: confusb/app.py:194
+msgid "show the window with the connected devices"
+msgstr ""
+
+#: confusb/app.py:195
+msgid "open the details of a device (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:196
+msgid "list the USB devices and exit"
+msgstr ""
+
+#: confusb/app.py:198
+msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+msgstr ""
+
+#: confusb/app.py:199
+msgid "show the version and exit"
+msgstr ""
+
+#: confusb/ajustes.py:40
+msgid "Like the theme"
+msgstr "Como o tema"
+
+#: confusb/ajustes.py:41
+msgid "Blue"
+msgstr "Azul"
+
+#: confusb/ajustes.py:42
+msgid "Green"
+msgstr "Verde"
+
+#: confusb/ajustes.py:43
+msgid "Cyan"
+msgstr "Ciano"
+
+#: confusb/ajustes.py:44
+msgid "Violet"
+msgstr "Violeta"
+
+#: confusb/ajustes.py:45
+msgid "Pink"
+msgstr "Rosa"
+
+#: confusb/ajustes.py:46
+msgid "Amber"
+msgstr "Âmbar"
+
+#: confusb/ajustes.py:47
+msgid "Light gray"
+msgstr "Cinzento-claro"
+
+#: confusb/ajustes.py:50
+msgid "Highlighted (border and glow on hover)"
+msgstr "Realçado (borda e brilho ao passar o rato)"
+
+#: confusb/ajustes.py:51
+msgid "Subtle (discreet border, no glow)"
+msgstr "Discreto (borda discreta, sem brilho)"
+
+#: confusb/ajustes.py:52
+msgid "No frame"
+msgstr "Sem moldura"
+
+#: confusb/ajustes.py:55
+msgid "Open a window with the information"
+msgstr "Abrir uma janela com a informação"
+
+#: confusb/ajustes.py:56
+msgid "Show a notification"
+msgstr "Mostrar uma notificação"
+
+#: confusb/ajustes.py:57
+msgid "Do nothing"
+msgstr "Não fazer nada"
+
+#: confusb/componentes.py:27
+msgid "Installed"
+msgstr "Instalado"
+
+#: confusb/componentes.py:27
+msgid "Active driver"
+msgstr "Controlador ativo"
+
+#: confusb/componentes.py:27
+msgid "User space"
+msgstr "Espaço do utilizador"
+
+#: confusb/componentes.py:27
+msgid "OK"
+msgstr ""
+
+#: confusb/componentes.py:27
+msgid "Supported"
+msgstr "Suportado"
+
+#: confusb/componentes.py:27
+msgid "Has driver"
+msgstr "Tem controlador"
+
+#: confusb/componentes.py:28
+msgid "Needs installing"
+msgstr "Falta instalar"
+
+#: confusb/componentes.py:28
+msgid "Not bound"
+msgstr "Não associado"
+
+#: confusb/componentes.py:29
+msgid "No driver"
+msgstr "Sem controlador"
+
+#: confusb/componentes.py:29
+msgid "Not in the repositories"
+msgstr "Não está nos repositórios"
+
+#: confusb/componentes.py:141
+msgid "Language"
+msgstr "Idioma"
+
+#: confusb/componentes.py:307
+msgid "Close the notice"
+msgstr "Fechar o aviso"
+
+#: confusb/componentes.py:454 confusb/ui.py:83
+msgid "Interface"
+msgstr "Interface"
+
+#: confusb/componentes.py:458
+msgid "Cards"
+msgstr "Cartões"
+
+#: confusb/componentes.py:459
+msgid "Card opacity"
+msgstr "Opacidade dos cartões"
+
+#: confusb/componentes.py:461
+msgid "Corners"
+msgstr "Cantos"
+
+#: confusb/componentes.py:464
+msgid "Title color"
+msgstr "Cor dos títulos"
+
+#: confusb/componentes.py:474
+msgid "Frame"
+msgstr "Moldura"
+
+#: confusb/componentes.py:476
+msgid "Shadow under the cards"
+msgstr "Sombra sob os cartões"
+
+#: confusb/componentes.py:479
+msgid "Show «View information →» on the cards"
+msgstr "Mostrar «Ver informação →» nos cartões"
+
+#: confusb/componentes.py:483
+msgid "When a device is connected"
+msgstr "Quando um dispositivo é ligado"
+
+#: confusb/componentes.py:486
+msgid "Reset"
+msgstr "Repor"
+
+#: confusb/componentes.py:486 confusb/componentes.py:533
+msgid "Close"
+msgstr "Fechar"
+
+#: confusb/componentes.py:517
+msgid "About confusb"
+msgstr "Acerca do confusb"
+
+#: confusb/componentes.py:524
+#, python-brace-format
+msgid "Version {version}"
+msgstr "Versão {version}"
+
+#: confusb/componentes.py:525
+msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
+msgstr "Avisa quando um dispositivo USB é ligado, mostra a sua informação e procura o seu controlador e as aplicações para o utilizar."
+
+#: confusb/componentes.py:529
+msgid "License GPL-3.0-or-later"
+msgstr "Licença GPL-3.0-or-later"
+
+#: confusb/componentes.py:530
+msgid "Source code on GitHub"
+msgstr "Código-fonte no GitHub"
+
+#: confusb/kb.py:17
+msgid "PC/SC service and CCID drivers"
+msgstr "Serviço PC/SC e controladores CCID"
+
+#: confusb/kb.py:18
+msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
+msgstr "O pcscd é o serviço que gere os leitores de cartões inteligentes; o libccid fornece o controlador para leitores USB padrão (CCID). Sem o pcscd, o leitor aparece em USB mas nenhuma aplicação o consegue usar."
+
+#: confusb/kb.py:22
+msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
+msgstr "OpenSC (PKCS#11, suporta o DNIe e outros cartões)"
+
+#: confusb/kb.py:23
+msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
+msgstr "Biblioteca e ferramentas para cartões criptográficos. Inclui suporte para o DNIe (3.0/4.0) e o módulo PKCS#11 usado pelo Firefox/Chromium e pelo AutoFirma. Os DNIe antigos (2.0) podem precisar do módulo oficial do DNIe."
+
+#: confusb/kb.py:26
+msgid "List readers"
+msgstr "Listar leitores"
+
+#: confusb/kb.py:27
+msgid "Card info (ATR)"
+msgstr "Informação do cartão (ATR)"
+
+#: confusb/kb.py:28
+msgid "List PKCS#11 slots"
+msgstr "Listar slots PKCS#11"
+
+#: confusb/kb.py:29
+msgid "List certificates"
+msgstr "Listar certificados"
+
+#: confusb/kb.py:34
+msgid "pcsc-tools (reader and card monitor)"
+msgstr "pcsc-tools (monitor de leitores e cartões)"
+
+#: confusb/kb.py:35
+msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
+msgstr "O pcsc_scan mostra em tempo real quando um cartão é inserido ou removido e descodifica o seu ATR."
+
+#: confusb/kb.py:37
+msgid "Open pcsc_scan"
+msgstr "Abrir o pcsc_scan"
+
+#: confusb/kb.py:40
+msgid "AutoFirma (electronic signature)"
+msgstr "AutoFirma (assinatura eletrónica)"
+
+#: confusb/kb.py:41
+msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
+msgstr "Aplicação oficial do Governo espanhol para assinar documentos com o DNIe ou um certificado digital. Não está nos repositórios do Debian: descarrega-se em firmaelectronica.gob.es."
+
+#: confusb/kb.py:48 confusb/usbinfo.py:23
+msgid "Mass storage"
+msgstr "Armazenamento em massa"
+
+#: confusb/kb.py:48
+msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
+msgstr "O sistema monta-o automaticamente (udisks2). Para o formatar ou inspecionar, use Discos."
+
+#: confusb/kb.py:49
+msgid "Open Disks"
+msgstr "Abrir Discos"
+
+#: confusb/kb.py:52
+msgid "Printer (CUPS)"
+msgstr "Impressora (CUPS)"
+
+#: confusb/kb.py:52
+msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
+msgstr "O CUPS deteta automaticamente as impressoras USB; configura-se em Definições → Impressoras."
+
+#: confusb/kb.py:53
+msgid "Configure printers"
+msgstr "Configurar impressoras"
+
+#: confusb/kb.py:56
+msgid "Camera / video (UVC)"
+msgstr "Câmara / vídeo (UVC)"
+
+#: confusb/kb.py:56
+msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
+msgstr "O controlador uvcvideo do kernel suporta-a. Experimente-a com o Snapshot/Cheese."
+
+#: confusb/kb.py:57
+msgid "List video devices"
+msgstr "Listar dispositivos de vídeo"
+
+#: confusb/kb.py:58
+msgid "Open Snapshot"
+msgstr "Abrir o Snapshot"
+
+#: confusb/kb.py:61
+msgid "USB audio"
+msgstr "Áudio USB"
+
+#: confusb/kb.py:61
+msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr "Suportado pelo snd-usb-audio. Ajuste os volumes e as saídas com o pavucontrol."
+
+#: confusb/kb.py:62
+msgid "Volume control"
+msgstr "Controlo de volume"
+
+#: confusb/kb.py:65
+msgid "BlueZ stack with a graphical manager."
+msgstr "Pilha BlueZ com gestor gráfico."
+
+#: confusb/kb.py:66
+msgid "Bluetooth manager"
+msgstr "Gestor Bluetooth"
+
+#: confusb/kb.py:69
+msgid "Still camera / image scanner"
+msgstr "Câmara fotográfica / digitalizador de imagens"
+
+#: confusb/kb.py:69
+msgid "libgphoto2 for PTP cameras; SANE for scanners."
+msgstr "libgphoto2 para câmaras PTP; SANE para digitalizadores."
+
+#: confusb/kb.py:70
+msgid "Detect cameras"
+msgstr "Detetar câmaras"
+
+#: confusb/kb.py:71
+msgid "Scan documents"
+msgstr "Digitalizar documentos"
+
+#: confusb/kb.py:74
+msgid "DFU / application specific device"
+msgstr "Dispositivo DFU / específico de aplicação"
+
+#: confusb/kb.py:74
+msgid "To update firmware over DFU."
+msgstr "Para atualizar o firmware por DFU."
+
+#: confusb/kb.py:75
+msgid "List DFU devices"
+msgstr "Listar dispositivos DFU"
+
+#: confusb/kb.py:78
+msgid "Modem / CDC serial port"
+msgstr "Modem / porta série CDC"
+
+#: confusb/kb.py:78
+msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
+msgstr "O ModemManager gere modems; para consolas série, use minicom/picocom."
+
+#: confusb/kb.py:79
+msgid "List modems"
+msgstr "Listar modems"
+
+#: confusb/kb.py:85
+msgid "Manages Unifying/Bolt receivers and Logitech devices."
+msgstr "Gere recetores Unifying/Bolt e dispositivos Logitech."
+
+#: confusb/kb.py:86
+msgid "Open Solaar"
+msgstr "Abrir o Solaar"
+
+#: confusb/kb.py:87
+msgid "Yubico: YubiKey tools"
+msgstr "Yubico: ferramentas YubiKey"
+
+#: confusb/kb.py:87
+msgid "YubiKey manager and U2F/PAM support."
+msgstr "Gestor da YubiKey e suporte U2F/PAM."
+
+#: confusb/kb.py:89
+msgid "YubiKey information"
+msgstr "Informação da YubiKey"
+
+#: confusb/kb.py:90
+msgid "Arduino IDE and CLI."
+msgstr "IDE e CLI do Arduino."
+
+#: confusb/kb.py:91
+msgid "ST-Link tools."
+msgstr "Ferramentas ST-Link."
+
+#: confusb/kb.py:94
+msgid "Device information"
+msgstr "Informação do dispositivo"
+
+#: confusb/kb.py:95 confusb/kb.py:97
+msgid "ADB and MTP access."
+msgstr "Acesso ADB e MTP."
+
+#: confusb/kb.py:98
+msgid "Drivers and utilities for HP printers and scanners."
+msgstr "Controladores e utilitários para impressoras e digitalizadores HP."
+
+#: confusb/kb.py:100
+msgid "Support for Canon printers and scanners."
+msgstr "Suporte para impressoras e digitalizadores Canon."
+
+#: confusb/kb.py:101
+msgid "Support for Epson printers and scanners."
+msgstr "Suporte para impressoras e digitalizadores Epson."
+
+#: confusb/kb.py:102
+msgid "Firmware for Realtek Wi-Fi/Bluetooth/Ethernet adapters."
+msgstr "Firmware para adaptadores Wi-Fi/Bluetooth/Ethernet Realtek."
+
+#: confusb/kb.py:103
+msgid "Atheros firmware."
+msgstr "Firmware Atheros."
+
+#: confusb/kb.py:104
+msgid "MediaTek firmware."
+msgstr "Firmware MediaTek."
+
+#: confusb/kb.py:105
+msgid "WCH CH340 (USB serial)"
+msgstr "WCH CH340 (série USB)"
+
+#: confusb/kb.py:105 confusb/kb.py:106 confusb/kb.py:107
+#, python-brace-format
+msgid "Supported by the kernel ({module})."
+msgstr "Suportado pelo kernel ({module})."
+
+#: confusb/kb.py:106
+msgid "FTDI (USB serial)"
+msgstr "FTDI (série USB)"
+
+#: confusb/kb.py:108
+msgid "OpenMoko / free projects"
+msgstr "OpenMoko / projetos livres"
+
+#: confusb/kb.py:108
+msgid "Many free hardware devices use this VID."
+msgstr "Muitos dispositivos de hardware livre usam este VID."
+
+#: confusb/resolver.py:146
+#, python-brace-format
+msgid "Packages: {list}"
+msgstr "Pacotes: {list}"
+
+#: confusb/resolver.py:148
+#, python-brace-format
+msgid "Already installed: {list}"
+msgstr "Já instalado: {list}"
+
+#: confusb/resolver.py:150
+#, python-brace-format
+msgid "Not in the repositories: {list}"
+msgstr "Não estão nos repositórios: {list}"
+
+#: confusb/resolver.py:152
+#, python-brace-format
+msgid "Install {packages}"
+msgstr "Instalar {packages}"
+
+#: confusb/resolver.py:158
+#, python-brace-format
+msgid "The application is already installed on your computer (version {version})."
+msgstr "A aplicação já está instalada no seu computador (versão {version})."
+
+#: confusb/resolver.py:159
+msgid "The application is already installed on your computer."
+msgstr "A aplicação já está instalada no seu computador."
+
+#: confusb/resolver.py:162
+#, python-brace-format
+msgid "Open {name}"
+msgstr "Abrir {name}"
+
+#: confusb/resolver.py:164
+#, python-brace-format
+msgid "«{exe}» not found"
+msgstr "«{exe}» não encontrado"
+
+#: confusb/resolver.py:167
+msgid "It is not installed."
+msgstr "Não está instalada."
+
+#: confusb/resolver.py:168
+#, python-brace-format
+msgid "Download {name}"
+msgstr "Descarregar {name}"
+
+#: confusb/resolver.py:173
+#, python-brace-format
+msgid "Already installed as a Flatpak ({id})."
+msgstr "Já instalada como Flatpak ({id})."
+
+#: confusb/resolver.py:174
+msgid "Open (Flatpak)"
+msgstr "Abrir (Flatpak)"
+
+#: confusb/resolver.py:177
+#, python-brace-format
+msgid "Install Flatpak {id}"
+msgstr "Instalar o Flatpak {id}"
+
+#: confusb/resolver.py:186
+msgid "Already installed on your computer."
+msgstr "Já instalado no seu computador."
+
+#: confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Instale primeiro «{name}»"
+
+#: confusb/resolver.py:203
+msgid "USB hub"
+msgstr "Hub USB"
+
+#: confusb/resolver.py:203
+msgid "Managed by the kernel's «hub» driver."
+msgstr "Gerido pelo controlador «hub» do kernel."
+
+#: confusb/resolver.py:206 confusb/ui.py:328
+#, python-brace-format
+msgid "Interface {number} · {label}"
+msgstr "Interface {number} · {label}"
+
+#: confusb/resolver.py:207 confusb/ui.py:333
+msgid "none found"
+msgstr "nenhum encontrado"
+
+#: confusb/resolver.py:209
+#, python-brace-format
+msgid "Driver: {driver}"
+msgstr "Controlador: {driver}"
+
+#: confusb/resolver.py:210
+#, python-brace-format
+msgid "Candidate modules: {modules}"
+msgstr "Módulos candidatos: {modules}"
+
+#: confusb/resolver.py:212
+msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
+msgstr "Normal: os leitores de cartões inteligentes CCID não usam um controlador do kernel; são geridos pelo serviço pcscd (espaço do utilizador) com o libccid."
+
+#: confusb/resolver.py:215
+#, python-brace-format
+msgid "No driver bound, but there are candidate modules: {modules}."
+msgstr "Nenhum controlador associado, mas existem módulos candidatos: {modules}."
+
+#: confusb/resolver.py:216
+msgid "Try: sudo modprobe <module>"
+msgstr "Experimente: sudo modprobe <módulo>"
+
+#: confusb/resolver.py:218
+msgid "The kernel has no module for this interface."
+msgstr "O kernel não tem nenhum módulo para esta interface."
+
+#: confusb/resolver.py:219
+msgid "It probably needs user-space software (see below) or an external driver."
+msgstr "Provavelmente precisa de software no espaço do utilizador (ver abaixo) ou de um controlador externo."
+
+#: confusb/resolver.py:221
+msgid "No interfaces"
+msgstr "Sem interfaces"
+
+#: confusb/resolver.py:221
+msgid "The device's interfaces could not be read."
+msgstr "Não foi possível ler as interfaces do dispositivo."
+
+#: confusb/resolver.py:222
+msgid "Kernel driver status"
+msgstr "Estado do controlador no kernel"
+
+#: confusb/resolver.py:230
+#, python-brace-format
+msgid "Recommended for the «{name}» class"
+msgstr "Recomendado para a classe «{name}»"
+
+#: confusb/resolver.py:232
+#, python-brace-format
+msgid "Recommended for the manufacturer ({vid})"
+msgstr "Recomendado para o fabricante ({vid})"
+
+#: confusb/resolver.py:265 confusb/resolver.py:292
+msgid "Install"
+msgstr "Instalar"
+
+#: confusb/resolver.py:267
+msgid "Debian packages whose name matches"
+msgstr "Pacotes Debian cujo nome corresponde"
+
+#: confusb/resolver.py:268 confusb/resolver.py:295
+#, python-brace-format
+msgid "Searched for: {terms}"
+msgstr "Pesquisado: {terms}"
+
+#: confusb/resolver.py:290 confusb/resolver.py:324 confusb/resolver.py:326
+msgid "Open"
+msgstr "Abrir"
+
+#: confusb/resolver.py:294
+msgid "Related Flatpak applications"
+msgstr "Aplicações Flatpak relacionadas"
+
+#: confusb/resolver.py:305
+msgid "fwupd recognizes this device"
+msgstr "O fwupd reconhece este dispositivo"
+
+#: confusb/resolver.py:306
+msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
+msgstr "Podem consultar-se e aplicar-se as atualizações de firmware oficiais do fabricante (LVFS)."
+
+#: confusb/resolver.py:308
+msgid "Check for updates"
+msgstr "Procurar atualizações"
+
+#: confusb/resolver.py:317
+msgid "Manufacturer website and databases"
+msgstr "Página web do fabricante e bases de dados"
+
+#: confusb/resolver.py:318
+msgid "Search for the manufacturer's official driver"
+msgstr "Procurar o controlador oficial do fabricante"
+
+#: confusb/resolver.py:318 confusb/resolver.py:320
+#, python-brace-format
+msgid "Search: «{query}»"
+msgstr "Pesquisa: «{query}»"
+
+#: confusb/resolver.py:319 confusb/resolver.py:321
+msgid "Open search"
+msgstr "Abrir a pesquisa"
+
+#: confusb/resolver.py:320
+msgid "Official site / support"
+msgstr "Site oficial / suporte"
+
+#: confusb/resolver.py:323
+msgid "Probes from other users with this same device and the driver they used."
+msgstr "Sondas de outros utilizadores com este mesmo dispositivo e o controlador que usaram."
+
+#: confusb/resolver.py:325
+msgid "USB ID database"
+msgstr "Base de dados USB ID"
+
+#: confusb/resolver.py:325
+#, python-brace-format
+msgid "Page for ID {id}."
+msgstr "Ficha do ID {id}."
+
+#: confusb/resolver.py:334
+msgid "DNIe: official portal"
+msgstr "DNIe: portal oficial"
+
+#: confusb/resolver.py:334
+msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
+msgstr "Controladores, módulo PKCS#11 e guias do cartão de cidadão eletrónico espanhol."
+
+#: confusb/resolver.py:335
+msgid "Open the DNIe portal"
+msgstr "Abrir o portal do DNIe"
+
+#: confusb/resolver.py:351
+msgid "Search error"
+msgstr "Erro na pesquisa"
+
+#: confusb/resolver.py:351
+msgid "Error while querying"
+msgstr "Erro ao consultar"
+
+#: confusb/ui.py:84
+msgid "Look of the application and what to do when a device is connected"
+msgstr "Aspeto da aplicação e o que fazer quando um dispositivo é ligado"
+
+#: confusb/ui.py:85
+msgid "About"
+msgstr "Acerca de"
+
+#: confusb/ui.py:145
+msgid "(no output)"
+msgstr "(sem saída)"
+
+#: confusb/ui.py:160
+msgid "Connected USB devices"
+msgstr "Dispositivos USB ligados"
+
+#: confusb/ui.py:160
+msgid "USB devices"
+msgstr "Dispositivos USB"
+
+#: confusb/ui.py:166
+msgid "Refresh"
+msgstr "Atualizar"
+
+#: confusb/ui.py:166
+msgid "Read the connected devices again"
+msgstr "Voltar a ler os dispositivos ligados"
+
+#: confusb/ui.py:188
+msgid "Reading devices…"
+msgstr "A ler os dispositivos…"
+
+#: confusb/ui.py:201
+msgid "Could not read the devices"
+msgstr "Não foi possível ler os dispositivos"
+
+#: confusb/ui.py:202
+msgid "Error reading the devices"
+msgstr "Erro ao ler os dispositivos"
+
+#: confusb/ui.py:208
+msgid "No USB devices connected"
+msgstr "Nenhum dispositivo USB ligado"
+
+#: confusb/ui.py:209
+msgid "Connect one and it will appear here automatically."
+msgstr "Ligue um e aparecerá aqui automaticamente."
+
+#: confusb/ui.py:211
+#, python-brace-format
+msgid "Connected USB devices: {n}"
+msgstr "Dispositivos USB ligados: {n}"
+
+#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+msgid "Unknown manufacturer"
+msgstr "Fabricante desconhecido"
+
+#: confusb/ui.py:232
+msgid "Type"
+msgstr "Tipo"
+
+#: confusb/ui.py:233
+msgid "Port"
+msgstr "Porta"
+
+#: confusb/ui.py:234
+msgid "Driver"
+msgstr "Controlador"
+
+#: confusb/ui.py:234 confusb/ui.py:332
+msgid "none"
+msgstr "nenhum"
+
+#: confusb/ui.py:236
+msgid "View information →"
+msgstr "Ver informação →"
+
+#: confusb/ui.py:262
+msgid "Back"
+msgstr "Voltar"
+
+#: confusb/ui.py:262
+msgid "Back to the list of devices"
+msgstr "Voltar à lista de dispositivos"
+
+#: confusb/ui.py:263
+msgid "Copy"
+msgstr "Copiar"
+
+#: confusb/ui.py:263
+msgid "Copy all the information to the clipboard"
+msgstr "Copiar toda a informação para a área de transferência"
+
+#: confusb/ui.py:271
+msgid "Information"
+msgstr "Informação"
+
+#: confusb/ui.py:271
+msgid "Drivers and applications"
+msgstr "Controladores e aplicações"
+
+#: confusb/ui.py:280
+msgid "Connected"
+msgstr "Ligado"
+
+#: confusb/ui.py:300
+msgid "Information copied to the clipboard"
+msgstr "Informação copiada para a área de transferência"
+
+#: confusb/ui.py:326
+msgid "Interfaces"
+msgstr "Interfaces"
+
+#: confusb/ui.py:326
+msgid "Each interface can have its own driver"
+msgstr "Cada interface pode ter o seu próprio controlador"
+
+#: confusb/ui.py:330
+msgid "Class"
+msgstr "Classe"
+
+#: confusb/ui.py:331
+msgid "Subclass / protocol"
+msgstr "Subclasse / protocolo"
+
+#: confusb/ui.py:332
+msgid "Bound driver"
+msgstr "Controlador associado"
+
+#: confusb/ui.py:333
+msgid "Kernel modules"
+msgstr "Módulos do kernel"
+
+#: confusb/ui.py:340
+msgid "Nodes created in the system"
+msgstr "Nós criados no sistema"
+
+#: confusb/ui.py:344
+msgid "Raw data"
+msgstr "Dados em bruto"
+
+#: confusb/ui.py:345
+#, python-brace-format
+msgid "udev properties ({n})"
+msgstr "Propriedades udev ({n})"
+
+#: confusb/ui.py:349
+msgid "lsusb -v output (full USB descriptors)"
+msgstr "Saída de lsusb -v (descritores USB completos)"
+
+#: confusb/ui.py:364
+msgid "Looking for drivers and applications…"
+msgstr "A procurar controladores e aplicações…"
+
+#: confusb/ui.py:417
+msgid "No terminal emulator found"
+msgstr "Nenhum emulador de terminal encontrado"
+
+#: confusb/ui.py:419
+msgid "Press Enter to close…"
+msgstr "Prima Enter para fechar…"
+
+#: confusb/ui.py:430
+msgid "Working…"
+msgstr "A trabalhar…"
+
+#: confusb/ui.py:436
+#, python-brace-format
+msgid "Error: {error}"
+msgstr "Erro: {error}"
+
+#: confusb/ui.py:439
+#, python-brace-format
+msgid "(exit code {code})"
+msgstr "(código de saída {code})"
+
+#: confusb/ui.py:443
+msgid "Installation completed"
+msgstr "Instalação concluída"
+
+#: confusb/ui.py:446
+msgid "The installation failed"
+msgstr "A instalação falhou"
+
+#: confusb/ui.py:455
+msgid "Disconnected"
+msgstr "Desligado"
+
+#: confusb/ui.py:456
+msgid "The device has been disconnected"
+msgstr "O dispositivo foi desligado"
+
+#: confusb/usbinfo.py:16
+msgid "Defined at interface level"
+msgstr "Definida ao nível da interface"
+
+#: confusb/usbinfo.py:17
+msgid "Audio"
+msgstr "Áudio"
+
+#: confusb/usbinfo.py:18
+msgid "Communications (CDC)"
+msgstr "Comunicações (CDC)"
+
+#: confusb/usbinfo.py:19
+msgid "Human interface device (HID)"
+msgstr "Dispositivo de interface humana (HID)"
+
+#: confusb/usbinfo.py:20
+msgid "Physical"
+msgstr "Física"
+
+#: confusb/usbinfo.py:21
+msgid "Image"
+msgstr "Imagem"
+
+#: confusb/usbinfo.py:22
+msgid "Printer"
+msgstr "Impressora"
+
+#: confusb/usbinfo.py:24
+msgid "Hub"
+msgstr ""
+
+#: confusb/usbinfo.py:26
+msgid "Smart card (CCID)"
+msgstr "Cartão inteligente (CCID)"
+
+#: confusb/usbinfo.py:27
+msgid "Content security"
+msgstr "Segurança de conteúdos"
+
+#: confusb/usbinfo.py:28
+msgid "Video"
+msgstr "Vídeo"
+
+#: confusb/usbinfo.py:29
+msgid "Personal healthcare"
+msgstr "Saúde pessoal"
+
+#: confusb/usbinfo.py:30
+msgid "Audio/Video"
+msgstr "Áudio/Vídeo"
+
+#: confusb/usbinfo.py:32
+msgid "Diagnostic"
+msgstr "Diagnóstico"
+
+#: confusb/usbinfo.py:33
+msgid "Wireless (e.g. Bluetooth)"
+msgstr "Sem fios (p. ex. Bluetooth)"
+
+#: confusb/usbinfo.py:34
+msgid "Miscellaneous"
+msgstr "Diversos"
+
+#: confusb/usbinfo.py:35
+msgid "Application specific (DFU, IrDA...)"
+msgstr "Específica de aplicação (DFU, IrDA...)"
+
+#: confusb/usbinfo.py:36
+msgid "Vendor specific"
+msgstr "Específica do fabricante"
+
+#: confusb/usbinfo.py:50
+msgid "Manufacturer (descriptor)"
+msgstr "Fabricante (descritor)"
+
+#: confusb/usbinfo.py:51
+msgid "Product (descriptor)"
+msgstr "Produto (descritor)"
+
+#: confusb/usbinfo.py:52
+msgid "Serial number"
+msgstr "Número de série"
+
+#: confusb/usbinfo.py:53
+msgid "Vendor ID (VID)"
+msgstr "ID do fabricante (VID)"
+
+#: confusb/usbinfo.py:54
+msgid "Product ID (PID)"
+msgstr "ID do produto (PID)"
+
+#: confusb/usbinfo.py:55
+msgid "Device version (bcdDevice)"
+msgstr "Versão do dispositivo (bcdDevice)"
+
+#: confusb/usbinfo.py:56
+msgid "USB version"
+msgstr "Versão USB"
+
+#: confusb/usbinfo.py:57
+msgid "Negotiated speed (Mb/s)"
+msgstr "Velocidade negociada (Mb/s)"
+
+#: confusb/usbinfo.py:58
+msgid "Device class"
+msgstr "Classe do dispositivo"
+
+#: confusb/usbinfo.py:59
+msgid "Device subclass"
+msgstr "Subclasse do dispositivo"
+
+#: confusb/usbinfo.py:60
+msgid "Device protocol"
+msgstr "Protocolo do dispositivo"
+
+#: confusb/usbinfo.py:61
+msgid "Max. EP0 packet size"
+msgstr "Tamanho máx. de pacote EP0"
+
+#: confusb/usbinfo.py:62
+msgid "Number of configurations"
+msgstr "Número de configurações"
+
+#: confusb/usbinfo.py:63
+msgid "Active configuration"
+msgstr "Configuração ativa"
+
+#: confusb/usbinfo.py:64
+msgid "Number of interfaces"
+msgstr "Número de interfaces"
+
+#: confusb/usbinfo.py:65
+msgid "Configuration attributes"
+msgstr "Atributos da configuração"
+
+#: confusb/usbinfo.py:66
+msgid "Declared maximum power"
+msgstr "Consumo máximo declarado"
+
+#: confusb/usbinfo.py:67
+msgid "Bus"
+msgstr ""
+
+#: confusb/usbinfo.py:68
+msgid "Address on the bus"
+msgstr "Endereço no bus"
+
+#: confusb/usbinfo.py:69
+msgid "Port path (devpath)"
+msgstr "Caminho das portas (devpath)"
+
+#: confusb/usbinfo.py:70
+msgid "Child ports"
+msgstr "Portas filhas"
+
+#: confusb/usbinfo.py:71
+msgid "Removable"
+msgstr "Removível"
+
+#: confusb/usbinfo.py:72
+msgid "Authorized"
+msgstr "Autorizado"
+
+#: confusb/usbinfo.py:73
+msgid "Configuration name"
+msgstr "Nome da configuração"
+
+#: confusb/usbinfo.py:75
+msgid "Kernel quirks"
+msgstr "Particularidades do kernel"
+
+#: confusb/usbinfo.py:108
+msgid "Unknown"
+msgstr "Desconhecida"
+
+#: confusb/usbinfo.py:162
+#, python-brace-format
+msgid "== Interface {name} =="
+msgstr ""
+
+#: confusb/usbinfo.py:163
+#, python-brace-format
+msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
+msgstr ""
+
+#: confusb/usbinfo.py:165
+#, python-brace-format
+msgid "driver={driver} modules={modules}"
+msgstr ""
+
+#: confusb/usbinfo.py:166
+msgid "(none)"
+msgstr ""
+
+#: confusb/usbinfo.py:169
+msgid "== udev properties =="
+msgstr ""
+
+#: confusb/usbinfo.py:201
+#, python-brace-format
+msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
+msgstr ""
+
+#: confusb/usbinfo.py:232
+#, python-brace-format
+msgid "network interface {name}"
+msgstr "interface de rede {name}"
+
+#: confusb/usbinfo.py:279
+msgid "Manufacturer (usb.ids)"
+msgstr "Fabricante (usb.ids)"
+
+#: confusb/usbinfo.py:280
+msgid "Product (usb.ids)"
+msgstr "Produto (usb.ids)"
+
+#: confusb/usbinfo.py:281
+msgid "sysfs path"
+msgstr "caminho sysfs"
+
+#: confusb/usbinfo.py:282
+msgid "/dev node"
+msgstr "nó /dev"
+
+#: confusb/usbinfo.py:283
+msgid "Subsystem / type"
+msgstr "Subsistema / tipo"
+
+#: confusb/usbinfo.py:284
+msgid "Interfaces (ID_USB_INTERFACES)"
+msgstr ""
+
+#: confusb/usbinfo.py:285
+msgid "Device driver"
+msgstr "Controlador do dispositivo"
+
+#: confusb/usbinfo.py:287
+msgid "Persistent paths (ID_PATH)"
+msgstr "Caminhos persistentes (ID_PATH)"
+
+#: confusb/usbinfo.py:288
+msgid "udev tags (TAGS)"
+msgstr "Etiquetas udev (TAGS)"
+
+#: confusb/usbinfo.py:291
+msgid "Identification"
+msgstr "Identificação"
+
+#: confusb/usbinfo.py:292
+msgid "Descriptors and configuration"
+msgstr "Descritores e configuração"
+
+#: confusb/usbinfo.py:293
+msgid "System"
+msgstr "Sistema"
+
+#: confusb/usbinfo.py:297
+msgid "Power control"
+msgstr "Controlo de energia"
+
+#: confusb/usbinfo.py:298
+msgid "Power state"
+msgstr "Estado de energia"
+
+#: confusb/usbinfo.py:299
+msgid "Autosuspend delay (ms)"
+msgstr "Atraso de autossuspensão (ms)"
+
+#: confusb/usbinfo.py:300
+msgid "Persistence"
+msgstr "Persistência"
+
+#: confusb/usbinfo.py:301
+msgid "System wake-up"
+msgstr "Ativação do sistema"
+
+#: confusb/usbinfo.py:302
+msgid "Active time (ms)"
+msgstr "Tempo ativo (ms)"
+
+#: confusb/usbinfo.py:303
+msgid "Connected time (ms)"
+msgstr "Tempo ligado (ms)"
+
+#: confusb/usbinfo.py:304
+msgid "URBs processed"
+msgstr "URB processados"
+
+#: confusb/usbinfo.py:310
+msgid "Power and statistics"
+msgstr "Energia e estatísticas"
+
+#: confusb/usbinfo.py:316
+msgid "Topology"
+msgstr "Topologia"
+
+#: confusb/usbinfo.py:317
+msgid "Connected to"
+msgstr "Ligado a"
+
+#: confusb/usbinfo.py:318
+msgid "Parent path"
+msgstr "Caminho do pai"

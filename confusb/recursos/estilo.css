@@ -1,0 +1,88 @@
+/* Estilo de confusb: el de Rambleando (app.css) llevado a GTK.
+   Los colores con nombre (@panel_bg, @texto, @halo…) los define ajustes.py según el modo
+   (claro/oscuro), la transparencia y el color de letra elegidos. */
+
+window.confusb { background-color: @fondo_ventana; color: @texto; font-size: 15px; }
+
+/* ---- Tarjeta «cristal»: fondo translúcido, borde claro, esquinas de 14 px y halo en el texto ---- */
+.cristal {
+  background-color: @panel_bg;
+  border: 1px solid @panel_borde;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+.cristal label { text-shadow: 0 0 3px @halo, 0 0 6px @halo; }
+.cristal button label, .cristal .estado, .cristal link { text-shadow: none; }
+
+.tarjeta { padding: 14px 16px 16px; }
+.tarjeta .titulo { font-size: 110%; font-weight: 700; }
+.tarjeta .titulo-grande { font-size: 125%; font-weight: 700; }
+.secundario { opacity: 0.85; }
+
+/* Rúbrica: título de sección en mayúsculas pequeñas */
+.rubrica { font-size: 80%; font-weight: 600; opacity: 0.85; }
+.datos-etiqueta { opacity: 0.85; }
+.datos-valor { font-feature-settings: "tnum"; }
+
+/* Caja de elemento dentro de una tarjeta */
+.caja { border-radius: 8px; padding: 8px 10px; background-color: @realce; }
+
+/* ---- Dock (columna de iconos a la izquierda) ---- */
+.dock { padding: 6px; }
+.dock button.icono {
+  min-width: 42px; min-height: 42px; padding: 0; border-radius: 10px;
+  border: none; box-shadow: none; background-image: none; background-color: transparent;
+  color: @accent_color;
+}
+.dock button.icono.con-texto { padding: 4px 2px; }
+.dock button.icono label { font-size: 70%; line-height: 1.1; }
+.dock button.icono:hover { background-color: @realce; }
+.dock button.icono:checked, .dock button.icono.activo { background-color: @accent_bg_color; color: @accent_fg_color; }
+.dock separator { margin: 4px 8px; opacity: 0.3; background-color: currentColor; min-height: 1px; }
+
+/* ---- Barra de estado ---- */
+.barra-estado {
+  min-height: 26px; padding: 0 10px; font-size: 85%;
+  background-color: @panel_bg; border-top: 1px solid @panel_borde;
+}
+.barra-estado label { text-shadow: 0 0 3px @halo, 0 0 6px @halo; }
+.barra-estado .aviso-grave { color: @error_fg; }
+button.cerrar { min-width: 22px; min-height: 22px; padding: 0; border: none; box-shadow: none;
+  background-image: none; background-color: transparent; color: inherit; border-radius: 6px; }
+button.cerrar:hover { background-color: @realce; }
+
+/* ---- Botones de acción: color de acento del sistema (clase suggested-action de libadwaita) ---- */
+
+/* ---- Control segmentado ---- */
+.segmentado { padding: 3px; border-radius: 8px; background-color: @realce; }
+.segmentado button {
+  border: none; box-shadow: none; background-color: transparent; background-image: none;
+  border-radius: 6px; padding: 4px 12px; color: inherit; min-height: 0;
+}
+.segmentado button:checked { background-color: @accent_bg_color; color: @accent_fg_color; }
+.segmentado button:hover:not(:checked) { background-color: alpha(@accent_bg_color, 0.25); }
+
+/* ---- Muestras de color de la letra ---- */
+button.muestra {
+  min-width: 28px; min-height: 28px; padding: 0; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+button.muestra.elegida { box-shadow: 0 0 0 3px @accent_bg_color; }
+
+/* ---- Estados (etiquetas pequeñas) ---- */
+.estado { font-size: 85%; font-weight: 600; border-radius: 999px; padding: 1px 9px; }
+.estado.ok { color: @ok_fg; background-color: alpha(@ok_fg, 0.18); }
+.estado.aviso { color: @aviso_fg; background-color: alpha(@aviso_fg, 0.20); }
+.estado.error { color: @error_fg; background-color: alpha(@error_fg, 0.16); }
+
+/* Punto de color: conectado / desconectado */
+.punto { min-width: 12px; min-height: 12px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); }
+.punto.conectado { background-color: #2fbf71; }
+.punto.desconectado { background-color: #ff2d95; }
+
+.aviso-error { border-radius: 6px; padding: 8px 10px; background-color: @error_bg; color: @error_fg; }
+
+.bruto { font-family: monospace; font-size: 90%; }
+.logo { border-radius: 12px; }
+expander title { padding: 4px 0; }
+scrolledwindow, scrolledwindow > viewport { background: transparent; }

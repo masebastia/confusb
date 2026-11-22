@@ -1,13 +1,13 @@
 [Desktop Entry]
 Type=Application
-Name=teveo
+Name=confusb
 GenericName=Dispositivos USB
 Comment=Información, controladores y aplicaciones de los dispositivos USB conectados
-Exec=/usr/bin/python3 -m teveo --devices
+Exec=/usr/bin/python3 -m confusb --devices
 Path=@PROJECT_DIR@
-Icon=es.teveo.Monitor
+Icon=es.masebastia.confusb
 Terminal=false
 Categories=System;Monitor;
 Keywords=usb;dispositivo;controlador;driver;lector;
-StartupWMClass=es.teveo.Monitor
+StartupWMClass=es.masebastia.confusb
 StartupNotify=true

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Busca drivers y aplicaciones para un dispositivo USB.
 
 Fuentes (de más rápida a más lenta; cada grupo se emite en cuanto está listo):

@@ -1,4 +1,6 @@
-"""Servicio: escucha eventos udev de USB y abre la ventana de detalle."""
+# SPDX-License-Identifier: GPL-3.0-or-later
+"""Servicio de confusb: escucha los eventos udev de USB y, según los ajustes, abre una ventana con la
+información del dispositivo, muestra una notificación o no hace nada."""
 from __future__ import annotations
 
 import argparse
@@ -12,7 +14,8 @@ gi.require_version("Adw", "1")
 gi.require_version("GUdev", "1.0")
 from gi.repository import Adw, Gio, GLib, GUdev  # noqa: E402
 
-from . import APP_ID, usbinfo  # noqa: E402
+from . import APP_ID, __version__, usbinfo  # noqa: E402
+from .ajustes import AJUSTES  # noqa: E402
 from .ui import DeviceWindow, DevicesWindow  # noqa: E402
 
 SETTLE_MS = 1500          # esperar a que el kernel enlace drivers e interfaces
@@ -32,13 +35,16 @@ def resolve_target(target: str) -> str | None:
     return None
 
 
-class TeveoApp(Adw.Application):
+class ConfusbApp(Adw.Application):
     def __init__(self):
         super().__init__(application_id=APP_ID, flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
         self.windows: dict[str, DeviceWindow] = {}
         self.client: GUdev.Client | None = None
         self.held = False
         self.devices_win: DevicesWindow | None = None
+        accion = Gio.SimpleAction.new("detalle", GLib.VariantType.new("s"))   # la usan las notificaciones
+        accion.connect("activate", lambda _a, v: self.open_device(v.get_string()))
+        self.add_action(accion)
         self.add_main_option("devices", ord("d"), GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
                              "Mostrar la lista de dispositivos USB conectados", None)
         self.add_main_option("show", ord("s"), GLib.OptionFlags.NONE, GLib.OptionArg.STRING,
@@ -62,7 +68,7 @@ class TeveoApp(Adw.Application):
             self.held = True
             self.client = GUdev.Client(subsystems=["usb"])
             self.client.connect("uevent", self.on_uevent)
-            print("teveo: vigilando conexiones USB…", flush=True)
+            print("confusb: vigilando conexiones USB…", flush=True)
         return 0
 
     def show_devices(self):
@@ -76,12 +82,47 @@ class TeveoApp(Adw.Application):
         if device.get_devtype() != "usb_device":
             return
         path = device.get_sysfs_path()
+        if (device.get_property("ID_VENDOR_ID") or device.get_sysfs_attr("idVendor") or "") in IGNORED_VIDS:
+            return
         if action == "add":
-            if (device.get_sysfs_attr("idVendor") or "") in IGNORED_VIDS:
-                return
-            GLib.timeout_add(SETTLE_MS, self.open_device, path)
-        elif action == "remove" and path in self.windows:
-            self.windows[path].mark_disconnected()
+            GLib.timeout_add(SETTLE_MS, self.conectado, path)
+        elif action == "remove":
+            nombre = (device.get_property("ID_MODEL_FROM_DATABASE") or device.get_property("ID_MODEL")
+                      or "dispositivo USB").replace("_", " ")
+            if path in self.windows:
+                self.windows[path].mark_disconnected()
+            if self.devices_win:
+                self.devices_win.refresh(aviso=f"Desconectado: {nombre}")
+
+    def conectado(self, path: str):
+        """Un dispositivo nuevo, con el kernel ya asentado: actualizar la lista y aplicar el ajuste."""
+        if not os.path.exists(path):
+            return False
+
+        def hecho(info):
+            if isinstance(info, Exception):
+                return False
+            if self.devices_win:
+                self.devices_win.refresh(aviso=f"Conectado: {info.title}")
+            modo = AJUSTES.al_conectar
+            if modo == "ventana":
+                self.open_device(path)
+            elif modo == "notificar":
+                n = Gio.Notification.new("Dispositivo USB conectado")
+                n.set_body(f"{info.title} · {info.usb_id}")
+                n.set_default_action(f"app.detalle({GLib.Variant.new_string(path).print_(False)})")
+                self.send_notification(f"usb-{info.usb_id}", n)
+            return False
+
+        def trabajo():
+            try:
+                res = usbinfo.collect(path, with_lsusb=False)
+            except Exception as e:  # noqa: BLE001
+                res = e
+            GLib.idle_add(hecho, res)
+
+        threading.Thread(target=trabajo, daemon=True).start()
+        return False
 
     def open_device(self, path: str):
         win = self.windows.get(path)
@@ -101,7 +142,7 @@ class TeveoApp(Adw.Application):
 
         def done(info):
             if isinstance(info, Exception):
-                print(f"teveo: error leyendo {path}: {info}", flush=True)
+                print(f"confusb: error leyendo {path}: {info}", flush=True)
                 return False
             w = DeviceWindow(self, info)
             self.windows[path] = w
@@ -126,17 +167,22 @@ class TeveoApp(Adw.Application):
 
 
 def main(argv: list[str]) -> int:
-    ap = argparse.ArgumentParser(prog="teveo", add_help=False)
+    ap = argparse.ArgumentParser(prog="confusb", add_help=False)
     ap.add_argument("--list", action="store_true", help="Listar dispositivos USB y salir")
     ap.add_argument("--dump", metavar="DISP", help="Imprimir toda la información de un dispositivo y salir")
     ap.add_argument("-h", "--help", action="store_true")
+    ap.add_argument("--version", action="store_true")
     args, rest = ap.parse_known_args(argv[1:])
+    if args.version:
+        print(f"confusb {__version__}")
+        return 0
     if args.help:
-        print("uso: teveo            servicio (vigila conexiones USB y abre una ventana)\n"
-              "     teveo --show X   abrir ventana de un dispositivo conectado (1-5, 058f:9540, ruta sysfs)\n"
-              "     teveo --devices  ventana con los dispositivos conectados\n"
-              "     teveo --list     listar dispositivos\n"
-              "     teveo --dump X   volcar toda la información en texto")
+        print("uso: confusb            servicio (vigila conexiones USB según los ajustes)\n"
+              "     confusb --devices  ventana con los dispositivos conectados\n"
+              "     confusb --show X   abrir el detalle de un dispositivo (1-5, 058f:9540, ruta sysfs)\n"
+              "     confusb --list     listar dispositivos\n"
+              "     confusb --dump X   volcar toda la información en texto\n"
+              "     confusb --version")
         return 0
     if args.list:
         for p in usbinfo.list_usb_devices():
@@ -150,4 +196,4 @@ def main(argv: list[str]) -> int:
             return 1
         print(usbinfo.collect(p).as_text())
         return 0
-    return TeveoApp().run([argv[0], *rest])
+    return ConfusbApp().run([argv[0], *rest])

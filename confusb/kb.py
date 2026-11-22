@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Conocimiento integrado: qué paquetes/aplicaciones hacen funcionar cada tipo de dispositivo.
 
 Formato de cada entrada:

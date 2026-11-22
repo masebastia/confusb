@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 """Recopila toda la información posible de un dispositivo USB (sysfs + udev + lsusb)."""
 from __future__ import annotations
 

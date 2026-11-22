@@ -106,18 +106,19 @@ def leer_po(ruta: str) -> dict[str, str]:
 def _cargar(codigo: str) -> gettext.NullTranslations:
     if codigo == FUENTE or codigo not in IDIOMAS:
         return gettext.NullTranslations()
-    # .mo compilados: primero los del propio árbol de código (si se ejecuta desde el repositorio, que no mande
-    # una versión vieja instalada en el sistema) y luego los instalados.
-    for carpeta in (os.path.join(RAIZ, "locale"), "/usr/share/locale"):
-        try:
-            return gettext.translation(DOMINIO, localedir=carpeta, languages=[codigo])
-        except OSError:
-            pass
-    po = os.path.join(RAIZ, "po", f"{codigo}.po")                               # código fuente
+    # Ejecutando desde el código fuente (o compilando el paquete) manda el .po del árbol: es la fuente de verdad, y
+    # un .mo viejo de una versión ya instalada en el sistema no tendría los textos nuevos. En una instalación no hay
+    # carpeta po/, y se usan los .mo instalados.
+    po = os.path.join(RAIZ, "po", f"{codigo}.po")
     if os.path.exists(po):
         try:
             return _TraduccionPO(leer_po(po))
         except (OSError, UnicodeDecodeError):
+            pass
+    for carpeta in (os.path.join(RAIZ, "locale"), "/usr/share/locale"):       # .mo compilados o instalados
+        try:
+            return gettext.translation(DOMINIO, localedir=carpeta, languages=[codigo])
+        except OSError:
             pass
     return gettext.NullTranslations()
 

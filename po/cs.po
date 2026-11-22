@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 13:29+0000\n"
+"POT-Creation-Date: 2026-11-22 20:01+0100\n"
 "PO-Revision-Date: 2026-11-22 13:29+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Čeština\n"
@@ -17,63 +17,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
+#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
+#: confusb/ui.py:233 confusb/ui.py:317
+msgid "Capacity"
+msgstr "Kapacita"
 
-#: confusb/app.py:50
+#: confusb/almacenamiento.py:154
+msgid "No media inserted"
+msgstr "Není vloženo médium"
+
+#: confusb/almacenamiento.py:157
+msgid "Drive model"
+msgstr "Model jednotky"
+
+#: confusb/almacenamiento.py:159
+msgid "Access"
+msgstr "Přístup"
+
+#: confusb/almacenamiento.py:159
+msgid "Read-only"
+msgstr "Pouze pro čtení"
+
+#: confusb/almacenamiento.py:161
+msgid "Partition table"
+msgstr "Tabulka oddílů"
+
+#: confusb/almacenamiento.py:163
+msgid "File system"
+msgstr "Souborový systém"
+
+#: confusb/almacenamiento.py:165
+msgid "Mounted at"
+msgstr "Připojeno do"
+
+#: confusb/almacenamiento.py:173
+#, python-brace-format
+msgid "{free} free"
+msgstr "{free} volných"
+
+#: confusb/almacenamiento.py:175
+#, python-brace-format
+msgid "mounted at {path}"
+msgstr "připojeno do {path}"
+
+#: confusb/almacenamiento.py:177
+msgid "not mounted"
+msgstr "nepřipojeno"
+
+#: confusb/almacenamiento.py:178
+#, python-brace-format
+msgid "Partition {name}"
+msgstr "Oddíl {name}"
+
+#: confusb/app.py:52
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:52
+#: confusb/app.py:54
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:63 confusb/app.py:212
+#: confusb/app.py:65 confusb/app.py:241
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Zařízení «{name}» nebylo nalezeno"
 
-#: confusb/app.py:110
+#: confusb/app.py:114
 msgid "USB device"
 msgstr "zařízení USB"
 
-#: confusb/app.py:114
+#: confusb/app.py:118
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Odpojeno: {name}"
 
-#: confusb/app.py:125
+#: confusb/app.py:138
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Připojeno: {name}"
 
-#: confusb/app.py:130
+#: confusb/app.py:160
 msgid "USB device connected"
 msgstr "Zařízení USB připojeno"
 
-#: confusb/app.py:191
-msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+#: confusb/app.py:163
+msgid "View information"
+msgstr "Zobrazit informace"
+
+#: confusb/app.py:220
+msgid ""
+"Shows the information of a USB device when it is connected and looks for its "
+"driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:193
-msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+#: confusb/app.py:222
+msgid ""
+"Without arguments it runs as a service that watches the USB connections "
+"according to the settings."
 msgstr ""
 
-#: confusb/app.py:194
+#: confusb/app.py:223
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:195
+#: confusb/app.py:224
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:196
+#: confusb/app.py:225
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:198
-msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+#: confusb/app.py:227
+msgid ""
+"print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:199
+#: confusb/app.py:228
 msgid "show the version and exit"
 msgstr ""
 
@@ -217,32 +277,52 @@ msgstr "Zobrazovat «Zobrazit informace →» na kartách"
 msgid "When a device is connected"
 msgstr "Při připojení zařízení"
 
-#: confusb/componentes.py:486
+#: confusb/componentes.py:485
+msgid "Only for devices not seen before"
+msgstr "Jen pro zařízení, která dosud nebyla vidět"
+
+#: confusb/componentes.py:488
+msgid "Open storage drives with the default application"
+msgstr "Otevírat úložné jednotky ve výchozí aplikaci"
+
+#: confusb/componentes.py:493
+msgid "Forget known devices"
+msgstr "Zapomenout známá zařízení"
+
+#: confusb/componentes.py:493
+msgid "The next time they are connected they will count as new"
+msgstr "Při příštím připojení budou považována za nová"
+
+#: confusb/componentes.py:498
 msgid "Reset"
 msgstr "Obnovit výchozí"
 
-#: confusb/componentes.py:486 confusb/componentes.py:533
+#: confusb/componentes.py:498 confusb/componentes.py:552
 msgid "Close"
 msgstr "Zavřít"
 
-#: confusb/componentes.py:517
+#: confusb/componentes.py:536
 msgid "About confusb"
 msgstr "O aplikaci confusb"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:543
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Verze {version}"
 
-#: confusb/componentes.py:525
-msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
-msgstr "Upozorní na připojení zařízení USB, zobrazí jeho informace a vyhledá jeho ovladač a aplikace pro jeho používání."
+#: confusb/componentes.py:544
+msgid ""
+"Notifies when a USB device is connected, shows its information and looks for "
+"its driver and the applications to use it."
+msgstr ""
+"Upozorní na připojení zařízení USB, zobrazí jeho informace a vyhledá jeho "
+"ovladač a aplikace pro jeho používání."
 
-#: confusb/componentes.py:529
+#: confusb/componentes.py:548
 msgid "License GPL-3.0-or-later"
 msgstr "Licence GPL-3.0-or-later"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:549
 msgid "Source code on GitHub"
 msgstr "Zdrojový kód na GitHubu"
 
@@ -251,16 +331,28 @@ msgid "PC/SC service and CCID drivers"
 msgstr "Služba PC/SC a ovladače CCID"
 
 #: confusb/kb.py:18
-msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
-msgstr "pcscd je démon, který spravuje čtečky čipových karet; libccid poskytuje ovladač pro standardní čtečky USB (CCID). Bez pcscd se čtečka zobrazí v USB, ale žádná aplikace ji nemůže používat."
+msgid ""
+"pcscd is the daemon that manages smart card readers; libccid provides the "
+"driver for standard USB readers (CCID). Without pcscd the reader shows up in "
+"USB but no application can use it."
+msgstr ""
+"pcscd je démon, který spravuje čtečky čipových karet; libccid poskytuje "
+"ovladač pro standardní čtečky USB (CCID). Bez pcscd se čtečka zobrazí v USB, "
+"ale žádná aplikace ji nemůže používat."
 
 #: confusb/kb.py:22
 msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
 msgstr "OpenSC (PKCS#11, podporuje DNIe a další karty)"
 
 #: confusb/kb.py:23
-msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
-msgstr "Knihovna a nástroje pro kryptografické karty. Zahrnuje podporu DNIe (3.0/4.0) a modul PKCS#11, který používají Firefox/Chromium a AutoFirma. Starší DNIe (2.0) mohou vyžadovat oficiální modul DNIe."
+msgid ""
+"Library and tools for cryptographic cards. It includes support for the DNIe "
+"(3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. "
+"Older DNIe cards (2.0) may need the official DNIe module."
+msgstr ""
+"Knihovna a nástroje pro kryptografické karty. Zahrnuje podporu DNIe "
+"(3.0/4.0) a modul PKCS#11, který používají Firefox/Chromium a AutoFirma. "
+"Starší DNIe (2.0) mohou vyžadovat oficiální modul DNIe."
 
 #: confusb/kb.py:26
 msgid "List readers"
@@ -283,8 +375,12 @@ msgid "pcsc-tools (reader and card monitor)"
 msgstr "pcsc-tools (monitor čteček a karet)"
 
 #: confusb/kb.py:35
-msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
-msgstr "pcsc_scan v reálném čase ukazuje vložení nebo vyjmutí karty a dekóduje její ATR."
+msgid ""
+"pcsc_scan shows in real time when a card is inserted or removed and decodes "
+"its ATR."
+msgstr ""
+"pcsc_scan v reálném čase ukazuje vložení nebo vyjmutí karty a dekóduje její "
+"ATR."
 
 #: confusb/kb.py:37
 msgid "Open pcsc_scan"
@@ -295,16 +391,26 @@ msgid "AutoFirma (electronic signature)"
 msgstr "AutoFirma (elektronický podpis)"
 
 #: confusb/kb.py:41
-msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
-msgstr "Oficiální aplikace španělské vlády pro podepisování dokumentů pomocí DNIe nebo digitálního certifikátu. Není v repozitářích Debianu: stahuje se z firmaelectronica.gob.es."
+msgid ""
+"Official Spanish Government application to sign documents with the DNIe or a "
+"digital certificate. It is not in the Debian repositories: it is downloaded "
+"from firmaelectronica.gob.es."
+msgstr ""
+"Oficiální aplikace španělské vlády pro podepisování dokumentů pomocí DNIe "
+"nebo digitálního certifikátu. Není v repozitářích Debianu: stahuje se z "
+"firmaelectronica.gob.es."
 
-#: confusb/kb.py:48 confusb/usbinfo.py:23
+#: confusb/kb.py:48 confusb/usbinfo.py:24
 msgid "Mass storage"
 msgstr "Velkokapacitní úložiště"
 
 #: confusb/kb.py:48
-msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
-msgstr "Systém jej připojí automaticky (udisks2). K formátování nebo kontrole použijte Disky."
+msgid ""
+"The system mounts it automatically (udisks2). To format or inspect it, use "
+"Disks."
+msgstr ""
+"Systém jej připojí automaticky (udisks2). K formátování nebo kontrole "
+"použijte Disky."
 
 #: confusb/kb.py:49
 msgid "Open Disks"
@@ -315,8 +421,11 @@ msgid "Printer (CUPS)"
 msgstr "Tiskárna (CUPS)"
 
 #: confusb/kb.py:52
-msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
-msgstr "CUPS automaticky rozpozná tiskárny USB; nastavuje se v Nastavení → Tiskárny."
+msgid ""
+"CUPS detects USB printers automatically; it is configured in Settings → "
+"Printers."
+msgstr ""
+"CUPS automaticky rozpozná tiskárny USB; nastavuje se v Nastavení → Tiskárny."
 
 #: confusb/kb.py:53
 msgid "Configure printers"
@@ -328,7 +437,8 @@ msgstr "Kamera / video (UVC)"
 
 #: confusb/kb.py:56
 msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
-msgstr "Podporuje ji ovladač uvcvideo v jádře. Vyzkoušejte ji v Snapshot/Cheese."
+msgstr ""
+"Podporuje ji ovladač uvcvideo v jádře. Vyzkoušejte ji v Snapshot/Cheese."
 
 #: confusb/kb.py:57
 msgid "List video devices"
@@ -343,8 +453,11 @@ msgid "USB audio"
 msgstr "Zvuk USB"
 
 #: confusb/kb.py:61
-msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
-msgstr "Podporováno ovladačem snd-usb-audio. Hlasitost a výstupy nastavíte v pavucontrol."
+msgid ""
+"Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr ""
+"Podporováno ovladačem snd-usb-audio. Hlasitost a výstupy nastavíte v "
+"pavucontrol."
 
 #: confusb/kb.py:62
 msgid "Volume control"
@@ -392,7 +505,8 @@ msgstr "Modem / sériový port CDC"
 
 #: confusb/kb.py:78
 msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
-msgstr "ModemManager spravuje modemy; pro sériové konzole použijte minicom/picocom."
+msgstr ""
+"ModemManager spravuje modemy; pro sériové konzole použijte minicom/picocom."
 
 #: confusb/kb.py:79
 msgid "List modems"
@@ -501,7 +615,8 @@ msgstr "Nainstalovat {packages}"
 
 #: confusb/resolver.py:158
 #, python-brace-format
-msgid "The application is already installed on your computer (version {version})."
+msgid ""
+"The application is already installed on your computer (version {version})."
 msgstr "Aplikace je již nainstalována ve vašem počítači (verze {version})."
 
 #: confusb/resolver.py:159
@@ -558,12 +673,12 @@ msgstr "Rozbočovač USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Spravováno ovladačem «hub» v jádře."
 
-#: confusb/resolver.py:206 confusb/ui.py:328
+#: confusb/resolver.py:206 confusb/ui.py:331
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Rozhraní {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:333
+#: confusb/resolver.py:207 confusb/ui.py:336
 msgid "none found"
 msgstr "žádný nenalezen"
 
@@ -578,8 +693,12 @@ msgid "Candidate modules: {modules}"
 msgstr "Kandidátní moduly: {modules}"
 
 #: confusb/resolver.py:212
-msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
-msgstr "Normální: čtečky čipových karet CCID nepoužívají ovladač jádra; spravuje je démon pcscd (uživatelský prostor) s libccid."
+msgid ""
+"Normal: CCID smart card readers do not use a kernel driver; they are managed "
+"by the pcscd daemon (user space) with libccid."
+msgstr ""
+"Normální: čtečky čipových karet CCID nepoužívají ovladač jádra; spravuje je "
+"démon pcscd (uživatelský prostor) s libccid."
 
 #: confusb/resolver.py:215
 #, python-brace-format
@@ -595,8 +714,11 @@ msgid "The kernel has no module for this interface."
 msgstr "Jádro nemá pro toto rozhraní žádný modul."
 
 #: confusb/resolver.py:219
-msgid "It probably needs user-space software (see below) or an external driver."
-msgstr "Pravděpodobně vyžaduje software v uživatelském prostoru (viz níže) nebo externí ovladač."
+msgid ""
+"It probably needs user-space software (see below) or an external driver."
+msgstr ""
+"Pravděpodobně vyžaduje software v uživatelském prostoru (viz níže) nebo "
+"externí ovladač."
 
 #: confusb/resolver.py:221
 msgid "No interfaces"
@@ -646,7 +768,9 @@ msgid "fwupd recognizes this device"
 msgstr "fwupd toto zařízení rozpoznává"
 
 #: confusb/resolver.py:306
-msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
+msgid ""
+"Official firmware updates from the manufacturer (LVFS) can be checked and "
+"applied."
 msgstr "Lze zjistit a použít oficiální aktualizace firmwaru od výrobce (LVFS)."
 
 #: confusb/resolver.py:308
@@ -676,7 +800,8 @@ msgstr "Oficiální stránky / podpora"
 
 #: confusb/resolver.py:323
 msgid "Probes from other users with this same device and the driver they used."
-msgstr "Měření od jiných uživatelů se stejným zařízením a ovladač, který použili."
+msgstr ""
+"Měření od jiných uživatelů se stejným zařízením a ovladač, který použili."
 
 #: confusb/resolver.py:325
 msgid "USB ID database"
@@ -693,7 +818,9 @@ msgstr "DNIe: oficiální portál"
 
 #: confusb/resolver.py:334
 msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
-msgstr "Ovladače, modul PKCS#11 a návody k španělskému elektronickému občanskému průkazu."
+msgstr ""
+"Ovladače, modul PKCS#11 a návody k španělskému elektronickému občanskému "
+"průkazu."
 
 #: confusb/resolver.py:335
 msgid "Open the DNIe portal"
@@ -760,446 +887,455 @@ msgstr "Připojte některé a zobrazí se zde automaticky."
 msgid "Connected USB devices: {n}"
 msgstr "Připojená zařízení USB: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
 msgid "Unknown manufacturer"
 msgstr "Neznámý výrobce"
 
-#: confusb/ui.py:232
+#: confusb/ui.py:231
 msgid "Type"
 msgstr "Typ"
 
-#: confusb/ui.py:233
+#: confusb/ui.py:234
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:235
 msgid "Driver"
 msgstr "Ovladač"
 
-#: confusb/ui.py:234 confusb/ui.py:332
+#: confusb/ui.py:235 confusb/ui.py:335
 msgid "none"
 msgstr "žádný"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "View information →"
 msgstr "Zobrazit informace →"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back"
 msgstr "Zpět"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back to the list of devices"
 msgstr "Zpět na seznam zařízení"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy all the information to the clipboard"
 msgstr "Zkopírovat všechny informace do schránky"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Information"
 msgstr "Informace"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Drivers and applications"
 msgstr "Ovladače a aplikace"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:281
 msgid "Connected"
 msgstr "Připojeno"
 
-#: confusb/ui.py:300
+#: confusb/ui.py:301
 msgid "Information copied to the clipboard"
 msgstr "Informace zkopírovány do schránky"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Interfaces"
 msgstr "Rozhraní"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Each interface can have its own driver"
 msgstr "Každé rozhraní může mít vlastní ovladač"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:333
 msgid "Class"
 msgstr "Třída"
 
-#: confusb/ui.py:331
+#: confusb/ui.py:334
 msgid "Subclass / protocol"
 msgstr "Podtřída / protokol"
 
-#: confusb/ui.py:332
+#: confusb/ui.py:335
 msgid "Bound driver"
 msgstr "Propojený ovladač"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:336
 msgid "Kernel modules"
 msgstr "Moduly jádra"
 
-#: confusb/ui.py:340
+#: confusb/ui.py:343
 msgid "Nodes created in the system"
 msgstr "Uzly vytvořené v systému"
 
-#: confusb/ui.py:344
+#: confusb/ui.py:347
 msgid "Raw data"
 msgstr "Nezpracovaná data"
 
-#: confusb/ui.py:345
+#: confusb/ui.py:348
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Vlastnosti udev ({n})"
 
-#: confusb/ui.py:349
+#: confusb/ui.py:352
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Výstup lsusb -v (úplné deskriptory USB)"
 
-#: confusb/ui.py:364
+#: confusb/ui.py:367
 msgid "Looking for drivers and applications…"
 msgstr "Hledání ovladačů a aplikací…"
 
-#: confusb/ui.py:417
+#: confusb/ui.py:420
 msgid "No terminal emulator found"
 msgstr "Nebyl nalezen žádný emulátor terminálu"
 
-#: confusb/ui.py:419
+#: confusb/ui.py:422
 msgid "Press Enter to close…"
 msgstr "Zavřete stisknutím klávesy Enter…"
 
-#: confusb/ui.py:430
+#: confusb/ui.py:433
 msgid "Working…"
 msgstr "Pracuje se…"
 
-#: confusb/ui.py:436
+#: confusb/ui.py:439
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Chyba: {error}"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:442
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(návratový kód {code})"
 
-#: confusb/ui.py:443
+#: confusb/ui.py:446
 msgid "Installation completed"
 msgstr "Instalace dokončena"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:449
 msgid "The installation failed"
 msgstr "Instalace selhala"
 
-#: confusb/ui.py:455
+#: confusb/ui.py:458
 msgid "Disconnected"
 msgstr "Odpojeno"
 
-#: confusb/ui.py:456
+#: confusb/ui.py:459
 msgid "The device has been disconnected"
 msgstr "Zařízení bylo odpojeno"
 
-#: confusb/usbinfo.py:16
+#: confusb/usbinfo.py:17
 msgid "Defined at interface level"
 msgstr "Definováno na úrovni rozhraní"
 
-#: confusb/usbinfo.py:17
+#: confusb/usbinfo.py:18
 msgid "Audio"
 msgstr ""
 
-#: confusb/usbinfo.py:18
+#: confusb/usbinfo.py:19
 msgid "Communications (CDC)"
 msgstr "Komunikace (CDC)"
 
-#: confusb/usbinfo.py:19
+#: confusb/usbinfo.py:20
 msgid "Human interface device (HID)"
 msgstr "Zařízení lidského rozhraní (HID)"
 
-#: confusb/usbinfo.py:20
+#: confusb/usbinfo.py:21
 msgid "Physical"
 msgstr "Fyzická"
 
-#: confusb/usbinfo.py:21
+#: confusb/usbinfo.py:22
 msgid "Image"
 msgstr "Obraz"
 
-#: confusb/usbinfo.py:22
+#: confusb/usbinfo.py:23
 msgid "Printer"
 msgstr "Tiskárna"
 
-#: confusb/usbinfo.py:24
+#: confusb/usbinfo.py:25
 msgid "Hub"
 msgstr ""
 
-#: confusb/usbinfo.py:26
+#: confusb/usbinfo.py:27
 msgid "Smart card (CCID)"
 msgstr "Čipová karta (CCID)"
 
-#: confusb/usbinfo.py:27
+#: confusb/usbinfo.py:28
 msgid "Content security"
 msgstr "Zabezpečení obsahu"
 
-#: confusb/usbinfo.py:28
+#: confusb/usbinfo.py:29
 msgid "Video"
 msgstr "Video"
 
-#: confusb/usbinfo.py:29
+#: confusb/usbinfo.py:30
 msgid "Personal healthcare"
 msgstr "Osobní zdravotní péče"
 
-#: confusb/usbinfo.py:30
+#: confusb/usbinfo.py:31
 msgid "Audio/Video"
 msgstr "Audio/Video"
 
-#: confusb/usbinfo.py:32
+#: confusb/usbinfo.py:33
 msgid "Diagnostic"
 msgstr "Diagnostika"
 
-#: confusb/usbinfo.py:33
+#: confusb/usbinfo.py:34
 msgid "Wireless (e.g. Bluetooth)"
 msgstr "Bezdrátové (např. Bluetooth)"
 
-#: confusb/usbinfo.py:34
+#: confusb/usbinfo.py:35
 msgid "Miscellaneous"
 msgstr "Různé"
 
-#: confusb/usbinfo.py:35
+#: confusb/usbinfo.py:36
 msgid "Application specific (DFU, IrDA...)"
 msgstr "Specifická pro aplikaci (DFU, IrDA...)"
 
-#: confusb/usbinfo.py:36
+#: confusb/usbinfo.py:37
 msgid "Vendor specific"
 msgstr "Specifická pro výrobce"
 
-#: confusb/usbinfo.py:50
+#: confusb/usbinfo.py:51
 msgid "Manufacturer (descriptor)"
 msgstr "Výrobce (deskriptor)"
 
-#: confusb/usbinfo.py:51
+#: confusb/usbinfo.py:52
 msgid "Product (descriptor)"
 msgstr "Produkt (deskriptor)"
 
-#: confusb/usbinfo.py:52
+#: confusb/usbinfo.py:53
 msgid "Serial number"
 msgstr "Sériové číslo"
 
-#: confusb/usbinfo.py:53
+#: confusb/usbinfo.py:54
 msgid "Vendor ID (VID)"
 msgstr "ID výrobce (VID)"
 
-#: confusb/usbinfo.py:54
+#: confusb/usbinfo.py:55
 msgid "Product ID (PID)"
 msgstr "ID produktu (PID)"
 
-#: confusb/usbinfo.py:55
+#: confusb/usbinfo.py:56
 msgid "Device version (bcdDevice)"
 msgstr "Verze zařízení (bcdDevice)"
 
-#: confusb/usbinfo.py:56
+#: confusb/usbinfo.py:57
 msgid "USB version"
 msgstr "Verze USB"
 
-#: confusb/usbinfo.py:57
+#: confusb/usbinfo.py:58
 msgid "Negotiated speed (Mb/s)"
 msgstr "Vyjednaná rychlost (Mb/s)"
 
-#: confusb/usbinfo.py:58
+#: confusb/usbinfo.py:59
 msgid "Device class"
 msgstr "Třída zařízení"
 
-#: confusb/usbinfo.py:59
+#: confusb/usbinfo.py:60
 msgid "Device subclass"
 msgstr "Podtřída zařízení"
 
-#: confusb/usbinfo.py:60
+#: confusb/usbinfo.py:61
 msgid "Device protocol"
 msgstr "Protokol zařízení"
 
-#: confusb/usbinfo.py:61
+#: confusb/usbinfo.py:62
 msgid "Max. EP0 packet size"
 msgstr "Max. velikost paketu EP0"
 
-#: confusb/usbinfo.py:62
+#: confusb/usbinfo.py:63
 msgid "Number of configurations"
 msgstr "Počet konfigurací"
 
-#: confusb/usbinfo.py:63
+#: confusb/usbinfo.py:64
 msgid "Active configuration"
 msgstr "Aktivní konfigurace"
 
-#: confusb/usbinfo.py:64
+#: confusb/usbinfo.py:65
 msgid "Number of interfaces"
 msgstr "Počet rozhraní"
 
-#: confusb/usbinfo.py:65
+#: confusb/usbinfo.py:66
 msgid "Configuration attributes"
 msgstr "Atributy konfigurace"
 
-#: confusb/usbinfo.py:66
+#: confusb/usbinfo.py:67
 msgid "Declared maximum power"
 msgstr "Deklarovaný maximální odběr"
 
-#: confusb/usbinfo.py:67
+#: confusb/usbinfo.py:68
 msgid "Bus"
 msgstr ""
 
-#: confusb/usbinfo.py:68
+#: confusb/usbinfo.py:69
 msgid "Address on the bus"
 msgstr "Adresa na sběrnici"
 
-#: confusb/usbinfo.py:69
+#: confusb/usbinfo.py:70
 msgid "Port path (devpath)"
 msgstr "Cesta portů (devpath)"
 
-#: confusb/usbinfo.py:70
+#: confusb/usbinfo.py:71
 msgid "Child ports"
 msgstr "Podřízené porty"
 
-#: confusb/usbinfo.py:71
+#: confusb/usbinfo.py:72
 msgid "Removable"
 msgstr "Vyměnitelné"
 
-#: confusb/usbinfo.py:72
+#: confusb/usbinfo.py:73
 msgid "Authorized"
 msgstr "Autorizováno"
 
-#: confusb/usbinfo.py:73
+#: confusb/usbinfo.py:74
 msgid "Configuration name"
 msgstr "Název konfigurace"
 
-#: confusb/usbinfo.py:75
+#: confusb/usbinfo.py:76
 msgid "Kernel quirks"
 msgstr "Zvláštnosti jádra"
 
-#: confusb/usbinfo.py:108
+#: confusb/usbinfo.py:110
 msgid "Unknown"
 msgstr "Neznámá"
 
-#: confusb/usbinfo.py:162
+#: confusb/usbinfo.py:174
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:163
+#: confusb/usbinfo.py:175
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:165
+#: confusb/usbinfo.py:177
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:166
+#: confusb/usbinfo.py:178
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:169
+#: confusb/usbinfo.py:181
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:201
+#: confusb/usbinfo.py:213
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:232
+#: confusb/usbinfo.py:246
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "síťové rozhraní {name}"
 
-#: confusb/usbinfo.py:279
+#: confusb/usbinfo.py:293
 msgid "Manufacturer (usb.ids)"
 msgstr "Výrobce (usb.ids)"
 
-#: confusb/usbinfo.py:280
+#: confusb/usbinfo.py:294
 msgid "Product (usb.ids)"
 msgstr "Produkt (usb.ids)"
 
-#: confusb/usbinfo.py:281
+#: confusb/usbinfo.py:295
 msgid "sysfs path"
 msgstr "cesta sysfs"
 
-#: confusb/usbinfo.py:282
+#: confusb/usbinfo.py:296
 msgid "/dev node"
 msgstr "uzel /dev"
 
-#: confusb/usbinfo.py:283
+#: confusb/usbinfo.py:297
 msgid "Subsystem / type"
 msgstr "Subsystém / typ"
 
-#: confusb/usbinfo.py:284
+#: confusb/usbinfo.py:298
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:285
+#: confusb/usbinfo.py:299
 msgid "Device driver"
 msgstr "Ovladač zařízení"
 
-#: confusb/usbinfo.py:287
+#: confusb/usbinfo.py:301
 msgid "Persistent paths (ID_PATH)"
 msgstr "Trvalé cesty (ID_PATH)"
 
-#: confusb/usbinfo.py:288
+#: confusb/usbinfo.py:302
 msgid "udev tags (TAGS)"
 msgstr "Štítky udev (TAGS)"
 
-#: confusb/usbinfo.py:291
+#: confusb/usbinfo.py:305
 msgid "Identification"
 msgstr "Identifikace"
 
-#: confusb/usbinfo.py:292
+#: confusb/usbinfo.py:306
 msgid "Descriptors and configuration"
 msgstr "Deskriptory a konfigurace"
 
-#: confusb/usbinfo.py:293
+#: confusb/usbinfo.py:307
 msgid "System"
 msgstr "Systém"
 
-#: confusb/usbinfo.py:297
+#: confusb/usbinfo.py:311
 msgid "Power control"
 msgstr "Řízení napájení"
 
-#: confusb/usbinfo.py:298
+#: confusb/usbinfo.py:312
 msgid "Power state"
 msgstr "Stav napájení"
 
-#: confusb/usbinfo.py:299
+#: confusb/usbinfo.py:313
 msgid "Autosuspend delay (ms)"
 msgstr "Zpoždění automatického uspání (ms)"
 
-#: confusb/usbinfo.py:300
+#: confusb/usbinfo.py:314
 msgid "Persistence"
 msgstr "Perzistence"
 
-#: confusb/usbinfo.py:301
+#: confusb/usbinfo.py:315
 msgid "System wake-up"
 msgstr "Probuzení systému"
 
-#: confusb/usbinfo.py:302
+#: confusb/usbinfo.py:316
 msgid "Active time (ms)"
 msgstr "Doba aktivity (ms)"
 
-#: confusb/usbinfo.py:303
+#: confusb/usbinfo.py:317
 msgid "Connected time (ms)"
 msgstr "Doba připojení (ms)"
 
-#: confusb/usbinfo.py:304
+#: confusb/usbinfo.py:318
 msgid "URBs processed"
 msgstr "Zpracované URB"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:324
 msgid "Power and statistics"
 msgstr "Napájení a statistiky"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:330
 msgid "Topology"
 msgstr "Topologie"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:331
 msgid "Connected to"
 msgstr "Připojeno k"
 
-#: confusb/usbinfo.py:318
+#: confusb/usbinfo.py:332
 msgid "Parent path"
 msgstr "Cesta nadřazeného"
+
+#: confusb/usbinfo.py:359
+#, python-brace-format
+msgid "{module} (loaded)"
+msgstr "{module} (načten)"
+
+#: confusb/usbinfo.py:375
+msgid "Storage"
+msgstr "Úložiště"

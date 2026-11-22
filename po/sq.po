@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 13:39+0000\n"
+"POT-Creation-Date: 2026-11-22 20:01+0100\n"
 "PO-Revision-Date: 2026-11-22 13:39+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Shqip\n"
@@ -17,63 +17,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
+#: confusb/ui.py:233 confusb/ui.py:317
+msgid "Capacity"
+msgstr "Kapaciteti"
 
-#: confusb/app.py:50
+#: confusb/almacenamiento.py:154
+msgid "No media inserted"
+msgstr "Nuk ka media të futur"
+
+#: confusb/almacenamiento.py:157
+msgid "Drive model"
+msgstr "Modeli i njësisë"
+
+#: confusb/almacenamiento.py:159
+msgid "Access"
+msgstr "Qasja"
+
+#: confusb/almacenamiento.py:159
+msgid "Read-only"
+msgstr "Vetëm lexim"
+
+#: confusb/almacenamiento.py:161
+msgid "Partition table"
+msgstr "Tabela e ndarjeve"
+
+#: confusb/almacenamiento.py:163
+msgid "File system"
+msgstr "Sistemi i skedarëve"
+
+#: confusb/almacenamiento.py:165
+msgid "Mounted at"
+msgstr "Montuar në"
+
+#: confusb/almacenamiento.py:173
+#, python-brace-format
+msgid "{free} free"
+msgstr "{free} të lira"
+
+#: confusb/almacenamiento.py:175
+#, python-brace-format
+msgid "mounted at {path}"
+msgstr "montuar në {path}"
+
+#: confusb/almacenamiento.py:177
+msgid "not mounted"
+msgstr "i pamontuar"
+
+#: confusb/almacenamiento.py:178
+#, python-brace-format
+msgid "Partition {name}"
+msgstr "Ndarja {name}"
+
+#: confusb/app.py:52
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:52
+#: confusb/app.py:54
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:63 confusb/app.py:212
+#: confusb/app.py:65 confusb/app.py:241
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Pajisja «{name}» nuk u gjet"
 
-#: confusb/app.py:110
+#: confusb/app.py:114
 msgid "USB device"
 msgstr "pajisje USB"
 
-#: confusb/app.py:114
+#: confusb/app.py:118
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "U shkëput: {name}"
 
-#: confusb/app.py:125
+#: confusb/app.py:138
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "U lidh: {name}"
 
-#: confusb/app.py:130
+#: confusb/app.py:160
 msgid "USB device connected"
 msgstr "Pajisja USB u lidh"
 
-#: confusb/app.py:191
-msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+#: confusb/app.py:163
+msgid "View information"
+msgstr "Shfaq informacionin"
+
+#: confusb/app.py:220
+msgid ""
+"Shows the information of a USB device when it is connected and looks for its "
+"driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:193
-msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+#: confusb/app.py:222
+msgid ""
+"Without arguments it runs as a service that watches the USB connections "
+"according to the settings."
 msgstr ""
 
-#: confusb/app.py:194
+#: confusb/app.py:223
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:195
+#: confusb/app.py:224
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:196
+#: confusb/app.py:225
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:198
-msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+#: confusb/app.py:227
+msgid ""
+"print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:199
+#: confusb/app.py:228
 msgid "show the version and exit"
 msgstr ""
 
@@ -217,32 +277,52 @@ msgstr "Shfaq «Shiko informacionin →» në karta"
 msgid "When a device is connected"
 msgstr "Kur lidhet një pajisje"
 
-#: confusb/componentes.py:486
+#: confusb/componentes.py:485
+msgid "Only for devices not seen before"
+msgstr "Vetëm për pajisje që nuk janë parë më parë"
+
+#: confusb/componentes.py:488
+msgid "Open storage drives with the default application"
+msgstr "Hap njësitë e ruajtjes me aplikacionin e paracaktuar"
+
+#: confusb/componentes.py:493
+msgid "Forget known devices"
+msgstr "Harro pajisjet e njohura"
+
+#: confusb/componentes.py:493
+msgid "The next time they are connected they will count as new"
+msgstr "Herën tjetër që të lidhen, do të llogariten si të reja"
+
+#: confusb/componentes.py:498
 msgid "Reset"
 msgstr "Rivendos"
 
-#: confusb/componentes.py:486 confusb/componentes.py:533
+#: confusb/componentes.py:498 confusb/componentes.py:552
 msgid "Close"
 msgstr "Mbyll"
 
-#: confusb/componentes.py:517
+#: confusb/componentes.py:536
 msgid "About confusb"
 msgstr "Rreth confusb"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:543
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versioni {version}"
 
-#: confusb/componentes.py:525
-msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
-msgstr "Njofton kur lidhet një pajisje USB, shfaq informacionin e saj dhe kërkon drajverin dhe aplikacionet për ta përdorur."
+#: confusb/componentes.py:544
+msgid ""
+"Notifies when a USB device is connected, shows its information and looks for "
+"its driver and the applications to use it."
+msgstr ""
+"Njofton kur lidhet një pajisje USB, shfaq informacionin e saj dhe kërkon "
+"drajverin dhe aplikacionet për ta përdorur."
 
-#: confusb/componentes.py:529
+#: confusb/componentes.py:548
 msgid "License GPL-3.0-or-later"
 msgstr "Licenca GPL-3.0-or-later"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:549
 msgid "Source code on GitHub"
 msgstr "Kodi burimor në GitHub"
 
@@ -251,16 +331,28 @@ msgid "PC/SC service and CCID drivers"
 msgstr "Shërbimi PC/SC dhe drajverat CCID"
 
 #: confusb/kb.py:18
-msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
-msgstr "pcscd është demoni që menaxhon lexuesit e kartave inteligjente; libccid ofron drajverin për lexuesit standardë USB (CCID). Pa pcscd lexuesi shfaqet në USB, por asnjë aplikacion nuk mund ta përdorë."
+msgid ""
+"pcscd is the daemon that manages smart card readers; libccid provides the "
+"driver for standard USB readers (CCID). Without pcscd the reader shows up in "
+"USB but no application can use it."
+msgstr ""
+"pcscd është demoni që menaxhon lexuesit e kartave inteligjente; libccid "
+"ofron drajverin për lexuesit standardë USB (CCID). Pa pcscd lexuesi shfaqet "
+"në USB, por asnjë aplikacion nuk mund ta përdorë."
 
 #: confusb/kb.py:22
 msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
 msgstr "OpenSC (PKCS#11, mbështet DNIe dhe karta të tjera)"
 
 #: confusb/kb.py:23
-msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
-msgstr "Bibliotekë dhe mjete për karta kriptografike. Përfshin mbështetjen për DNIe (3.0/4.0) dhe modulin PKCS#11 që përdorin Firefox/Chromium dhe AutoFirma. DNIe-të e vjetra (2.0) mund të kenë nevojë për modulin zyrtar të DNIe."
+msgid ""
+"Library and tools for cryptographic cards. It includes support for the DNIe "
+"(3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. "
+"Older DNIe cards (2.0) may need the official DNIe module."
+msgstr ""
+"Bibliotekë dhe mjete për karta kriptografike. Përfshin mbështetjen për DNIe "
+"(3.0/4.0) dhe modulin PKCS#11 që përdorin Firefox/Chromium dhe AutoFirma. "
+"DNIe-të e vjetra (2.0) mund të kenë nevojë për modulin zyrtar të DNIe."
 
 #: confusb/kb.py:26
 msgid "List readers"
@@ -283,8 +375,12 @@ msgid "pcsc-tools (reader and card monitor)"
 msgstr "pcsc-tools (monitor i lexuesve dhe kartave)"
 
 #: confusb/kb.py:35
-msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
-msgstr "pcsc_scan tregon në kohë reale kur futet ose hiqet një kartë dhe dekodon ATR-në e saj."
+msgid ""
+"pcsc_scan shows in real time when a card is inserted or removed and decodes "
+"its ATR."
+msgstr ""
+"pcsc_scan tregon në kohë reale kur futet ose hiqet një kartë dhe dekodon ATR-"
+"në e saj."
 
 #: confusb/kb.py:37
 msgid "Open pcsc_scan"
@@ -295,16 +391,26 @@ msgid "AutoFirma (electronic signature)"
 msgstr "AutoFirma (nënshkrim elektronik)"
 
 #: confusb/kb.py:41
-msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
-msgstr "Aplikacioni zyrtar i qeverisë spanjolle për nënshkrimin e dokumenteve me DNIe ose certifikatë dixhitale. Nuk është në depot e Debian: shkarkohet nga firmaelectronica.gob.es."
+msgid ""
+"Official Spanish Government application to sign documents with the DNIe or a "
+"digital certificate. It is not in the Debian repositories: it is downloaded "
+"from firmaelectronica.gob.es."
+msgstr ""
+"Aplikacioni zyrtar i qeverisë spanjolle për nënshkrimin e dokumenteve me "
+"DNIe ose certifikatë dixhitale. Nuk është në depot e Debian: shkarkohet nga "
+"firmaelectronica.gob.es."
 
-#: confusb/kb.py:48 confusb/usbinfo.py:23
+#: confusb/kb.py:48 confusb/usbinfo.py:24
 msgid "Mass storage"
 msgstr "Ruajtje masive"
 
 #: confusb/kb.py:48
-msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
-msgstr "Sistemi e montoi automatikisht (udisks2). Për ta formatuar ose inspektuar, përdor Disqet."
+msgid ""
+"The system mounts it automatically (udisks2). To format or inspect it, use "
+"Disks."
+msgstr ""
+"Sistemi e montoi automatikisht (udisks2). Për ta formatuar ose inspektuar, "
+"përdor Disqet."
 
 #: confusb/kb.py:49
 msgid "Open Disks"
@@ -315,8 +421,12 @@ msgid "Printer (CUPS)"
 msgstr "Printeri (CUPS)"
 
 #: confusb/kb.py:52
-msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
-msgstr "CUPS zbulon automatikisht printerët USB; konfigurohet te Cilësimet → Printerët."
+msgid ""
+"CUPS detects USB printers automatically; it is configured in Settings → "
+"Printers."
+msgstr ""
+"CUPS zbulon automatikisht printerët USB; konfigurohet te Cilësimet → "
+"Printerët."
 
 #: confusb/kb.py:53
 msgid "Configure printers"
@@ -343,8 +453,10 @@ msgid "USB audio"
 msgstr "Audio USB"
 
 #: confusb/kb.py:61
-msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
-msgstr "Mbështetet nga snd-usb-audio. Rregullo volumin dhe daljet me pavucontrol."
+msgid ""
+"Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr ""
+"Mbështetet nga snd-usb-audio. Rregullo volumin dhe daljet me pavucontrol."
 
 #: confusb/kb.py:62
 msgid "Volume control"
@@ -392,7 +504,8 @@ msgstr "Modem / port serial CDC"
 
 #: confusb/kb.py:78
 msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
-msgstr "ModemManager menaxhon modemët; për konsolat serialë përdor minicom/picocom."
+msgstr ""
+"ModemManager menaxhon modemët; për konsolat serialë përdor minicom/picocom."
 
 #: confusb/kb.py:79
 msgid "List modems"
@@ -501,8 +614,11 @@ msgstr "Instalo {packages}"
 
 #: confusb/resolver.py:158
 #, python-brace-format
-msgid "The application is already installed on your computer (version {version})."
-msgstr "Aplikacioni është tashmë i instaluar në kompjuterin tënd (versioni {version})."
+msgid ""
+"The application is already installed on your computer (version {version})."
+msgstr ""
+"Aplikacioni është tashmë i instaluar në kompjuterin tënd (versioni "
+"{version})."
 
 #: confusb/resolver.py:159
 msgid "The application is already installed on your computer."
@@ -558,12 +674,12 @@ msgstr "Hub USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Menaxhohet nga drajveri «hub» i kernelit."
 
-#: confusb/resolver.py:206 confusb/ui.py:328
+#: confusb/resolver.py:206 confusb/ui.py:331
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Ndërfaqja {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:333
+#: confusb/resolver.py:207 confusb/ui.py:336
 msgid "none found"
 msgstr "nuk u gjet asnjë"
 
@@ -578,8 +694,12 @@ msgid "Candidate modules: {modules}"
 msgstr "Modulet kandidate: {modules}"
 
 #: confusb/resolver.py:212
-msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
-msgstr "Normale: lexuesit e kartave inteligjente CCID nuk përdorin drajver të kernelit; i menaxhon demoni pcscd (hapësira e përdoruesit) me libccid."
+msgid ""
+"Normal: CCID smart card readers do not use a kernel driver; they are managed "
+"by the pcscd daemon (user space) with libccid."
+msgstr ""
+"Normale: lexuesit e kartave inteligjente CCID nuk përdorin drajver të "
+"kernelit; i menaxhon demoni pcscd (hapësira e përdoruesit) me libccid."
 
 #: confusb/resolver.py:215
 #, python-brace-format
@@ -595,8 +715,11 @@ msgid "The kernel has no module for this interface."
 msgstr "Kerneli nuk ka asnjë modul për këtë ndërfaqe."
 
 #: confusb/resolver.py:219
-msgid "It probably needs user-space software (see below) or an external driver."
-msgstr "Ka gjasa të ketë nevojë për softuer në hapësirën e përdoruesit (shih më poshtë) ose për një drajver të jashtëm."
+msgid ""
+"It probably needs user-space software (see below) or an external driver."
+msgstr ""
+"Ka gjasa të ketë nevojë për softuer në hapësirën e përdoruesit (shih më "
+"poshtë) ose për një drajver të jashtëm."
 
 #: confusb/resolver.py:221
 msgid "No interfaces"
@@ -646,8 +769,12 @@ msgid "fwupd recognizes this device"
 msgstr "fwupd e njeh këtë pajisje"
 
 #: confusb/resolver.py:306
-msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
-msgstr "Përditësimet zyrtare të firmuerit nga prodhuesi (LVFS) mund të kontrollohen dhe të aplikohen."
+msgid ""
+"Official firmware updates from the manufacturer (LVFS) can be checked and "
+"applied."
+msgstr ""
+"Përditësimet zyrtare të firmuerit nga prodhuesi (LVFS) mund të kontrollohen "
+"dhe të aplikohen."
 
 #: confusb/resolver.py:308
 msgid "Check for updates"
@@ -676,7 +803,8 @@ msgstr "Faqja zyrtare / mbështetje"
 
 #: confusb/resolver.py:323
 msgid "Probes from other users with this same device and the driver they used."
-msgstr "Matje nga përdorues të tjerë me të njëjtën pajisje dhe drajveri që përdorën."
+msgstr ""
+"Matje nga përdorues të tjerë me të njëjtën pajisje dhe drajveri që përdorën."
 
 #: confusb/resolver.py:325
 msgid "USB ID database"
@@ -693,7 +821,9 @@ msgstr "DNIe: portali zyrtar"
 
 #: confusb/resolver.py:334
 msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
-msgstr "Drajvera, moduli PKCS#11 dhe udhëzues për kartën elektronike të identitetit spanjolle."
+msgstr ""
+"Drajvera, moduli PKCS#11 dhe udhëzues për kartën elektronike të identitetit "
+"spanjolle."
 
 #: confusb/resolver.py:335
 msgid "Open the DNIe portal"
@@ -760,446 +890,455 @@ msgstr "Lidh një dhe do të shfaqet këtu automatikisht."
 msgid "Connected USB devices: {n}"
 msgstr "Pajisjet USB të lidhura: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
 msgid "Unknown manufacturer"
 msgstr "Prodhues i panjohur"
 
-#: confusb/ui.py:232
+#: confusb/ui.py:231
 msgid "Type"
 msgstr "Lloji"
 
-#: confusb/ui.py:233
+#: confusb/ui.py:234
 msgid "Port"
 msgstr "Porta"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:235
 msgid "Driver"
 msgstr "Drajveri"
 
-#: confusb/ui.py:234 confusb/ui.py:332
+#: confusb/ui.py:235 confusb/ui.py:335
 msgid "none"
 msgstr "asnjë"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "View information →"
 msgstr "Shiko informacionin →"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back"
 msgstr "Mbrapa"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back to the list of devices"
 msgstr "Kthehu te lista e pajisjeve"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy"
 msgstr "Kopjo"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy all the information to the clipboard"
 msgstr "Kopjo të gjithë informacionin në kujtesën e fragmenteve"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Information"
 msgstr "Informacioni"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Drivers and applications"
 msgstr "Drajverat dhe aplikacionet"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:281
 msgid "Connected"
 msgstr "I lidhur"
 
-#: confusb/ui.py:300
+#: confusb/ui.py:301
 msgid "Information copied to the clipboard"
 msgstr "Informacioni u kopjua në kujtesën e fragmenteve"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Interfaces"
 msgstr "Ndërfaqet"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Each interface can have its own driver"
 msgstr "Çdo ndërfaqe mund të ketë drajverin e vet"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:333
 msgid "Class"
 msgstr "Klasa"
 
-#: confusb/ui.py:331
+#: confusb/ui.py:334
 msgid "Subclass / protocol"
 msgstr "Nënklasa / protokolli"
 
-#: confusb/ui.py:332
+#: confusb/ui.py:335
 msgid "Bound driver"
 msgstr "Drajveri i lidhur"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:336
 msgid "Kernel modules"
 msgstr "Modulet e kernelit"
 
-#: confusb/ui.py:340
+#: confusb/ui.py:343
 msgid "Nodes created in the system"
 msgstr "Nyjet e krijuara në sistem"
 
-#: confusb/ui.py:344
+#: confusb/ui.py:347
 msgid "Raw data"
 msgstr "Të dhëna të papërpunuara"
 
-#: confusb/ui.py:345
+#: confusb/ui.py:348
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Vetitë e udev ({n})"
 
-#: confusb/ui.py:349
+#: confusb/ui.py:352
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Dalja e lsusb -v (përshkruesit e plotë USB)"
 
-#: confusb/ui.py:364
+#: confusb/ui.py:367
 msgid "Looking for drivers and applications…"
 msgstr "Po kërkohen drajvera dhe aplikacione…"
 
-#: confusb/ui.py:417
+#: confusb/ui.py:420
 msgid "No terminal emulator found"
 msgstr "Nuk u gjet asnjë emulator terminali"
 
-#: confusb/ui.py:419
+#: confusb/ui.py:422
 msgid "Press Enter to close…"
 msgstr "Shtyp Enter për të mbyllur…"
 
-#: confusb/ui.py:430
+#: confusb/ui.py:433
 msgid "Working…"
 msgstr "Po punohet…"
 
-#: confusb/ui.py:436
+#: confusb/ui.py:439
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Gabim: {error}"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:442
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(kodi i daljes {code})"
 
-#: confusb/ui.py:443
+#: confusb/ui.py:446
 msgid "Installation completed"
 msgstr "Instalimi përfundoi"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:449
 msgid "The installation failed"
 msgstr "Instalimi dështoi"
 
-#: confusb/ui.py:455
+#: confusb/ui.py:458
 msgid "Disconnected"
 msgstr "I shkëputur"
 
-#: confusb/ui.py:456
+#: confusb/ui.py:459
 msgid "The device has been disconnected"
 msgstr "Pajisja u shkëput"
 
-#: confusb/usbinfo.py:16
+#: confusb/usbinfo.py:17
 msgid "Defined at interface level"
 msgstr "Përcaktuar në nivel ndërfaqeje"
 
-#: confusb/usbinfo.py:17
+#: confusb/usbinfo.py:18
 msgid "Audio"
 msgstr ""
 
-#: confusb/usbinfo.py:18
+#: confusb/usbinfo.py:19
 msgid "Communications (CDC)"
 msgstr "Komunikime (CDC)"
 
-#: confusb/usbinfo.py:19
+#: confusb/usbinfo.py:20
 msgid "Human interface device (HID)"
 msgstr "Pajisje e ndërfaqes njerëzore (HID)"
 
-#: confusb/usbinfo.py:20
+#: confusb/usbinfo.py:21
 msgid "Physical"
 msgstr "Fizike"
 
-#: confusb/usbinfo.py:21
+#: confusb/usbinfo.py:22
 msgid "Image"
 msgstr "Imazh"
 
-#: confusb/usbinfo.py:22
+#: confusb/usbinfo.py:23
 msgid "Printer"
 msgstr "Printer"
 
-#: confusb/usbinfo.py:24
+#: confusb/usbinfo.py:25
 msgid "Hub"
 msgstr ""
 
-#: confusb/usbinfo.py:26
+#: confusb/usbinfo.py:27
 msgid "Smart card (CCID)"
 msgstr "Kartë inteligjente (CCID)"
 
-#: confusb/usbinfo.py:27
+#: confusb/usbinfo.py:28
 msgid "Content security"
 msgstr "Siguria e përmbajtjes"
 
-#: confusb/usbinfo.py:28
+#: confusb/usbinfo.py:29
 msgid "Video"
 msgstr "Video"
 
-#: confusb/usbinfo.py:29
+#: confusb/usbinfo.py:30
 msgid "Personal healthcare"
 msgstr "Kujdes shëndetësor personal"
 
-#: confusb/usbinfo.py:30
+#: confusb/usbinfo.py:31
 msgid "Audio/Video"
 msgstr "Audio/Video"
 
-#: confusb/usbinfo.py:32
+#: confusb/usbinfo.py:33
 msgid "Diagnostic"
 msgstr "Diagnostikim"
 
-#: confusb/usbinfo.py:33
+#: confusb/usbinfo.py:34
 msgid "Wireless (e.g. Bluetooth)"
 msgstr "Pa tel (p.sh. Bluetooth)"
 
-#: confusb/usbinfo.py:34
+#: confusb/usbinfo.py:35
 msgid "Miscellaneous"
 msgstr "Të ndryshme"
 
-#: confusb/usbinfo.py:35
+#: confusb/usbinfo.py:36
 msgid "Application specific (DFU, IrDA...)"
 msgstr "Specifike për aplikacion (DFU, IrDA...)"
 
-#: confusb/usbinfo.py:36
+#: confusb/usbinfo.py:37
 msgid "Vendor specific"
 msgstr "Specifike për prodhuesin"
 
-#: confusb/usbinfo.py:50
+#: confusb/usbinfo.py:51
 msgid "Manufacturer (descriptor)"
 msgstr "Prodhuesi (përshkrues)"
 
-#: confusb/usbinfo.py:51
+#: confusb/usbinfo.py:52
 msgid "Product (descriptor)"
 msgstr "Produkti (përshkrues)"
 
-#: confusb/usbinfo.py:52
+#: confusb/usbinfo.py:53
 msgid "Serial number"
 msgstr "Numri serik"
 
-#: confusb/usbinfo.py:53
+#: confusb/usbinfo.py:54
 msgid "Vendor ID (VID)"
 msgstr "ID e prodhuesit (VID)"
 
-#: confusb/usbinfo.py:54
+#: confusb/usbinfo.py:55
 msgid "Product ID (PID)"
 msgstr "ID e produktit (PID)"
 
-#: confusb/usbinfo.py:55
+#: confusb/usbinfo.py:56
 msgid "Device version (bcdDevice)"
 msgstr "Versioni i pajisjes (bcdDevice)"
 
-#: confusb/usbinfo.py:56
+#: confusb/usbinfo.py:57
 msgid "USB version"
 msgstr "Versioni USB"
 
-#: confusb/usbinfo.py:57
+#: confusb/usbinfo.py:58
 msgid "Negotiated speed (Mb/s)"
 msgstr "Shpejtësia e negociuar (Mb/s)"
 
-#: confusb/usbinfo.py:58
+#: confusb/usbinfo.py:59
 msgid "Device class"
 msgstr "Klasa e pajisjes"
 
-#: confusb/usbinfo.py:59
+#: confusb/usbinfo.py:60
 msgid "Device subclass"
 msgstr "Nënklasa e pajisjes"
 
-#: confusb/usbinfo.py:60
+#: confusb/usbinfo.py:61
 msgid "Device protocol"
 msgstr "Protokolli i pajisjes"
 
-#: confusb/usbinfo.py:61
+#: confusb/usbinfo.py:62
 msgid "Max. EP0 packet size"
 msgstr "Madhësia maks. e paketës EP0"
 
-#: confusb/usbinfo.py:62
+#: confusb/usbinfo.py:63
 msgid "Number of configurations"
 msgstr "Numri i konfigurimeve"
 
-#: confusb/usbinfo.py:63
+#: confusb/usbinfo.py:64
 msgid "Active configuration"
 msgstr "Konfigurimi aktiv"
 
-#: confusb/usbinfo.py:64
+#: confusb/usbinfo.py:65
 msgid "Number of interfaces"
 msgstr "Numri i ndërfaqeve"
 
-#: confusb/usbinfo.py:65
+#: confusb/usbinfo.py:66
 msgid "Configuration attributes"
 msgstr "Atributet e konfigurimit"
 
-#: confusb/usbinfo.py:66
+#: confusb/usbinfo.py:67
 msgid "Declared maximum power"
 msgstr "Konsumi maksimal i deklaruar"
 
-#: confusb/usbinfo.py:67
+#: confusb/usbinfo.py:68
 msgid "Bus"
 msgstr ""
 
-#: confusb/usbinfo.py:68
+#: confusb/usbinfo.py:69
 msgid "Address on the bus"
 msgstr "Adresa në magjistrale"
 
-#: confusb/usbinfo.py:69
+#: confusb/usbinfo.py:70
 msgid "Port path (devpath)"
 msgstr "Rruga e porteve (devpath)"
 
-#: confusb/usbinfo.py:70
+#: confusb/usbinfo.py:71
 msgid "Child ports"
 msgstr "Portat e varura"
 
-#: confusb/usbinfo.py:71
+#: confusb/usbinfo.py:72
 msgid "Removable"
 msgstr "I heqshëm"
 
-#: confusb/usbinfo.py:72
+#: confusb/usbinfo.py:73
 msgid "Authorized"
 msgstr "I autorizuar"
 
-#: confusb/usbinfo.py:73
+#: confusb/usbinfo.py:74
 msgid "Configuration name"
 msgstr "Emri i konfigurimit"
 
-#: confusb/usbinfo.py:75
+#: confusb/usbinfo.py:76
 msgid "Kernel quirks"
 msgstr "Veçoritë e kernelit"
 
-#: confusb/usbinfo.py:108
+#: confusb/usbinfo.py:110
 msgid "Unknown"
 msgstr "E panjohur"
 
-#: confusb/usbinfo.py:162
+#: confusb/usbinfo.py:174
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:163
+#: confusb/usbinfo.py:175
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:165
+#: confusb/usbinfo.py:177
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:166
+#: confusb/usbinfo.py:178
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:169
+#: confusb/usbinfo.py:181
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:201
+#: confusb/usbinfo.py:213
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:232
+#: confusb/usbinfo.py:246
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "ndërfaqe rrjeti {name}"
 
-#: confusb/usbinfo.py:279
+#: confusb/usbinfo.py:293
 msgid "Manufacturer (usb.ids)"
 msgstr "Prodhuesi (usb.ids)"
 
-#: confusb/usbinfo.py:280
+#: confusb/usbinfo.py:294
 msgid "Product (usb.ids)"
 msgstr "Produkti (usb.ids)"
 
-#: confusb/usbinfo.py:281
+#: confusb/usbinfo.py:295
 msgid "sysfs path"
 msgstr "rruga sysfs"
 
-#: confusb/usbinfo.py:282
+#: confusb/usbinfo.py:296
 msgid "/dev node"
 msgstr "nyja /dev"
 
-#: confusb/usbinfo.py:283
+#: confusb/usbinfo.py:297
 msgid "Subsystem / type"
 msgstr "Nënsistemi / lloji"
 
-#: confusb/usbinfo.py:284
+#: confusb/usbinfo.py:298
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:285
+#: confusb/usbinfo.py:299
 msgid "Device driver"
 msgstr "Drajveri i pajisjes"
 
-#: confusb/usbinfo.py:287
+#: confusb/usbinfo.py:301
 msgid "Persistent paths (ID_PATH)"
 msgstr "Rrugë të përhershme (ID_PATH)"
 
-#: confusb/usbinfo.py:288
+#: confusb/usbinfo.py:302
 msgid "udev tags (TAGS)"
 msgstr "Etiketat udev (TAGS)"
 
-#: confusb/usbinfo.py:291
+#: confusb/usbinfo.py:305
 msgid "Identification"
 msgstr "Identifikimi"
 
-#: confusb/usbinfo.py:292
+#: confusb/usbinfo.py:306
 msgid "Descriptors and configuration"
 msgstr "Përshkruesit dhe konfigurimi"
 
-#: confusb/usbinfo.py:293
+#: confusb/usbinfo.py:307
 msgid "System"
 msgstr "Sistemi"
 
-#: confusb/usbinfo.py:297
+#: confusb/usbinfo.py:311
 msgid "Power control"
 msgstr "Kontrolli i energjisë"
 
-#: confusb/usbinfo.py:298
+#: confusb/usbinfo.py:312
 msgid "Power state"
 msgstr "Gjendja e energjisë"
 
-#: confusb/usbinfo.py:299
+#: confusb/usbinfo.py:313
 msgid "Autosuspend delay (ms)"
 msgstr "Vonesa e pezullimit automatik (ms)"
 
-#: confusb/usbinfo.py:300
+#: confusb/usbinfo.py:314
 msgid "Persistence"
 msgstr "Qëndrueshmëria"
 
-#: confusb/usbinfo.py:301
+#: confusb/usbinfo.py:315
 msgid "System wake-up"
 msgstr "Zgjimi i sistemit"
 
-#: confusb/usbinfo.py:302
+#: confusb/usbinfo.py:316
 msgid "Active time (ms)"
 msgstr "Koha aktive (ms)"
 
-#: confusb/usbinfo.py:303
+#: confusb/usbinfo.py:317
 msgid "Connected time (ms)"
 msgstr "Koha e lidhur (ms)"
 
-#: confusb/usbinfo.py:304
+#: confusb/usbinfo.py:318
 msgid "URBs processed"
 msgstr "URB të përpunuara"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:324
 msgid "Power and statistics"
 msgstr "Energjia dhe statistikat"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:330
 msgid "Topology"
 msgstr "Topologjia"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:331
 msgid "Connected to"
 msgstr "I lidhur me"
 
-#: confusb/usbinfo.py:318
+#: confusb/usbinfo.py:332
 msgid "Parent path"
 msgstr "Rruga e prindit"
+
+#: confusb/usbinfo.py:359
+#, python-brace-format
+msgid "{module} (loaded)"
+msgstr "{module} (i ngarkuar)"
+
+#: confusb/usbinfo.py:375
+msgid "Storage"
+msgstr "Ruajtja"

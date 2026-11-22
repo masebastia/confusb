@@ -56,8 +56,10 @@ AL_CONECTAR = {
     "notificar": N_("Show a notification"),
     "nada": N_("Do nothing"),
 }
+ESQUEMA = 2   # 2: «al_conectar» pasa a «notificar» por defecto y se añaden «solo_nuevos» y «abrir_almacenamiento»
 DEFECTOS = {"opacidad": 80, "titulo": "normal", "marco": "resaltado", "sombra": False, "esquinas": 12,
-            "pie": True, "al_conectar": "ventana", "idioma": ""}   # idioma "" = el del sistema
+            "pie": True, "al_conectar": "notificar", "solo_nuevos": True, "abrir_almacenamiento": True,
+            "idioma": "", "esquema": ESQUEMA}   # idioma "" = el del sistema
 
 
 class Ajustes:
@@ -88,11 +90,12 @@ class Ajustes:
             v["titulo"] = d["titulo"]
         if d.get("marco") in MARCOS:
             v["marco"] = d["marco"]
-        if d.get("al_conectar") in AL_CONECTAR:
+        # Con el esquema 1 «ventana» era el valor por defecto y no se puede saber si se eligió: se pasa al nuevo.
+        if d.get("al_conectar") in AL_CONECTAR and d.get("esquema", 1) >= ESQUEMA:
             v["al_conectar"] = d["al_conectar"]
         if d.get("idioma") in i18n.IDIOMAS:
             v["idioma"] = d["idioma"]
-        for k in ("sombra", "pie"):
+        for k in ("sombra", "pie", "solo_nuevos", "abrir_almacenamiento"):
             if isinstance(d.get(k), bool):
                 v[k] = d[k]
 

@@ -8,6 +8,7 @@ import shutil
 import subprocess
 from dataclasses import dataclass, field
 
+from . import almacenamiento
 from .i18n import N_, _
 
 ENV = {**os.environ, "LC_ALL": "C"}
@@ -76,6 +77,7 @@ DEVICE_ATTRS = [
 ]
 
 NODE_SKIP = {"power", "driver", "subsystem", "firmware_node", "device"}
+MAX_PROFUNDIDAD = 9   # interfaz › host › target › LUN › block › disco › partición (+ margen)
 
 
 def read(path: str) -> str | None:
@@ -135,6 +137,7 @@ class DeviceInfo:
     sections: list[tuple[str, list[tuple[str, str]]]] = field(default_factory=list)
     interfaces: list[Interface] = field(default_factory=list)
     nodes: list[tuple[str, str]] = field(default_factory=list)
+    unidades: list[almacenamiento.Unidad] = field(default_factory=list)   # discos de un dispositivo de almacenamiento
     modules: list[str] = field(default_factory=list)
     drivers: list[str] = field(default_factory=list)
     props: dict[str, str] = field(default_factory=dict)
@@ -151,6 +154,15 @@ class DeviceInfo:
     @property
     def is_hub(self) -> bool:
         return self.dev_class == 0x09
+
+    @property
+    def es_almacenamiento(self) -> bool:
+        return 0x08 in self.classes
+
+    @property
+    def capacidad(self) -> int | None:
+        """Bytes de la unidad de almacenamiento (None si no es de almacenamiento o no tiene soporte)."""
+        return almacenamiento.capacidad(self.unidades)
 
     def as_text(self) -> str:
         out = [f"{self.title}  [{self.usb_id}]", f"sysfs: {self.syspath}", ""]
@@ -214,10 +226,12 @@ def collect_nodes(root: str) -> list[tuple[str, str]]:
     nodes: list[tuple[str, str]] = []
     base_depth = root.count(os.sep)
     for cur, dirs, _files in os.walk(root):
-        if cur.count(os.sep) - base_depth > 5:
+        if cur.count(os.sep) - base_depth > MAX_PROFUNDIDAD:
             dirs[:] = []
             continue
-        dirs[:] = [d for d in dirs if d not in NODE_SKIP and not d.startswith("ep_")]
+        # Sin entrar en los dispositivos USB hijos (un hub): sus nodos son de ellos, no del hub.
+        dirs[:] = [d for d in dirs if d not in NODE_SKIP and not d.startswith("ep_")
+                   and not os.path.exists(os.path.join(cur, d, "idVendor"))]
         sub = os.path.join(cur, "subsystem")
         if cur != root and os.path.islink(sub):
             subsystem = os.path.basename(os.path.realpath(sub))
@@ -342,7 +356,7 @@ def collect(syspath: str, with_lsusb: bool = True) -> DeviceInfo:
             label=read(f"{ip}/interface"),
             driver=drv,
             modalias=modalias,
-            modules=[m + (" (cargado)" if m in loaded else "") for m in mods],
+            modules=[_("{module} (loaded)").format(module=m) if m in loaded else m for m in mods],
             endpoints=read_endpoints(ip),
         )
         info.interfaces.append(iface)
@@ -352,6 +366,13 @@ def collect(syspath: str, with_lsusb: bool = True) -> DeviceInfo:
     info.drivers = sorted(set(drivers))
     info.modules = sorted(set(modules))
     info.nodes = collect_nodes(syspath)
+
+    # --- almacenamiento: capacidad, particiones y montaje ---
+    bloques = [n for sub, n in info.nodes if sub == "block"]
+    if bloques:
+        info.unidades = almacenamiento.leer(bloques)
+        if info.unidades:
+            info.sections.insert(1, (_("Storage"), almacenamiento.filas(info.unidades)))
 
     if with_lsusb and shutil.which("lsusb"):
         bus, dev = read(f"{syspath}/busnum"), read(f"{syspath}/devnum")

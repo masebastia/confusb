@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 13:41+0000\n"
+"POT-Creation-Date: 2026-11-22 20:01+0100\n"
 "PO-Revision-Date: 2026-11-22 13:41+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Íslenska\n"
@@ -17,63 +17,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 
+#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
+#: confusb/ui.py:233 confusb/ui.py:317
+msgid "Capacity"
+msgstr "Geymslurými"
 
-#: confusb/app.py:50
+#: confusb/almacenamiento.py:154
+msgid "No media inserted"
+msgstr "Enginn miðill í drifinu"
+
+#: confusb/almacenamiento.py:157
+msgid "Drive model"
+msgstr "Gerð drifs"
+
+#: confusb/almacenamiento.py:159
+msgid "Access"
+msgstr "Aðgangur"
+
+#: confusb/almacenamiento.py:159
+msgid "Read-only"
+msgstr "Skrifvarið"
+
+#: confusb/almacenamiento.py:161
+msgid "Partition table"
+msgstr "Disksneiðatafla"
+
+#: confusb/almacenamiento.py:163
+msgid "File system"
+msgstr "Skráakerfi"
+
+#: confusb/almacenamiento.py:165
+msgid "Mounted at"
+msgstr "Tengt við"
+
+#: confusb/almacenamiento.py:173
+#, python-brace-format
+msgid "{free} free"
+msgstr "{free} laust"
+
+#: confusb/almacenamiento.py:175
+#, python-brace-format
+msgid "mounted at {path}"
+msgstr "tengt við {path}"
+
+#: confusb/almacenamiento.py:177
+msgid "not mounted"
+msgstr "ekki tengt"
+
+#: confusb/almacenamiento.py:178
+#, python-brace-format
+msgid "Partition {name}"
+msgstr "Disksneið {name}"
+
+#: confusb/app.py:52
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:52
+#: confusb/app.py:54
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:63 confusb/app.py:212
+#: confusb/app.py:65 confusb/app.py:241
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "Tækið «{name}» fannst ekki"
 
-#: confusb/app.py:110
+#: confusb/app.py:114
 msgid "USB device"
 msgstr "USB-tæki"
 
-#: confusb/app.py:114
+#: confusb/app.py:118
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Aftengt: {name}"
 
-#: confusb/app.py:125
+#: confusb/app.py:138
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Tengt: {name}"
 
-#: confusb/app.py:130
+#: confusb/app.py:160
 msgid "USB device connected"
 msgstr "USB-tæki tengt"
 
-#: confusb/app.py:191
-msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+#: confusb/app.py:163
+msgid "View information"
+msgstr "Sýna upplýsingar"
+
+#: confusb/app.py:220
+msgid ""
+"Shows the information of a USB device when it is connected and looks for its "
+"driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:193
-msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+#: confusb/app.py:222
+msgid ""
+"Without arguments it runs as a service that watches the USB connections "
+"according to the settings."
 msgstr ""
 
-#: confusb/app.py:194
+#: confusb/app.py:223
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:195
+#: confusb/app.py:224
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:196
+#: confusb/app.py:225
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:198
-msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+#: confusb/app.py:227
+msgid ""
+"print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:199
+#: confusb/app.py:228
 msgid "show the version and exit"
 msgstr ""
 
@@ -217,32 +277,52 @@ msgstr "Sýna «Skoða upplýsingar →» á spjöldum"
 msgid "When a device is connected"
 msgstr "Þegar tæki er tengt"
 
-#: confusb/componentes.py:486
+#: confusb/componentes.py:485
+msgid "Only for devices not seen before"
+msgstr "Aðeins fyrir tæki sem hafa ekki sést áður"
+
+#: confusb/componentes.py:488
+msgid "Open storage drives with the default application"
+msgstr "Opna geymsludrif með sjálfgefna forritinu"
+
+#: confusb/componentes.py:493
+msgid "Forget known devices"
+msgstr "Gleyma þekktum tækjum"
+
+#: confusb/componentes.py:493
+msgid "The next time they are connected they will count as new"
+msgstr "Næst þegar þau eru tengd teljast þau ný"
+
+#: confusb/componentes.py:498
 msgid "Reset"
 msgstr "Endurstilla"
 
-#: confusb/componentes.py:486 confusb/componentes.py:533
+#: confusb/componentes.py:498 confusb/componentes.py:552
 msgid "Close"
 msgstr "Loka"
 
-#: confusb/componentes.py:517
+#: confusb/componentes.py:536
 msgid "About confusb"
 msgstr "Um confusb"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:543
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Útgáfa {version}"
 
-#: confusb/componentes.py:525
-msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
-msgstr "Lætur vita þegar USB-tæki er tengt, sýnir upplýsingar um það og leitar að reklinum og forritunum til að nota það."
+#: confusb/componentes.py:544
+msgid ""
+"Notifies when a USB device is connected, shows its information and looks for "
+"its driver and the applications to use it."
+msgstr ""
+"Lætur vita þegar USB-tæki er tengt, sýnir upplýsingar um það og leitar að "
+"reklinum og forritunum til að nota það."
 
-#: confusb/componentes.py:529
+#: confusb/componentes.py:548
 msgid "License GPL-3.0-or-later"
 msgstr "Leyfi GPL-3.0-or-later"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:549
 msgid "Source code on GitHub"
 msgstr "Frumkóði á GitHub"
 
@@ -251,16 +331,28 @@ msgid "PC/SC service and CCID drivers"
 msgstr "PC/SC-þjónusta og CCID-reklar"
 
 #: confusb/kb.py:18
-msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
-msgstr "pcscd er púkinn sem stýrir snjallkortalesurum; libccid veitir rekilinn fyrir hefðbundna USB-lesara (CCID). Án pcscd birtist lesarinn í USB en ekkert forrit getur notað hann."
+msgid ""
+"pcscd is the daemon that manages smart card readers; libccid provides the "
+"driver for standard USB readers (CCID). Without pcscd the reader shows up in "
+"USB but no application can use it."
+msgstr ""
+"pcscd er púkinn sem stýrir snjallkortalesurum; libccid veitir rekilinn fyrir "
+"hefðbundna USB-lesara (CCID). Án pcscd birtist lesarinn í USB en ekkert "
+"forrit getur notað hann."
 
 #: confusb/kb.py:22
 msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
 msgstr "OpenSC (PKCS#11, styður DNIe og önnur kort)"
 
 #: confusb/kb.py:23
-msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
-msgstr "Safn og verkfæri fyrir dulritunarkort. Inniheldur stuðning við DNIe (3.0/4.0) og PKCS#11-einingu sem Firefox/Chromium og AutoFirma nota. Eldri DNIe (2.0) gætu þurft opinberu DNIe-eininguna."
+msgid ""
+"Library and tools for cryptographic cards. It includes support for the DNIe "
+"(3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. "
+"Older DNIe cards (2.0) may need the official DNIe module."
+msgstr ""
+"Safn og verkfæri fyrir dulritunarkort. Inniheldur stuðning við DNIe "
+"(3.0/4.0) og PKCS#11-einingu sem Firefox/Chromium og AutoFirma nota. Eldri "
+"DNIe (2.0) gætu þurft opinberu DNIe-eininguna."
 
 #: confusb/kb.py:26
 msgid "List readers"
@@ -283,8 +375,12 @@ msgid "pcsc-tools (reader and card monitor)"
 msgstr "pcsc-tools (vöktun lesara og korta)"
 
 #: confusb/kb.py:35
-msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
-msgstr "pcsc_scan sýnir í rauntíma þegar kort er sett í eða tekið úr og afkóðar ATR þess."
+msgid ""
+"pcsc_scan shows in real time when a card is inserted or removed and decodes "
+"its ATR."
+msgstr ""
+"pcsc_scan sýnir í rauntíma þegar kort er sett í eða tekið úr og afkóðar ATR "
+"þess."
 
 #: confusb/kb.py:37
 msgid "Open pcsc_scan"
@@ -295,16 +391,26 @@ msgid "AutoFirma (electronic signature)"
 msgstr "AutoFirma (rafræn undirskrift)"
 
 #: confusb/kb.py:41
-msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
-msgstr "Opinbert forrit spænsku ríkisstjórnarinnar til að undirrita skjöl með DNIe eða stafrænu skilríki. Það er ekki í pakkageymslum Debian: það er sótt á firmaelectronica.gob.es."
+msgid ""
+"Official Spanish Government application to sign documents with the DNIe or a "
+"digital certificate. It is not in the Debian repositories: it is downloaded "
+"from firmaelectronica.gob.es."
+msgstr ""
+"Opinbert forrit spænsku ríkisstjórnarinnar til að undirrita skjöl með DNIe "
+"eða stafrænu skilríki. Það er ekki í pakkageymslum Debian: það er sótt á "
+"firmaelectronica.gob.es."
 
-#: confusb/kb.py:48 confusb/usbinfo.py:23
+#: confusb/kb.py:48 confusb/usbinfo.py:24
 msgid "Mass storage"
 msgstr "Fjöldageymsla"
 
 #: confusb/kb.py:48
-msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
-msgstr "Kerfið tengir það sjálfkrafa (udisks2). Notaðu Diska til að forsníða það eða skoða."
+msgid ""
+"The system mounts it automatically (udisks2). To format or inspect it, use "
+"Disks."
+msgstr ""
+"Kerfið tengir það sjálfkrafa (udisks2). Notaðu Diska til að forsníða það eða "
+"skoða."
 
 #: confusb/kb.py:49
 msgid "Open Disks"
@@ -315,8 +421,12 @@ msgid "Printer (CUPS)"
 msgstr "Prentari (CUPS)"
 
 #: confusb/kb.py:52
-msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
-msgstr "CUPS finnur USB-prentara sjálfkrafa; hann er stilltur í Stillingar → Prentarar."
+msgid ""
+"CUPS detects USB printers automatically; it is configured in Settings → "
+"Printers."
+msgstr ""
+"CUPS finnur USB-prentara sjálfkrafa; hann er stilltur í Stillingar → "
+"Prentarar."
 
 #: confusb/kb.py:53
 msgid "Configure printers"
@@ -328,7 +438,8 @@ msgstr "Myndavél / myndband (UVC)"
 
 #: confusb/kb.py:56
 msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
-msgstr "uvcvideo-rekill kjarnans styður hana. Prófaðu hana með Snapshot/Cheese."
+msgstr ""
+"uvcvideo-rekill kjarnans styður hana. Prófaðu hana með Snapshot/Cheese."
 
 #: confusb/kb.py:57
 msgid "List video devices"
@@ -343,7 +454,8 @@ msgid "USB audio"
 msgstr "USB-hljóð"
 
 #: confusb/kb.py:61
-msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgid ""
+"Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
 msgstr "Stutt af snd-usb-audio. Stilltu hljóðstyrk og úttök með pavucontrol."
 
 #: confusb/kb.py:62
@@ -392,7 +504,9 @@ msgstr "Mótald / raðtengi CDC"
 
 #: confusb/kb.py:78
 msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
-msgstr "ModemManager stýrir mótöldum; fyrir raðtengda stjórnborða notaðu minicom/picocom."
+msgstr ""
+"ModemManager stýrir mótöldum; fyrir raðtengda stjórnborða notaðu minicom/"
+"picocom."
 
 #: confusb/kb.py:79
 msgid "List modems"
@@ -501,7 +615,8 @@ msgstr "Setja upp {packages}"
 
 #: confusb/resolver.py:158
 #, python-brace-format
-msgid "The application is already installed on your computer (version {version})."
+msgid ""
+"The application is already installed on your computer (version {version})."
 msgstr "Forritið er þegar uppsett á tölvunni þinni (útgáfa {version})."
 
 #: confusb/resolver.py:159
@@ -558,12 +673,12 @@ msgstr "USB-tengibox"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Stýrt af «hub»-reklinum í kjarnanum."
 
-#: confusb/resolver.py:206 confusb/ui.py:328
+#: confusb/resolver.py:206 confusb/ui.py:331
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Viðmót {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:333
+#: confusb/resolver.py:207 confusb/ui.py:336
 msgid "none found"
 msgstr "ekkert fannst"
 
@@ -578,8 +693,12 @@ msgid "Candidate modules: {modules}"
 msgstr "Mögulegar einingar: {modules}"
 
 #: confusb/resolver.py:212
-msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
-msgstr "Eðlilegt: CCID-snjallkortalesarar nota ekki kjarnarekil; þeim er stýrt af púkanum pcscd (notandarými) með libccid."
+msgid ""
+"Normal: CCID smart card readers do not use a kernel driver; they are managed "
+"by the pcscd daemon (user space) with libccid."
+msgstr ""
+"Eðlilegt: CCID-snjallkortalesarar nota ekki kjarnarekil; þeim er stýrt af "
+"púkanum pcscd (notandarými) með libccid."
 
 #: confusb/resolver.py:215
 #, python-brace-format
@@ -595,8 +714,10 @@ msgid "The kernel has no module for this interface."
 msgstr "Kjarninn hefur enga einingu fyrir þetta viðmót."
 
 #: confusb/resolver.py:219
-msgid "It probably needs user-space software (see below) or an external driver."
-msgstr "Það þarf líklega hugbúnað í notandarými (sjá hér að neðan) eða ytri rekil."
+msgid ""
+"It probably needs user-space software (see below) or an external driver."
+msgstr ""
+"Það þarf líklega hugbúnað í notandarými (sjá hér að neðan) eða ytri rekil."
 
 #: confusb/resolver.py:221
 msgid "No interfaces"
@@ -646,8 +767,12 @@ msgid "fwupd recognizes this device"
 msgstr "fwupd þekkir þetta tæki"
 
 #: confusb/resolver.py:306
-msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
-msgstr "Hægt er að athuga og beita opinberum fastbúnaðaruppfærslum framleiðandans (LVFS)."
+msgid ""
+"Official firmware updates from the manufacturer (LVFS) can be checked and "
+"applied."
+msgstr ""
+"Hægt er að athuga og beita opinberum fastbúnaðaruppfærslum framleiðandans "
+"(LVFS)."
 
 #: confusb/resolver.py:308
 msgid "Check for updates"
@@ -676,7 +801,8 @@ msgstr "Opinbert vefsetur / aðstoð"
 
 #: confusb/resolver.py:323
 msgid "Probes from other users with this same device and the driver they used."
-msgstr "Mælingar frá öðrum notendum með sama tæki og rekillinn sem þeir notuðu."
+msgstr ""
+"Mælingar frá öðrum notendum með sama tæki og rekillinn sem þeir notuðu."
 
 #: confusb/resolver.py:325
 msgid "USB ID database"
@@ -693,7 +819,9 @@ msgstr "DNIe: opinber gátt"
 
 #: confusb/resolver.py:334
 msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
-msgstr "Reklar, PKCS#11-eining og leiðbeiningar fyrir spænska rafræna persónuskilríkið."
+msgstr ""
+"Reklar, PKCS#11-eining og leiðbeiningar fyrir spænska rafræna "
+"persónuskilríkið."
 
 #: confusb/resolver.py:335
 msgid "Open the DNIe portal"
@@ -760,446 +888,455 @@ msgstr "Tengdu eitt og það birtist hér sjálfkrafa."
 msgid "Connected USB devices: {n}"
 msgstr "Tengd USB-tæki: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
 msgid "Unknown manufacturer"
 msgstr "Óþekktur framleiðandi"
 
-#: confusb/ui.py:232
+#: confusb/ui.py:231
 msgid "Type"
 msgstr "Gerð"
 
-#: confusb/ui.py:233
+#: confusb/ui.py:234
 msgid "Port"
 msgstr "Tengi"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:235
 msgid "Driver"
 msgstr "Rekill"
 
-#: confusb/ui.py:234 confusb/ui.py:332
+#: confusb/ui.py:235 confusb/ui.py:335
 msgid "none"
 msgstr "enginn"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "View information →"
 msgstr "Skoða upplýsingar →"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back"
 msgstr "Til baka"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back to the list of devices"
 msgstr "Aftur á tækjalistann"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy"
 msgstr "Afrita"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy all the information to the clipboard"
 msgstr "Afrita allar upplýsingar á klippiborðið"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Information"
 msgstr "Upplýsingar"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Drivers and applications"
 msgstr "Reklar og forrit"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:281
 msgid "Connected"
 msgstr "Tengt"
 
-#: confusb/ui.py:300
+#: confusb/ui.py:301
 msgid "Information copied to the clipboard"
 msgstr "Upplýsingar afritaðar á klippiborðið"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Interfaces"
 msgstr "Viðmót"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Each interface can have its own driver"
 msgstr "Hvert viðmót getur haft sinn eigin rekil"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:333
 msgid "Class"
 msgstr "Flokkur"
 
-#: confusb/ui.py:331
+#: confusb/ui.py:334
 msgid "Subclass / protocol"
 msgstr "Undirflokkur / samskiptaregla"
 
-#: confusb/ui.py:332
+#: confusb/ui.py:335
 msgid "Bound driver"
 msgstr "Bundinn rekill"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:336
 msgid "Kernel modules"
 msgstr "Kjarnaeiningar"
 
-#: confusb/ui.py:340
+#: confusb/ui.py:343
 msgid "Nodes created in the system"
 msgstr "Hnútar sem búnir eru til í kerfinu"
 
-#: confusb/ui.py:344
+#: confusb/ui.py:347
 msgid "Raw data"
 msgstr "Hrá gögn"
 
-#: confusb/ui.py:345
+#: confusb/ui.py:348
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev-eiginleikar ({n})"
 
-#: confusb/ui.py:349
+#: confusb/ui.py:352
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Úttak lsusb -v (fullar USB-lýsingar)"
 
-#: confusb/ui.py:364
+#: confusb/ui.py:367
 msgid "Looking for drivers and applications…"
 msgstr "Leita að reklum og forritum…"
 
-#: confusb/ui.py:417
+#: confusb/ui.py:420
 msgid "No terminal emulator found"
 msgstr "Enginn skjáhermir fannst"
 
-#: confusb/ui.py:419
+#: confusb/ui.py:422
 msgid "Press Enter to close…"
 msgstr "Ýttu á Enter til að loka…"
 
-#: confusb/ui.py:430
+#: confusb/ui.py:433
 msgid "Working…"
 msgstr "Er að vinna…"
 
-#: confusb/ui.py:436
+#: confusb/ui.py:439
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Villa: {error}"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:442
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(skilakóði {code})"
 
-#: confusb/ui.py:443
+#: confusb/ui.py:446
 msgid "Installation completed"
 msgstr "Uppsetningu lokið"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:449
 msgid "The installation failed"
 msgstr "Uppsetning mistókst"
 
-#: confusb/ui.py:455
+#: confusb/ui.py:458
 msgid "Disconnected"
 msgstr "Aftengt"
 
-#: confusb/ui.py:456
+#: confusb/ui.py:459
 msgid "The device has been disconnected"
 msgstr "Tækið var aftengt"
 
-#: confusb/usbinfo.py:16
+#: confusb/usbinfo.py:17
 msgid "Defined at interface level"
 msgstr "Skilgreindur á viðmótsstigi"
 
-#: confusb/usbinfo.py:17
+#: confusb/usbinfo.py:18
 msgid "Audio"
 msgstr ""
 
-#: confusb/usbinfo.py:18
+#: confusb/usbinfo.py:19
 msgid "Communications (CDC)"
 msgstr "Samskipti (CDC)"
 
-#: confusb/usbinfo.py:19
+#: confusb/usbinfo.py:20
 msgid "Human interface device (HID)"
 msgstr "Mannviðmótstæki (HID)"
 
-#: confusb/usbinfo.py:20
+#: confusb/usbinfo.py:21
 msgid "Physical"
 msgstr "Efnisleg"
 
-#: confusb/usbinfo.py:21
+#: confusb/usbinfo.py:22
 msgid "Image"
 msgstr "Mynd"
 
-#: confusb/usbinfo.py:22
+#: confusb/usbinfo.py:23
 msgid "Printer"
 msgstr "Prentari"
 
-#: confusb/usbinfo.py:24
+#: confusb/usbinfo.py:25
 msgid "Hub"
 msgstr ""
 
-#: confusb/usbinfo.py:26
+#: confusb/usbinfo.py:27
 msgid "Smart card (CCID)"
 msgstr "Snjallkort (CCID)"
 
-#: confusb/usbinfo.py:27
+#: confusb/usbinfo.py:28
 msgid "Content security"
 msgstr "Efnisvernd"
 
-#: confusb/usbinfo.py:28
+#: confusb/usbinfo.py:29
 msgid "Video"
 msgstr "Myndband"
 
-#: confusb/usbinfo.py:29
+#: confusb/usbinfo.py:30
 msgid "Personal healthcare"
 msgstr "Persónuleg heilsugæsla"
 
-#: confusb/usbinfo.py:30
+#: confusb/usbinfo.py:31
 msgid "Audio/Video"
 msgstr "Hljóð/Myndband"
 
-#: confusb/usbinfo.py:32
+#: confusb/usbinfo.py:33
 msgid "Diagnostic"
 msgstr "Greining"
 
-#: confusb/usbinfo.py:33
+#: confusb/usbinfo.py:34
 msgid "Wireless (e.g. Bluetooth)"
 msgstr "Þráðlaust (t.d. Bluetooth)"
 
-#: confusb/usbinfo.py:34
+#: confusb/usbinfo.py:35
 msgid "Miscellaneous"
 msgstr "Ýmislegt"
 
-#: confusb/usbinfo.py:35
+#: confusb/usbinfo.py:36
 msgid "Application specific (DFU, IrDA...)"
 msgstr "Forritssértækt (DFU, IrDA...)"
 
-#: confusb/usbinfo.py:36
+#: confusb/usbinfo.py:37
 msgid "Vendor specific"
 msgstr "Framleiðandasértækt"
 
-#: confusb/usbinfo.py:50
+#: confusb/usbinfo.py:51
 msgid "Manufacturer (descriptor)"
 msgstr "Framleiðandi (lýsing)"
 
-#: confusb/usbinfo.py:51
+#: confusb/usbinfo.py:52
 msgid "Product (descriptor)"
 msgstr "Vara (lýsing)"
 
-#: confusb/usbinfo.py:52
+#: confusb/usbinfo.py:53
 msgid "Serial number"
 msgstr "Raðnúmer"
 
-#: confusb/usbinfo.py:53
+#: confusb/usbinfo.py:54
 msgid "Vendor ID (VID)"
 msgstr "Auðkenni framleiðanda (VID)"
 
-#: confusb/usbinfo.py:54
+#: confusb/usbinfo.py:55
 msgid "Product ID (PID)"
 msgstr "Auðkenni vöru (PID)"
 
-#: confusb/usbinfo.py:55
+#: confusb/usbinfo.py:56
 msgid "Device version (bcdDevice)"
 msgstr "Útgáfa tækis (bcdDevice)"
 
-#: confusb/usbinfo.py:56
+#: confusb/usbinfo.py:57
 msgid "USB version"
 msgstr "USB-útgáfa"
 
-#: confusb/usbinfo.py:57
+#: confusb/usbinfo.py:58
 msgid "Negotiated speed (Mb/s)"
 msgstr "Samið hraði (Mb/s)"
 
-#: confusb/usbinfo.py:58
+#: confusb/usbinfo.py:59
 msgid "Device class"
 msgstr "Flokkur tækis"
 
-#: confusb/usbinfo.py:59
+#: confusb/usbinfo.py:60
 msgid "Device subclass"
 msgstr "Undirflokkur tækis"
 
-#: confusb/usbinfo.py:60
+#: confusb/usbinfo.py:61
 msgid "Device protocol"
 msgstr "Samskiptaregla tækis"
 
-#: confusb/usbinfo.py:61
+#: confusb/usbinfo.py:62
 msgid "Max. EP0 packet size"
 msgstr "Hám. pakkastærð EP0"
 
-#: confusb/usbinfo.py:62
+#: confusb/usbinfo.py:63
 msgid "Number of configurations"
 msgstr "Fjöldi stillinga"
 
-#: confusb/usbinfo.py:63
+#: confusb/usbinfo.py:64
 msgid "Active configuration"
 msgstr "Virk stilling"
 
-#: confusb/usbinfo.py:64
+#: confusb/usbinfo.py:65
 msgid "Number of interfaces"
 msgstr "Fjöldi viðmóta"
 
-#: confusb/usbinfo.py:65
+#: confusb/usbinfo.py:66
 msgid "Configuration attributes"
 msgstr "Eigindi stillingar"
 
-#: confusb/usbinfo.py:66
+#: confusb/usbinfo.py:67
 msgid "Declared maximum power"
 msgstr "Uppgefin hámarksorka"
 
-#: confusb/usbinfo.py:67
+#: confusb/usbinfo.py:68
 msgid "Bus"
 msgstr ""
 
-#: confusb/usbinfo.py:68
+#: confusb/usbinfo.py:69
 msgid "Address on the bus"
 msgstr "Vistfang á brautinni"
 
-#: confusb/usbinfo.py:69
+#: confusb/usbinfo.py:70
 msgid "Port path (devpath)"
 msgstr "Tengisslóð (devpath)"
 
-#: confusb/usbinfo.py:70
+#: confusb/usbinfo.py:71
 msgid "Child ports"
 msgstr "Undirtengi"
 
-#: confusb/usbinfo.py:71
+#: confusb/usbinfo.py:72
 msgid "Removable"
 msgstr "Fjarlægjanlegt"
 
-#: confusb/usbinfo.py:72
+#: confusb/usbinfo.py:73
 msgid "Authorized"
 msgstr "Heimilað"
 
-#: confusb/usbinfo.py:73
+#: confusb/usbinfo.py:74
 msgid "Configuration name"
 msgstr "Heiti stillingar"
 
-#: confusb/usbinfo.py:75
+#: confusb/usbinfo.py:76
 msgid "Kernel quirks"
 msgstr "Séreinkenni kjarna"
 
-#: confusb/usbinfo.py:108
+#: confusb/usbinfo.py:110
 msgid "Unknown"
 msgstr "Óþekkt"
 
-#: confusb/usbinfo.py:162
+#: confusb/usbinfo.py:174
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:163
+#: confusb/usbinfo.py:175
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:165
+#: confusb/usbinfo.py:177
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:166
+#: confusb/usbinfo.py:178
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:169
+#: confusb/usbinfo.py:181
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:201
+#: confusb/usbinfo.py:213
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:232
+#: confusb/usbinfo.py:246
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "netviðmót {name}"
 
-#: confusb/usbinfo.py:279
+#: confusb/usbinfo.py:293
 msgid "Manufacturer (usb.ids)"
 msgstr "Framleiðandi (usb.ids)"
 
-#: confusb/usbinfo.py:280
+#: confusb/usbinfo.py:294
 msgid "Product (usb.ids)"
 msgstr "Vara (usb.ids)"
 
-#: confusb/usbinfo.py:281
+#: confusb/usbinfo.py:295
 msgid "sysfs path"
 msgstr "sysfs-slóð"
 
-#: confusb/usbinfo.py:282
+#: confusb/usbinfo.py:296
 msgid "/dev node"
 msgstr "/dev-hnútur"
 
-#: confusb/usbinfo.py:283
+#: confusb/usbinfo.py:297
 msgid "Subsystem / type"
 msgstr "Undirkerfi / gerð"
 
-#: confusb/usbinfo.py:284
+#: confusb/usbinfo.py:298
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:285
+#: confusb/usbinfo.py:299
 msgid "Device driver"
 msgstr "Rekill tækisins"
 
-#: confusb/usbinfo.py:287
+#: confusb/usbinfo.py:301
 msgid "Persistent paths (ID_PATH)"
 msgstr "Varanlegar slóðir (ID_PATH)"
 
-#: confusb/usbinfo.py:288
+#: confusb/usbinfo.py:302
 msgid "udev tags (TAGS)"
 msgstr "udev-merki (TAGS)"
 
-#: confusb/usbinfo.py:291
+#: confusb/usbinfo.py:305
 msgid "Identification"
 msgstr "Auðkenning"
 
-#: confusb/usbinfo.py:292
+#: confusb/usbinfo.py:306
 msgid "Descriptors and configuration"
 msgstr "Lýsingar og stilling"
 
-#: confusb/usbinfo.py:293
+#: confusb/usbinfo.py:307
 msgid "System"
 msgstr "Kerfi"
 
-#: confusb/usbinfo.py:297
+#: confusb/usbinfo.py:311
 msgid "Power control"
 msgstr "Orkustýring"
 
-#: confusb/usbinfo.py:298
+#: confusb/usbinfo.py:312
 msgid "Power state"
 msgstr "Orkustaða"
 
-#: confusb/usbinfo.py:299
+#: confusb/usbinfo.py:313
 msgid "Autosuspend delay (ms)"
 msgstr "Seinkun sjálfvirkrar biðstöðu (ms)"
 
-#: confusb/usbinfo.py:300
+#: confusb/usbinfo.py:314
 msgid "Persistence"
 msgstr "Varanleiki"
 
-#: confusb/usbinfo.py:301
+#: confusb/usbinfo.py:315
 msgid "System wake-up"
 msgstr "Vekja kerfið"
 
-#: confusb/usbinfo.py:302
+#: confusb/usbinfo.py:316
 msgid "Active time (ms)"
 msgstr "Virkur tími (ms)"
 
-#: confusb/usbinfo.py:303
+#: confusb/usbinfo.py:317
 msgid "Connected time (ms)"
 msgstr "Tengdur tími (ms)"
 
-#: confusb/usbinfo.py:304
+#: confusb/usbinfo.py:318
 msgid "URBs processed"
 msgstr "Unnar URB-ur"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:324
 msgid "Power and statistics"
 msgstr "Orka og tölfræði"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:330
 msgid "Topology"
 msgstr "Netskipulag"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:331
 msgid "Connected to"
 msgstr "Tengt við"
 
-#: confusb/usbinfo.py:318
+#: confusb/usbinfo.py:332
 msgid "Parent path"
 msgstr "Slóð foreldris"
+
+#: confusb/usbinfo.py:359
+#, python-brace-format
+msgid "{module} (loaded)"
+msgstr "{module} (hlaðin)"
+
+#: confusb/usbinfo.py:375
+msgid "Storage"
+msgstr "Geymsla"

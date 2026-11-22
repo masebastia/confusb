@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 13:37+0000\n"
+"POT-Creation-Date: 2026-11-22 20:01+0100\n"
 "PO-Revision-Date: 2026-11-22 13:37+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Magyar\n"
@@ -17,63 +17,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: confusb/almacenamiento.py:152 confusb/almacenamiento.py:154
+#: confusb/ui.py:233 confusb/ui.py:317
+msgid "Capacity"
+msgstr "Kapacitás"
 
-#: confusb/app.py:50
+#: confusb/almacenamiento.py:154
+msgid "No media inserted"
+msgstr "Nincs behelyezett adathordozó"
+
+#: confusb/almacenamiento.py:157
+msgid "Drive model"
+msgstr "Meghajtó típusa"
+
+#: confusb/almacenamiento.py:159
+msgid "Access"
+msgstr "Hozzáférés"
+
+#: confusb/almacenamiento.py:159
+msgid "Read-only"
+msgstr "Csak olvasható"
+
+#: confusb/almacenamiento.py:161
+msgid "Partition table"
+msgstr "Partíciós tábla"
+
+#: confusb/almacenamiento.py:163
+msgid "File system"
+msgstr "Fájlrendszer"
+
+#: confusb/almacenamiento.py:165
+msgid "Mounted at"
+msgstr "Csatolva ide"
+
+#: confusb/almacenamiento.py:173
+#, python-brace-format
+msgid "{free} free"
+msgstr "{free} szabad"
+
+#: confusb/almacenamiento.py:175
+#, python-brace-format
+msgid "mounted at {path}"
+msgstr "csatolva ide: {path}"
+
+#: confusb/almacenamiento.py:177
+msgid "not mounted"
+msgstr "nincs csatolva"
+
+#: confusb/almacenamiento.py:178
+#, python-brace-format
+msgid "Partition {name}"
+msgstr "{name} partíció"
+
+#: confusb/app.py:52
 msgid "Show the list of connected USB devices"
 msgstr ""
 
-#: confusb/app.py:52
+#: confusb/app.py:54
 msgid "Show a device's window (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:63 confusb/app.py:212
+#: confusb/app.py:65 confusb/app.py:241
 #, python-brace-format
 msgid "Device «{name}» not found"
 msgstr "A(z) «{name}» eszköz nem található"
 
-#: confusb/app.py:110
+#: confusb/app.py:114
 msgid "USB device"
 msgstr "USB-eszköz"
 
-#: confusb/app.py:114
+#: confusb/app.py:118
 #, python-brace-format
 msgid "Disconnected: {name}"
 msgstr "Leválasztva: {name}"
 
-#: confusb/app.py:125
+#: confusb/app.py:138
 #, python-brace-format
 msgid "Connected: {name}"
 msgstr "Csatlakoztatva: {name}"
 
-#: confusb/app.py:130
+#: confusb/app.py:160
 msgid "USB device connected"
 msgstr "USB-eszköz csatlakoztatva"
 
-#: confusb/app.py:191
-msgid "Shows the information of a USB device when it is connected and looks for its driver and the applications to use it."
+#: confusb/app.py:163
+msgid "View information"
+msgstr "Információk megjelenítése"
+
+#: confusb/app.py:220
+msgid ""
+"Shows the information of a USB device when it is connected and looks for its "
+"driver and the applications to use it."
 msgstr ""
 
-#: confusb/app.py:193
-msgid "Without arguments it runs as a service that watches the USB connections according to the settings."
+#: confusb/app.py:222
+msgid ""
+"Without arguments it runs as a service that watches the USB connections "
+"according to the settings."
 msgstr ""
 
-#: confusb/app.py:194
+#: confusb/app.py:223
 msgid "show the window with the connected devices"
 msgstr ""
 
-#: confusb/app.py:195
+#: confusb/app.py:224
 msgid "open the details of a device (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:196
+#: confusb/app.py:225
 msgid "list the USB devices and exit"
 msgstr ""
 
-#: confusb/app.py:198
-msgid "print all the information of a device and exit (1-5, VID:PID or sysfs path)"
+#: confusb/app.py:227
+msgid ""
+"print all the information of a device and exit (1-5, VID:PID or sysfs path)"
 msgstr ""
 
-#: confusb/app.py:199
+#: confusb/app.py:228
 msgid "show the version and exit"
 msgstr ""
 
@@ -217,32 +277,53 @@ msgstr "«Információk megtekintése →» megjelenítése a kártyákon"
 msgid "When a device is connected"
 msgstr "Eszköz csatlakoztatásakor"
 
-#: confusb/componentes.py:486
+#: confusb/componentes.py:485
+msgid "Only for devices not seen before"
+msgstr "Csak a korábban nem látott eszközökhöz"
+
+#: confusb/componentes.py:488
+msgid "Open storage drives with the default application"
+msgstr "A tárolóeszközök megnyitása az alapértelmezett alkalmazással"
+
+#: confusb/componentes.py:493
+msgid "Forget known devices"
+msgstr "Ismert eszközök elfelejtése"
+
+#: confusb/componentes.py:493
+msgid "The next time they are connected they will count as new"
+msgstr "Legközelebbi csatlakoztatáskor újnak számítanak"
+
+#: confusb/componentes.py:498
 msgid "Reset"
 msgstr "Alaphelyzet"
 
-#: confusb/componentes.py:486 confusb/componentes.py:533
+#: confusb/componentes.py:498 confusb/componentes.py:552
 msgid "Close"
 msgstr "Bezárás"
 
-#: confusb/componentes.py:517
+#: confusb/componentes.py:536
 msgid "About confusb"
 msgstr "A confusb névjegye"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:543
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Verzió: {version}"
 
-#: confusb/componentes.py:525
-msgid "Notifies when a USB device is connected, shows its information and looks for its driver and the applications to use it."
-msgstr "Értesít, ha USB-eszközt csatlakoztatnak, megjeleníti az eszköz adatait, és keresi hozzá az illesztőprogramot és a használatához szükséges alkalmazásokat."
+#: confusb/componentes.py:544
+msgid ""
+"Notifies when a USB device is connected, shows its information and looks for "
+"its driver and the applications to use it."
+msgstr ""
+"Értesít, ha USB-eszközt csatlakoztatnak, megjeleníti az eszköz adatait, és "
+"keresi hozzá az illesztőprogramot és a használatához szükséges "
+"alkalmazásokat."
 
-#: confusb/componentes.py:529
+#: confusb/componentes.py:548
 msgid "License GPL-3.0-or-later"
 msgstr "Licenc: GPL-3.0-or-later"
 
-#: confusb/componentes.py:530
+#: confusb/componentes.py:549
 msgid "Source code on GitHub"
 msgstr "Forráskód a GitHubon"
 
@@ -251,16 +332,28 @@ msgid "PC/SC service and CCID drivers"
 msgstr "PC/SC szolgáltatás és CCID illesztőprogramok"
 
 #: confusb/kb.py:18
-msgid "pcscd is the daemon that manages smart card readers; libccid provides the driver for standard USB readers (CCID). Without pcscd the reader shows up in USB but no application can use it."
-msgstr "A pcscd a chipkártya-olvasókat kezelő démon; a libccid biztosítja az illesztőprogramot a szabványos USB-olvasókhoz (CCID). pcscd nélkül az olvasó látszik az USB-n, de egyetlen alkalmazás sem tudja használni."
+msgid ""
+"pcscd is the daemon that manages smart card readers; libccid provides the "
+"driver for standard USB readers (CCID). Without pcscd the reader shows up in "
+"USB but no application can use it."
+msgstr ""
+"A pcscd a chipkártya-olvasókat kezelő démon; a libccid biztosítja az "
+"illesztőprogramot a szabványos USB-olvasókhoz (CCID). pcscd nélkül az olvasó "
+"látszik az USB-n, de egyetlen alkalmazás sem tudja használni."
 
 #: confusb/kb.py:22
 msgid "OpenSC (PKCS#11, supports DNIe and other cards)"
 msgstr "OpenSC (PKCS#11, támogatja a DNIe-t és más kártyákat)"
 
 #: confusb/kb.py:23
-msgid "Library and tools for cryptographic cards. It includes support for the DNIe (3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. Older DNIe cards (2.0) may need the official DNIe module."
-msgstr "Könyvtár és eszközök kriptográfiai kártyákhoz. Tartalmazza a DNIe (3.0/4.0) támogatását és a PKCS#11 modult, amelyet a Firefox/Chromium és az AutoFirma használ. A régebbi DNIe-khez (2.0) szükség lehet a hivatalos DNIe-modulra."
+msgid ""
+"Library and tools for cryptographic cards. It includes support for the DNIe "
+"(3.0/4.0) and the PKCS#11 module used by Firefox/Chromium and AutoFirma. "
+"Older DNIe cards (2.0) may need the official DNIe module."
+msgstr ""
+"Könyvtár és eszközök kriptográfiai kártyákhoz. Tartalmazza a DNIe (3.0/4.0) "
+"támogatását és a PKCS#11 modult, amelyet a Firefox/Chromium és az AutoFirma "
+"használ. A régebbi DNIe-khez (2.0) szükség lehet a hivatalos DNIe-modulra."
 
 #: confusb/kb.py:26
 msgid "List readers"
@@ -283,8 +376,12 @@ msgid "pcsc-tools (reader and card monitor)"
 msgstr "pcsc-tools (olvasó- és kártyafigyelő)"
 
 #: confusb/kb.py:35
-msgid "pcsc_scan shows in real time when a card is inserted or removed and decodes its ATR."
-msgstr "A pcsc_scan valós időben mutatja, mikor helyeznek be vagy távolítanak el egy kártyát, és dekódolja az ATR-jét."
+msgid ""
+"pcsc_scan shows in real time when a card is inserted or removed and decodes "
+"its ATR."
+msgstr ""
+"A pcsc_scan valós időben mutatja, mikor helyeznek be vagy távolítanak el egy "
+"kártyát, és dekódolja az ATR-jét."
 
 #: confusb/kb.py:37
 msgid "Open pcsc_scan"
@@ -295,16 +392,26 @@ msgid "AutoFirma (electronic signature)"
 msgstr "AutoFirma (elektronikus aláírás)"
 
 #: confusb/kb.py:41
-msgid "Official Spanish Government application to sign documents with the DNIe or a digital certificate. It is not in the Debian repositories: it is downloaded from firmaelectronica.gob.es."
-msgstr "A spanyol kormány hivatalos alkalmazása dokumentumok aláírására DNIe-vel vagy digitális tanúsítvánnyal. Nincs benne a Debian tárolóiban: a firmaelectronica.gob.es oldalról tölthető le."
+msgid ""
+"Official Spanish Government application to sign documents with the DNIe or a "
+"digital certificate. It is not in the Debian repositories: it is downloaded "
+"from firmaelectronica.gob.es."
+msgstr ""
+"A spanyol kormány hivatalos alkalmazása dokumentumok aláírására DNIe-vel "
+"vagy digitális tanúsítvánnyal. Nincs benne a Debian tárolóiban: a "
+"firmaelectronica.gob.es oldalról tölthető le."
 
-#: confusb/kb.py:48 confusb/usbinfo.py:23
+#: confusb/kb.py:48 confusb/usbinfo.py:24
 msgid "Mass storage"
 msgstr "Háttértár"
 
 #: confusb/kb.py:48
-msgid "The system mounts it automatically (udisks2). To format or inspect it, use Disks."
-msgstr "A rendszer automatikusan csatolja (udisks2). Formázáshoz vagy vizsgálathoz használja a Lemezek alkalmazást."
+msgid ""
+"The system mounts it automatically (udisks2). To format or inspect it, use "
+"Disks."
+msgstr ""
+"A rendszer automatikusan csatolja (udisks2). Formázáshoz vagy vizsgálathoz "
+"használja a Lemezek alkalmazást."
 
 #: confusb/kb.py:49
 msgid "Open Disks"
@@ -315,8 +422,12 @@ msgid "Printer (CUPS)"
 msgstr "Nyomtató (CUPS)"
 
 #: confusb/kb.py:52
-msgid "CUPS detects USB printers automatically; it is configured in Settings → Printers."
-msgstr "A CUPS automatikusan felismeri az USB-nyomtatókat; a Beállítások → Nyomtatók alatt állítható be."
+msgid ""
+"CUPS detects USB printers automatically; it is configured in Settings → "
+"Printers."
+msgstr ""
+"A CUPS automatikusan felismeri az USB-nyomtatókat; a Beállítások → Nyomtatók "
+"alatt állítható be."
 
 #: confusb/kb.py:53
 msgid "Configure printers"
@@ -328,7 +439,9 @@ msgstr "Kamera / videó (UVC)"
 
 #: confusb/kb.py:56
 msgid "The kernel's uvcvideo driver supports it. Try it with Snapshot/Cheese."
-msgstr "A kernel uvcvideo illesztőprogramja támogatja. Próbálja ki a Snapshot/Cheese programmal."
+msgstr ""
+"A kernel uvcvideo illesztőprogramja támogatja. Próbálja ki a Snapshot/Cheese "
+"programmal."
 
 #: confusb/kb.py:57
 msgid "List video devices"
@@ -343,8 +456,11 @@ msgid "USB audio"
 msgstr "USB-hang"
 
 #: confusb/kb.py:61
-msgid "Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
-msgstr "Támogatja a snd-usb-audio. A hangerőt és a kimeneteket a pavucontrollal állíthatja."
+msgid ""
+"Supported by snd-usb-audio. Adjust volumes and outputs with pavucontrol."
+msgstr ""
+"Támogatja a snd-usb-audio. A hangerőt és a kimeneteket a pavucontrollal "
+"állíthatja."
 
 #: confusb/kb.py:62
 msgid "Volume control"
@@ -392,7 +508,9 @@ msgstr "Modem / CDC soros port"
 
 #: confusb/kb.py:78
 msgid "ModemManager manages modems; for serial consoles use minicom/picocom."
-msgstr "A ModemManager a modemeket kezeli; soros konzolokhoz használja a minicom/picocom programot."
+msgstr ""
+"A ModemManager a modemeket kezeli; soros konzolokhoz használja a minicom/"
+"picocom programot."
 
 #: confusb/kb.py:79
 msgid "List modems"
@@ -501,7 +619,8 @@ msgstr "{packages} telepítése"
 
 #: confusb/resolver.py:158
 #, python-brace-format
-msgid "The application is already installed on your computer (version {version})."
+msgid ""
+"The application is already installed on your computer (version {version})."
 msgstr "Az alkalmazás már telepítve van a számítógépén (verzió: {version})."
 
 #: confusb/resolver.py:159
@@ -558,12 +677,12 @@ msgstr "USB-elosztó"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "A kernel «hub» illesztőprogramja kezeli."
 
-#: confusb/resolver.py:206 confusb/ui.py:328
+#: confusb/resolver.py:206 confusb/ui.py:331
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "{number}. interfész · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:333
+#: confusb/resolver.py:207 confusb/ui.py:336
 msgid "none found"
 msgstr "egyik sem található"
 
@@ -578,8 +697,12 @@ msgid "Candidate modules: {modules}"
 msgstr "Jelölt modulok: {modules}"
 
 #: confusb/resolver.py:212
-msgid "Normal: CCID smart card readers do not use a kernel driver; they are managed by the pcscd daemon (user space) with libccid."
-msgstr "Normális: a CCID chipkártya-olvasók nem használnak kernel-illesztőprogramot; a pcscd démon (felhasználói tér) kezeli őket a libccid segítségével."
+msgid ""
+"Normal: CCID smart card readers do not use a kernel driver; they are managed "
+"by the pcscd daemon (user space) with libccid."
+msgstr ""
+"Normális: a CCID chipkártya-olvasók nem használnak kernel-illesztőprogramot; "
+"a pcscd démon (felhasználói tér) kezeli őket a libccid segítségével."
 
 #: confusb/resolver.py:215
 #, python-brace-format
@@ -595,8 +718,11 @@ msgid "The kernel has no module for this interface."
 msgstr "A kernelben nincs modul ehhez az interfészhez."
 
 #: confusb/resolver.py:219
-msgid "It probably needs user-space software (see below) or an external driver."
-msgstr "Valószínűleg felhasználói térbeli szoftverre (lásd alább) vagy külső illesztőprogramra van szükség."
+msgid ""
+"It probably needs user-space software (see below) or an external driver."
+msgstr ""
+"Valószínűleg felhasználói térbeli szoftverre (lásd alább) vagy külső "
+"illesztőprogramra van szükség."
 
 #: confusb/resolver.py:221
 msgid "No interfaces"
@@ -646,8 +772,12 @@ msgid "fwupd recognizes this device"
 msgstr "A fwupd felismeri ezt az eszközt"
 
 #: confusb/resolver.py:306
-msgid "Official firmware updates from the manufacturer (LVFS) can be checked and applied."
-msgstr "A gyártó hivatalos belső vezérlőprogram-frissítései (LVFS) lekérdezhetők és alkalmazhatók."
+msgid ""
+"Official firmware updates from the manufacturer (LVFS) can be checked and "
+"applied."
+msgstr ""
+"A gyártó hivatalos belső vezérlőprogram-frissítései (LVFS) lekérdezhetők és "
+"alkalmazhatók."
 
 #: confusb/resolver.py:308
 msgid "Check for updates"
@@ -676,7 +806,9 @@ msgstr "Hivatalos oldal / támogatás"
 
 #: confusb/resolver.py:323
 msgid "Probes from other users with this same device and the driver they used."
-msgstr "Más felhasználók mérései ugyanezzel az eszközzel és az általuk használt illesztőprogram."
+msgstr ""
+"Más felhasználók mérései ugyanezzel az eszközzel és az általuk használt "
+"illesztőprogram."
 
 #: confusb/resolver.py:325
 msgid "USB ID database"
@@ -693,7 +825,9 @@ msgstr "DNIe: hivatalos portál"
 
 #: confusb/resolver.py:334
 msgid "Drivers, PKCS#11 module and guides for the Spanish electronic ID card."
-msgstr "Illesztőprogramok, PKCS#11 modul és útmutatók a spanyol elektronikus személyi igazolványhoz."
+msgstr ""
+"Illesztőprogramok, PKCS#11 modul és útmutatók a spanyol elektronikus "
+"személyi igazolványhoz."
 
 #: confusb/resolver.py:335
 msgid "Open the DNIe portal"
@@ -760,446 +894,455 @@ msgstr "Csatlakoztasson egyet, és automatikusan megjelenik itt."
 msgid "Connected USB devices: {n}"
 msgstr "Csatlakoztatott USB-eszközök: {n}"
 
-#: confusb/ui.py:228 confusb/ui.py:276 confusb/ui.py:314
+#: confusb/ui.py:228 confusb/ui.py:277 confusb/ui.py:315
 msgid "Unknown manufacturer"
 msgstr "Ismeretlen gyártó"
 
-#: confusb/ui.py:232
+#: confusb/ui.py:231
 msgid "Type"
 msgstr "Típus"
 
-#: confusb/ui.py:233
+#: confusb/ui.py:234
 msgid "Port"
 msgstr "Port"
 
-#: confusb/ui.py:234
+#: confusb/ui.py:235
 msgid "Driver"
 msgstr "Illesztőprogram"
 
-#: confusb/ui.py:234 confusb/ui.py:332
+#: confusb/ui.py:235 confusb/ui.py:335
 msgid "none"
 msgstr "nincs"
 
-#: confusb/ui.py:236
+#: confusb/ui.py:237
 msgid "View information →"
 msgstr "Információk megtekintése →"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back"
 msgstr "Vissza"
 
-#: confusb/ui.py:262
+#: confusb/ui.py:263
 msgid "Back to the list of devices"
 msgstr "Vissza az eszközlistához"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy"
 msgstr "Másolás"
 
-#: confusb/ui.py:263
+#: confusb/ui.py:264
 msgid "Copy all the information to the clipboard"
 msgstr "Az összes információ másolása a vágólapra"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Information"
 msgstr "Információk"
 
-#: confusb/ui.py:271
+#: confusb/ui.py:272
 msgid "Drivers and applications"
 msgstr "Illesztőprogramok és alkalmazások"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:281
 msgid "Connected"
 msgstr "Csatlakoztatva"
 
-#: confusb/ui.py:300
+#: confusb/ui.py:301
 msgid "Information copied to the clipboard"
 msgstr "Az információk a vágólapra másolva"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Interfaces"
 msgstr "Interfészek"
 
-#: confusb/ui.py:326
+#: confusb/ui.py:329
 msgid "Each interface can have its own driver"
 msgstr "Minden interfésznek lehet saját illesztőprogramja"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:333
 msgid "Class"
 msgstr "Osztály"
 
-#: confusb/ui.py:331
+#: confusb/ui.py:334
 msgid "Subclass / protocol"
 msgstr "Alosztály / protokoll"
 
-#: confusb/ui.py:332
+#: confusb/ui.py:335
 msgid "Bound driver"
 msgstr "Társított illesztőprogram"
 
-#: confusb/ui.py:333
+#: confusb/ui.py:336
 msgid "Kernel modules"
 msgstr "Kernelmodulok"
 
-#: confusb/ui.py:340
+#: confusb/ui.py:343
 msgid "Nodes created in the system"
 msgstr "A rendszerben létrehozott csomópontok"
 
-#: confusb/ui.py:344
+#: confusb/ui.py:347
 msgid "Raw data"
 msgstr "Nyers adatok"
 
-#: confusb/ui.py:345
+#: confusb/ui.py:348
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev-tulajdonságok ({n})"
 
-#: confusb/ui.py:349
+#: confusb/ui.py:352
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Az lsusb -v kimenete (teljes USB-leírók)"
 
-#: confusb/ui.py:364
+#: confusb/ui.py:367
 msgid "Looking for drivers and applications…"
 msgstr "Illesztőprogramok és alkalmazások keresése…"
 
-#: confusb/ui.py:417
+#: confusb/ui.py:420
 msgid "No terminal emulator found"
 msgstr "Nem található terminálemulátor"
 
-#: confusb/ui.py:419
+#: confusb/ui.py:422
 msgid "Press Enter to close…"
 msgstr "A bezáráshoz nyomja meg az Entert…"
 
-#: confusb/ui.py:430
+#: confusb/ui.py:433
 msgid "Working…"
 msgstr "Folyamatban…"
 
-#: confusb/ui.py:436
+#: confusb/ui.py:439
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Hiba: {error}"
 
-#: confusb/ui.py:439
+#: confusb/ui.py:442
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(kilépési kód: {code})"
 
-#: confusb/ui.py:443
+#: confusb/ui.py:446
 msgid "Installation completed"
 msgstr "A telepítés befejeződött"
 
-#: confusb/ui.py:446
+#: confusb/ui.py:449
 msgid "The installation failed"
 msgstr "A telepítés sikertelen volt"
 
-#: confusb/ui.py:455
+#: confusb/ui.py:458
 msgid "Disconnected"
 msgstr "Leválasztva"
 
-#: confusb/ui.py:456
+#: confusb/ui.py:459
 msgid "The device has been disconnected"
 msgstr "Az eszközt leválasztották"
 
-#: confusb/usbinfo.py:16
+#: confusb/usbinfo.py:17
 msgid "Defined at interface level"
 msgstr "Interfészszinten meghatározott"
 
-#: confusb/usbinfo.py:17
+#: confusb/usbinfo.py:18
 msgid "Audio"
 msgstr ""
 
-#: confusb/usbinfo.py:18
+#: confusb/usbinfo.py:19
 msgid "Communications (CDC)"
 msgstr "Kommunikáció (CDC)"
 
-#: confusb/usbinfo.py:19
+#: confusb/usbinfo.py:20
 msgid "Human interface device (HID)"
 msgstr "Emberi interfész eszköz (HID)"
 
-#: confusb/usbinfo.py:20
+#: confusb/usbinfo.py:21
 msgid "Physical"
 msgstr "Fizikai"
 
-#: confusb/usbinfo.py:21
+#: confusb/usbinfo.py:22
 msgid "Image"
 msgstr "Kép"
 
-#: confusb/usbinfo.py:22
+#: confusb/usbinfo.py:23
 msgid "Printer"
 msgstr "Nyomtató"
 
-#: confusb/usbinfo.py:24
+#: confusb/usbinfo.py:25
 msgid "Hub"
 msgstr ""
 
-#: confusb/usbinfo.py:26
+#: confusb/usbinfo.py:27
 msgid "Smart card (CCID)"
 msgstr "Chipkártya (CCID)"
 
-#: confusb/usbinfo.py:27
+#: confusb/usbinfo.py:28
 msgid "Content security"
 msgstr "Tartalomvédelem"
 
-#: confusb/usbinfo.py:28
+#: confusb/usbinfo.py:29
 msgid "Video"
 msgstr "Videó"
 
-#: confusb/usbinfo.py:29
+#: confusb/usbinfo.py:30
 msgid "Personal healthcare"
 msgstr "Személyes egészségügyi ellátás"
 
-#: confusb/usbinfo.py:30
+#: confusb/usbinfo.py:31
 msgid "Audio/Video"
 msgstr "Hang/Videó"
 
-#: confusb/usbinfo.py:32
+#: confusb/usbinfo.py:33
 msgid "Diagnostic"
 msgstr "Diagnosztika"
 
-#: confusb/usbinfo.py:33
+#: confusb/usbinfo.py:34
 msgid "Wireless (e.g. Bluetooth)"
 msgstr "Vezeték nélküli (pl. Bluetooth)"
 
-#: confusb/usbinfo.py:34
+#: confusb/usbinfo.py:35
 msgid "Miscellaneous"
 msgstr "Egyéb"
 
-#: confusb/usbinfo.py:35
+#: confusb/usbinfo.py:36
 msgid "Application specific (DFU, IrDA...)"
 msgstr "Alkalmazásspecifikus (DFU, IrDA...)"
 
-#: confusb/usbinfo.py:36
+#: confusb/usbinfo.py:37
 msgid "Vendor specific"
 msgstr "Gyártóspecifikus"
 
-#: confusb/usbinfo.py:50
+#: confusb/usbinfo.py:51
 msgid "Manufacturer (descriptor)"
 msgstr "Gyártó (leíró)"
 
-#: confusb/usbinfo.py:51
+#: confusb/usbinfo.py:52
 msgid "Product (descriptor)"
 msgstr "Termék (leíró)"
 
-#: confusb/usbinfo.py:52
+#: confusb/usbinfo.py:53
 msgid "Serial number"
 msgstr "Sorozatszám"
 
-#: confusb/usbinfo.py:53
+#: confusb/usbinfo.py:54
 msgid "Vendor ID (VID)"
 msgstr "Gyártóazonosító (VID)"
 
-#: confusb/usbinfo.py:54
+#: confusb/usbinfo.py:55
 msgid "Product ID (PID)"
 msgstr "Termékazonosító (PID)"
 
-#: confusb/usbinfo.py:55
+#: confusb/usbinfo.py:56
 msgid "Device version (bcdDevice)"
 msgstr "Az eszköz verziója (bcdDevice)"
 
-#: confusb/usbinfo.py:56
+#: confusb/usbinfo.py:57
 msgid "USB version"
 msgstr "USB-verzió"
 
-#: confusb/usbinfo.py:57
+#: confusb/usbinfo.py:58
 msgid "Negotiated speed (Mb/s)"
 msgstr "Egyeztetett sebesség (Mb/s)"
 
-#: confusb/usbinfo.py:58
+#: confusb/usbinfo.py:59
 msgid "Device class"
 msgstr "Az eszköz osztálya"
 
-#: confusb/usbinfo.py:59
+#: confusb/usbinfo.py:60
 msgid "Device subclass"
 msgstr "Az eszköz alosztálya"
 
-#: confusb/usbinfo.py:60
+#: confusb/usbinfo.py:61
 msgid "Device protocol"
 msgstr "Az eszköz protokollja"
 
-#: confusb/usbinfo.py:61
+#: confusb/usbinfo.py:62
 msgid "Max. EP0 packet size"
 msgstr "Az EP0 legnagyobb csomagmérete"
 
-#: confusb/usbinfo.py:62
+#: confusb/usbinfo.py:63
 msgid "Number of configurations"
 msgstr "Konfigurációk száma"
 
-#: confusb/usbinfo.py:63
+#: confusb/usbinfo.py:64
 msgid "Active configuration"
 msgstr "Aktív konfiguráció"
 
-#: confusb/usbinfo.py:64
+#: confusb/usbinfo.py:65
 msgid "Number of interfaces"
 msgstr "Interfészek száma"
 
-#: confusb/usbinfo.py:65
+#: confusb/usbinfo.py:66
 msgid "Configuration attributes"
 msgstr "A konfiguráció attribútumai"
 
-#: confusb/usbinfo.py:66
+#: confusb/usbinfo.py:67
 msgid "Declared maximum power"
 msgstr "Megadott legnagyobb teljesítményfelvétel"
 
-#: confusb/usbinfo.py:67
+#: confusb/usbinfo.py:68
 msgid "Bus"
 msgstr ""
 
-#: confusb/usbinfo.py:68
+#: confusb/usbinfo.py:69
 msgid "Address on the bus"
 msgstr "Cím a buszon"
 
-#: confusb/usbinfo.py:69
+#: confusb/usbinfo.py:70
 msgid "Port path (devpath)"
 msgstr "Portútvonal (devpath)"
 
-#: confusb/usbinfo.py:70
+#: confusb/usbinfo.py:71
 msgid "Child ports"
 msgstr "Alárendelt portok"
 
-#: confusb/usbinfo.py:71
+#: confusb/usbinfo.py:72
 msgid "Removable"
 msgstr "Eltávolítható"
 
-#: confusb/usbinfo.py:72
+#: confusb/usbinfo.py:73
 msgid "Authorized"
 msgstr "Engedélyezett"
 
-#: confusb/usbinfo.py:73
+#: confusb/usbinfo.py:74
 msgid "Configuration name"
 msgstr "A konfiguráció neve"
 
-#: confusb/usbinfo.py:75
+#: confusb/usbinfo.py:76
 msgid "Kernel quirks"
 msgstr "Kernel-sajátosságok"
 
-#: confusb/usbinfo.py:108
+#: confusb/usbinfo.py:110
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: confusb/usbinfo.py:162
+#: confusb/usbinfo.py:174
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:163
+#: confusb/usbinfo.py:175
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:165
+#: confusb/usbinfo.py:177
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:166
+#: confusb/usbinfo.py:178
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:169
+#: confusb/usbinfo.py:181
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:201
+#: confusb/usbinfo.py:213
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:232
+#: confusb/usbinfo.py:246
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "hálózati interfész: {name}"
 
-#: confusb/usbinfo.py:279
+#: confusb/usbinfo.py:293
 msgid "Manufacturer (usb.ids)"
 msgstr "Gyártó (usb.ids)"
 
-#: confusb/usbinfo.py:280
+#: confusb/usbinfo.py:294
 msgid "Product (usb.ids)"
 msgstr "Termék (usb.ids)"
 
-#: confusb/usbinfo.py:281
+#: confusb/usbinfo.py:295
 msgid "sysfs path"
 msgstr "sysfs-útvonal"
 
-#: confusb/usbinfo.py:282
+#: confusb/usbinfo.py:296
 msgid "/dev node"
 msgstr "/dev csomópont"
 
-#: confusb/usbinfo.py:283
+#: confusb/usbinfo.py:297
 msgid "Subsystem / type"
 msgstr "Alrendszer / típus"
 
-#: confusb/usbinfo.py:284
+#: confusb/usbinfo.py:298
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:285
+#: confusb/usbinfo.py:299
 msgid "Device driver"
 msgstr "Az eszköz illesztőprogramja"
 
-#: confusb/usbinfo.py:287
+#: confusb/usbinfo.py:301
 msgid "Persistent paths (ID_PATH)"
 msgstr "Állandó útvonalak (ID_PATH)"
 
-#: confusb/usbinfo.py:288
+#: confusb/usbinfo.py:302
 msgid "udev tags (TAGS)"
 msgstr "udev-címkék (TAGS)"
 
-#: confusb/usbinfo.py:291
+#: confusb/usbinfo.py:305
 msgid "Identification"
 msgstr "Azonosítás"
 
-#: confusb/usbinfo.py:292
+#: confusb/usbinfo.py:306
 msgid "Descriptors and configuration"
 msgstr "Leírók és konfiguráció"
 
-#: confusb/usbinfo.py:293
+#: confusb/usbinfo.py:307
 msgid "System"
 msgstr "Rendszer"
 
-#: confusb/usbinfo.py:297
+#: confusb/usbinfo.py:311
 msgid "Power control"
 msgstr "Energiavezérlés"
 
-#: confusb/usbinfo.py:298
+#: confusb/usbinfo.py:312
 msgid "Power state"
 msgstr "Energiaállapot"
 
-#: confusb/usbinfo.py:299
+#: confusb/usbinfo.py:313
 msgid "Autosuspend delay (ms)"
 msgstr "Automatikus felfüggesztés késleltetése (ms)"
 
-#: confusb/usbinfo.py:300
+#: confusb/usbinfo.py:314
 msgid "Persistence"
 msgstr "Állandóság"
 
-#: confusb/usbinfo.py:301
+#: confusb/usbinfo.py:315
 msgid "System wake-up"
 msgstr "A rendszer felébresztése"
 
-#: confusb/usbinfo.py:302
+#: confusb/usbinfo.py:316
 msgid "Active time (ms)"
 msgstr "Aktív idő (ms)"
 
-#: confusb/usbinfo.py:303
+#: confusb/usbinfo.py:317
 msgid "Connected time (ms)"
 msgstr "Csatlakozási idő (ms)"
 
-#: confusb/usbinfo.py:304
+#: confusb/usbinfo.py:318
 msgid "URBs processed"
 msgstr "Feldolgozott URB-k"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:324
 msgid "Power and statistics"
 msgstr "Energia és statisztika"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:330
 msgid "Topology"
 msgstr "Topológia"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:331
 msgid "Connected to"
 msgstr "Csatlakoztatva ehhez"
 
-#: confusb/usbinfo.py:318
+#: confusb/usbinfo.py:332
 msgid "Parent path"
 msgstr "A szülő útvonala"
+
+#: confusb/usbinfo.py:359
+#, python-brace-format
+msgid "{module} (loaded)"
+msgstr "{module} (betöltve)"
+
+#: confusb/usbinfo.py:375
+msgid "Storage"
+msgstr "Tároló"

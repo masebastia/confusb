@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Servicio de confusb: escucha los eventos udev de USB y, según los ajustes, abre una ventana con la
-información del dispositivo, muestra una notificación o no hace nada."""
+"""Servicio de confusb: escucha los eventos udev de USB y, según la política de «conexion» y los ajustes,
+abre una ventana con la información del dispositivo, ofrece abrirla con una notificación, abre la unidad de
+almacenamiento con la aplicación predeterminada o no hace nada."""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +16,7 @@ gi.require_version("Adw", "1")
 gi.require_version("GUdev", "1.0")
 from gi.repository import Adw, Gio, GLib, GUdev  # noqa: E402
 
-from . import APP_ID, __version__, usbinfo  # noqa: E402
+from . import APP_ID, __version__, almacenamiento, conexion, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
 from .i18n import _  # noqa: E402
 from .ui import DeviceWindow, DevicesWindow  # noqa: E402
@@ -70,6 +71,8 @@ class ConfusbApp(Adw.Application):
             self.held = True
             self.client = GUdev.Client(subsystems=["usb"])
             self.client.connect("uevent", self.on_uevent)
+            if not conexion.REGISTRO.existe:   # primer arranque: lo que ya está conectado cuenta como conocido
+                conexion.REGISTRO.sembrar(usbinfo.list_usb_devices())
             print("confusb: watching USB connections…", flush=True)
         return 0
 
@@ -115,34 +118,59 @@ class ConfusbApp(Adw.Application):
                 self.devices_win.refresh(aviso=_("Disconnected: {name}").format(name=nombre))
 
     def conectado(self, path: str):
-        """Un dispositivo nuevo, con el kernel ya asentado: actualizar la lista y aplicar el ajuste."""
+        """Un dispositivo nuevo, con el kernel ya asentado: actualizar la lista y decidir qué hacer."""
         if not os.path.exists(path):
-            return False
-
-        def hecho(info):
-            if isinstance(info, Exception):
-                return False
-            if self.devices_win:
-                self.devices_win.refresh(aviso=_("Connected: {name}").format(name=info.title))
-            modo = AJUSTES.al_conectar
-            if modo == "ventana":
-                self.open_device(path)
-            elif modo == "notificar":
-                n = Gio.Notification.new(_("USB device connected"))
-                n.set_body(f"{info.title} · {info.usb_id}")
-                n.set_default_action(f"app.detalle({GLib.Variant.new_string(path).print_(False)})")
-                self.send_notification(f"usb-{info.usb_id}", n)
             return False
 
         def trabajo():
             try:
-                res = usbinfo.collect(path, with_lsusb=False)
+                res = (usbinfo.collect(path, with_lsusb=False), conexion.sesion_activa(), almacenamiento.automount_open())
             except Exception as e:  # noqa: BLE001
                 res = e
             GLib.idle_add(hecho, res)
 
+        def hecho(res):
+            if isinstance(res, Exception):
+                print(f"confusb: error reading {path}: {res}", flush=True)
+                return False
+            info, activa, gnome_abre = res
+            if self.devices_win:
+                self.devices_win.refresh(aviso=_("Connected: {name}").format(name=info.title))
+            previo = conexion.REGISTRO.buscar(info)
+            dec = conexion.decidir(info, activa=activa, previo=previo, modo=AJUSTES.al_conectar,
+                                   solo_nuevos=AJUSTES.solo_nuevos, abrir_almacenamiento=AJUSTES.abrir_almacenamiento,
+                                   automount_open=gnome_abre)
+            print(f"confusb: {info.usb_id} {info.title}: {dec.accion} ({dec.motivo})", flush=True)
+            if activa and not info.is_hub:
+                conexion.REGISTRO.anotar(info)       # ya ha estado conectado: la próxima vez no es nuevo
+            if dec.accion == "ventana":
+                self.open_device(path)
+            elif dec.accion == "notificar":
+                self.notificar(info, path)
+            elif dec.accion == "almacenamiento":
+                self.abrir_almacenamiento(info, path, nuevo=previo is None)
+            return False
+
         threading.Thread(target=trabajo, daemon=True).start()
         return False
+
+    def notificar(self, info: usbinfo.DeviceInfo, path: str):
+        """Ofrece abrir la información del dispositivo: botón «Ver información» (o pulsar la notificación)."""
+        destino = GLib.Variant.new_string(path)
+        n = Gio.Notification.new(_("USB device connected"))
+        n.set_body(f"{info.title} · {info.usb_id}")
+        n.set_default_action_and_target("app.detalle", destino)
+        n.add_button_with_target(_("View information"), "app.detalle", destino)
+        self.send_notification(f"usb-{info.usb_id}", n)
+
+    def abrir_almacenamiento(self, info: usbinfo.DeviceInfo, path: str, nuevo: bool):
+        """Espera a que se monte la unidad y la abre con la aplicación predeterminada. Si no se monta (sin
+        formato, cifrada, montaje automático desactivado…) y es la primera vez, se ofrece ver su información."""
+        def al_agotar():
+            if nuevo:
+                self.notificar(info, path)
+
+        almacenamiento.EsperaMontaje(path, almacenamiento.abrir, al_agotar)
 
     def open_device(self, path: str):
         win = self.windows.get(path)

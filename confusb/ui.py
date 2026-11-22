@@ -17,7 +17,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # noqa: E402
 
-from . import fondo, resolver, usbinfo  # noqa: E402
+from . import almacenamiento, fondo, resolver, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
 from .i18n import _  # noqa: E402
 from .componentes import (HUECO, AcercaDeDialogo, BarraEstado, Cabecera, InterfazDialogo, Masonry, SelectorIdioma,  # noqa: E402
@@ -228,11 +228,12 @@ class DevicesWindow(VentanaBase):
         c.append(label(info.vendor or _("Unknown manufacturer"), "dim"))
         c.append(label(info.usb_id, "mod-big", wrap=False))
         tipos = ", ".join(_(CLASS_NAMES[k]) if k in CLASS_NAMES else f"0x{k:02x}" for k in sorted(info.classes) if k != 0) or "—"
-        c.append(datos([
-            (_("Type"), tipos),
-            (_("Port"), os.path.basename(info.syspath)),
-            (_("Driver"), ", ".join(info.drivers) or _("none")),
-        ]))
+        filas = [(_("Type"), tipos)]
+        if info.capacidad:
+            filas.append((_("Capacity"), almacenamiento.formatear(info.capacidad)))
+        filas += [(_("Port"), os.path.basename(info.syspath)),
+                  (_("Driver"), ", ".join(info.drivers) or _("none"))]
+        c.append(datos(filas))
         pie = label(_("View information →"), "mod-pie", wrap=False)
         pie.set_margin_top(4)
         pie.set_visible(AJUSTES.pie)
@@ -312,6 +313,8 @@ class DeviceWindow(VentanaBase):
         txt.set_hexpand(True)
         txt.append(label(info.title, "mod-name"))
         txt.append(label(f"{info.vendor or _('Unknown manufacturer')} · USB ID {info.usb_id}", "dim"))
+        if info.capacidad:
+            txt.append(label(f"{_('Capacity')}: {almacenamiento.formatear(info.capacidad)}", "dim"))
         fila.append(txt)
         cab.append(fila)
         pagina.append(cab)

@@ -1,3 +1,4 @@
+confusb/almacenamiento.py
 confusb/app.py
 confusb/ajustes.py
 confusb/componentes.py

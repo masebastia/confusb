@@ -106,7 +106,9 @@ def leer_po(ruta: str) -> dict[str, str]:
 def _cargar(codigo: str) -> gettext.NullTranslations:
     if codigo == FUENTE or codigo not in IDIOMAS:
         return gettext.NullTranslations()
-    for carpeta in ("/usr/share/locale", os.path.join(RAIZ, "locale")):       # .mo instalados
+    # .mo compilados: primero los del propio árbol de código (si se ejecuta desde el repositorio, que no mande
+    # una versión vieja instalada en el sistema) y luego los instalados.
+    for carpeta in (os.path.join(RAIZ, "locale"), "/usr/share/locale"):
         try:
             return gettext.translation(DOMINIO, localedir=carpeta, languages=[codigo])
         except OSError:

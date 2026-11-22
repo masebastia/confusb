@@ -19,8 +19,27 @@ detecta y ofrece instalarlo.
     lanzar o probar desde la propia ventana (p. ej. listar lectores y certificados de un lector de DNIe).
 - **Interfaz** (botón «🎨 Interfaz»): opacidad y esquinas de las tarjetas, color de los títulos, marco
   (resaltado, atenuado o sin marco), sombra, pie «Ver información →» y qué hacer al conectar un dispositivo
-  (abrir ventana, notificación o nada). Los cambios se ven al momento y se guardan en
+  (notificación, abrir ventana o nada; solo los nuevos; abrir las unidades de almacenamiento). Los cambios se ven al momento y se guardan en
   `~/.config/confusb/ajustes.json`.
+
+## Cuándo aparece confusb al conectar un dispositivo
+
+confusb no salta con cada conexión. Al enchufar un dispositivo comprueba, por este orden:
+
+1. **Que tu sesión sea la que está delante.** Con varios usuarios conectados a la vez («cambiar de usuario»)
+   todas las sesiones reciben el mismo aviso del sistema; solo reacciona la activa.
+2. **Si el dispositivo ya se conocía y funcionaba**: entonces no aparece. Los dispositivos conocidos se apuntan
+   en `~/.local/share/confusb/dispositivos.json` (al arrancar por primera vez se apuntan los que ya están
+   conectados). Si uno conocido deja de tener controlador, sí avisa.
+3. **Si es la primera vez**: ofrece abrir la información con una notificación (botón *Ver información*), o abre
+   la ventana directamente si así se ha elegido en «Interfaz».
+4. **Si es una unidad de almacenamiento**: espera a que el sistema la monte y la abre con la aplicación
+   predeterminada para unidades (el gestor de archivos, o la de su tipo de contenido si se ha configurado en
+   GNOME). Si GNOME ya la abre por sí mismo (*Configuración › Medios extraíbles*), confusb no la abre otra vez.
+
+Las dos últimas reglas se pueden cambiar en «Interfaz», que además tiene un botón para olvidar los
+dispositivos conocidos. De las unidades de almacenamiento se muestra la **capacidad**, el modelo, la tabla de
+particiones y, por partición, el sistema de ficheros, la etiqueta, el espacio libre y dónde está montada.
 
 La estética es la de Contabilizando (otra aplicación del mismo autor): azul azabache con
 degradado y el logotipo de la marca (un hexágono con el símbolo USB y un pulso) como marca de agua sobre

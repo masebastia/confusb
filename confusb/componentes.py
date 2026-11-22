@@ -14,7 +14,7 @@ gi.require_version("Adw", "1")
 gi.require_version("Graphene", "1.0")
 from gi.repository import GLib, Graphene, Gtk, Pango  # noqa: E402
 
-from . import __version__, fondo  # noqa: E402
+from . import __version__, conexion, fondo  # noqa: E402
 from .ajustes import AJUSTES, AL_CONECTAR, COLORES, DEFECTOS, MARCOS  # noqa: E402
 from .i18n import IDIOMAS, N_, _, etiqueta, mayusculas  # noqa: E402
 from .usbinfo import ENV  # noqa: E402
@@ -482,6 +482,18 @@ class InterfazDialogo(CristalDialogo):
 
         c.append(rubrica(_("When a device is connected")))
         self.al_conectar = self._radios(AL_CONECTAR, AJUSTES.al_conectar, lambda k: AJUSTES.cambiar(al_conectar=k), c)
+        self.solo_nuevos = Gtk.CheckButton(label=_("Only for devices not seen before"), active=AJUSTES.solo_nuevos)
+        self.solo_nuevos.connect("toggled", lambda w: not self._ignorar and AJUSTES.cambiar(solo_nuevos=w.get_active()))
+        c.append(self.solo_nuevos)
+        self.almacenamiento = Gtk.CheckButton(label=_("Open storage drives with the default application"),
+                                              active=AJUSTES.abrir_almacenamiento)
+        self.almacenamiento.connect("toggled", lambda w: not self._ignorar and
+                                    AJUSTES.cambiar(abrir_almacenamiento=w.get_active()))
+        c.append(self.almacenamiento)
+        olvidar = boton(_("Forget known devices"), tip=_("The next time they are connected they will count as new"))
+        olvidar.set_halign(Gtk.Align.START)
+        olvidar.connect("clicked", self._olvidar)
+        c.append(olvidar)
 
         self.anadir_botones([(_("Reset"), self._restablecer), (_("Close"), al_cerrar)])
 
@@ -501,9 +513,16 @@ class InterfazDialogo(CristalDialogo):
             r.connect("toggled", lambda w, i=k: w.get_active() and al_elegir(i))
         return radios
 
+    @staticmethod
+    def _olvidar(boton_):
+        conexion.REGISTRO.olvidar()
+        boton_.set_sensitive(False)
+
     def _restablecer(self):
         AJUSTES.restablecer()
         self._ignorar = True
+        self.solo_nuevos.set_active(DEFECTOS["solo_nuevos"])
+        self.almacenamiento.set_active(DEFECTOS["abrir_almacenamiento"])
         self.colores.set_selected(list(COLORES).index(DEFECTOS["titulo"]))
         self.sombra.set_active(DEFECTOS["sombra"])
         self.pie.set_active(DEFECTOS["pie"])

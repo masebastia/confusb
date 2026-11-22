@@ -71,8 +71,10 @@ llegaría a Debian 14; para trixie quedaría `trixie-backports` cuando esté en 
 - Dependencias en tiempo de ejecución: `python3-gi`, `gir1.2-gtk-4.0`, `gir1.2-adw-1`, `gir1.2-gudev-1.0`,
   `gir1.2-graphene-1.0`, `usbutils`, `udev` y `kmod`. Recomienda `pkexec` (instalar paquetes desde la ventana).
 - El servicio es una unidad de usuario de systemd (`/usr/lib/systemd/user/confusb.service`), activada por defecto
-  con la sesión gráfica (`dh_installsystemduser`). El ajuste «Al conectar un dispositivo» permite abrir una
-  ventana, mostrar una notificación o no hacer nada.
+  con la sesión gráfica (`dh_installsystemduser`). Solo reacciona la sesión activa y, para los dispositivos
+  nuevos, ofrece una notificación (o abre una ventana, o nada, según «Al conectar un dispositivo»); las unidades
+  de almacenamiento se abren con la aplicación predeterminada. Los dispositivos conocidos se apuntan en
+  `~/.local/share/confusb/dispositivos.json`.
 - Las traducciones (`po/*.po`) se compilan a `.mo` en `/usr/share/locale`. Las que no son españolas están
   generadas con IA y pendientes de revisión: conviene decirlo al presentar el paquete.
 - Los textos de la ayuda de línea de comandos solo están traducidos al español.

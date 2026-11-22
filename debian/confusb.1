@@ -12,10 +12,13 @@ confusb \- USB device information and driver finder
 .RB [ \-\-version ]
 .SH DESCRIPTION
 .B confusb
-watches the USB connections. When a device is plugged in it opens a window
-(or shows a notification, depending on the settings) with all the information
-the system exposes about the device and looks for its driver and the
-applications needed to use it.
+watches the USB connections. The first time a device is plugged in it offers to
+show (with a notification, or by opening a window, depending on the settings)
+all the information the system exposes about the device, and looks for its
+driver and the applications needed to use it. Devices that are already known
+do not show anything, and neither does a session that is not in the foreground
+when several users are logged in. Storage drives are opened with the default
+application for them (the file manager) once the system has mounted them.
 .PP
 Without arguments it runs as a service that watches the USB connections. It is
 normally started automatically with the graphical session by the systemd user
@@ -55,6 +58,9 @@ User settings (appearance of the cards, language and what to do when a device is
 connected). They can be changed from the
 .B Interface
 button of the application.
+.TP
+.I ~/.local/share/confusb/dispositivos.json
+Devices that have already been connected (so that they are not offered again).
 .SH ENVIRONMENT
 The interface language is chosen in the application (language drop-down); by
 default it follows the language of the desktop.

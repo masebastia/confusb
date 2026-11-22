@@ -309,9 +309,9 @@ class DeviceWindow(VentanaBase):
 
         # ---- páginas, con navegación en píldoras
         self.stack = Gtk.Stack(hexpand=True, vexpand=True, transition_type=Gtk.StackTransitionType.CROSSFADE)
-        self.stack.add_named(self._con_margenes(desplazable(self.pagina_info())), "info")
+        self.stack.add_named(desplazable(self._con_margenes(self.pagina_info())), "info")
         self.sw_box = Masonry()
-        self.stack.add_named(self._con_margenes(desplazable(self.sw_box)), "sw")
+        self.stack.add_named(desplazable(self._con_margenes(self.sw_box)), "sw")
         self.cuerpo.append(pastillas([("info", _("Information")), ("sw", _("Drivers and applications"))],
                                      self.stack.set_visible_child_name))
         self.cuerpo.append(self.stack)
@@ -329,6 +329,8 @@ class DeviceWindow(VentanaBase):
 
     @staticmethod
     def _con_margenes(w: Gtk.Widget) -> Gtk.Widget:
+        """Márgenes del contenido (no del ScrolledWindow): así su barra queda en el borde de la ventana, en el
+        hueco entre ella y las tarjetas, y no encima de ellas."""
         w.set_margin_start(20)
         w.set_margin_end(20)
         w.set_margin_bottom(12)

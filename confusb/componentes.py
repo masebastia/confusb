@@ -12,7 +12,8 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Graphene", "1.0")
-from gi.repository import GLib, Graphene, Gtk, Pango  # noqa: E402
+gi.require_version("Gsk", "4.0")
+from gi.repository import GLib, Graphene, Gsk, Gtk, Pango  # noqa: E402
 
 from . import __version__, conexion, fondo  # noqa: E402
 from .ajustes import AJUSTES, AL_CONECTAR, COLORES, DEFECTOS, MARCOS  # noqa: E402
@@ -330,18 +331,32 @@ class BarraEstado(Gtk.Box):
 # ------------------------------------------------------- cristal difuminado
 
 class CapaDifuminada(Gtk.Widget):
-    """Dibuja, recortada al panel y alineada con la ventana, la captura desenfocada de esta: GNOME no
-    difumina lo que hay detrás de una ventana, así que se imita (como en Contabilizando)."""
+    """Contenedor de un solo hijo (el panel de cristal) que, antes de pintarlo, dibuja detrás la captura
+    desenfocada de la ventana, recortada a las esquinas del panel y alineada con la ventana: GNOME no difumina
+    lo que hay detrás de una ventana, así que se imita (como en Contabilizando).
+
+    Mide y se coloca igual que su hijo, sin relleno propio: así el difuminado cubre exactamente el panel, y el
+    panel (que dibuja su propio fondo translúcido con CSS) siempre ocupa lo que necesita su contenido."""
+
+    RADIO = 14   # el mismo border-radius que «.cristal» en estilo.css
 
     def __init__(self, anfitrion: Gtk.Widget):
-        super().__init__(hexpand=True, vexpand=True)
+        super().__init__()
+        self.set_layout_manager(Gtk.BinLayout())
         self.anfitrion = anfitrion
+        self.hijo = None
         self.tex = None
         self.tw = self.th = 0
-        self.set_overflow(Gtk.Overflow.HIDDEN)
 
-    def do_measure(self, orientation, for_size):
-        return (0, 0, -1, -1)
+    def poner(self, hijo: Gtk.Widget):
+        self.hijo = hijo
+        hijo.set_parent(self)
+
+    def do_dispose(self):
+        if self.hijo is not None:
+            self.hijo.unparent()
+            self.hijo = None
+        Gtk.Widget.do_dispose(self)
 
     def capturar(self, radio: float = 18):
         w, h = self.anfitrion.get_width(), self.anfitrion.get_height()
@@ -361,20 +376,26 @@ class CapaDifuminada(Gtk.Widget):
         self.queue_draw()
 
     def do_snapshot(self, snapshot):
-        if self.tex is None:
-            return
-        ok, p = self.compute_point(self.anfitrion, Graphene.Point().init(0, 0))
-        if not ok:
-            return
-        snapshot.save()
-        snapshot.translate(Graphene.Point().init(-p.x, -p.y))
-        snapshot.append_texture(self.tex, Graphene.Rect().init(0, 0, self.tw, self.th))
-        snapshot.restore()
+        if self.tex is not None:
+            ok, p = self.compute_point(self.anfitrion, Graphene.Point().init(0, 0))
+            if ok:
+                caja = Graphene.Rect().init(0, 0, self.get_width(), self.get_height())
+                esquinas = Gsk.RoundedRect()
+                esquinas.init_from_rect(caja, self.RADIO)
+                snapshot.push_rounded_clip(esquinas)
+                snapshot.translate(Graphene.Point().init(-p.x, -p.y))
+                snapshot.append_texture(self.tex, Graphene.Rect().init(0, 0, self.tw, self.th))
+                snapshot.pop()      # con él se deshace también el desplazamiento
+        if self.hijo is not None:
+            self.snapshot_child(self.hijo, snapshot)
 
 
 class CristalDialogo(Gtk.Box):
     """Subventana de cristal difuminado, dibujada sobre la ventana principal. Con `derecha` flota a la
-    derecha (para ver cambiar lo de al lado); si es `modal`, un clic fuera la cierra."""
+    derecha (para ver cambiar lo de al lado); si es `modal`, un clic fuera la cierra.
+
+    Estructura: título, contenido (`self.cuerpo`, donde las subclases añaden sus controles; se desplaza si la
+    ventana es baja) y fila de botones, que quedan siempre a la vista."""
 
     def __init__(self, anfitrion: Gtk.Widget, titulo: str, al_cerrar: Callable[[], None],
                  derecha: bool = False, modal: bool = False):
@@ -387,38 +408,46 @@ class CristalDialogo(Gtk.Box):
             super().__init__(halign=Gtk.Align.END if derecha else Gtk.Align.CENTER, valign=Gtk.Align.CENTER,
                              margin_end=24 if derecha else 0)
         self.al_cerrar = al_cerrar
+        self.anfitrion = anfitrion
         if modal:
+            # Un clic fuera del panel cierra. Se mira dónde cae en vez de «reclamar» el clic dentro del panel:
+            # reclamarlo cancelaba el «clicked» de los botones del propio diálogo (el de «Cerrar» no respondía).
             clic = Gtk.GestureClick()
-            clic.connect("pressed", lambda *_: al_cerrar())
+            clic.connect("pressed", lambda _g, _n, x, y: self.pick(x, y, Gtk.PickFlags.DEFAULT) is self and al_cerrar())
             self.add_controller(clic)
 
         self.capa = CapaDifuminada(anfitrion)
-        self.cuerpo = pila()
-        self.cuerpo.add_css_class("cristal")
-        self.cuerpo.append(label(titulo, "section"))
-        panel = Gtk.Overlay(child=self.capa)
         if modal:
-            panel.set_hexpand(True)
-            panel.set_halign(Gtk.Align.CENTER)
-            panel.set_valign(Gtk.Align.CENTER)
-        panel.add_overlay(self.cuerpo)
-        panel.set_measure_overlay(self.cuerpo, True)
-        panel.set_overflow(Gtk.Overflow.HIDDEN)
-        panel.add_css_class("panel-cristal")
-        self.append(panel)
-        if modal:  # que un clic dentro del panel no llegue a la capa que cierra
-            dentro = Gtk.GestureClick()
-            dentro.connect("pressed", lambda g, *_: g.set_state(Gtk.EventSequenceState.CLAIMED))
-            panel.add_controller(dentro)
-        self.panel = panel
+            self.capa.set_hexpand(True)     # que la caja de la capa le dé todo el ancho y lo centre
+            self.capa.set_halign(Gtk.Align.CENTER)
+            self.capa.set_valign(Gtk.Align.CENTER)
+        self.panel = pila()                 # el cristal: fondo translúcido, borde y relleno (CSS «.cristal»)
+        self.panel.add_css_class("cristal")
+        self.panel.append(label(titulo, "section"))
+        self.cuerpo = pila()
+        self.desplazable = Gtk.ScrolledWindow(child=self.cuerpo, hscrollbar_policy=Gtk.PolicyType.NEVER,
+                                              propagate_natural_height=True, min_content_height=60)
+        self.panel.append(self.desplazable)
+        self.capa.poner(self.panel)
+        self.append(self.capa)
+        self._alto = 0
+        self.add_tick_callback(self._ajustar_alto)
+
+    def _ajustar_alto(self, *_):
+        """El contenido no puede ser más alto que la ventana (menos el título, los botones y los márgenes)."""
+        alto = max(120, self.anfitrion.get_height() - 190)
+        if alto != self._alto:
+            self._alto = alto
+            self.desplazable.set_max_content_height(alto)
+        return GLib.SOURCE_CONTINUE
 
     def anadir_botones(self, botones: list[tuple[str, Callable[[], None]]]):
-        fila = Gtk.Box(spacing=8, halign=Gtk.Align.END, margin_top=10)
+        fila = Gtk.Box(spacing=8, halign=Gtk.Align.END, margin_top=2)
         for texto, fn in botones:
             b = boton(texto)
             b.connect("clicked", lambda *_, f=fn: f())
             fila.append(b)
-        self.cuerpo.append(fila)
+        self.panel.append(fila)
 
     def refrescar_fondo(self):
         self.capa.capturar()

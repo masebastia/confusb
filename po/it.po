@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:52+0100\n"
+"POT-Creation-Date: 2026-11-23 21:37+0100\n"
 "PO-Revision-Date: 2026-11-22 13:25+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Italiano\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:282 confusb/ui.py:369
+#: confusb/ui.py:285 confusb/ui.py:377
 msgid "Capacity"
 msgstr "Capacità"
 
@@ -128,6 +128,259 @@ msgstr ""
 #: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
+
+#: confusb/configuracion.py:33 confusb/componentes.py:30
+msgid "Configurable"
+msgstr "Configurabile"
+
+#: confusb/configuracion.py:33 confusb/componentes.py:31
+msgid "Maybe configurable"
+msgstr "Forse configurabile"
+
+#: confusb/configuracion.py:34
+msgid "System settings"
+msgstr "Impostazioni di sistema"
+
+#: confusb/configuracion.py:34
+msgid "Not configurable"
+msgstr "Non configurabile"
+
+#: confusb/configuracion.py:318
+#, python-brace-format
+msgid ""
+"It has a manufacturer-specific HID channel ({n} feature or output reports, "
+"up to {size} bytes). The software of gaming mice usually uses it for "
+"settings such as DPI, buttons and lighting."
+msgstr "Ha un canale HID specifico del produttore ({n} report di funzionalità o di uscita, fino a {size} byte). Il software dei mouse da gaming di solito lo usa per impostazioni come DPI, pulsanti e illuminazione."
+
+#: confusb/configuracion.py:322
+#, python-brace-format
+msgid "{tool} supports this model ({name})."
+msgstr "{tool} supporta questo modello ({name})."
+
+#: confusb/configuracion.py:324
+msgid ""
+"The camera exposes image controls (brightness, contrast…) that can be "
+"adjusted."
+msgstr "La fotocamera espone controlli dell'immagine (luminosità, contrasto…) che si possono regolare."
+
+#: confusb/configuracion.py:326
+msgid "The sound card exposes volume and mute controls."
+msgstr "La scheda audio espone controlli di volume e silenziamento."
+
+#: confusb/configuracion.py:329
+#, python-brace-format
+msgid "It may be configurable with {tool}, a tool for {brand} devices."
+msgstr "Potrebbe essere configurabile con {tool}, uno strumento per i dispositivi {brand}."
+
+#: confusb/configuracion.py:331
+msgid "A game controller can be remapped with input-remapper."
+msgstr "Un controller di gioco può essere rimappato con input-remapper."
+
+#: confusb/configuracion.py:333
+msgid ""
+"The pointer speed, acceleration and buttons are set in the system settings."
+msgstr "Velocità del puntatore, accelerazione e pulsanti si impostano nelle impostazioni di sistema."
+
+#: confusb/configuracion.py:335
+msgid "The layout and key repeat are set in the system settings."
+msgstr "La disposizione della tastiera e la ripetizione dei tasti si impostano nelle impostazioni di sistema."
+
+#: confusb/configuracion.py:337
+msgid "The pen tablet is configured in the system settings."
+msgstr "La tavoletta grafica si configura nelle impostazioni di sistema."
+
+#: confusb/configuracion.py:339
+msgid "Printers are configured in the system settings."
+msgstr "Le stampanti si configurano nelle impostazioni di sistema."
+
+#: confusb/configuracion.py:341
+msgid "Bluetooth is configured in the system settings."
+msgstr "Il Bluetooth si configura nelle impostazioni di sistema."
+
+#: confusb/configuracion.py:343
+msgid "A storage drive can be renamed and formatted with Disks."
+msgstr "Un'unità di archiviazione può essere rinominata e formattata con Dischi."
+
+#: confusb/configuracion.py:345
+msgid "The network connection is configured in the system settings."
+msgstr "La connessione di rete si configura nelle impostazioni di sistema."
+
+#: confusb/configuracion.py:347
+msgid "No configurable settings were found."
+msgstr "Non sono state trovate impostazioni configurabili."
+
+#: confusb/configuracion.py:381
+msgid "Default"
+msgstr "Predefinito"
+
+#: confusb/configuracion.py:381
+msgid "Flat"
+msgstr "Piatto"
+
+#: confusb/configuracion.py:381
+msgid "Adaptive"
+msgstr "Adattivo"
+
+#: confusb/configuracion.py:387 confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Installa prima «{name}»"
+
+#: confusb/configuracion.py:397
+msgid "Pointer speed"
+msgstr "Velocità del puntatore"
+
+#: confusb/configuracion.py:399
+msgid "Acceleration profile"
+msgstr "Profilo di accelerazione"
+
+#: confusb/configuracion.py:400
+msgid "Left-handed"
+msgstr "Mancino"
+
+#: confusb/configuracion.py:400
+msgid "Natural scrolling"
+msgstr "Scorrimento naturale"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "on"
+msgstr "attivo"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "off"
+msgstr "disattivo"
+
+#: confusb/configuracion.py:403
+msgid "Mouse settings"
+msgstr "Impostazioni del mouse"
+
+#: confusb/configuracion.py:404
+msgid "Open mouse settings"
+msgstr "Apri le impostazioni del mouse"
+
+#: confusb/configuracion.py:407
+msgid "Keyboard settings"
+msgstr "Impostazioni della tastiera"
+
+#: confusb/configuracion.py:408
+msgid "Open keyboard settings"
+msgstr "Apri le impostazioni della tastiera"
+
+#: confusb/configuracion.py:422
+msgid "Camera controls"
+msgstr "Controlli della fotocamera"
+
+#: confusb/configuracion.py:425
+msgid "Audio controls"
+msgstr "Controlli audio"
+
+#: confusb/configuracion.py:426
+msgid "Open sound settings"
+msgstr "Apri le impostazioni audio"
+
+#: confusb/configuracion.py:429
+msgid "Bluetooth settings"
+msgstr "Impostazioni Bluetooth"
+
+#: confusb/configuracion.py:430
+msgid "Open Bluetooth settings"
+msgstr "Apri le impostazioni Bluetooth"
+
+#: confusb/configuracion.py:433
+msgid "Printer settings"
+msgstr "Impostazioni della stampante"
+
+#: confusb/configuracion.py:434
+msgid "Open printer settings"
+msgstr "Apri le impostazioni delle stampanti"
+
+#: confusb/configuracion.py:437
+msgid "Network settings"
+msgstr "Impostazioni di rete"
+
+#: confusb/configuracion.py:438
+msgid "Open network settings"
+msgstr "Apri le impostazioni di rete"
+
+#: confusb/configuracion.py:440
+msgid "Current settings"
+msgstr "Impostazioni attuali"
+
+#: confusb/configuracion.py:443
+msgid "Mouse"
+msgstr "Mouse"
+
+#: confusb/configuracion.py:443
+msgid "Keyboard"
+msgstr "Tastiera"
+
+#: confusb/configuracion.py:443
+msgid "Joystick"
+msgstr "Joystick"
+
+#: confusb/configuracion.py:443
+msgid "Game pad"
+msgstr "Gamepad"
+
+#: confusb/configuracion.py:444
+msgid "Consumer controls"
+msgstr "Controlli multimediali"
+
+#: confusb/configuracion.py:453
+msgid "Function"
+msgstr "Funzione"
+
+#: confusb/configuracion.py:455
+msgid "Manufacturer-defined"
+msgstr "Definito dal produttore"
+
+#: confusb/configuracion.py:458
+msgid "Buttons"
+msgstr "Pulsanti"
+
+#: confusb/configuracion.py:460
+msgid "Axes"
+msgstr "Assi"
+
+#: confusb/configuracion.py:461
+msgid "Manufacturer-defined feature reports"
+msgstr "Report di funzionalità definiti dal produttore"
+
+#: confusb/configuracion.py:462
+msgid "Manufacturer-defined output reports"
+msgstr "Report di uscita definiti dal produttore"
+
+#: confusb/configuracion.py:466
+#, python-brace-format
+msgid "HID interface {name}"
+msgstr "Interfaccia HID {name}"
+
+#: confusb/configuracion.py:467
+msgid "HID analysis"
+msgstr "Analisi HID"
+
+#: confusb/configuracion.py:498
+#, python-brace-format
+msgid ""
+"libratbag does not list this model ({id}), so Piper cannot configure it."
+msgstr "libratbag non elenca questo modello ({id}), quindi Piper non può configurarlo."
+
+#: confusb/configuracion.py:501
+msgid "Ask libratbag to support it"
+msgstr "Chiedere a libratbag di supportarlo"
+
+#: confusb/configuracion.py:509
+msgid "Configuration tools"
+msgstr "Strumenti di configurazione"
+
+#: confusb/configuracion.py:522 confusb/ui.py:289 confusb/ui.py:329
+msgid "Configuration"
+msgstr "Configurazione"
+
+#: confusb/configuracion.py:522 confusb/ui.py:444
+msgid "Can it be configured?"
+msgstr "Si può configurare?"
 
 #: confusb/preferencias.py:17
 msgid "Like the theme"
@@ -414,108 +667,108 @@ msgstr "Supportato"
 msgid "Has driver"
 msgstr "Ha un driver"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Needs installing"
 msgstr "Da installare"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not bound"
 msgstr "Non associato"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "No driver"
 msgstr "Nessun driver"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "Not in the repositories"
 msgstr "Non nei repository"
 
-#: confusb/componentes.py:147
+#: confusb/componentes.py:148
 msgid "Language"
 msgstr "Lingua"
 
-#: confusb/componentes.py:317
+#: confusb/componentes.py:318
 msgid "Close the notice"
 msgstr "Chiudi l'avviso"
 
-#: confusb/componentes.py:502 confusb/ui.py:88
+#: confusb/componentes.py:503 confusb/ui.py:88
 msgid "Interface"
 msgstr "Interfaccia"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Cards"
 msgstr "Schede"
 
-#: confusb/componentes.py:507
+#: confusb/componentes.py:508
 msgid "Card opacity"
 msgstr "Opacità delle schede"
 
-#: confusb/componentes.py:509
+#: confusb/componentes.py:510
 msgid "Corners"
 msgstr "Angoli"
 
-#: confusb/componentes.py:512
+#: confusb/componentes.py:513
 msgid "Title color"
 msgstr "Colore dei titoli"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:523
 msgid "Frame"
 msgstr "Cornice"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:525
 msgid "Shadow under the cards"
 msgstr "Ombra sotto le schede"
 
-#: confusb/componentes.py:527
+#: confusb/componentes.py:528
 msgid "Show «View information →» on the cards"
 msgstr "Mostra «Vedi informazioni →» sulle schede"
 
-#: confusb/componentes.py:531
+#: confusb/componentes.py:532
 msgid "Window background"
 msgstr "Sfondo della finestra"
 
-#: confusb/componentes.py:534 confusb/componentes.py:536
+#: confusb/componentes.py:535 confusb/componentes.py:537
 msgid "Background color"
 msgstr "Colore di sfondo"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:544
 msgid "When a device is connected"
 msgstr "Quando si collega un dispositivo"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:546
 msgid "Only for devices not seen before"
 msgstr "Solo per i dispositivi mai visti prima"
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:549
 msgid "Open storage drives with the default application"
 msgstr "Apri le unità di archiviazione con l'applicazione predefinita"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "Forget known devices"
 msgstr "Dimentica i dispositivi noti"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "The next time they are connected they will count as new"
 msgstr "Alla prossima connessione verranno considerati nuovi"
 
-#: confusb/componentes.py:558
+#: confusb/componentes.py:559
 msgid "Reset"
 msgstr "Ripristina"
 
-#: confusb/componentes.py:558 confusb/componentes.py:630
+#: confusb/componentes.py:559 confusb/componentes.py:631
 msgid "Close"
 msgstr "Chiudi"
 
-#: confusb/componentes.py:614
+#: confusb/componentes.py:615
 msgid "About confusb"
 msgstr "Informazioni su confusb"
 
-#: confusb/componentes.py:621
+#: confusb/componentes.py:622
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versione {version}"
 
-#: confusb/componentes.py:622
+#: confusb/componentes.py:623
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -523,11 +776,11 @@ msgstr ""
 "Avvisa quando si collega un dispositivo USB, mostra le sue informazioni e "
 "cerca il suo driver e le applicazioni per usarlo."
 
-#: confusb/componentes.py:626
+#: confusb/componentes.py:627
 msgid "License GPL-3.0-or-later"
 msgstr "Licenza GPL-3.0-or-later"
 
-#: confusb/componentes.py:627
+#: confusb/componentes.py:628
 msgid "Source code on GitHub"
 msgstr "Codice sorgente su GitHub"
 
@@ -797,6 +1050,48 @@ msgstr "OpenMoko / progetti liberi"
 msgid "Many free hardware devices use this VID."
 msgstr "Molti dispositivi hardware liberi usano questo VID."
 
+#: confusb/kb.py:113
+msgid ""
+"Configures gaming mice: DPI, buttons, macros and lighting. It only works "
+"with the models libratbag lists."
+msgstr "Configura i mouse da gaming: DPI, pulsanti, macro e illuminazione. Funziona solo con i modelli elencati da libratbag."
+
+#: confusb/kb.py:114
+msgid "Open Piper"
+msgstr "Apri Piper"
+
+#: confusb/kb.py:116
+msgid ""
+"Remaps the buttons and keys of any mouse, keyboard or game controller and "
+"creates macros."
+msgstr "Rimappa i pulsanti e i tasti di qualsiasi mouse, tastiera o controller e crea macro."
+
+#: confusb/kb.py:118
+msgid "Open input-remapper"
+msgstr "Apri input-remapper"
+
+#: confusb/kb.py:120
+msgid "Driver and daemon for Razer devices: lighting, DPI and macros."
+msgstr "Driver e servizio per i dispositivi Razer: illuminazione, DPI e macro."
+
+#: confusb/kb.py:122
+msgid ""
+"Driver and configuration tool for Corsair keyboards and mice: lighting, "
+"macros and DPI."
+msgstr "Driver e strumento di configurazione per tastiere e mouse Corsair: illuminazione, macro e DPI."
+
+#: confusb/kb.py:123
+msgid "Open ckb-next"
+msgstr "Apri ckb-next"
+
+#: confusb/kb.py:124
+msgid "Shows the camera and adjusts its image controls."
+msgstr "Mostra la fotocamera e ne regola i controlli dell'immagine."
+
+#: confusb/kb.py:125
+msgid "Open guvcview"
+msgstr "Apri guvcview"
+
 #: confusb/resolver.py:146
 #, python-brace-format
 msgid "Packages: {list}"
@@ -864,11 +1159,6 @@ msgstr "Installa il Flatpak {id}"
 msgid "Already installed on your computer."
 msgstr "Già installato sul tuo computer."
 
-#: confusb/resolver.py:192
-#, python-brace-format
-msgid "Install «{name}» first"
-msgstr "Installa prima «{name}»"
-
 #: confusb/resolver.py:203
 msgid "USB hub"
 msgstr "Hub USB"
@@ -877,12 +1167,12 @@ msgstr "Hub USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Gestito dal driver «hub» del kernel."
 
-#: confusb/resolver.py:206 confusb/ui.py:384
+#: confusb/resolver.py:206 confusb/ui.py:392
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Interfaccia {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:389
+#: confusb/resolver.py:207 confusb/ui.py:397
 msgid "none found"
 msgstr "nessuno trovato"
 
@@ -1089,171 +1379,175 @@ msgstr "Ignora"
 msgid "Reading devices…"
 msgstr "Lettura dei dispositivi…"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:253
 msgid "Could not read the devices"
 msgstr "Impossibile leggere i dispositivi"
 
-#: confusb/ui.py:251
+#: confusb/ui.py:254
 msgid "Error reading the devices"
 msgstr "Errore nella lettura dei dispositivi"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:260
 msgid "No USB devices connected"
 msgstr "Nessun dispositivo USB connesso"
 
-#: confusb/ui.py:258
+#: confusb/ui.py:261
 msgid "Connect one and it will appear here automatically."
 msgstr "Collegane uno e apparirà qui automaticamente."
 
-#: confusb/ui.py:260
+#: confusb/ui.py:263
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Dispositivi USB connessi: {n}"
 
-#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
+#: confusb/ui.py:280 confusb/ui.py:333 confusb/ui.py:375
 msgid "Unknown manufacturer"
 msgstr "Produttore sconosciuto"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:283
 msgid "Type"
 msgstr "Tipo"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:286
 msgid "Port"
 msgstr "Porta"
 
-#: confusb/ui.py:284
+#: confusb/ui.py:287
 msgid "Driver"
 msgstr "Driver"
 
-#: confusb/ui.py:284 confusb/ui.py:388
+#: confusb/ui.py:287 confusb/ui.py:396
 msgid "none"
 msgstr "nessuno"
 
-#: confusb/ui.py:286
+#: confusb/ui.py:291
 msgid "View information →"
 msgstr "Vedi informazioni →"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back"
 msgstr "Indietro"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back to the list of devices"
 msgstr "Torna all'elenco dei dispositivi"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy"
 msgstr "Copia"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy all the information to the clipboard"
 msgstr "Copia tutte le informazioni negli appunti"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Information"
 msgstr "Informazioni"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Drivers and applications"
 msgstr "Driver e applicazioni"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:337
 msgid "Connected"
 msgstr "Connesso"
 
-#: confusb/ui.py:353
+#: confusb/ui.py:361
 msgid "Information copied to the clipboard"
 msgstr "Informazioni copiate negli appunti"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Interfaces"
 msgstr "Interfacce"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Each interface can have its own driver"
 msgstr "Ogni interfaccia può avere il proprio driver"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:394
 msgid "Class"
 msgstr "Classe"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:395
 msgid "Subclass / protocol"
 msgstr "Sottoclasse / protocollo"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:396
 msgid "Bound driver"
 msgstr "Driver associato"
 
-#: confusb/ui.py:389
+#: confusb/ui.py:397
 msgid "Kernel modules"
 msgstr "Moduli del kernel"
 
-#: confusb/ui.py:396
+#: confusb/ui.py:404
 msgid "Nodes created in the system"
 msgstr "Nodi creati nel sistema"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:408
 msgid "Raw data"
 msgstr "Dati grezzi"
 
-#: confusb/ui.py:401
+#: confusb/ui.py:409
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Proprietà udev ({n})"
 
-#: confusb/ui.py:407
+#: confusb/ui.py:415
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Output di lsusb -v (descrittori USB completi)"
 
-#: confusb/ui.py:424
+#: confusb/ui.py:430
+msgid "Checking what can be configured…"
+msgstr "Verifica di cosa si può configurare…"
+
+#: confusb/ui.py:470
 msgid "Reading more information from the device…"
 msgstr "Lettura di altre informazioni dal dispositivo…"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:488
 msgid "Tips"
 msgstr "Suggerimenti"
 
-#: confusb/ui.py:467
+#: confusb/ui.py:513
 msgid "Looking for drivers and applications…"
 msgstr "Ricerca di driver e applicazioni…"
 
-#: confusb/ui.py:520
+#: confusb/ui.py:566
 msgid "No terminal emulator found"
 msgstr "Nessun emulatore di terminale trovato"
 
-#: confusb/ui.py:522
+#: confusb/ui.py:568
 msgid "Press Enter to close…"
 msgstr "Premi Invio per chiudere…"
 
-#: confusb/ui.py:533
+#: confusb/ui.py:579
 msgid "Working…"
 msgstr "Operazione in corso…"
 
-#: confusb/ui.py:539
+#: confusb/ui.py:585
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Errore: {error}"
 
-#: confusb/ui.py:542
+#: confusb/ui.py:588
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(codice di uscita {code})"
 
-#: confusb/ui.py:546
+#: confusb/ui.py:592
 msgid "Installation completed"
 msgstr "Installazione completata"
 
-#: confusb/ui.py:549
+#: confusb/ui.py:596
 msgid "The installation failed"
 msgstr "Installazione non riuscita"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:605
 msgid "Disconnected"
 msgstr "Disconnesso"
 
-#: confusb/ui.py:559
+#: confusb/ui.py:606
 msgid "The device has been disconnected"
 msgstr "Il dispositivo è stato disconnesso"
 
@@ -1429,140 +1723,140 @@ msgstr "Nome della configurazione"
 msgid "Kernel quirks"
 msgstr "Particolarità del kernel"
 
-#: confusb/usbinfo.py:179
+#: confusb/usbinfo.py:180
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:180
+#: confusb/usbinfo.py:181
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:182
+#: confusb/usbinfo.py:183
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:183
+#: confusb/usbinfo.py:184
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:194
+#: confusb/usbinfo.py:195
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:228
+#: confusb/usbinfo.py:229
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:261
+#: confusb/usbinfo.py:262
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "interfaccia di rete {name}"
 
-#: confusb/usbinfo.py:308
+#: confusb/usbinfo.py:309
 msgid "Manufacturer (usb.ids)"
 msgstr "Produttore (usb.ids)"
 
-#: confusb/usbinfo.py:309
+#: confusb/usbinfo.py:310
 msgid "Product (usb.ids)"
 msgstr "Prodotto (usb.ids)"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:311
 msgid "sysfs path"
 msgstr "percorso sysfs"
 
-#: confusb/usbinfo.py:311
+#: confusb/usbinfo.py:312
 msgid "/dev node"
 msgstr "nodo /dev"
 
-#: confusb/usbinfo.py:312
+#: confusb/usbinfo.py:313
 msgid "Subsystem / type"
 msgstr "Sottosistema / tipo"
 
-#: confusb/usbinfo.py:313
+#: confusb/usbinfo.py:314
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:314
+#: confusb/usbinfo.py:315
 msgid "Device driver"
 msgstr "Driver del dispositivo"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:317
 msgid "Persistent paths (ID_PATH)"
 msgstr "Percorsi persistenti (ID_PATH)"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:318
 msgid "udev tags (TAGS)"
 msgstr "Tag udev (TAGS)"
 
-#: confusb/usbinfo.py:320
+#: confusb/usbinfo.py:321
 msgid "Identification"
 msgstr "Identificazione"
 
-#: confusb/usbinfo.py:321
+#: confusb/usbinfo.py:322
 msgid "Descriptors and configuration"
 msgstr "Descrittori e configurazione"
 
-#: confusb/usbinfo.py:322
+#: confusb/usbinfo.py:323
 msgid "System"
 msgstr "Sistema"
 
-#: confusb/usbinfo.py:326
+#: confusb/usbinfo.py:327
 msgid "Power control"
 msgstr "Controllo dell'alimentazione"
 
-#: confusb/usbinfo.py:327
+#: confusb/usbinfo.py:328
 msgid "Power state"
 msgstr "Stato dell'alimentazione"
 
-#: confusb/usbinfo.py:328
+#: confusb/usbinfo.py:329
 msgid "Autosuspend delay (ms)"
 msgstr "Ritardo di autosospensione (ms)"
 
-#: confusb/usbinfo.py:329
+#: confusb/usbinfo.py:330
 msgid "Persistence"
 msgstr "Persistenza"
 
-#: confusb/usbinfo.py:330
+#: confusb/usbinfo.py:331
 msgid "System wake-up"
 msgstr "Riattivazione del sistema"
 
-#: confusb/usbinfo.py:331
+#: confusb/usbinfo.py:332
 msgid "Active time (ms)"
 msgstr "Tempo attivo (ms)"
 
-#: confusb/usbinfo.py:332
+#: confusb/usbinfo.py:333
 msgid "Connected time (ms)"
 msgstr "Tempo connesso (ms)"
 
-#: confusb/usbinfo.py:333
+#: confusb/usbinfo.py:334
 msgid "URBs processed"
 msgstr "URB elaborati"
 
-#: confusb/usbinfo.py:339
+#: confusb/usbinfo.py:340
 msgid "Power and statistics"
 msgstr "Alimentazione e statistiche"
 
-#: confusb/usbinfo.py:345
+#: confusb/usbinfo.py:346
 msgid "Topology"
 msgstr "Topologia"
 
-#: confusb/usbinfo.py:346
+#: confusb/usbinfo.py:347
 msgid "Connected to"
 msgstr "Connesso a"
 
-#: confusb/usbinfo.py:347
+#: confusb/usbinfo.py:348
 msgid "Parent path"
 msgstr "Percorso del genitore"
 
-#: confusb/usbinfo.py:374
+#: confusb/usbinfo.py:375
 #, python-brace-format
 msgid "{module} (loaded)"
 msgstr "{module} (caricato)"
 
-#: confusb/usbinfo.py:390
+#: confusb/usbinfo.py:391
 msgid "Storage"
 msgstr "Archiviazione"

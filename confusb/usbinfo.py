@@ -147,6 +147,7 @@ class DeviceInfo:
     extra: list[tuple[str, list[tuple[str, str]]]] = field(default_factory=list)   # secciones (título, filas)
     crudos: list[tuple[str, str]] = field(default_factory=list)          # textos largos (título, contenido)
     consejos: list[str] = field(default_factory=list)                    # qué hacer para ver más datos
+    nivel_config: str = ""                                               # ver configuracion.py (para las tarjetas)
 
     @property
     def title(self) -> str:

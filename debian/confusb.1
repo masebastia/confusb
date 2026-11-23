@@ -26,6 +26,12 @@ Android phone with USB debugging enabled and authorized it reads, through
 the model, Android version, processor, memory, screen, battery and storage; for any
 device it adds the full udev attribute tree.
 .PP
+A
+.B Configuration
+tab tells whether the device can be configured (from its HID report descriptor,
+camera and audio controls, the devices supported by libratbag, Solaar and OpenRazer,
+and the system settings) and lists the tools that help.
+.PP
 Without arguments it runs as a service that watches the USB connections. It is
 normally started automatically with the graphical session by the systemd user
 unit

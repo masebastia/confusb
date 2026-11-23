@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:52+0100\n"
+"POT-Creation-Date: 2026-11-23 21:37+0100\n"
 "PO-Revision-Date: 2026-11-22 13:37+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Suomi\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:282 confusb/ui.py:369
+#: confusb/ui.py:285 confusb/ui.py:377
 msgid "Capacity"
 msgstr "Kapasiteetti"
 
@@ -128,6 +128,259 @@ msgstr ""
 #: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
+
+#: confusb/configuracion.py:33 confusb/componentes.py:30
+msgid "Configurable"
+msgstr "Määritettävissä"
+
+#: confusb/configuracion.py:33 confusb/componentes.py:31
+msgid "Maybe configurable"
+msgstr "Mahdollisesti määritettävissä"
+
+#: confusb/configuracion.py:34
+msgid "System settings"
+msgstr "Järjestelmäasetukset"
+
+#: confusb/configuracion.py:34
+msgid "Not configurable"
+msgstr "Ei määritettävissä"
+
+#: confusb/configuracion.py:318
+#, python-brace-format
+msgid ""
+"It has a manufacturer-specific HID channel ({n} feature or output reports, "
+"up to {size} bytes). The software of gaming mice usually uses it for "
+"settings such as DPI, buttons and lighting."
+msgstr "Siinä on valmistajakohtainen HID-kanava ({n} ominaisuus- tai tulostusraporttia, enintään {size} tavua). Pelihiirten ohjelmisto käyttää sitä yleensä asetuksiin, kuten DPI, painikkeet ja valaistus."
+
+#: confusb/configuracion.py:322
+#, python-brace-format
+msgid "{tool} supports this model ({name})."
+msgstr "{tool} tukee tätä mallia ({name})."
+
+#: confusb/configuracion.py:324
+msgid ""
+"The camera exposes image controls (brightness, contrast…) that can be "
+"adjusted."
+msgstr "Kamerassa on kuvansäätimiä (kirkkaus, kontrasti…), joita voi säätää."
+
+#: confusb/configuracion.py:326
+msgid "The sound card exposes volume and mute controls."
+msgstr "Äänikortissa on äänenvoimakkuuden ja mykistyksen säätimiä."
+
+#: confusb/configuracion.py:329
+#, python-brace-format
+msgid "It may be configurable with {tool}, a tool for {brand} devices."
+msgstr "Se voi olla määritettävissä työkalulla {tool}, joka on tarkoitettu {brand}-laitteille."
+
+#: confusb/configuracion.py:331
+msgid "A game controller can be remapped with input-remapper."
+msgstr "Peliohjaimen painikkeet voi kartoittaa uudelleen input-remapperilla."
+
+#: confusb/configuracion.py:333
+msgid ""
+"The pointer speed, acceleration and buttons are set in the system settings."
+msgstr "Osoittimen nopeus, kiihtyvyys ja painikkeet asetetaan järjestelmäasetuksissa."
+
+#: confusb/configuracion.py:335
+msgid "The layout and key repeat are set in the system settings."
+msgstr "Näppäimistöasettelu ja näppäinten toisto asetetaan järjestelmäasetuksissa."
+
+#: confusb/configuracion.py:337
+msgid "The pen tablet is configured in the system settings."
+msgstr "Piirtopöytä määritetään järjestelmäasetuksissa."
+
+#: confusb/configuracion.py:339
+msgid "Printers are configured in the system settings."
+msgstr "Tulostimet määritetään järjestelmäasetuksissa."
+
+#: confusb/configuracion.py:341
+msgid "Bluetooth is configured in the system settings."
+msgstr "Bluetooth määritetään järjestelmäasetuksissa."
+
+#: confusb/configuracion.py:343
+msgid "A storage drive can be renamed and formatted with Disks."
+msgstr "Tallennuslaitteen voi nimetä uudelleen ja alustaa Levyt-sovelluksella."
+
+#: confusb/configuracion.py:345
+msgid "The network connection is configured in the system settings."
+msgstr "Verkkoyhteys määritetään järjestelmäasetuksissa."
+
+#: confusb/configuracion.py:347
+msgid "No configurable settings were found."
+msgstr "Määritettäviä asetuksia ei löytynyt."
+
+#: confusb/configuracion.py:381
+msgid "Default"
+msgstr "Oletus"
+
+#: confusb/configuracion.py:381
+msgid "Flat"
+msgstr "Tasainen"
+
+#: confusb/configuracion.py:381
+msgid "Adaptive"
+msgstr "Mukautuva"
+
+#: confusb/configuracion.py:387 confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Asenna ensin «{name}»"
+
+#: confusb/configuracion.py:397
+msgid "Pointer speed"
+msgstr "Osoittimen nopeus"
+
+#: confusb/configuracion.py:399
+msgid "Acceleration profile"
+msgstr "Kiihtyvyysprofiili"
+
+#: confusb/configuracion.py:400
+msgid "Left-handed"
+msgstr "Vasenkätinen"
+
+#: confusb/configuracion.py:400
+msgid "Natural scrolling"
+msgstr "Luonnollinen vieritys"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "on"
+msgstr "päällä"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "off"
+msgstr "pois"
+
+#: confusb/configuracion.py:403
+msgid "Mouse settings"
+msgstr "Hiiren asetukset"
+
+#: confusb/configuracion.py:404
+msgid "Open mouse settings"
+msgstr "Avaa hiiren asetukset"
+
+#: confusb/configuracion.py:407
+msgid "Keyboard settings"
+msgstr "Näppäimistön asetukset"
+
+#: confusb/configuracion.py:408
+msgid "Open keyboard settings"
+msgstr "Avaa näppäimistön asetukset"
+
+#: confusb/configuracion.py:422
+msgid "Camera controls"
+msgstr "Kameran säätimet"
+
+#: confusb/configuracion.py:425
+msgid "Audio controls"
+msgstr "Äänen säätimet"
+
+#: confusb/configuracion.py:426
+msgid "Open sound settings"
+msgstr "Avaa ääniasetukset"
+
+#: confusb/configuracion.py:429
+msgid "Bluetooth settings"
+msgstr "Bluetooth-asetukset"
+
+#: confusb/configuracion.py:430
+msgid "Open Bluetooth settings"
+msgstr "Avaa Bluetooth-asetukset"
+
+#: confusb/configuracion.py:433
+msgid "Printer settings"
+msgstr "Tulostimen asetukset"
+
+#: confusb/configuracion.py:434
+msgid "Open printer settings"
+msgstr "Avaa tulostinasetukset"
+
+#: confusb/configuracion.py:437
+msgid "Network settings"
+msgstr "Verkkoasetukset"
+
+#: confusb/configuracion.py:438
+msgid "Open network settings"
+msgstr "Avaa verkkoasetukset"
+
+#: confusb/configuracion.py:440
+msgid "Current settings"
+msgstr "Nykyiset asetukset"
+
+#: confusb/configuracion.py:443
+msgid "Mouse"
+msgstr "Hiiri"
+
+#: confusb/configuracion.py:443
+msgid "Keyboard"
+msgstr "Näppäimistö"
+
+#: confusb/configuracion.py:443
+msgid "Joystick"
+msgstr "Joystick"
+
+#: confusb/configuracion.py:443
+msgid "Game pad"
+msgstr "Peliohjain"
+
+#: confusb/configuracion.py:444
+msgid "Consumer controls"
+msgstr "Mediaohjaimet"
+
+#: confusb/configuracion.py:453
+msgid "Function"
+msgstr "Toiminto"
+
+#: confusb/configuracion.py:455
+msgid "Manufacturer-defined"
+msgstr "Valmistajan määrittelemä"
+
+#: confusb/configuracion.py:458
+msgid "Buttons"
+msgstr "Painikkeet"
+
+#: confusb/configuracion.py:460
+msgid "Axes"
+msgstr "Akselit"
+
+#: confusb/configuracion.py:461
+msgid "Manufacturer-defined feature reports"
+msgstr "Valmistajan määrittelemät ominaisuusraportit"
+
+#: confusb/configuracion.py:462
+msgid "Manufacturer-defined output reports"
+msgstr "Valmistajan määrittelemät tulostusraportit"
+
+#: confusb/configuracion.py:466
+#, python-brace-format
+msgid "HID interface {name}"
+msgstr "HID-liitäntä {name}"
+
+#: confusb/configuracion.py:467
+msgid "HID analysis"
+msgstr "HID-analyysi"
+
+#: confusb/configuracion.py:498
+#, python-brace-format
+msgid ""
+"libratbag does not list this model ({id}), so Piper cannot configure it."
+msgstr "libratbag ei listaa tätä mallia ({id}), joten Piper ei voi määrittää sitä."
+
+#: confusb/configuracion.py:501
+msgid "Ask libratbag to support it"
+msgstr "Pyydä libratbagia tukemaan sitä"
+
+#: confusb/configuracion.py:509
+msgid "Configuration tools"
+msgstr "Määritystyökalut"
+
+#: confusb/configuracion.py:522 confusb/ui.py:289 confusb/ui.py:329
+msgid "Configuration"
+msgstr "Määritys"
+
+#: confusb/configuracion.py:522 confusb/ui.py:444
+msgid "Can it be configured?"
+msgstr "Voiko sen määrittää?"
 
 #: confusb/preferencias.py:17
 msgid "Like the theme"
@@ -416,108 +669,108 @@ msgstr "Tuettu"
 msgid "Has driver"
 msgstr "Ohjain löytyy"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Needs installing"
 msgstr "Asennus puuttuu"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not bound"
 msgstr "Sitomaton"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "No driver"
 msgstr "Ei ohjainta"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "Not in the repositories"
 msgstr "Ei ole ohjelmistolähteissä"
 
-#: confusb/componentes.py:147
+#: confusb/componentes.py:148
 msgid "Language"
 msgstr "Kieli"
 
-#: confusb/componentes.py:317
+#: confusb/componentes.py:318
 msgid "Close the notice"
 msgstr "Sulje ilmoitus"
 
-#: confusb/componentes.py:502 confusb/ui.py:88
+#: confusb/componentes.py:503 confusb/ui.py:88
 msgid "Interface"
 msgstr "Käyttöliittymä"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Cards"
 msgstr "Kortit"
 
-#: confusb/componentes.py:507
+#: confusb/componentes.py:508
 msgid "Card opacity"
 msgstr "Korttien läpinäkymättömyys"
 
-#: confusb/componentes.py:509
+#: confusb/componentes.py:510
 msgid "Corners"
 msgstr "Kulmat"
 
-#: confusb/componentes.py:512
+#: confusb/componentes.py:513
 msgid "Title color"
 msgstr "Otsikoiden väri"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:523
 msgid "Frame"
 msgstr "Kehys"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:525
 msgid "Shadow under the cards"
 msgstr "Korttien alla oleva varjo"
 
-#: confusb/componentes.py:527
+#: confusb/componentes.py:528
 msgid "Show «View information →» on the cards"
 msgstr "Näytä «Näytä tiedot →» korteilla"
 
-#: confusb/componentes.py:531
+#: confusb/componentes.py:532
 msgid "Window background"
 msgstr "Ikkunan tausta"
 
-#: confusb/componentes.py:534 confusb/componentes.py:536
+#: confusb/componentes.py:535 confusb/componentes.py:537
 msgid "Background color"
 msgstr "Taustaväri"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:544
 msgid "When a device is connected"
 msgstr "Kun laite liitetään"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:546
 msgid "Only for devices not seen before"
 msgstr "Vain laitteille, joita ei ole nähty aiemmin"
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:549
 msgid "Open storage drives with the default application"
 msgstr "Avaa tallennusasemat oletussovelluksella"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "Forget known devices"
 msgstr "Unohda tunnetut laitteet"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "The next time they are connected they will count as new"
 msgstr "Seuraavalla kerralla, kun ne kytketään, ne lasketaan uusiksi"
 
-#: confusb/componentes.py:558
+#: confusb/componentes.py:559
 msgid "Reset"
 msgstr "Palauta oletukset"
 
-#: confusb/componentes.py:558 confusb/componentes.py:630
+#: confusb/componentes.py:559 confusb/componentes.py:631
 msgid "Close"
 msgstr "Sulje"
 
-#: confusb/componentes.py:614
+#: confusb/componentes.py:615
 msgid "About confusb"
 msgstr "Tietoja: confusb"
 
-#: confusb/componentes.py:621
+#: confusb/componentes.py:622
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versio {version}"
 
-#: confusb/componentes.py:622
+#: confusb/componentes.py:623
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -525,11 +778,11 @@ msgstr ""
 "Ilmoittaa, kun USB-laite liitetään, näyttää sen tiedot ja etsii sen ohjaimen "
 "ja sovellukset sen käyttöön."
 
-#: confusb/componentes.py:626
+#: confusb/componentes.py:627
 msgid "License GPL-3.0-or-later"
 msgstr "Lisenssi GPL-3.0-or-later"
 
-#: confusb/componentes.py:627
+#: confusb/componentes.py:628
 msgid "Source code on GitHub"
 msgstr "Lähdekoodi GitHubissa"
 
@@ -801,6 +1054,48 @@ msgstr "OpenMoko / vapaat projektit"
 msgid "Many free hardware devices use this VID."
 msgstr "Monet vapaat laitteistolaitteet käyttävät tätä VID:tä."
 
+#: confusb/kb.py:113
+msgid ""
+"Configures gaming mice: DPI, buttons, macros and lighting. It only works "
+"with the models libratbag lists."
+msgstr "Määrittää pelihiiriä: DPI, painikkeet, makrot ja valaistus. Toimii vain libratbagin listaamien mallien kanssa."
+
+#: confusb/kb.py:114
+msgid "Open Piper"
+msgstr "Avaa Piper"
+
+#: confusb/kb.py:116
+msgid ""
+"Remaps the buttons and keys of any mouse, keyboard or game controller and "
+"creates macros."
+msgstr "Kartoittaa minkä tahansa hiiren, näppäimistön tai peliohjaimen painikkeet ja näppäimet uudelleen ja luo makroja."
+
+#: confusb/kb.py:118
+msgid "Open input-remapper"
+msgstr "Avaa input-remapper"
+
+#: confusb/kb.py:120
+msgid "Driver and daemon for Razer devices: lighting, DPI and macros."
+msgstr "Ajuri ja palvelu Razer-laitteille: valaistus, DPI ja makrot."
+
+#: confusb/kb.py:122
+msgid ""
+"Driver and configuration tool for Corsair keyboards and mice: lighting, "
+"macros and DPI."
+msgstr "Ajuri ja määritystyökalu Corsair-näppäimistöille ja -hiirille: valaistus, makrot ja DPI."
+
+#: confusb/kb.py:123
+msgid "Open ckb-next"
+msgstr "Avaa ckb-next"
+
+#: confusb/kb.py:124
+msgid "Shows the camera and adjusts its image controls."
+msgstr "Näyttää kameran ja säätää sen kuvansäätimiä."
+
+#: confusb/kb.py:125
+msgid "Open guvcview"
+msgstr "Avaa guvcview"
+
 #: confusb/resolver.py:146
 #, python-brace-format
 msgid "Packages: {list}"
@@ -868,11 +1163,6 @@ msgstr "Asenna Flatpak {id}"
 msgid "Already installed on your computer."
 msgstr "Jo asennettu tietokoneellesi."
 
-#: confusb/resolver.py:192
-#, python-brace-format
-msgid "Install «{name}» first"
-msgstr "Asenna ensin «{name}»"
-
 #: confusb/resolver.py:203
 msgid "USB hub"
 msgstr "USB-keskitin"
@@ -881,12 +1171,12 @@ msgstr "USB-keskitin"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Ytimen «hub»-ohjain hallitsee."
 
-#: confusb/resolver.py:206 confusb/ui.py:384
+#: confusb/resolver.py:206 confusb/ui.py:392
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Liitäntä {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:389
+#: confusb/resolver.py:207 confusb/ui.py:397
 msgid "none found"
 msgstr "ei löytynyt yhtään"
 
@@ -1092,171 +1382,175 @@ msgstr "Hylkää"
 msgid "Reading devices…"
 msgstr "Luetaan laitteita…"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:253
 msgid "Could not read the devices"
 msgstr "Laitteita ei voitu lukea"
 
-#: confusb/ui.py:251
+#: confusb/ui.py:254
 msgid "Error reading the devices"
 msgstr "Virhe laitteiden lukemisessa"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:260
 msgid "No USB devices connected"
 msgstr "Ei liitettyjä USB-laitteita"
 
-#: confusb/ui.py:258
+#: confusb/ui.py:261
 msgid "Connect one and it will appear here automatically."
 msgstr "Liitä yksi, ja se ilmestyy tähän automaattisesti."
 
-#: confusb/ui.py:260
+#: confusb/ui.py:263
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Liitetyt USB-laitteet: {n}"
 
-#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
+#: confusb/ui.py:280 confusb/ui.py:333 confusb/ui.py:375
 msgid "Unknown manufacturer"
 msgstr "Tuntematon valmistaja"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:283
 msgid "Type"
 msgstr "Tyyppi"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:286
 msgid "Port"
 msgstr "Portti"
 
-#: confusb/ui.py:284
+#: confusb/ui.py:287
 msgid "Driver"
 msgstr "Ohjain"
 
-#: confusb/ui.py:284 confusb/ui.py:388
+#: confusb/ui.py:287 confusb/ui.py:396
 msgid "none"
 msgstr "ei mitään"
 
-#: confusb/ui.py:286
+#: confusb/ui.py:291
 msgid "View information →"
 msgstr "Näytä tiedot →"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back"
 msgstr "Takaisin"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back to the list of devices"
 msgstr "Takaisin laiteluetteloon"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy"
 msgstr "Kopioi"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy all the information to the clipboard"
 msgstr "Kopioi kaikki tiedot leikepöydälle"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Information"
 msgstr "Tiedot"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Drivers and applications"
 msgstr "Ohjaimet ja sovellukset"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:337
 msgid "Connected"
 msgstr "Liitetty"
 
-#: confusb/ui.py:353
+#: confusb/ui.py:361
 msgid "Information copied to the clipboard"
 msgstr "Tiedot kopioitu leikepöydälle"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Interfaces"
 msgstr "Liitännät"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Each interface can have its own driver"
 msgstr "Jokaisella liitännällä voi olla oma ohjain"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:394
 msgid "Class"
 msgstr "Luokka"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:395
 msgid "Subclass / protocol"
 msgstr "Aliluokka / protokolla"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:396
 msgid "Bound driver"
 msgstr "Sidottu ohjain"
 
-#: confusb/ui.py:389
+#: confusb/ui.py:397
 msgid "Kernel modules"
 msgstr "Ytimen moduulit"
 
-#: confusb/ui.py:396
+#: confusb/ui.py:404
 msgid "Nodes created in the system"
 msgstr "Järjestelmään luodut solmut"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:408
 msgid "Raw data"
 msgstr "Raakadata"
 
-#: confusb/ui.py:401
+#: confusb/ui.py:409
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev-ominaisuudet ({n})"
 
-#: confusb/ui.py:407
+#: confusb/ui.py:415
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "lsusb -v:n tuloste (täydelliset USB-kuvaajat)"
 
-#: confusb/ui.py:424
+#: confusb/ui.py:430
+msgid "Checking what can be configured…"
+msgstr "Tarkistetaan, mitä voidaan määrittää…"
+
+#: confusb/ui.py:470
 msgid "Reading more information from the device…"
 msgstr "Luetaan lisää tietoja laitteesta…"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:488
 msgid "Tips"
 msgstr "Vinkit"
 
-#: confusb/ui.py:467
+#: confusb/ui.py:513
 msgid "Looking for drivers and applications…"
 msgstr "Etsitään ohjaimia ja sovelluksia…"
 
-#: confusb/ui.py:520
+#: confusb/ui.py:566
 msgid "No terminal emulator found"
 msgstr "Päätteen emulaattoria ei löytynyt"
 
-#: confusb/ui.py:522
+#: confusb/ui.py:568
 msgid "Press Enter to close…"
 msgstr "Sulje painamalla Enter…"
 
-#: confusb/ui.py:533
+#: confusb/ui.py:579
 msgid "Working…"
 msgstr "Työskennellään…"
 
-#: confusb/ui.py:539
+#: confusb/ui.py:585
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Virhe: {error}"
 
-#: confusb/ui.py:542
+#: confusb/ui.py:588
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(paluukoodi {code})"
 
-#: confusb/ui.py:546
+#: confusb/ui.py:592
 msgid "Installation completed"
 msgstr "Asennus valmis"
 
-#: confusb/ui.py:549
+#: confusb/ui.py:596
 msgid "The installation failed"
 msgstr "Asennus epäonnistui"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:605
 msgid "Disconnected"
 msgstr "Irrotettu"
 
-#: confusb/ui.py:559
+#: confusb/ui.py:606
 msgid "The device has been disconnected"
 msgstr "Laite on irrotettu"
 
@@ -1432,140 +1726,140 @@ msgstr "Kokoonpanon nimi"
 msgid "Kernel quirks"
 msgstr "Ytimen erikoisuudet"
 
-#: confusb/usbinfo.py:179
+#: confusb/usbinfo.py:180
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:180
+#: confusb/usbinfo.py:181
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:182
+#: confusb/usbinfo.py:183
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:183
+#: confusb/usbinfo.py:184
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:194
+#: confusb/usbinfo.py:195
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:228
+#: confusb/usbinfo.py:229
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:261
+#: confusb/usbinfo.py:262
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "verkkoliitäntä {name}"
 
-#: confusb/usbinfo.py:308
+#: confusb/usbinfo.py:309
 msgid "Manufacturer (usb.ids)"
 msgstr "Valmistaja (usb.ids)"
 
-#: confusb/usbinfo.py:309
+#: confusb/usbinfo.py:310
 msgid "Product (usb.ids)"
 msgstr "Tuote (usb.ids)"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:311
 msgid "sysfs path"
 msgstr "sysfs-polku"
 
-#: confusb/usbinfo.py:311
+#: confusb/usbinfo.py:312
 msgid "/dev node"
 msgstr "/dev-solmu"
 
-#: confusb/usbinfo.py:312
+#: confusb/usbinfo.py:313
 msgid "Subsystem / type"
 msgstr "Alijärjestelmä / tyyppi"
 
-#: confusb/usbinfo.py:313
+#: confusb/usbinfo.py:314
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:314
+#: confusb/usbinfo.py:315
 msgid "Device driver"
 msgstr "Laitteen ohjain"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:317
 msgid "Persistent paths (ID_PATH)"
 msgstr "Pysyvät polut (ID_PATH)"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:318
 msgid "udev tags (TAGS)"
 msgstr "udev-tunnisteet (TAGS)"
 
-#: confusb/usbinfo.py:320
+#: confusb/usbinfo.py:321
 msgid "Identification"
 msgstr "Tunnistus"
 
-#: confusb/usbinfo.py:321
+#: confusb/usbinfo.py:322
 msgid "Descriptors and configuration"
 msgstr "Kuvaajat ja kokoonpano"
 
-#: confusb/usbinfo.py:322
+#: confusb/usbinfo.py:323
 msgid "System"
 msgstr "Järjestelmä"
 
-#: confusb/usbinfo.py:326
+#: confusb/usbinfo.py:327
 msgid "Power control"
 msgstr "Virranhallinta"
 
-#: confusb/usbinfo.py:327
+#: confusb/usbinfo.py:328
 msgid "Power state"
 msgstr "Virran tila"
 
-#: confusb/usbinfo.py:328
+#: confusb/usbinfo.py:329
 msgid "Autosuspend delay (ms)"
 msgstr "Automaattisen lepotilan viive (ms)"
 
-#: confusb/usbinfo.py:329
+#: confusb/usbinfo.py:330
 msgid "Persistence"
 msgstr "Pysyvyys"
 
-#: confusb/usbinfo.py:330
+#: confusb/usbinfo.py:331
 msgid "System wake-up"
 msgstr "Järjestelmän herättäminen"
 
-#: confusb/usbinfo.py:331
+#: confusb/usbinfo.py:332
 msgid "Active time (ms)"
 msgstr "Aktiivinen aika (ms)"
 
-#: confusb/usbinfo.py:332
+#: confusb/usbinfo.py:333
 msgid "Connected time (ms)"
 msgstr "Liitetty aika (ms)"
 
-#: confusb/usbinfo.py:333
+#: confusb/usbinfo.py:334
 msgid "URBs processed"
 msgstr "Käsitellyt URB:t"
 
-#: confusb/usbinfo.py:339
+#: confusb/usbinfo.py:340
 msgid "Power and statistics"
 msgstr "Virta ja tilastot"
 
-#: confusb/usbinfo.py:345
+#: confusb/usbinfo.py:346
 msgid "Topology"
 msgstr "Topologia"
 
-#: confusb/usbinfo.py:346
+#: confusb/usbinfo.py:347
 msgid "Connected to"
 msgstr "Liitetty kohteeseen"
 
-#: confusb/usbinfo.py:347
+#: confusb/usbinfo.py:348
 msgid "Parent path"
 msgstr "Ylätason polku"
 
-#: confusb/usbinfo.py:374
+#: confusb/usbinfo.py:375
 #, python-brace-format
 msgid "{module} (loaded)"
 msgstr "{module} (ladattu)"
 
-#: confusb/usbinfo.py:390
+#: confusb/usbinfo.py:391
 msgid "Storage"
 msgstr "Tallennustila"

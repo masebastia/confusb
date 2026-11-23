@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:52+0100\n"
+"POT-Creation-Date: 2026-11-23 21:37+0100\n"
 "PO-Revision-Date: 2026-11-22 13:37+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Ελληνικά\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:282 confusb/ui.py:369
+#: confusb/ui.py:285 confusb/ui.py:377
 msgid "Capacity"
 msgstr "Χωρητικότητα"
 
@@ -128,6 +128,259 @@ msgstr ""
 #: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
+
+#: confusb/configuracion.py:33 confusb/componentes.py:30
+msgid "Configurable"
+msgstr "Ρυθμίσιμο"
+
+#: confusb/configuracion.py:33 confusb/componentes.py:31
+msgid "Maybe configurable"
+msgstr "Ίσως ρυθμίσιμο"
+
+#: confusb/configuracion.py:34
+msgid "System settings"
+msgstr "Ρυθμίσεις συστήματος"
+
+#: confusb/configuracion.py:34
+msgid "Not configurable"
+msgstr "Μη ρυθμίσιμο"
+
+#: confusb/configuracion.py:318
+#, python-brace-format
+msgid ""
+"It has a manufacturer-specific HID channel ({n} feature or output reports, "
+"up to {size} bytes). The software of gaming mice usually uses it for "
+"settings such as DPI, buttons and lighting."
+msgstr "Διαθέτει κανάλι HID ειδικό του κατασκευαστή ({n} αναφορές χαρακτηριστικών ή εξόδου, έως {size} byte). Το λογισμικό των ποντικιών gaming το χρησιμοποιεί συνήθως για ρυθμίσεις όπως DPI, κουμπιά και φωτισμό."
+
+#: confusb/configuracion.py:322
+#, python-brace-format
+msgid "{tool} supports this model ({name})."
+msgstr "Το {tool} υποστηρίζει αυτό το μοντέλο ({name})."
+
+#: confusb/configuracion.py:324
+msgid ""
+"The camera exposes image controls (brightness, contrast…) that can be "
+"adjusted."
+msgstr "Η κάμερα διαθέτει χειριστήρια εικόνας (φωτεινότητα, αντίθεση…) που μπορούν να ρυθμιστούν."
+
+#: confusb/configuracion.py:326
+msgid "The sound card exposes volume and mute controls."
+msgstr "Η κάρτα ήχου διαθέτει χειριστήρια έντασης και σίγασης."
+
+#: confusb/configuracion.py:329
+#, python-brace-format
+msgid "It may be configurable with {tool}, a tool for {brand} devices."
+msgstr "Ίσως ρυθμίζεται με το {tool}, ένα εργαλείο για συσκευές {brand}."
+
+#: confusb/configuracion.py:331
+msgid "A game controller can be remapped with input-remapper."
+msgstr "Ένα χειριστήριο παιχνιδιών μπορεί να αντιστοιχιστεί εκ νέου με το input-remapper."
+
+#: confusb/configuracion.py:333
+msgid ""
+"The pointer speed, acceleration and buttons are set in the system settings."
+msgstr "Η ταχύτητα του δείκτη, η επιτάχυνση και τα κουμπιά ορίζονται στις ρυθμίσεις του συστήματος."
+
+#: confusb/configuracion.py:335
+msgid "The layout and key repeat are set in the system settings."
+msgstr "Η διάταξη του πληκτρολογίου και η επανάληψη πλήκτρων ορίζονται στις ρυθμίσεις του συστήματος."
+
+#: confusb/configuracion.py:337
+msgid "The pen tablet is configured in the system settings."
+msgstr "Η ταμπλέτα σχεδίασης ρυθμίζεται στις ρυθμίσεις του συστήματος."
+
+#: confusb/configuracion.py:339
+msgid "Printers are configured in the system settings."
+msgstr "Οι εκτυπωτές ρυθμίζονται στις ρυθμίσεις του συστήματος."
+
+#: confusb/configuracion.py:341
+msgid "Bluetooth is configured in the system settings."
+msgstr "Το Bluetooth ρυθμίζεται στις ρυθμίσεις του συστήματος."
+
+#: confusb/configuracion.py:343
+msgid "A storage drive can be renamed and formatted with Disks."
+msgstr "Μια μονάδα αποθήκευσης μπορεί να μετονομαστεί και να διαμορφωθεί με τους Δίσκους."
+
+#: confusb/configuracion.py:345
+msgid "The network connection is configured in the system settings."
+msgstr "Η σύνδεση δικτύου ρυθμίζεται στις ρυθμίσεις του συστήματος."
+
+#: confusb/configuracion.py:347
+msgid "No configurable settings were found."
+msgstr "Δεν βρέθηκαν ρυθμίσιμες ρυθμίσεις."
+
+#: confusb/configuracion.py:381
+msgid "Default"
+msgstr "Προεπιλογή"
+
+#: confusb/configuracion.py:381
+msgid "Flat"
+msgstr "Επίπεδο"
+
+#: confusb/configuracion.py:381
+msgid "Adaptive"
+msgstr "Προσαρμοστικό"
+
+#: confusb/configuracion.py:387 confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Εγκαταστήστε πρώτα το «{name}»"
+
+#: confusb/configuracion.py:397
+msgid "Pointer speed"
+msgstr "Ταχύτητα δείκτη"
+
+#: confusb/configuracion.py:399
+msgid "Acceleration profile"
+msgstr "Προφίλ επιτάχυνσης"
+
+#: confusb/configuracion.py:400
+msgid "Left-handed"
+msgstr "Για αριστερόχειρες"
+
+#: confusb/configuracion.py:400
+msgid "Natural scrolling"
+msgstr "Φυσική κύλιση"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "on"
+msgstr "ενεργό"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "off"
+msgstr "ανενεργό"
+
+#: confusb/configuracion.py:403
+msgid "Mouse settings"
+msgstr "Ρυθμίσεις ποντικιού"
+
+#: confusb/configuracion.py:404
+msgid "Open mouse settings"
+msgstr "Άνοιγμα ρυθμίσεων ποντικιού"
+
+#: confusb/configuracion.py:407
+msgid "Keyboard settings"
+msgstr "Ρυθμίσεις πληκτρολογίου"
+
+#: confusb/configuracion.py:408
+msgid "Open keyboard settings"
+msgstr "Άνοιγμα ρυθμίσεων πληκτρολογίου"
+
+#: confusb/configuracion.py:422
+msgid "Camera controls"
+msgstr "Χειριστήρια κάμερας"
+
+#: confusb/configuracion.py:425
+msgid "Audio controls"
+msgstr "Χειριστήρια ήχου"
+
+#: confusb/configuracion.py:426
+msgid "Open sound settings"
+msgstr "Άνοιγμα ρυθμίσεων ήχου"
+
+#: confusb/configuracion.py:429
+msgid "Bluetooth settings"
+msgstr "Ρυθμίσεις Bluetooth"
+
+#: confusb/configuracion.py:430
+msgid "Open Bluetooth settings"
+msgstr "Άνοιγμα ρυθμίσεων Bluetooth"
+
+#: confusb/configuracion.py:433
+msgid "Printer settings"
+msgstr "Ρυθμίσεις εκτυπωτή"
+
+#: confusb/configuracion.py:434
+msgid "Open printer settings"
+msgstr "Άνοιγμα ρυθμίσεων εκτυπωτών"
+
+#: confusb/configuracion.py:437
+msgid "Network settings"
+msgstr "Ρυθμίσεις δικτύου"
+
+#: confusb/configuracion.py:438
+msgid "Open network settings"
+msgstr "Άνοιγμα ρυθμίσεων δικτύου"
+
+#: confusb/configuracion.py:440
+msgid "Current settings"
+msgstr "Τρέχουσες ρυθμίσεις"
+
+#: confusb/configuracion.py:443
+msgid "Mouse"
+msgstr "Ποντίκι"
+
+#: confusb/configuracion.py:443
+msgid "Keyboard"
+msgstr "Πληκτρολόγιο"
+
+#: confusb/configuracion.py:443
+msgid "Joystick"
+msgstr "Joystick"
+
+#: confusb/configuracion.py:443
+msgid "Game pad"
+msgstr "Χειριστήριο παιχνιδιών"
+
+#: confusb/configuracion.py:444
+msgid "Consumer controls"
+msgstr "Χειριστήρια πολυμέσων"
+
+#: confusb/configuracion.py:453
+msgid "Function"
+msgstr "Λειτουργία"
+
+#: confusb/configuracion.py:455
+msgid "Manufacturer-defined"
+msgstr "Ορίζεται από τον κατασκευαστή"
+
+#: confusb/configuracion.py:458
+msgid "Buttons"
+msgstr "Κουμπιά"
+
+#: confusb/configuracion.py:460
+msgid "Axes"
+msgstr "Άξονες"
+
+#: confusb/configuracion.py:461
+msgid "Manufacturer-defined feature reports"
+msgstr "Αναφορές χαρακτηριστικών που ορίζει ο κατασκευαστής"
+
+#: confusb/configuracion.py:462
+msgid "Manufacturer-defined output reports"
+msgstr "Αναφορές εξόδου που ορίζει ο κατασκευαστής"
+
+#: confusb/configuracion.py:466
+#, python-brace-format
+msgid "HID interface {name}"
+msgstr "Διεπαφή HID {name}"
+
+#: confusb/configuracion.py:467
+msgid "HID analysis"
+msgstr "Ανάλυση HID"
+
+#: confusb/configuracion.py:498
+#, python-brace-format
+msgid ""
+"libratbag does not list this model ({id}), so Piper cannot configure it."
+msgstr "Το libratbag δεν περιλαμβάνει αυτό το μοντέλο ({id}), οπότε το Piper δεν μπορεί να το ρυθμίσει."
+
+#: confusb/configuracion.py:501
+msgid "Ask libratbag to support it"
+msgstr "Ζητήστε από το libratbag να το υποστηρίξει"
+
+#: confusb/configuracion.py:509
+msgid "Configuration tools"
+msgstr "Εργαλεία ρύθμισης"
+
+#: confusb/configuracion.py:522 confusb/ui.py:289 confusb/ui.py:329
+msgid "Configuration"
+msgstr "Ρύθμιση"
+
+#: confusb/configuracion.py:522 confusb/ui.py:444
+msgid "Can it be configured?"
+msgstr "Μπορεί να ρυθμιστεί;"
 
 #: confusb/preferencias.py:17
 msgid "Like the theme"
@@ -417,108 +670,108 @@ msgstr "Υποστηρίζεται"
 msgid "Has driver"
 msgstr "Έχει πρόγραμμα οδήγησης"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Needs installing"
 msgstr "Απαιτείται εγκατάσταση"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not bound"
 msgstr "Μη συσχετισμένο"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "No driver"
 msgstr "Χωρίς πρόγραμμα οδήγησης"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "Not in the repositories"
 msgstr "Δεν υπάρχει στα αποθετήρια"
 
-#: confusb/componentes.py:147
+#: confusb/componentes.py:148
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: confusb/componentes.py:317
+#: confusb/componentes.py:318
 msgid "Close the notice"
 msgstr "Κλείσιμο της ειδοποίησης"
 
-#: confusb/componentes.py:502 confusb/ui.py:88
+#: confusb/componentes.py:503 confusb/ui.py:88
 msgid "Interface"
 msgstr "Διεπαφή"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Cards"
 msgstr "Κάρτες"
 
-#: confusb/componentes.py:507
+#: confusb/componentes.py:508
 msgid "Card opacity"
 msgstr "Αδιαφάνεια καρτών"
 
-#: confusb/componentes.py:509
+#: confusb/componentes.py:510
 msgid "Corners"
 msgstr "Γωνίες"
 
-#: confusb/componentes.py:512
+#: confusb/componentes.py:513
 msgid "Title color"
 msgstr "Χρώμα τίτλων"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:523
 msgid "Frame"
 msgstr "Πλαίσιο"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:525
 msgid "Shadow under the cards"
 msgstr "Σκιά κάτω από τις κάρτες"
 
-#: confusb/componentes.py:527
+#: confusb/componentes.py:528
 msgid "Show «View information →» on the cards"
 msgstr "Εμφάνιση του «Προβολή πληροφοριών →» στις κάρτες"
 
-#: confusb/componentes.py:531
+#: confusb/componentes.py:532
 msgid "Window background"
 msgstr "Φόντο παραθύρου"
 
-#: confusb/componentes.py:534 confusb/componentes.py:536
+#: confusb/componentes.py:535 confusb/componentes.py:537
 msgid "Background color"
 msgstr "Χρώμα φόντου"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:544
 msgid "When a device is connected"
 msgstr "Όταν συνδέεται μια συσκευή"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:546
 msgid "Only for devices not seen before"
 msgstr "Μόνο για συσκευές που συνδέονται για πρώτη φορά"
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:549
 msgid "Open storage drives with the default application"
 msgstr "Άνοιγμα των μονάδων αποθήκευσης με την προεπιλεγμένη εφαρμογή"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "Forget known devices"
 msgstr "Ξέχασε τις γνωστές συσκευές"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "The next time they are connected they will count as new"
 msgstr "Την επόμενη φορά που θα συνδεθούν, θα θεωρούνται νέες"
 
-#: confusb/componentes.py:558
+#: confusb/componentes.py:559
 msgid "Reset"
 msgstr "Επαναφορά"
 
-#: confusb/componentes.py:558 confusb/componentes.py:630
+#: confusb/componentes.py:559 confusb/componentes.py:631
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: confusb/componentes.py:614
+#: confusb/componentes.py:615
 msgid "About confusb"
 msgstr "Σχετικά με το confusb"
 
-#: confusb/componentes.py:621
+#: confusb/componentes.py:622
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Έκδοση {version}"
 
-#: confusb/componentes.py:622
+#: confusb/componentes.py:623
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -526,11 +779,11 @@ msgstr ""
 "Ειδοποιεί όταν συνδέεται μια συσκευή USB, εμφανίζει τις πληροφορίες της και "
 "αναζητά το πρόγραμμα οδήγησης και τις εφαρμογές για τη χρήση της."
 
-#: confusb/componentes.py:626
+#: confusb/componentes.py:627
 msgid "License GPL-3.0-or-later"
 msgstr "Άδεια GPL-3.0-or-later"
 
-#: confusb/componentes.py:627
+#: confusb/componentes.py:628
 msgid "Source code on GitHub"
 msgstr "Πηγαίος κώδικας στο GitHub"
 
@@ -807,6 +1060,48 @@ msgstr "OpenMoko / ελεύθερα έργα"
 msgid "Many free hardware devices use this VID."
 msgstr "Πολλές ελεύθερες συσκευές υλικού χρησιμοποιούν αυτό το VID."
 
+#: confusb/kb.py:113
+msgid ""
+"Configures gaming mice: DPI, buttons, macros and lighting. It only works "
+"with the models libratbag lists."
+msgstr "Ρυθμίζει ποντίκια gaming: DPI, κουμπιά, μακροεντολές και φωτισμό. Λειτουργεί μόνο με τα μοντέλα που περιλαμβάνει το libratbag."
+
+#: confusb/kb.py:114
+msgid "Open Piper"
+msgstr "Άνοιγμα του Piper"
+
+#: confusb/kb.py:116
+msgid ""
+"Remaps the buttons and keys of any mouse, keyboard or game controller and "
+"creates macros."
+msgstr "Αντιστοιχίζει εκ νέου τα κουμπιά και τα πλήκτρα οποιουδήποτε ποντικιού, πληκτρολογίου ή χειριστηρίου και δημιουργεί μακροεντολές."
+
+#: confusb/kb.py:118
+msgid "Open input-remapper"
+msgstr "Άνοιγμα του input-remapper"
+
+#: confusb/kb.py:120
+msgid "Driver and daemon for Razer devices: lighting, DPI and macros."
+msgstr "Πρόγραμμα οδήγησης και υπηρεσία για συσκευές Razer: φωτισμός, DPI και μακροεντολές."
+
+#: confusb/kb.py:122
+msgid ""
+"Driver and configuration tool for Corsair keyboards and mice: lighting, "
+"macros and DPI."
+msgstr "Πρόγραμμα οδήγησης και εργαλείο ρύθμισης για πληκτρολόγια και ποντίκια Corsair: φωτισμός, μακροεντολές και DPI."
+
+#: confusb/kb.py:123
+msgid "Open ckb-next"
+msgstr "Άνοιγμα του ckb-next"
+
+#: confusb/kb.py:124
+msgid "Shows the camera and adjusts its image controls."
+msgstr "Εμφανίζει την κάμερα και ρυθμίζει τα χειριστήρια εικόνας της."
+
+#: confusb/kb.py:125
+msgid "Open guvcview"
+msgstr "Άνοιγμα του guvcview"
+
 #: confusb/resolver.py:146
 #, python-brace-format
 msgid "Packages: {list}"
@@ -875,11 +1170,6 @@ msgstr "Εγκατάσταση του Flatpak {id}"
 msgid "Already installed on your computer."
 msgstr "Ήδη εγκατεστημένο στον υπολογιστή σας."
 
-#: confusb/resolver.py:192
-#, python-brace-format
-msgid "Install «{name}» first"
-msgstr "Εγκαταστήστε πρώτα το «{name}»"
-
 #: confusb/resolver.py:203
 msgid "USB hub"
 msgstr "Διανομέας USB"
@@ -888,12 +1178,12 @@ msgstr "Διανομέας USB"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Διαχειρίζεται από το πρόγραμμα οδήγησης «hub» του πυρήνα."
 
-#: confusb/resolver.py:206 confusb/ui.py:384
+#: confusb/resolver.py:206 confusb/ui.py:392
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Διεπαφή {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:389
+#: confusb/resolver.py:207 confusb/ui.py:397
 msgid "none found"
 msgstr "δεν βρέθηκε καμία"
 
@@ -1104,171 +1394,175 @@ msgstr "Απόρριψη"
 msgid "Reading devices…"
 msgstr "Ανάγνωση συσκευών…"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:253
 msgid "Could not read the devices"
 msgstr "Δεν ήταν δυνατή η ανάγνωση των συσκευών"
 
-#: confusb/ui.py:251
+#: confusb/ui.py:254
 msgid "Error reading the devices"
 msgstr "Σφάλμα ανάγνωσης των συσκευών"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:260
 msgid "No USB devices connected"
 msgstr "Δεν υπάρχουν συνδεδεμένες συσκευές USB"
 
-#: confusb/ui.py:258
+#: confusb/ui.py:261
 msgid "Connect one and it will appear here automatically."
 msgstr "Συνδέστε μία και θα εμφανιστεί εδώ αυτόματα."
 
-#: confusb/ui.py:260
+#: confusb/ui.py:263
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Συνδεδεμένες συσκευές USB: {n}"
 
-#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
+#: confusb/ui.py:280 confusb/ui.py:333 confusb/ui.py:375
 msgid "Unknown manufacturer"
 msgstr "Άγνωστος κατασκευαστής"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:283
 msgid "Type"
 msgstr "Τύπος"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:286
 msgid "Port"
 msgstr "Θύρα"
 
-#: confusb/ui.py:284
+#: confusb/ui.py:287
 msgid "Driver"
 msgstr "Πρόγραμμα οδήγησης"
 
-#: confusb/ui.py:284 confusb/ui.py:388
+#: confusb/ui.py:287 confusb/ui.py:396
 msgid "none"
 msgstr "κανένα"
 
-#: confusb/ui.py:286
+#: confusb/ui.py:291
 msgid "View information →"
 msgstr "Προβολή πληροφοριών →"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back"
 msgstr "Πίσω"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back to the list of devices"
 msgstr "Επιστροφή στη λίστα συσκευών"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy all the information to the clipboard"
 msgstr "Αντιγραφή όλων των πληροφοριών στο πρόχειρο"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Information"
 msgstr "Πληροφορίες"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Drivers and applications"
 msgstr "Προγράμματα οδήγησης και εφαρμογές"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:337
 msgid "Connected"
 msgstr "Συνδεδεμένο"
 
-#: confusb/ui.py:353
+#: confusb/ui.py:361
 msgid "Information copied to the clipboard"
 msgstr "Οι πληροφορίες αντιγράφηκαν στο πρόχειρο"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Interfaces"
 msgstr "Διεπαφές"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Each interface can have its own driver"
 msgstr "Κάθε διεπαφή μπορεί να έχει το δικό της πρόγραμμα οδήγησης"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:394
 msgid "Class"
 msgstr "Κλάση"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:395
 msgid "Subclass / protocol"
 msgstr "Υποκλάση / πρωτόκολλο"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:396
 msgid "Bound driver"
 msgstr "Συσχετισμένο πρόγραμμα οδήγησης"
 
-#: confusb/ui.py:389
+#: confusb/ui.py:397
 msgid "Kernel modules"
 msgstr "Ενότητες πυρήνα"
 
-#: confusb/ui.py:396
+#: confusb/ui.py:404
 msgid "Nodes created in the system"
 msgstr "Κόμβοι που δημιουργήθηκαν στο σύστημα"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:408
 msgid "Raw data"
 msgstr "Ακατέργαστα δεδομένα"
 
-#: confusb/ui.py:401
+#: confusb/ui.py:409
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "Ιδιότητες udev ({n})"
 
-#: confusb/ui.py:407
+#: confusb/ui.py:415
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Έξοδος του lsusb -v (πλήρεις περιγραφείς USB)"
 
-#: confusb/ui.py:424
+#: confusb/ui.py:430
+msgid "Checking what can be configured…"
+msgstr "Έλεγχος του τι μπορεί να ρυθμιστεί…"
+
+#: confusb/ui.py:470
 msgid "Reading more information from the device…"
 msgstr "Ανάγνωση περισσότερων πληροφοριών από τη συσκευή…"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:488
 msgid "Tips"
 msgstr "Συμβουλές"
 
-#: confusb/ui.py:467
+#: confusb/ui.py:513
 msgid "Looking for drivers and applications…"
 msgstr "Αναζήτηση προγραμμάτων οδήγησης και εφαρμογών…"
 
-#: confusb/ui.py:520
+#: confusb/ui.py:566
 msgid "No terminal emulator found"
 msgstr "Δεν βρέθηκε εξομοιωτής τερματικού"
 
-#: confusb/ui.py:522
+#: confusb/ui.py:568
 msgid "Press Enter to close…"
 msgstr "Πατήστε Enter για κλείσιμο…"
 
-#: confusb/ui.py:533
+#: confusb/ui.py:579
 msgid "Working…"
 msgstr "Σε εξέλιξη…"
 
-#: confusb/ui.py:539
+#: confusb/ui.py:585
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Σφάλμα: {error}"
 
-#: confusb/ui.py:542
+#: confusb/ui.py:588
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(κωδικός εξόδου {code})"
 
-#: confusb/ui.py:546
+#: confusb/ui.py:592
 msgid "Installation completed"
 msgstr "Η εγκατάσταση ολοκληρώθηκε"
 
-#: confusb/ui.py:549
+#: confusb/ui.py:596
 msgid "The installation failed"
 msgstr "Η εγκατάσταση απέτυχε"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:605
 msgid "Disconnected"
 msgstr "Αποσυνδέθηκε"
 
-#: confusb/ui.py:559
+#: confusb/ui.py:606
 msgid "The device has been disconnected"
 msgstr "Η συσκευή αποσυνδέθηκε"
 
@@ -1444,140 +1738,140 @@ msgstr "Όνομα διαμόρφωσης"
 msgid "Kernel quirks"
 msgstr "Ιδιαιτερότητες πυρήνα"
 
-#: confusb/usbinfo.py:179
+#: confusb/usbinfo.py:180
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:180
+#: confusb/usbinfo.py:181
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:182
+#: confusb/usbinfo.py:183
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:183
+#: confusb/usbinfo.py:184
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:194
+#: confusb/usbinfo.py:195
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:228
+#: confusb/usbinfo.py:229
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:261
+#: confusb/usbinfo.py:262
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "διεπαφή δικτύου {name}"
 
-#: confusb/usbinfo.py:308
+#: confusb/usbinfo.py:309
 msgid "Manufacturer (usb.ids)"
 msgstr "Κατασκευαστής (usb.ids)"
 
-#: confusb/usbinfo.py:309
+#: confusb/usbinfo.py:310
 msgid "Product (usb.ids)"
 msgstr "Προϊόν (usb.ids)"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:311
 msgid "sysfs path"
 msgstr "διαδρομή sysfs"
 
-#: confusb/usbinfo.py:311
+#: confusb/usbinfo.py:312
 msgid "/dev node"
 msgstr "κόμβος /dev"
 
-#: confusb/usbinfo.py:312
+#: confusb/usbinfo.py:313
 msgid "Subsystem / type"
 msgstr "Υποσύστημα / τύπος"
 
-#: confusb/usbinfo.py:313
+#: confusb/usbinfo.py:314
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:314
+#: confusb/usbinfo.py:315
 msgid "Device driver"
 msgstr "Πρόγραμμα οδήγησης συσκευής"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:317
 msgid "Persistent paths (ID_PATH)"
 msgstr "Μόνιμες διαδρομές (ID_PATH)"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:318
 msgid "udev tags (TAGS)"
 msgstr "Ετικέτες udev (TAGS)"
 
-#: confusb/usbinfo.py:320
+#: confusb/usbinfo.py:321
 msgid "Identification"
 msgstr "Αναγνώριση"
 
-#: confusb/usbinfo.py:321
+#: confusb/usbinfo.py:322
 msgid "Descriptors and configuration"
 msgstr "Περιγραφείς και διαμόρφωση"
 
-#: confusb/usbinfo.py:322
+#: confusb/usbinfo.py:323
 msgid "System"
 msgstr "Σύστημα"
 
-#: confusb/usbinfo.py:326
+#: confusb/usbinfo.py:327
 msgid "Power control"
 msgstr "Έλεγχος ισχύος"
 
-#: confusb/usbinfo.py:327
+#: confusb/usbinfo.py:328
 msgid "Power state"
 msgstr "Κατάσταση ισχύος"
 
-#: confusb/usbinfo.py:328
+#: confusb/usbinfo.py:329
 msgid "Autosuspend delay (ms)"
 msgstr "Καθυστέρηση αυτόματης αναστολής (ms)"
 
-#: confusb/usbinfo.py:329
+#: confusb/usbinfo.py:330
 msgid "Persistence"
 msgstr "Μονιμότητα"
 
-#: confusb/usbinfo.py:330
+#: confusb/usbinfo.py:331
 msgid "System wake-up"
 msgstr "Αφύπνιση του συστήματος"
 
-#: confusb/usbinfo.py:331
+#: confusb/usbinfo.py:332
 msgid "Active time (ms)"
 msgstr "Χρόνος δραστηριότητας (ms)"
 
-#: confusb/usbinfo.py:332
+#: confusb/usbinfo.py:333
 msgid "Connected time (ms)"
 msgstr "Χρόνος σύνδεσης (ms)"
 
-#: confusb/usbinfo.py:333
+#: confusb/usbinfo.py:334
 msgid "URBs processed"
 msgstr "URB που επεξεργάστηκαν"
 
-#: confusb/usbinfo.py:339
+#: confusb/usbinfo.py:340
 msgid "Power and statistics"
 msgstr "Ισχύς και στατιστικά"
 
-#: confusb/usbinfo.py:345
+#: confusb/usbinfo.py:346
 msgid "Topology"
 msgstr "Τοπολογία"
 
-#: confusb/usbinfo.py:346
+#: confusb/usbinfo.py:347
 msgid "Connected to"
 msgstr "Συνδεδεμένο με"
 
-#: confusb/usbinfo.py:347
+#: confusb/usbinfo.py:348
 msgid "Parent path"
 msgstr "Διαδρομή του γονέα"
 
-#: confusb/usbinfo.py:374
+#: confusb/usbinfo.py:375
 #, python-brace-format
 msgid "{module} (loaded)"
 msgstr "{module} (φορτωμένο)"
 
-#: confusb/usbinfo.py:390
+#: confusb/usbinfo.py:391
 msgid "Storage"
 msgstr "Αποθήκευση"

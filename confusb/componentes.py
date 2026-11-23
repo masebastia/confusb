@@ -26,8 +26,9 @@ REPO_URL = "https://github.com/masebastia/confusb"
 
 STATUS_CLASS = {
     # los estados se identifican por su texto fuente (inglés) y se traducen al mostrarlos
-    "ok": {N_("Installed"), N_("Active driver"), N_("User space"), N_("OK"), N_("Supported"), N_("Has driver")},
-    "aviso": {N_("Needs installing"), N_("Not bound")},
+    "ok": {N_("Installed"), N_("Active driver"), N_("User space"), N_("OK"), N_("Supported"), N_("Has driver"),
+           N_("Configurable")},
+    "aviso": {N_("Needs installing"), N_("Not bound"), N_("Maybe configurable")},
     "error": {N_("No driver"), N_("Not in the repositories")},
 }
 

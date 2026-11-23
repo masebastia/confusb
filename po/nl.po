@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:52+0100\n"
+"POT-Creation-Date: 2026-11-23 21:37+0100\n"
 "PO-Revision-Date: 2026-11-22 13:27+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Nederlands\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:282 confusb/ui.py:369
+#: confusb/ui.py:285 confusb/ui.py:377
 msgid "Capacity"
 msgstr "Capaciteit"
 
@@ -128,6 +128,259 @@ msgstr ""
 #: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
+
+#: confusb/configuracion.py:33 confusb/componentes.py:30
+msgid "Configurable"
+msgstr "Configureerbaar"
+
+#: confusb/configuracion.py:33 confusb/componentes.py:31
+msgid "Maybe configurable"
+msgstr "Mogelijk configureerbaar"
+
+#: confusb/configuracion.py:34
+msgid "System settings"
+msgstr "Systeeminstellingen"
+
+#: confusb/configuracion.py:34
+msgid "Not configurable"
+msgstr "Niet configureerbaar"
+
+#: confusb/configuracion.py:318
+#, python-brace-format
+msgid ""
+"It has a manufacturer-specific HID channel ({n} feature or output reports, "
+"up to {size} bytes). The software of gaming mice usually uses it for "
+"settings such as DPI, buttons and lighting."
+msgstr "Het heeft een fabrikantspecifiek HID-kanaal ({n} feature- of output-reports, tot {size} bytes). De software van gamingmuizen gebruikt het meestal voor instellingen zoals DPI, knoppen en verlichting."
+
+#: confusb/configuracion.py:322
+#, python-brace-format
+msgid "{tool} supports this model ({name})."
+msgstr "{tool} ondersteunt dit model ({name})."
+
+#: confusb/configuracion.py:324
+msgid ""
+"The camera exposes image controls (brightness, contrast…) that can be "
+"adjusted."
+msgstr "De camera biedt beeldregelaars (helderheid, contrast…) die kunnen worden aangepast."
+
+#: confusb/configuracion.py:326
+msgid "The sound card exposes volume and mute controls."
+msgstr "De geluidskaart biedt regelaars voor volume en dempen."
+
+#: confusb/configuracion.py:329
+#, python-brace-format
+msgid "It may be configurable with {tool}, a tool for {brand} devices."
+msgstr "Het is mogelijk te configureren met {tool}, een hulpmiddel voor {brand}-apparaten."
+
+#: confusb/configuracion.py:331
+msgid "A game controller can be remapped with input-remapper."
+msgstr "Een gamecontroller kan met input-remapper opnieuw worden toegewezen."
+
+#: confusb/configuracion.py:333
+msgid ""
+"The pointer speed, acceleration and buttons are set in the system settings."
+msgstr "Aanwijzersnelheid, versnelling en knoppen worden ingesteld in de systeeminstellingen."
+
+#: confusb/configuracion.py:335
+msgid "The layout and key repeat are set in the system settings."
+msgstr "De toetsenbordindeling en toetsherhaling worden ingesteld in de systeeminstellingen."
+
+#: confusb/configuracion.py:337
+msgid "The pen tablet is configured in the system settings."
+msgstr "Het tekentablet wordt geconfigureerd in de systeeminstellingen."
+
+#: confusb/configuracion.py:339
+msgid "Printers are configured in the system settings."
+msgstr "Printers worden geconfigureerd in de systeeminstellingen."
+
+#: confusb/configuracion.py:341
+msgid "Bluetooth is configured in the system settings."
+msgstr "Bluetooth wordt geconfigureerd in de systeeminstellingen."
+
+#: confusb/configuracion.py:343
+msgid "A storage drive can be renamed and formatted with Disks."
+msgstr "Een opslagapparaat kan met Schijven worden hernoemd en geformatteerd."
+
+#: confusb/configuracion.py:345
+msgid "The network connection is configured in the system settings."
+msgstr "De netwerkverbinding wordt geconfigureerd in de systeeminstellingen."
+
+#: confusb/configuracion.py:347
+msgid "No configurable settings were found."
+msgstr "Er zijn geen configureerbare instellingen gevonden."
+
+#: confusb/configuracion.py:381
+msgid "Default"
+msgstr "Standaard"
+
+#: confusb/configuracion.py:381
+msgid "Flat"
+msgstr "Vlak"
+
+#: confusb/configuracion.py:381
+msgid "Adaptive"
+msgstr "Adaptief"
+
+#: confusb/configuracion.py:387 confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Installeer eerst «{name}»"
+
+#: confusb/configuracion.py:397
+msgid "Pointer speed"
+msgstr "Aanwijzersnelheid"
+
+#: confusb/configuracion.py:399
+msgid "Acceleration profile"
+msgstr "Versnellingsprofiel"
+
+#: confusb/configuracion.py:400
+msgid "Left-handed"
+msgstr "Linkshandig"
+
+#: confusb/configuracion.py:400
+msgid "Natural scrolling"
+msgstr "Natuurlijk scrollen"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "on"
+msgstr "aan"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "off"
+msgstr "uit"
+
+#: confusb/configuracion.py:403
+msgid "Mouse settings"
+msgstr "Muisinstellingen"
+
+#: confusb/configuracion.py:404
+msgid "Open mouse settings"
+msgstr "Muisinstellingen openen"
+
+#: confusb/configuracion.py:407
+msgid "Keyboard settings"
+msgstr "Toetsenbordinstellingen"
+
+#: confusb/configuracion.py:408
+msgid "Open keyboard settings"
+msgstr "Toetsenbordinstellingen openen"
+
+#: confusb/configuracion.py:422
+msgid "Camera controls"
+msgstr "Camerabediening"
+
+#: confusb/configuracion.py:425
+msgid "Audio controls"
+msgstr "Audiobediening"
+
+#: confusb/configuracion.py:426
+msgid "Open sound settings"
+msgstr "Geluidsinstellingen openen"
+
+#: confusb/configuracion.py:429
+msgid "Bluetooth settings"
+msgstr "Bluetooth-instellingen"
+
+#: confusb/configuracion.py:430
+msgid "Open Bluetooth settings"
+msgstr "Bluetooth-instellingen openen"
+
+#: confusb/configuracion.py:433
+msgid "Printer settings"
+msgstr "Printerinstellingen"
+
+#: confusb/configuracion.py:434
+msgid "Open printer settings"
+msgstr "Printerinstellingen openen"
+
+#: confusb/configuracion.py:437
+msgid "Network settings"
+msgstr "Netwerkinstellingen"
+
+#: confusb/configuracion.py:438
+msgid "Open network settings"
+msgstr "Netwerkinstellingen openen"
+
+#: confusb/configuracion.py:440
+msgid "Current settings"
+msgstr "Huidige instellingen"
+
+#: confusb/configuracion.py:443
+msgid "Mouse"
+msgstr "Muis"
+
+#: confusb/configuracion.py:443
+msgid "Keyboard"
+msgstr "Toetsenbord"
+
+#: confusb/configuracion.py:443
+msgid "Joystick"
+msgstr "Joystick"
+
+#: confusb/configuracion.py:443
+msgid "Game pad"
+msgstr "Gamepad"
+
+#: confusb/configuracion.py:444
+msgid "Consumer controls"
+msgstr "Mediabediening"
+
+#: confusb/configuracion.py:453
+msgid "Function"
+msgstr "Functie"
+
+#: confusb/configuracion.py:455
+msgid "Manufacturer-defined"
+msgstr "Door de fabrikant gedefinieerd"
+
+#: confusb/configuracion.py:458
+msgid "Buttons"
+msgstr "Knoppen"
+
+#: confusb/configuracion.py:460
+msgid "Axes"
+msgstr "Assen"
+
+#: confusb/configuracion.py:461
+msgid "Manufacturer-defined feature reports"
+msgstr "Door de fabrikant gedefinieerde feature-reports"
+
+#: confusb/configuracion.py:462
+msgid "Manufacturer-defined output reports"
+msgstr "Door de fabrikant gedefinieerde output-reports"
+
+#: confusb/configuracion.py:466
+#, python-brace-format
+msgid "HID interface {name}"
+msgstr "HID-interface {name}"
+
+#: confusb/configuracion.py:467
+msgid "HID analysis"
+msgstr "HID-analyse"
+
+#: confusb/configuracion.py:498
+#, python-brace-format
+msgid ""
+"libratbag does not list this model ({id}), so Piper cannot configure it."
+msgstr "libratbag vermeldt dit model ({id}) niet, dus Piper kan het niet configureren."
+
+#: confusb/configuracion.py:501
+msgid "Ask libratbag to support it"
+msgstr "Vraag libratbag het te ondersteunen"
+
+#: confusb/configuracion.py:509
+msgid "Configuration tools"
+msgstr "Configuratiehulpmiddelen"
+
+#: confusb/configuracion.py:522 confusb/ui.py:289 confusb/ui.py:329
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: confusb/configuracion.py:522 confusb/ui.py:444
+msgid "Can it be configured?"
+msgstr "Kan het worden geconfigureerd?"
 
 #: confusb/preferencias.py:17
 msgid "Like the theme"
@@ -418,108 +671,108 @@ msgstr "Ondersteund"
 msgid "Has driver"
 msgstr "Heeft een stuurprogramma"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Needs installing"
 msgstr "Moet worden geïnstalleerd"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not bound"
 msgstr "Niet gekoppeld"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "No driver"
 msgstr "Geen stuurprogramma"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "Not in the repositories"
 msgstr "Niet in de pakketbronnen"
 
-#: confusb/componentes.py:147
+#: confusb/componentes.py:148
 msgid "Language"
 msgstr "Taal"
 
-#: confusb/componentes.py:317
+#: confusb/componentes.py:318
 msgid "Close the notice"
 msgstr "Melding sluiten"
 
-#: confusb/componentes.py:502 confusb/ui.py:88
+#: confusb/componentes.py:503 confusb/ui.py:88
 msgid "Interface"
 msgstr "Interface"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Cards"
 msgstr "Kaarten"
 
-#: confusb/componentes.py:507
+#: confusb/componentes.py:508
 msgid "Card opacity"
 msgstr "Dekking van de kaarten"
 
-#: confusb/componentes.py:509
+#: confusb/componentes.py:510
 msgid "Corners"
 msgstr "Hoeken"
 
-#: confusb/componentes.py:512
+#: confusb/componentes.py:513
 msgid "Title color"
 msgstr "Kleur van de titels"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:523
 msgid "Frame"
 msgstr "Rand"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:525
 msgid "Shadow under the cards"
 msgstr "Schaduw onder de kaarten"
 
-#: confusb/componentes.py:527
+#: confusb/componentes.py:528
 msgid "Show «View information →» on the cards"
 msgstr "«Informatie bekijken →» op de kaarten tonen"
 
-#: confusb/componentes.py:531
+#: confusb/componentes.py:532
 msgid "Window background"
 msgstr "Vensterachtergrond"
 
-#: confusb/componentes.py:534 confusb/componentes.py:536
+#: confusb/componentes.py:535 confusb/componentes.py:537
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:544
 msgid "When a device is connected"
 msgstr "Wanneer een apparaat wordt aangesloten"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:546
 msgid "Only for devices not seen before"
 msgstr "Alleen voor apparaten die nog niet eerder zijn gezien"
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:549
 msgid "Open storage drives with the default application"
 msgstr "Opslagstations openen met de standaardtoepassing"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "Forget known devices"
 msgstr "Bekende apparaten vergeten"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "The next time they are connected they will count as new"
 msgstr "De volgende keer dat ze worden aangesloten, tellen ze als nieuw"
 
-#: confusb/componentes.py:558
+#: confusb/componentes.py:559
 msgid "Reset"
 msgstr "Herstellen"
 
-#: confusb/componentes.py:558 confusb/componentes.py:630
+#: confusb/componentes.py:559 confusb/componentes.py:631
 msgid "Close"
 msgstr "Sluiten"
 
-#: confusb/componentes.py:614
+#: confusb/componentes.py:615
 msgid "About confusb"
 msgstr "Over confusb"
 
-#: confusb/componentes.py:621
+#: confusb/componentes.py:622
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versie {version}"
 
-#: confusb/componentes.py:622
+#: confusb/componentes.py:623
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -527,11 +780,11 @@ msgstr ""
 "Meldt wanneer een USB-apparaat wordt aangesloten, toont de informatie ervan "
 "en zoekt het stuurprogramma en de toepassingen om het te gebruiken."
 
-#: confusb/componentes.py:626
+#: confusb/componentes.py:627
 msgid "License GPL-3.0-or-later"
 msgstr "Licentie GPL-3.0-or-later"
 
-#: confusb/componentes.py:627
+#: confusb/componentes.py:628
 msgid "Source code on GitHub"
 msgstr "Broncode op GitHub"
 
@@ -804,6 +1057,48 @@ msgstr "OpenMoko / vrije projecten"
 msgid "Many free hardware devices use this VID."
 msgstr "Veel vrije hardwareapparaten gebruiken deze VID."
 
+#: confusb/kb.py:113
+msgid ""
+"Configures gaming mice: DPI, buttons, macros and lighting. It only works "
+"with the models libratbag lists."
+msgstr "Configureert gamingmuizen: DPI, knoppen, macro's en verlichting. Werkt alleen met de modellen die libratbag vermeldt."
+
+#: confusb/kb.py:114
+msgid "Open Piper"
+msgstr "Piper openen"
+
+#: confusb/kb.py:116
+msgid ""
+"Remaps the buttons and keys of any mouse, keyboard or game controller and "
+"creates macros."
+msgstr "Wijst de knoppen en toetsen van elke muis, elk toetsenbord of elke gamecontroller opnieuw toe en maakt macro's."
+
+#: confusb/kb.py:118
+msgid "Open input-remapper"
+msgstr "input-remapper openen"
+
+#: confusb/kb.py:120
+msgid "Driver and daemon for Razer devices: lighting, DPI and macros."
+msgstr "Stuurprogramma en service voor Razer-apparaten: verlichting, DPI en macro's."
+
+#: confusb/kb.py:122
+msgid ""
+"Driver and configuration tool for Corsair keyboards and mice: lighting, "
+"macros and DPI."
+msgstr "Stuurprogramma en configuratiehulpmiddel voor Corsair-toetsenborden en -muizen: verlichting, macro's en DPI."
+
+#: confusb/kb.py:123
+msgid "Open ckb-next"
+msgstr "ckb-next openen"
+
+#: confusb/kb.py:124
+msgid "Shows the camera and adjusts its image controls."
+msgstr "Toont de camera en past de beeldregelaars aan."
+
+#: confusb/kb.py:125
+msgid "Open guvcview"
+msgstr "guvcview openen"
+
 #: confusb/resolver.py:146
 #, python-brace-format
 msgid "Packages: {list}"
@@ -871,11 +1166,6 @@ msgstr "Flatpak {id} installeren"
 msgid "Already installed on your computer."
 msgstr "Al op uw computer geïnstalleerd."
 
-#: confusb/resolver.py:192
-#, python-brace-format
-msgid "Install «{name}» first"
-msgstr "Installeer eerst «{name}»"
-
 #: confusb/resolver.py:203
 msgid "USB hub"
 msgstr "USB-hub"
@@ -884,12 +1174,12 @@ msgstr "USB-hub"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Beheerd door het «hub»-stuurprogramma van de kernel."
 
-#: confusb/resolver.py:206 confusb/ui.py:384
+#: confusb/resolver.py:206 confusb/ui.py:392
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Interface {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:389
+#: confusb/resolver.py:207 confusb/ui.py:397
 msgid "none found"
 msgstr "geen gevonden"
 
@@ -1100,171 +1390,175 @@ msgstr "Negeren"
 msgid "Reading devices…"
 msgstr "Apparaten worden gelezen…"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:253
 msgid "Could not read the devices"
 msgstr "De apparaten konden niet worden gelezen"
 
-#: confusb/ui.py:251
+#: confusb/ui.py:254
 msgid "Error reading the devices"
 msgstr "Fout bij het lezen van de apparaten"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:260
 msgid "No USB devices connected"
 msgstr "Geen USB-apparaten verbonden"
 
-#: confusb/ui.py:258
+#: confusb/ui.py:261
 msgid "Connect one and it will appear here automatically."
 msgstr "Sluit er een aan en het verschijnt hier automatisch."
 
-#: confusb/ui.py:260
+#: confusb/ui.py:263
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Verbonden USB-apparaten: {n}"
 
-#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
+#: confusb/ui.py:280 confusb/ui.py:333 confusb/ui.py:375
 msgid "Unknown manufacturer"
 msgstr "Onbekende fabrikant"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:283
 msgid "Type"
 msgstr "Type"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:286
 msgid "Port"
 msgstr "Poort"
 
-#: confusb/ui.py:284
+#: confusb/ui.py:287
 msgid "Driver"
 msgstr "Stuurprogramma"
 
-#: confusb/ui.py:284 confusb/ui.py:388
+#: confusb/ui.py:287 confusb/ui.py:396
 msgid "none"
 msgstr "geen"
 
-#: confusb/ui.py:286
+#: confusb/ui.py:291
 msgid "View information →"
 msgstr "Informatie bekijken →"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back"
 msgstr "Terug"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back to the list of devices"
 msgstr "Terug naar de lijst met apparaten"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy all the information to the clipboard"
 msgstr "Alle informatie naar het klembord kopiëren"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Information"
 msgstr "Informatie"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Drivers and applications"
 msgstr "Stuurprogramma's en toepassingen"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:337
 msgid "Connected"
 msgstr "Verbonden"
 
-#: confusb/ui.py:353
+#: confusb/ui.py:361
 msgid "Information copied to the clipboard"
 msgstr "Informatie naar het klembord gekopieerd"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Interfaces"
 msgstr "Interfaces"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Each interface can have its own driver"
 msgstr "Elke interface kan zijn eigen stuurprogramma hebben"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:394
 msgid "Class"
 msgstr "Klasse"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:395
 msgid "Subclass / protocol"
 msgstr "Subklasse / protocol"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:396
 msgid "Bound driver"
 msgstr "Gekoppeld stuurprogramma"
 
-#: confusb/ui.py:389
+#: confusb/ui.py:397
 msgid "Kernel modules"
 msgstr "Kernelmodules"
 
-#: confusb/ui.py:396
+#: confusb/ui.py:404
 msgid "Nodes created in the system"
 msgstr "In het systeem aangemaakte nodes"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:408
 msgid "Raw data"
 msgstr "Ruwe gegevens"
 
-#: confusb/ui.py:401
+#: confusb/ui.py:409
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev-eigenschappen ({n})"
 
-#: confusb/ui.py:407
+#: confusb/ui.py:415
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "Uitvoer van lsusb -v (volledige USB-descriptors)"
 
-#: confusb/ui.py:424
+#: confusb/ui.py:430
+msgid "Checking what can be configured…"
+msgstr "Controleren wat er kan worden geconfigureerd…"
+
+#: confusb/ui.py:470
 msgid "Reading more information from the device…"
 msgstr "Meer informatie van het apparaat lezen…"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:488
 msgid "Tips"
 msgstr "Tips"
 
-#: confusb/ui.py:467
+#: confusb/ui.py:513
 msgid "Looking for drivers and applications…"
 msgstr "Zoeken naar stuurprogramma's en toepassingen…"
 
-#: confusb/ui.py:520
+#: confusb/ui.py:566
 msgid "No terminal emulator found"
 msgstr "Geen terminalemulator gevonden"
 
-#: confusb/ui.py:522
+#: confusb/ui.py:568
 msgid "Press Enter to close…"
 msgstr "Druk op Enter om te sluiten…"
 
-#: confusb/ui.py:533
+#: confusb/ui.py:579
 msgid "Working…"
 msgstr "Bezig…"
 
-#: confusb/ui.py:539
+#: confusb/ui.py:585
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Fout: {error}"
 
-#: confusb/ui.py:542
+#: confusb/ui.py:588
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(afsluitcode {code})"
 
-#: confusb/ui.py:546
+#: confusb/ui.py:592
 msgid "Installation completed"
 msgstr "Installatie voltooid"
 
-#: confusb/ui.py:549
+#: confusb/ui.py:596
 msgid "The installation failed"
 msgstr "De installatie is mislukt"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:605
 msgid "Disconnected"
 msgstr "Losgekoppeld"
 
-#: confusb/ui.py:559
+#: confusb/ui.py:606
 msgid "The device has been disconnected"
 msgstr "Het apparaat is losgekoppeld"
 
@@ -1440,140 +1734,140 @@ msgstr "Naam van de configuratie"
 msgid "Kernel quirks"
 msgstr "Kernel-eigenaardigheden"
 
-#: confusb/usbinfo.py:179
+#: confusb/usbinfo.py:180
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:180
+#: confusb/usbinfo.py:181
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:182
+#: confusb/usbinfo.py:183
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:183
+#: confusb/usbinfo.py:184
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:194
+#: confusb/usbinfo.py:195
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:228
+#: confusb/usbinfo.py:229
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:261
+#: confusb/usbinfo.py:262
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "netwerkinterface {name}"
 
-#: confusb/usbinfo.py:308
+#: confusb/usbinfo.py:309
 msgid "Manufacturer (usb.ids)"
 msgstr "Fabrikant (usb.ids)"
 
-#: confusb/usbinfo.py:309
+#: confusb/usbinfo.py:310
 msgid "Product (usb.ids)"
 msgstr "Product (usb.ids)"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:311
 msgid "sysfs path"
 msgstr "sysfs-pad"
 
-#: confusb/usbinfo.py:311
+#: confusb/usbinfo.py:312
 msgid "/dev node"
 msgstr "/dev-node"
 
-#: confusb/usbinfo.py:312
+#: confusb/usbinfo.py:313
 msgid "Subsystem / type"
 msgstr "Subsysteem / type"
 
-#: confusb/usbinfo.py:313
+#: confusb/usbinfo.py:314
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:314
+#: confusb/usbinfo.py:315
 msgid "Device driver"
 msgstr "Apparaatstuurprogramma"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:317
 msgid "Persistent paths (ID_PATH)"
 msgstr "Vaste paden (ID_PATH)"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:318
 msgid "udev tags (TAGS)"
 msgstr "udev-labels (TAGS)"
 
-#: confusb/usbinfo.py:320
+#: confusb/usbinfo.py:321
 msgid "Identification"
 msgstr "Identificatie"
 
-#: confusb/usbinfo.py:321
+#: confusb/usbinfo.py:322
 msgid "Descriptors and configuration"
 msgstr "Descriptors en configuratie"
 
-#: confusb/usbinfo.py:322
+#: confusb/usbinfo.py:323
 msgid "System"
 msgstr "Systeem"
 
-#: confusb/usbinfo.py:326
+#: confusb/usbinfo.py:327
 msgid "Power control"
 msgstr "Energiebeheer"
 
-#: confusb/usbinfo.py:327
+#: confusb/usbinfo.py:328
 msgid "Power state"
 msgstr "Energiestatus"
 
-#: confusb/usbinfo.py:328
+#: confusb/usbinfo.py:329
 msgid "Autosuspend delay (ms)"
 msgstr "Vertraging automatisch opschorten (ms)"
 
-#: confusb/usbinfo.py:329
+#: confusb/usbinfo.py:330
 msgid "Persistence"
 msgstr "Persistentie"
 
-#: confusb/usbinfo.py:330
+#: confusb/usbinfo.py:331
 msgid "System wake-up"
 msgstr "Systeem activeren"
 
-#: confusb/usbinfo.py:331
+#: confusb/usbinfo.py:332
 msgid "Active time (ms)"
 msgstr "Actieve tijd (ms)"
 
-#: confusb/usbinfo.py:332
+#: confusb/usbinfo.py:333
 msgid "Connected time (ms)"
 msgstr "Verbonden tijd (ms)"
 
-#: confusb/usbinfo.py:333
+#: confusb/usbinfo.py:334
 msgid "URBs processed"
 msgstr "Verwerkte URB's"
 
-#: confusb/usbinfo.py:339
+#: confusb/usbinfo.py:340
 msgid "Power and statistics"
 msgstr "Energie en statistieken"
 
-#: confusb/usbinfo.py:345
+#: confusb/usbinfo.py:346
 msgid "Topology"
 msgstr "Topologie"
 
-#: confusb/usbinfo.py:346
+#: confusb/usbinfo.py:347
 msgid "Connected to"
 msgstr "Verbonden met"
 
-#: confusb/usbinfo.py:347
+#: confusb/usbinfo.py:348
 msgid "Parent path"
 msgstr "Pad van de bovenliggende"
 
-#: confusb/usbinfo.py:374
+#: confusb/usbinfo.py:375
 #, python-brace-format
 msgid "{module} (loaded)"
 msgstr "{module} (geladen)"
 
-#: confusb/usbinfo.py:390
+#: confusb/usbinfo.py:391
 msgid "Storage"
 msgstr "Opslag"

@@ -108,6 +108,22 @@ VENDOR_KB: dict[str, list[dict]] = {
     "1d50": [{"title": N_("OpenMoko / free projects"), "desc": N_("Many free hardware devices use this VID."), "packages": ["dfu-util"]}],
 }
 
+# Herramientas de configuración de periféricos (las usa configuracion.py)
+PIPER = {"title": "Piper (libratbag)",
+         "desc": N_("Configures gaming mice: DPI, buttons, macros and lighting. It only works with the models libratbag lists."),
+         "packages": ["piper"], "apps": [{"label": N_("Open Piper"), "cmd": ["piper"], "needs": "piper"}]}
+INPUT_REMAPPER = {"title": "input-remapper",
+                  "desc": N_("Remaps the buttons and keys of any mouse, keyboard or game controller and creates macros."),
+                  "packages": ["input-remapper"],
+                  "apps": [{"label": N_("Open input-remapper"), "cmd": ["input-remapper-gtk"], "needs": "input-remapper"}]}
+OPENRAZER = {"title": "OpenRazer",
+             "desc": N_("Driver and daemon for Razer devices: lighting, DPI and macros."), "packages": ["openrazer-meta"]}
+CKB_NEXT = {"title": "ckb-next",
+            "desc": N_("Driver and configuration tool for Corsair keyboards and mice: lighting, macros and DPI."),
+            "packages": ["ckb-next"], "apps": [{"label": N_("Open ckb-next"), "cmd": ["ckb-next"], "needs": "ckb-next"}]}
+GUVCVIEW = {"title": "guvcview", "desc": N_("Shows the camera and adjusts its image controls."),
+            "packages": ["guvcview"], "apps": [{"label": N_("Open guvcview"), "cmd": ["guvcview"], "needs": "guvcview"}]}
+
 # Palabras demasiado genéricas para buscar paquetes por nombre
 GENERIC_WORDS = {
     "usb", "device", "reader", "controller", "adapter", "adaptor", "composite", "hub", "mouse", "keyboard",

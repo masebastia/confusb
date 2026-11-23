@@ -1,6 +1,7 @@
 confusb/almacenamiento.py
 confusb/app.py
 confusb/cli.py
+confusb/configuracion.py
 confusb/preferencias.py
 confusb/servicio.py
 confusb/sondas.py

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: confusb 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-22 21:52+0100\n"
+"POT-Creation-Date: 2026-11-23 21:37+0100\n"
 "PO-Revision-Date: 2026-11-22 13:36+0000\n"
 "Last-Translator: Claude (AI), pending native review\n"
 "Language-Team: Latviešu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "2);\n"
 
 #: confusb/almacenamiento.py:153 confusb/almacenamiento.py:155
-#: confusb/ui.py:282 confusb/ui.py:369
+#: confusb/ui.py:285 confusb/ui.py:377
 msgid "Capacity"
 msgstr "Ietilpība"
 
@@ -129,6 +129,259 @@ msgstr ""
 #: confusb/cli.py:34
 msgid "show the version and exit"
 msgstr ""
+
+#: confusb/configuracion.py:33 confusb/componentes.py:30
+msgid "Configurable"
+msgstr "Konfigurējams"
+
+#: confusb/configuracion.py:33 confusb/componentes.py:31
+msgid "Maybe configurable"
+msgstr "Iespējams, konfigurējams"
+
+#: confusb/configuracion.py:34
+msgid "System settings"
+msgstr "Sistēmas iestatījumi"
+
+#: confusb/configuracion.py:34
+msgid "Not configurable"
+msgstr "Nekonfigurējams"
+
+#: confusb/configuracion.py:318
+#, python-brace-format
+msgid ""
+"It has a manufacturer-specific HID channel ({n} feature or output reports, "
+"up to {size} bytes). The software of gaming mice usually uses it for "
+"settings such as DPI, buttons and lighting."
+msgstr "Tam ir ražotājam specifisks HID kanāls ({n} īpašību vai izvades ziņojumi, līdz {size} baitiem). Spēļu peļu programmatūra to parasti izmanto tādiem iestatījumiem kā DPI, pogas un apgaismojums."
+
+#: confusb/configuracion.py:322
+#, python-brace-format
+msgid "{tool} supports this model ({name})."
+msgstr "{tool} atbalsta šo modeli ({name})."
+
+#: confusb/configuracion.py:324
+msgid ""
+"The camera exposes image controls (brightness, contrast…) that can be "
+"adjusted."
+msgstr "Kamera piedāvā attēla vadīklas (spilgtums, kontrasts…), ko var pielāgot."
+
+#: confusb/configuracion.py:326
+msgid "The sound card exposes volume and mute controls."
+msgstr "Skaņas karte piedāvā skaļuma un izslēgšanas vadīklas."
+
+#: confusb/configuracion.py:329
+#, python-brace-format
+msgid "It may be configurable with {tool}, a tool for {brand} devices."
+msgstr "To, iespējams, var konfigurēt ar {tool}, rīku {brand} ierīcēm."
+
+#: confusb/configuracion.py:331
+msgid "A game controller can be remapped with input-remapper."
+msgstr "Spēļu kontrolieri var pārkartēt ar input-remapper."
+
+#: confusb/configuracion.py:333
+msgid ""
+"The pointer speed, acceleration and buttons are set in the system settings."
+msgstr "Rādītāja ātrums, paātrinājums un pogas tiek iestatīti sistēmas iestatījumos."
+
+#: confusb/configuracion.py:335
+msgid "The layout and key repeat are set in the system settings."
+msgstr "Tastatūras izkārtojums un taustiņu atkārtošana tiek iestatīti sistēmas iestatījumos."
+
+#: confusb/configuracion.py:337
+msgid "The pen tablet is configured in the system settings."
+msgstr "Zīmēšanas planšete tiek konfigurēta sistēmas iestatījumos."
+
+#: confusb/configuracion.py:339
+msgid "Printers are configured in the system settings."
+msgstr "Printeri tiek konfigurēti sistēmas iestatījumos."
+
+#: confusb/configuracion.py:341
+msgid "Bluetooth is configured in the system settings."
+msgstr "Bluetooth tiek konfigurēts sistēmas iestatījumos."
+
+#: confusb/configuracion.py:343
+msgid "A storage drive can be renamed and formatted with Disks."
+msgstr "Krātuves ierīci var pārdēvēt un formatēt ar Diskiem."
+
+#: confusb/configuracion.py:345
+msgid "The network connection is configured in the system settings."
+msgstr "Tīkla savienojums tiek konfigurēts sistēmas iestatījumos."
+
+#: confusb/configuracion.py:347
+msgid "No configurable settings were found."
+msgstr "Netika atrasti konfigurējami iestatījumi."
+
+#: confusb/configuracion.py:381
+msgid "Default"
+msgstr "Noklusējums"
+
+#: confusb/configuracion.py:381
+msgid "Flat"
+msgstr "Plakans"
+
+#: confusb/configuracion.py:381
+msgid "Adaptive"
+msgstr "Adaptīvs"
+
+#: confusb/configuracion.py:387 confusb/resolver.py:192
+#, python-brace-format
+msgid "Install «{name}» first"
+msgstr "Vispirms instalējiet «{name}»"
+
+#: confusb/configuracion.py:397
+msgid "Pointer speed"
+msgstr "Rādītāja ātrums"
+
+#: confusb/configuracion.py:399
+msgid "Acceleration profile"
+msgstr "Paātrinājuma profils"
+
+#: confusb/configuracion.py:400
+msgid "Left-handed"
+msgstr "Kreiļiem"
+
+#: confusb/configuracion.py:400
+msgid "Natural scrolling"
+msgstr "Dabiskā ritināšana"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "on"
+msgstr "ieslēgts"
+
+#: confusb/configuracion.py:402 confusb/configuracion.py:416
+msgid "off"
+msgstr "izslēgts"
+
+#: confusb/configuracion.py:403
+msgid "Mouse settings"
+msgstr "Peles iestatījumi"
+
+#: confusb/configuracion.py:404
+msgid "Open mouse settings"
+msgstr "Atvērt peles iestatījumus"
+
+#: confusb/configuracion.py:407
+msgid "Keyboard settings"
+msgstr "Tastatūras iestatījumi"
+
+#: confusb/configuracion.py:408
+msgid "Open keyboard settings"
+msgstr "Atvērt tastatūras iestatījumus"
+
+#: confusb/configuracion.py:422
+msgid "Camera controls"
+msgstr "Kameras vadīklas"
+
+#: confusb/configuracion.py:425
+msgid "Audio controls"
+msgstr "Skaņas vadīklas"
+
+#: confusb/configuracion.py:426
+msgid "Open sound settings"
+msgstr "Atvērt skaņas iestatījumus"
+
+#: confusb/configuracion.py:429
+msgid "Bluetooth settings"
+msgstr "Bluetooth iestatījumi"
+
+#: confusb/configuracion.py:430
+msgid "Open Bluetooth settings"
+msgstr "Atvērt Bluetooth iestatījumus"
+
+#: confusb/configuracion.py:433
+msgid "Printer settings"
+msgstr "Printera iestatījumi"
+
+#: confusb/configuracion.py:434
+msgid "Open printer settings"
+msgstr "Atvērt printeru iestatījumus"
+
+#: confusb/configuracion.py:437
+msgid "Network settings"
+msgstr "Tīkla iestatījumi"
+
+#: confusb/configuracion.py:438
+msgid "Open network settings"
+msgstr "Atvērt tīkla iestatījumus"
+
+#: confusb/configuracion.py:440
+msgid "Current settings"
+msgstr "Pašreizējie iestatījumi"
+
+#: confusb/configuracion.py:443
+msgid "Mouse"
+msgstr "Pele"
+
+#: confusb/configuracion.py:443
+msgid "Keyboard"
+msgstr "Tastatūra"
+
+#: confusb/configuracion.py:443
+msgid "Joystick"
+msgstr "Kursorsvira"
+
+#: confusb/configuracion.py:443
+msgid "Game pad"
+msgstr "Spēļu kontrolieris"
+
+#: confusb/configuracion.py:444
+msgid "Consumer controls"
+msgstr "Multivides vadīklas"
+
+#: confusb/configuracion.py:453
+msgid "Function"
+msgstr "Funkcija"
+
+#: confusb/configuracion.py:455
+msgid "Manufacturer-defined"
+msgstr "Ražotāja definēts"
+
+#: confusb/configuracion.py:458
+msgid "Buttons"
+msgstr "Pogas"
+
+#: confusb/configuracion.py:460
+msgid "Axes"
+msgstr "Asis"
+
+#: confusb/configuracion.py:461
+msgid "Manufacturer-defined feature reports"
+msgstr "Ražotāja definēti īpašību ziņojumi"
+
+#: confusb/configuracion.py:462
+msgid "Manufacturer-defined output reports"
+msgstr "Ražotāja definēti izvades ziņojumi"
+
+#: confusb/configuracion.py:466
+#, python-brace-format
+msgid "HID interface {name}"
+msgstr "HID interfeiss {name}"
+
+#: confusb/configuracion.py:467
+msgid "HID analysis"
+msgstr "HID analīze"
+
+#: confusb/configuracion.py:498
+#, python-brace-format
+msgid ""
+"libratbag does not list this model ({id}), so Piper cannot configure it."
+msgstr "libratbag neuzskaita šo modeli ({id}), tāpēc Piper to nevar konfigurēt."
+
+#: confusb/configuracion.py:501
+msgid "Ask libratbag to support it"
+msgstr "Lūgt libratbag to atbalstīt"
+
+#: confusb/configuracion.py:509
+msgid "Configuration tools"
+msgstr "Konfigurēšanas rīki"
+
+#: confusb/configuracion.py:522 confusb/ui.py:289 confusb/ui.py:329
+msgid "Configuration"
+msgstr "Konfigurācija"
+
+#: confusb/configuracion.py:522 confusb/ui.py:444
+msgid "Can it be configured?"
+msgstr "Vai to var konfigurēt?"
 
 #: confusb/preferencias.py:17
 msgid "Like the theme"
@@ -417,108 +670,108 @@ msgstr "Atbalstīts"
 msgid "Has driver"
 msgstr "Ir draiveris"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Needs installing"
 msgstr "Jāinstalē"
 
-#: confusb/componentes.py:30
+#: confusb/componentes.py:31
 msgid "Not bound"
 msgstr "Nesaistīts"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "No driver"
 msgstr "Nav draivera"
 
-#: confusb/componentes.py:31
+#: confusb/componentes.py:32
 msgid "Not in the repositories"
 msgstr "Nav krātuvēs"
 
-#: confusb/componentes.py:147
+#: confusb/componentes.py:148
 msgid "Language"
 msgstr "Valoda"
 
-#: confusb/componentes.py:317
+#: confusb/componentes.py:318
 msgid "Close the notice"
 msgstr "Aizvērt paziņojumu"
 
-#: confusb/componentes.py:502 confusb/ui.py:88
+#: confusb/componentes.py:503 confusb/ui.py:88
 msgid "Interface"
 msgstr "Saskarne"
 
-#: confusb/componentes.py:506
+#: confusb/componentes.py:507
 msgid "Cards"
 msgstr "Kartītes"
 
-#: confusb/componentes.py:507
+#: confusb/componentes.py:508
 msgid "Card opacity"
 msgstr "Kartīšu necaurspīdīgums"
 
-#: confusb/componentes.py:509
+#: confusb/componentes.py:510
 msgid "Corners"
 msgstr "Stūri"
 
-#: confusb/componentes.py:512
+#: confusb/componentes.py:513
 msgid "Title color"
 msgstr "Virsrakstu krāsa"
 
-#: confusb/componentes.py:522
+#: confusb/componentes.py:523
 msgid "Frame"
 msgstr "Rāmis"
 
-#: confusb/componentes.py:524
+#: confusb/componentes.py:525
 msgid "Shadow under the cards"
 msgstr "Ēna zem kartītēm"
 
-#: confusb/componentes.py:527
+#: confusb/componentes.py:528
 msgid "Show «View information →» on the cards"
 msgstr "Rādīt «Skatīt informāciju →» uz kartītēm"
 
-#: confusb/componentes.py:531
+#: confusb/componentes.py:532
 msgid "Window background"
 msgstr "Loga fons"
 
-#: confusb/componentes.py:534 confusb/componentes.py:536
+#: confusb/componentes.py:535 confusb/componentes.py:537
 msgid "Background color"
 msgstr "Fona krāsa"
 
-#: confusb/componentes.py:543
+#: confusb/componentes.py:544
 msgid "When a device is connected"
 msgstr "Kad pievieno ierīci"
 
-#: confusb/componentes.py:545
+#: confusb/componentes.py:546
 msgid "Only for devices not seen before"
 msgstr "Tikai ierīcēm, kas iepriekš nav redzētas"
 
-#: confusb/componentes.py:548
+#: confusb/componentes.py:549
 msgid "Open storage drives with the default application"
 msgstr "Atvērt datu glabāšanas diskus ar noklusējuma lietotni"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "Forget known devices"
 msgstr "Aizmirst zināmās ierīces"
 
-#: confusb/componentes.py:553
+#: confusb/componentes.py:554
 msgid "The next time they are connected they will count as new"
 msgstr "Nākamreiz pieslēdzot tās tiks uzskatītas par jaunām"
 
-#: confusb/componentes.py:558
+#: confusb/componentes.py:559
 msgid "Reset"
 msgstr "Atiestatīt"
 
-#: confusb/componentes.py:558 confusb/componentes.py:630
+#: confusb/componentes.py:559 confusb/componentes.py:631
 msgid "Close"
 msgstr "Aizvērt"
 
-#: confusb/componentes.py:614
+#: confusb/componentes.py:615
 msgid "About confusb"
 msgstr "Par confusb"
 
-#: confusb/componentes.py:621
+#: confusb/componentes.py:622
 #, python-brace-format
 msgid "Version {version}"
 msgstr "Versija {version}"
 
-#: confusb/componentes.py:622
+#: confusb/componentes.py:623
 msgid ""
 "Notifies when a USB device is connected, shows its information and looks for "
 "its driver and the applications to use it."
@@ -526,11 +779,11 @@ msgstr ""
 "Paziņo, kad pievienota USB ierīce, parāda tās informāciju un meklē tās "
 "draiveri un lietotnes, ar kurām to izmantot."
 
-#: confusb/componentes.py:626
+#: confusb/componentes.py:627
 msgid "License GPL-3.0-or-later"
 msgstr "Licence GPL-3.0-or-later"
 
-#: confusb/componentes.py:627
+#: confusb/componentes.py:628
 msgid "Source code on GitHub"
 msgstr "Pirmkods vietnē GitHub"
 
@@ -801,6 +1054,48 @@ msgstr "OpenMoko / brīvi projekti"
 msgid "Many free hardware devices use this VID."
 msgstr "Daudzas brīvās aparatūras ierīces izmanto šo VID."
 
+#: confusb/kb.py:113
+msgid ""
+"Configures gaming mice: DPI, buttons, macros and lighting. It only works "
+"with the models libratbag lists."
+msgstr "Konfigurē spēļu peles: DPI, pogas, makro un apgaismojumu. Darbojas tikai ar modeļiem, ko uzskaita libratbag."
+
+#: confusb/kb.py:114
+msgid "Open Piper"
+msgstr "Atvērt Piper"
+
+#: confusb/kb.py:116
+msgid ""
+"Remaps the buttons and keys of any mouse, keyboard or game controller and "
+"creates macros."
+msgstr "Pārkartē jebkuras peles, tastatūras vai kontroliera pogas un taustiņus un izveido makro."
+
+#: confusb/kb.py:118
+msgid "Open input-remapper"
+msgstr "Atvērt input-remapper"
+
+#: confusb/kb.py:120
+msgid "Driver and daemon for Razer devices: lighting, DPI and macros."
+msgstr "Draiveris un pakalpojums Razer ierīcēm: apgaismojums, DPI un makro."
+
+#: confusb/kb.py:122
+msgid ""
+"Driver and configuration tool for Corsair keyboards and mice: lighting, "
+"macros and DPI."
+msgstr "Draiveris un konfigurēšanas rīks Corsair tastatūrām un pelēm: apgaismojums, makro un DPI."
+
+#: confusb/kb.py:123
+msgid "Open ckb-next"
+msgstr "Atvērt ckb-next"
+
+#: confusb/kb.py:124
+msgid "Shows the camera and adjusts its image controls."
+msgstr "Parāda kameru un pielāgo tās attēla vadīklas."
+
+#: confusb/kb.py:125
+msgid "Open guvcview"
+msgstr "Atvērt guvcview"
+
 #: confusb/resolver.py:146
 #, python-brace-format
 msgid "Packages: {list}"
@@ -868,11 +1163,6 @@ msgstr "Instalēt Flatpak {id}"
 msgid "Already installed on your computer."
 msgstr "Jau instalēts jūsu datorā."
 
-#: confusb/resolver.py:192
-#, python-brace-format
-msgid "Install «{name}» first"
-msgstr "Vispirms instalējiet «{name}»"
-
 #: confusb/resolver.py:203
 msgid "USB hub"
 msgstr "USB centrmezgls"
@@ -881,12 +1171,12 @@ msgstr "USB centrmezgls"
 msgid "Managed by the kernel's «hub» driver."
 msgstr "Pārvalda kodola «hub» draiveris."
 
-#: confusb/resolver.py:206 confusb/ui.py:384
+#: confusb/resolver.py:206 confusb/ui.py:392
 #, python-brace-format
 msgid "Interface {number} · {label}"
 msgstr "Saskarne {number} · {label}"
 
-#: confusb/resolver.py:207 confusb/ui.py:389
+#: confusb/resolver.py:207 confusb/ui.py:397
 msgid "none found"
 msgstr "neviena nav atrasta"
 
@@ -1093,171 +1383,175 @@ msgstr "Noraidīt"
 msgid "Reading devices…"
 msgstr "Notiek ierīču nolasīšana…"
 
-#: confusb/ui.py:250
+#: confusb/ui.py:253
 msgid "Could not read the devices"
 msgstr "Neizdevās nolasīt ierīces"
 
-#: confusb/ui.py:251
+#: confusb/ui.py:254
 msgid "Error reading the devices"
 msgstr "Kļūda, nolasot ierīces"
 
-#: confusb/ui.py:257
+#: confusb/ui.py:260
 msgid "No USB devices connected"
 msgstr "Nav pievienotu USB ierīču"
 
-#: confusb/ui.py:258
+#: confusb/ui.py:261
 msgid "Connect one and it will appear here automatically."
 msgstr "Pievienojiet vienu, un tā automātiski parādīsies šeit."
 
-#: confusb/ui.py:260
+#: confusb/ui.py:263
 #, python-brace-format
 msgid "Connected USB devices: {n}"
 msgstr "Pievienotās USB ierīces: {n}"
 
-#: confusb/ui.py:277 confusb/ui.py:326 confusb/ui.py:367
+#: confusb/ui.py:280 confusb/ui.py:333 confusb/ui.py:375
 msgid "Unknown manufacturer"
 msgstr "Nezināms ražotājs"
 
-#: confusb/ui.py:280
+#: confusb/ui.py:283
 msgid "Type"
 msgstr "Veids"
 
-#: confusb/ui.py:283
+#: confusb/ui.py:286
 msgid "Port"
 msgstr "Ports"
 
-#: confusb/ui.py:284
+#: confusb/ui.py:287
 msgid "Driver"
 msgstr "Draiveris"
 
-#: confusb/ui.py:284 confusb/ui.py:388
+#: confusb/ui.py:287 confusb/ui.py:396
 msgid "none"
 msgstr "nav"
 
-#: confusb/ui.py:286
+#: confusb/ui.py:291
 msgid "View information →"
 msgstr "Skatīt informāciju →"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back"
 msgstr "Atpakaļ"
 
-#: confusb/ui.py:312
+#: confusb/ui.py:317
 msgid "Back to the list of devices"
 msgstr "Atpakaļ uz ierīču sarakstu"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy"
 msgstr "Kopēt"
 
-#: confusb/ui.py:313
+#: confusb/ui.py:318
 msgid "Copy all the information to the clipboard"
 msgstr "Kopēt visu informāciju starpliktuvē"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Information"
 msgstr "Informācija"
 
-#: confusb/ui.py:321
+#: confusb/ui.py:328
 msgid "Drivers and applications"
 msgstr "Draiveri un lietotnes"
 
-#: confusb/ui.py:330
+#: confusb/ui.py:337
 msgid "Connected"
 msgstr "Pievienots"
 
-#: confusb/ui.py:353
+#: confusb/ui.py:361
 msgid "Information copied to the clipboard"
 msgstr "Informācija nokopēta starpliktuvē"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Interfaces"
 msgstr "Saskarnes"
 
-#: confusb/ui.py:382
+#: confusb/ui.py:390
 msgid "Each interface can have its own driver"
 msgstr "Katrai saskarnei var būt savs draiveris"
 
-#: confusb/ui.py:386
+#: confusb/ui.py:394
 msgid "Class"
 msgstr "Klase"
 
-#: confusb/ui.py:387
+#: confusb/ui.py:395
 msgid "Subclass / protocol"
 msgstr "Apakšklase / protokols"
 
-#: confusb/ui.py:388
+#: confusb/ui.py:396
 msgid "Bound driver"
 msgstr "Saistītais draiveris"
 
-#: confusb/ui.py:389
+#: confusb/ui.py:397
 msgid "Kernel modules"
 msgstr "Kodola moduļi"
 
-#: confusb/ui.py:396
+#: confusb/ui.py:404
 msgid "Nodes created in the system"
 msgstr "Sistēmā izveidotie mezgli"
 
-#: confusb/ui.py:400
+#: confusb/ui.py:408
 msgid "Raw data"
 msgstr "Neapstrādāti dati"
 
-#: confusb/ui.py:401
+#: confusb/ui.py:409
 #, python-brace-format
 msgid "udev properties ({n})"
 msgstr "udev īpašības ({n})"
 
-#: confusb/ui.py:407
+#: confusb/ui.py:415
 msgid "lsusb -v output (full USB descriptors)"
 msgstr "lsusb -v izvade (pilni USB deskriptori)"
 
-#: confusb/ui.py:424
+#: confusb/ui.py:430
+msgid "Checking what can be configured…"
+msgstr "Notiek pārbaude, ko var konfigurēt…"
+
+#: confusb/ui.py:470
 msgid "Reading more information from the device…"
 msgstr "Tiek nolasīta papildu informācija no ierīces…"
 
-#: confusb/ui.py:442
+#: confusb/ui.py:488
 msgid "Tips"
 msgstr "Padomi"
 
-#: confusb/ui.py:467
+#: confusb/ui.py:513
 msgid "Looking for drivers and applications…"
 msgstr "Notiek draiveru un lietotņu meklēšana…"
 
-#: confusb/ui.py:520
+#: confusb/ui.py:566
 msgid "No terminal emulator found"
 msgstr "Termināļa emulators nav atrasts"
 
-#: confusb/ui.py:522
+#: confusb/ui.py:568
 msgid "Press Enter to close…"
 msgstr "Nospiediet Enter, lai aizvērtu…"
 
-#: confusb/ui.py:533
+#: confusb/ui.py:579
 msgid "Working…"
 msgstr "Darbojas…"
 
-#: confusb/ui.py:539
+#: confusb/ui.py:585
 #, python-brace-format
 msgid "Error: {error}"
 msgstr "Kļūda: {error}"
 
-#: confusb/ui.py:542
+#: confusb/ui.py:588
 #, python-brace-format
 msgid "(exit code {code})"
 msgstr "(izejas kods {code})"
 
-#: confusb/ui.py:546
+#: confusb/ui.py:592
 msgid "Installation completed"
 msgstr "Instalēšana pabeigta"
 
-#: confusb/ui.py:549
+#: confusb/ui.py:596
 msgid "The installation failed"
 msgstr "Instalēšana neizdevās"
 
-#: confusb/ui.py:558
+#: confusb/ui.py:605
 msgid "Disconnected"
 msgstr "Atvienots"
 
-#: confusb/ui.py:559
+#: confusb/ui.py:606
 msgid "The device has been disconnected"
 msgstr "Ierīce tika atvienota"
 
@@ -1433,140 +1727,140 @@ msgstr "Konfigurācijas nosaukums"
 msgid "Kernel quirks"
 msgstr "Kodola īpatnības"
 
-#: confusb/usbinfo.py:179
+#: confusb/usbinfo.py:180
 #, python-brace-format
 msgid "== Interface {name} =="
 msgstr ""
 
-#: confusb/usbinfo.py:180
+#: confusb/usbinfo.py:181
 #, python-brace-format
 msgid "class={cls} subclass=0x{sub:02x} protocol=0x{proto:02x}"
 msgstr ""
 
-#: confusb/usbinfo.py:182
+#: confusb/usbinfo.py:183
 #, python-brace-format
 msgid "driver={driver} modules={modules}"
 msgstr ""
 
-#: confusb/usbinfo.py:183
+#: confusb/usbinfo.py:184
 msgid "(none)"
 msgstr ""
 
-#: confusb/usbinfo.py:194
+#: confusb/usbinfo.py:195
 msgid "== udev properties =="
 msgstr ""
 
-#: confusb/usbinfo.py:228
+#: confusb/usbinfo.py:229
 #, python-brace-format
 msgid "{addr} · {type} · {dir} · max. packet {size} B · interval {interval}"
 msgstr ""
 
-#: confusb/usbinfo.py:261
+#: confusb/usbinfo.py:262
 #, python-brace-format
 msgid "network interface {name}"
 msgstr "tīkla saskarne {name}"
 
-#: confusb/usbinfo.py:308
+#: confusb/usbinfo.py:309
 msgid "Manufacturer (usb.ids)"
 msgstr "Ražotājs (usb.ids)"
 
-#: confusb/usbinfo.py:309
+#: confusb/usbinfo.py:310
 msgid "Product (usb.ids)"
 msgstr "Produkts (usb.ids)"
 
-#: confusb/usbinfo.py:310
+#: confusb/usbinfo.py:311
 msgid "sysfs path"
 msgstr "sysfs ceļš"
 
-#: confusb/usbinfo.py:311
+#: confusb/usbinfo.py:312
 msgid "/dev node"
 msgstr "/dev mezgls"
 
-#: confusb/usbinfo.py:312
+#: confusb/usbinfo.py:313
 msgid "Subsystem / type"
 msgstr "Apakšsistēma / veids"
 
-#: confusb/usbinfo.py:313
+#: confusb/usbinfo.py:314
 msgid "Interfaces (ID_USB_INTERFACES)"
 msgstr ""
 
-#: confusb/usbinfo.py:314
+#: confusb/usbinfo.py:315
 msgid "Device driver"
 msgstr "Ierīces draiveris"
 
-#: confusb/usbinfo.py:316
+#: confusb/usbinfo.py:317
 msgid "Persistent paths (ID_PATH)"
 msgstr "Pastāvīgie ceļi (ID_PATH)"
 
-#: confusb/usbinfo.py:317
+#: confusb/usbinfo.py:318
 msgid "udev tags (TAGS)"
 msgstr "udev tagi (TAGS)"
 
-#: confusb/usbinfo.py:320
+#: confusb/usbinfo.py:321
 msgid "Identification"
 msgstr "Identifikācija"
 
-#: confusb/usbinfo.py:321
+#: confusb/usbinfo.py:322
 msgid "Descriptors and configuration"
 msgstr "Deskriptori un konfigurācija"
 
-#: confusb/usbinfo.py:322
+#: confusb/usbinfo.py:323
 msgid "System"
 msgstr "Sistēma"
 
-#: confusb/usbinfo.py:326
+#: confusb/usbinfo.py:327
 msgid "Power control"
 msgstr "Barošanas vadība"
 
-#: confusb/usbinfo.py:327
+#: confusb/usbinfo.py:328
 msgid "Power state"
 msgstr "Barošanas stāvoklis"
 
-#: confusb/usbinfo.py:328
+#: confusb/usbinfo.py:329
 msgid "Autosuspend delay (ms)"
 msgstr "Automātiskās iemigšanas aizkave (ms)"
 
-#: confusb/usbinfo.py:329
+#: confusb/usbinfo.py:330
 msgid "Persistence"
 msgstr "Noturība"
 
-#: confusb/usbinfo.py:330
+#: confusb/usbinfo.py:331
 msgid "System wake-up"
 msgstr "Sistēmas pamodināšana"
 
-#: confusb/usbinfo.py:331
+#: confusb/usbinfo.py:332
 msgid "Active time (ms)"
 msgstr "Aktivitātes laiks (ms)"
 
-#: confusb/usbinfo.py:332
+#: confusb/usbinfo.py:333
 msgid "Connected time (ms)"
 msgstr "Savienojuma laiks (ms)"
 
-#: confusb/usbinfo.py:333
+#: confusb/usbinfo.py:334
 msgid "URBs processed"
 msgstr "Apstrādātie URB"
 
-#: confusb/usbinfo.py:339
+#: confusb/usbinfo.py:340
 msgid "Power and statistics"
 msgstr "Barošana un statistika"
 
-#: confusb/usbinfo.py:345
+#: confusb/usbinfo.py:346
 msgid "Topology"
 msgstr "Topoloģija"
 
-#: confusb/usbinfo.py:346
+#: confusb/usbinfo.py:347
 msgid "Connected to"
 msgstr "Pievienots pie"
 
-#: confusb/usbinfo.py:347
+#: confusb/usbinfo.py:348
 msgid "Parent path"
 msgstr "Vecāka ceļš"
 
-#: confusb/usbinfo.py:374
+#: confusb/usbinfo.py:375
 #, python-brace-format
 msgid "{module} (loaded)"
 msgstr "{module} (ielādēts)"
 
-#: confusb/usbinfo.py:390
+#: confusb/usbinfo.py:391
 msgid "Storage"
 msgstr "Krātuve"

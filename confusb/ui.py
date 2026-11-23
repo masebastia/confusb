@@ -17,7 +17,7 @@ gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Adw, Gdk, Gio, GLib, Gtk  # noqa: E402
 
-from . import almacenamiento, fondo, resolver, sondas, usbinfo  # noqa: E402
+from . import almacenamiento, configuracion, fondo, resolver, sondas, usbinfo  # noqa: E402
 from .ajustes import AJUSTES  # noqa: E402
 from .i18n import _  # noqa: E402
 from .componentes import (HUECO, AcercaDeDialogo, BarraEstado, Cabecera, InterfazDialogo, Masonry, SelectorIdioma,  # noqa: E402
@@ -239,7 +239,10 @@ class DevicesWindow(VentanaBase):
             self.grid.add(espera)
 
         def trabajo():
-            return [usbinfo.collect(p, with_lsusb=False) for p in usbinfo.list_usb_devices()]
+            infos = [usbinfo.collect(p, with_lsusb=False) for p in usbinfo.list_usb_devices()]
+            for i in infos:
+                i.nivel_config = configuracion.nivel_rapido(i)
+            return infos
 
         def hecho(res):
             if gen != self.gen:
@@ -282,6 +285,8 @@ class DevicesWindow(VentanaBase):
             filas.append((_("Capacity"), almacenamiento.formatear(info.capacidad)))
         filas += [(_("Port"), os.path.basename(info.syspath)),
                   (_("Driver"), ", ".join(info.drivers) or _("none"))]
+        if info.nivel_config:
+            filas.append((_("Configuration"), _(configuracion.NIVELES[info.nivel_config])))
         c.append(datos(filas))
         pie = label(_("View information →"), "mod-pie", wrap=False)
         pie.set_margin_top(4)
@@ -318,8 +323,10 @@ class DeviceWindow(VentanaBase):
         self.stack.add_named(desplazable(self._con_margenes(self.pagina_info())), "info")
         self.sw_box = Masonry()
         self.stack.add_named(desplazable(self._con_margenes(self.sw_box)), "sw")
-        self.cuerpo.append(pastillas([("info", _("Information")), ("sw", _("Drivers and applications"))],
-                                     self.stack.set_visible_child_name))
+        self.conf_box = Masonry()
+        self.stack.add_named(desplazable(self._con_margenes(self.conf_box)), "conf")
+        self.cuerpo.append(pastillas([("info", _("Information")), ("sw", _("Drivers and applications")),
+                                      ("conf", _("Configuration"))], self.stack.set_visible_child_name))
         self.cuerpo.append(self.stack)
 
         # ---- barra inferior
@@ -333,6 +340,7 @@ class DeviceWindow(VentanaBase):
 
         self.cargar_software()
         self.cargar_extra()
+        self.cargar_configuracion()
 
     @staticmethod
     def _con_margenes(w: Gtk.Widget) -> Gtk.Widget:
@@ -409,6 +417,44 @@ class DeviceWindow(VentanaBase):
             c.append(ex2)
         cols.add(c)
         return pagina
+
+    # ------------------------------------------------------- configuración
+    def cargar_configuracion(self):
+        """¿Se puede configurar el dispositivo? Veredicto con sus razones, valores actuales y herramientas."""
+        self.conf_box.clear()
+        self.gen_conf = getattr(self, "gen_conf", 0) + 1
+        gen = self.gen_conf
+        espera = tarjeta()
+        fila = Gtk.Box(spacing=12, halign=Gtk.Align.CENTER)
+        fila.append(Gtk.Spinner(spinning=True))
+        fila.append(label(_("Checking what can be configured…"), "dim", wrap=False))
+        espera.append(fila)
+        self.conf_box.add(espera)
+        in_thread(lambda: configuracion.informe(self.info), lambda r: self.mostrar_configuracion(gen, espera, r))
+
+    def mostrar_configuracion(self, gen: int, espera: Gtk.Widget, res):
+        if gen != self.gen_conf:
+            return False
+        self.conf_box.remove_item(espera)
+        if isinstance(res, Exception):
+            print(f"confusb: configuration: {res}", flush=True)
+            return False
+        veredicto = tarjeta()
+        cab = Gtk.Box(spacing=8)
+        titulo = label(_("Can it be configured?"), "section")
+        titulo.set_hexpand(True)
+        cab.append(titulo)
+        cab.append(estado(configuracion.NIVELES[res.nivel]))
+        veredicto.append(cab)
+        for _nivel, texto in res.evaluacion.razones:
+            veredicto.append(label("• " + texto, "dim"))
+        self.conf_box.add(veredicto)
+        for grupo in res.grupos:
+            c = tarjeta(grupo.title, grupo.subtitle)
+            for item in grupo.items:
+                c.append(self.fila_item(item))
+            self.conf_box.add(c)
+        return False
 
     # ------------------------------------------------- más información (sondas)
     def cargar_extra(self):
@@ -545,6 +591,7 @@ class DeviceWindow(VentanaBase):
                 elif rc == 0:
                     self.toasts.add_toast(Adw.Toast(title=_("Installation completed")))
                     self.cargar_software()
+                    self.cargar_configuracion()
                 else:
                     OutputWindow(self, _("The installation failed"), cuerpo).present()
 

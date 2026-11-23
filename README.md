@@ -25,6 +25,13 @@ detecta y ofrece instalarlo.
   dispositivo se añade el árbol completo de atributos de udev. Cuando no se puede, un consejo dice qué hacer
   («Instala adb…», «Acepta la depuración USB en el teléfono…»). confusb no monta nada, y si arranca el servidor
   de `adb` para consultar lo vuelve a parar. `confusb --dump DEV` lo imprime todo por la terminal.
+- **Configuración** (pestaña): ¿se puede configurar el dispositivo? Da un veredicto (*Configurable*, *Quizá
+  configurable*, *Ajustes del sistema* o *No configurable*) con sus razones, que salen de pruebas objetivas y sin tocar el
+  aparato: el descriptor HID (un canal de informes del fabricante es por donde el software de un ratón gaming guarda
+  DPI, botones e iluminación), los controles de las cámaras (V4L2) y de audio (ALSA) con sus valores actuales, si
+  libratbag (Piper), Solaar u OpenRazer lo soportan (con sus listas incluidas: no hace falta instalarlos para saberlo) y
+  los ajustes del sistema (ratón, teclado, impresora, Bluetooth, red…). Añade las herramientas que sirven y si están
+  instaladas, y el análisis HID por si se quiere ver la evidencia. Cada tarjeta de la lista muestra el veredicto.
 - **Interfaz** (botón «🎨 Interfaz»): opacidad y esquinas de las tarjetas, color de los títulos, marco
   (resaltado, atenuado o sin marco), sombra, pie «Ver información →», **fondo de la ventana** (la imagen
   de circuitos o un color liso a tu gusto; con un color liso el tema pasa a claro u oscuro, el que mejor se lea sobre
@@ -129,7 +136,8 @@ Tras actualizar el paquete, reinicia el servicio para que use la versión nueva:
     python3 -m confusb --dump 1-5        # volcado completo en texto
 
 La base de conocimiento (qué paquetes y aplicaciones corresponden a cada clase USB o fabricante) está en
-`confusb/kb.py`; añadir un dispositivo es añadir una entrada.
+`confusb/kb.py`; añadir un dispositivo es añadir una entrada. Las listas de dispositivos soportados por libratbag,
+Solaar y OpenRazer (`confusb/soporte.py`) se generan de los paquetes de Debian con `tools/generar_soporte.py`.
 
 ## Licencia
 

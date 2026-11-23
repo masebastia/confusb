@@ -14,7 +14,7 @@ import argparse
 import os
 import sys
 
-from . import __version__, sondas, usbinfo
+from . import __version__, configuracion, sondas, usbinfo
 from .i18n import _
 from .preferencias import Preferencias
 
@@ -46,7 +46,8 @@ def main(argv: list[str]) -> int:
         if not p:
             print(_("Device «{name}» not found").format(name=args.dump))
             return 1
-        print(sondas.completar(usbinfo.collect(p)).as_text())
+        info = sondas.completar(usbinfo.collect(p))
+        print(info.as_text() + "\n\n" + "\n".join(configuracion.texto(info)))
         return 0
     if args.devices or args.show:   # la ventana: estas dos las trata GApplication (y las reenvía si ya hay una abierta)
         from .app import ConfusbApp

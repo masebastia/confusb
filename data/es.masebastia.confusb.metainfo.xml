@@ -44,6 +44,12 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="0.2.3" date="2026-11-23">
+      <description>
+        <p>New Configuration tab: it tells whether a device can be configured and why (manufacturer HID channel, camera and audio controls, libratbag, Solaar and OpenRazer support, system settings) and lists the tools that help.</p>
+        <p xml:lang="es">Nueva pestaña Configuración: dice si un dispositivo se puede configurar y por qué (canal HID del fabricante, controles de cámara y audio, soporte de libratbag, Solaar y OpenRazer, ajustes del sistema) y enumera las herramientas que sirven.</p>
+      </description>
+    </release>
     <release version="0.2.2" date="2026-11-22">
       <description>
         <p>Android phones: model, Android version, processor, memory, screen, battery and storage are read through adb. Choose the window background: the image or a solid color. The window starts the service if it is stopped.</p>

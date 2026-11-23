@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: confusb 0.2.2\n"
+"Project-Id-Version: confusb 0.2.3\n"
 "Report-Msgid-Bugs-To: https://github.com/masebastia/confusb/issues\n"
-"POT-Creation-Date: 2026-11-23 21:37+0100\n"
+"POT-Creation-Date: 2026-11-23 21:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,7 +145,7 @@ msgstr ""
 msgid "Not configurable"
 msgstr ""
 
-#: confusb/configuracion.py:318
+#: confusb/configuracion.py:319
 #, python-brace-format
 msgid ""
 "It has a manufacturer-specific HID channel ({n} feature or output reports, "
@@ -153,232 +153,232 @@ msgid ""
 "settings such as DPI, buttons and lighting."
 msgstr ""
 
-#: confusb/configuracion.py:322
+#: confusb/configuracion.py:323
 #, python-brace-format
 msgid "{tool} supports this model ({name})."
 msgstr ""
 
-#: confusb/configuracion.py:324
+#: confusb/configuracion.py:325
 msgid ""
 "The camera exposes image controls (brightness, contrast…) that can be "
 "adjusted."
 msgstr ""
 
-#: confusb/configuracion.py:326
+#: confusb/configuracion.py:327
 msgid "The sound card exposes volume and mute controls."
 msgstr ""
 
-#: confusb/configuracion.py:329
+#: confusb/configuracion.py:330
 #, python-brace-format
 msgid "It may be configurable with {tool}, a tool for {brand} devices."
 msgstr ""
 
-#: confusb/configuracion.py:331
+#: confusb/configuracion.py:332
 msgid "A game controller can be remapped with input-remapper."
 msgstr ""
 
-#: confusb/configuracion.py:333
+#: confusb/configuracion.py:334
 msgid ""
 "The pointer speed, acceleration and buttons are set in the system settings."
 msgstr ""
 
-#: confusb/configuracion.py:335
+#: confusb/configuracion.py:336
 msgid "The layout and key repeat are set in the system settings."
 msgstr ""
 
-#: confusb/configuracion.py:337
+#: confusb/configuracion.py:338
 msgid "The pen tablet is configured in the system settings."
 msgstr ""
 
-#: confusb/configuracion.py:339
+#: confusb/configuracion.py:340
 msgid "Printers are configured in the system settings."
 msgstr ""
 
-#: confusb/configuracion.py:341
+#: confusb/configuracion.py:342
 msgid "Bluetooth is configured in the system settings."
 msgstr ""
 
-#: confusb/configuracion.py:343
+#: confusb/configuracion.py:344
 msgid "A storage drive can be renamed and formatted with Disks."
 msgstr ""
 
-#: confusb/configuracion.py:345
+#: confusb/configuracion.py:346
 msgid "The network connection is configured in the system settings."
 msgstr ""
 
-#: confusb/configuracion.py:347
+#: confusb/configuracion.py:348
 msgid "No configurable settings were found."
 msgstr ""
 
-#: confusb/configuracion.py:381
+#: confusb/configuracion.py:382
 msgid "Default"
 msgstr ""
 
-#: confusb/configuracion.py:381
+#: confusb/configuracion.py:382
 msgid "Flat"
 msgstr ""
 
-#: confusb/configuracion.py:381
+#: confusb/configuracion.py:382
 msgid "Adaptive"
 msgstr ""
 
-#: confusb/configuracion.py:387 confusb/resolver.py:192
+#: confusb/configuracion.py:388 confusb/resolver.py:192
 #, python-brace-format
 msgid "Install «{name}» first"
 msgstr ""
 
-#: confusb/configuracion.py:397
+#: confusb/configuracion.py:398
 msgid "Pointer speed"
 msgstr ""
 
-#: confusb/configuracion.py:399
+#: confusb/configuracion.py:400
 msgid "Acceleration profile"
 msgstr ""
 
-#: confusb/configuracion.py:400
+#: confusb/configuracion.py:401
 msgid "Left-handed"
 msgstr ""
 
-#: confusb/configuracion.py:400
+#: confusb/configuracion.py:401
 msgid "Natural scrolling"
 msgstr ""
 
-#: confusb/configuracion.py:402 confusb/configuracion.py:416
+#: confusb/configuracion.py:403 confusb/configuracion.py:417
 msgid "on"
 msgstr ""
 
-#: confusb/configuracion.py:402 confusb/configuracion.py:416
+#: confusb/configuracion.py:403 confusb/configuracion.py:417
 msgid "off"
 msgstr ""
 
-#: confusb/configuracion.py:403
+#: confusb/configuracion.py:404
 msgid "Mouse settings"
 msgstr ""
 
-#: confusb/configuracion.py:404
+#: confusb/configuracion.py:405
 msgid "Open mouse settings"
 msgstr ""
 
-#: confusb/configuracion.py:407
+#: confusb/configuracion.py:408
 msgid "Keyboard settings"
 msgstr ""
 
-#: confusb/configuracion.py:408
+#: confusb/configuracion.py:409
 msgid "Open keyboard settings"
 msgstr ""
 
-#: confusb/configuracion.py:422
+#: confusb/configuracion.py:423
 msgid "Camera controls"
 msgstr ""
 
-#: confusb/configuracion.py:425
+#: confusb/configuracion.py:426
 msgid "Audio controls"
 msgstr ""
 
-#: confusb/configuracion.py:426
+#: confusb/configuracion.py:427
 msgid "Open sound settings"
 msgstr ""
 
-#: confusb/configuracion.py:429
+#: confusb/configuracion.py:430
 msgid "Bluetooth settings"
 msgstr ""
 
-#: confusb/configuracion.py:430
+#: confusb/configuracion.py:431
 msgid "Open Bluetooth settings"
 msgstr ""
 
-#: confusb/configuracion.py:433
+#: confusb/configuracion.py:434
 msgid "Printer settings"
 msgstr ""
 
-#: confusb/configuracion.py:434
+#: confusb/configuracion.py:435
 msgid "Open printer settings"
 msgstr ""
 
-#: confusb/configuracion.py:437
+#: confusb/configuracion.py:438
 msgid "Network settings"
 msgstr ""
 
-#: confusb/configuracion.py:438
+#: confusb/configuracion.py:439
 msgid "Open network settings"
 msgstr ""
 
-#: confusb/configuracion.py:440
+#: confusb/configuracion.py:441
 msgid "Current settings"
 msgstr ""
 
-#: confusb/configuracion.py:443
+#: confusb/configuracion.py:444
 msgid "Mouse"
 msgstr ""
 
-#: confusb/configuracion.py:443
+#: confusb/configuracion.py:444
 msgid "Keyboard"
 msgstr ""
 
-#: confusb/configuracion.py:443
+#: confusb/configuracion.py:444
 msgid "Joystick"
 msgstr ""
 
-#: confusb/configuracion.py:443
+#: confusb/configuracion.py:444
 msgid "Game pad"
 msgstr ""
 
-#: confusb/configuracion.py:444
+#: confusb/configuracion.py:445
 msgid "Consumer controls"
 msgstr ""
 
-#: confusb/configuracion.py:453
+#: confusb/configuracion.py:454
 msgid "Function"
 msgstr ""
 
-#: confusb/configuracion.py:455
+#: confusb/configuracion.py:456
 msgid "Manufacturer-defined"
 msgstr ""
 
-#: confusb/configuracion.py:458
+#: confusb/configuracion.py:459
 msgid "Buttons"
 msgstr ""
 
-#: confusb/configuracion.py:460
+#: confusb/configuracion.py:461
 msgid "Axes"
 msgstr ""
 
-#: confusb/configuracion.py:461
+#: confusb/configuracion.py:462
 msgid "Manufacturer-defined feature reports"
 msgstr ""
 
-#: confusb/configuracion.py:462
+#: confusb/configuracion.py:463
 msgid "Manufacturer-defined output reports"
 msgstr ""
 
-#: confusb/configuracion.py:466
+#: confusb/configuracion.py:467
 #, python-brace-format
 msgid "HID interface {name}"
 msgstr ""
 
-#: confusb/configuracion.py:467
+#: confusb/configuracion.py:468
 msgid "HID analysis"
 msgstr ""
 
-#: confusb/configuracion.py:498
+#: confusb/configuracion.py:499
 #, python-brace-format
 msgid ""
 "libratbag does not list this model ({id}), so Piper cannot configure it."
 msgstr ""
 
-#: confusb/configuracion.py:501
+#: confusb/configuracion.py:502
 msgid "Ask libratbag to support it"
 msgstr ""
 
-#: confusb/configuracion.py:509
+#: confusb/configuracion.py:510
 msgid "Configuration tools"
 msgstr ""
 
-#: confusb/configuracion.py:522 confusb/ui.py:289 confusb/ui.py:329
+#: confusb/configuracion.py:523 confusb/ui.py:289 confusb/ui.py:329
 msgid "Configuration"
 msgstr ""
 
-#: confusb/configuracion.py:522 confusb/ui.py:444
+#: confusb/configuracion.py:523 confusb/ui.py:444
 msgid "Can it be configured?"
 msgstr ""
 
